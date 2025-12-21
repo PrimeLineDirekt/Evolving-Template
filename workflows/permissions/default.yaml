@@ -1,0 +1,64 @@
+# Default Permissions Profile
+# Konservatives Profil für sichere Workflow-Ausführung
+
+name: default
+description: Konservatives Standard-Profil mit minimalen Rechten
+
+tools:
+  always_allow:
+    - Read
+    - Glob
+    - Grep
+    - WebSearch
+
+  allow_with_constraints:
+    - tool: Write
+      paths:
+        - "workflows/logs/**"
+        - "_handoffs/**"
+    - tool: Bash
+      commands:
+        - "git status"
+        - "ls"
+        - "cat"
+        - "echo"
+
+  ask_once: []
+
+  never_allow:
+    - tool: Bash
+      patterns:
+        - "rm -rf"
+        - "rm -r"
+        - "git push --force"
+        - "git reset --hard"
+        - "sudo"
+        - "chmod 777"
+
+file_access:
+  readable: "**/*"
+  writable:
+    - "workflows/logs/**"
+    - "_handoffs/**"
+  protected:
+    - ".git/**"
+    - ".env"
+    - "**/*.key"
+    - "**/credentials*"
+    - "workflows/definitions/**"
+    - "workflows/permissions/**"
+
+resource_limits:
+  max_file_size: "5MB"
+  max_files_per_step: 10
+  max_tokens_per_step: 30000
+  max_api_calls: 50
+
+secrets:
+  allowed_env_vars:
+    - "ANTHROPIC_API_KEY"
+  never_log:
+    - "*_KEY"
+    - "*_SECRET"
+    - "*_TOKEN"
+    - "*PASSWORD*"

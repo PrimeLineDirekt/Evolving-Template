@@ -1,0 +1,50 @@
+{
+  "name": "evolving-knowledge-hub",
+  "display_name": "Evolving Knowledge Hub",
+  "description": "Informations-Dashboard für KI-Neulinge - Lerne alles über Prompts, Agents, Skills und das Evolving System",
+  "version": "2.0.0",
+  "created": "2025-12-02",
+  "updated": "2025-12-08",
+
+  "project": {
+    "name": "Evolving Knowledge Hub",
+    "path": "./dashboard",
+    "repository": null,
+    "deployment": {
+      "type": "local",
+      "reason": "Statische Info-Seite, kann auch online deployed werden"
+    }
+  },
+
+  "tech_stack": {
+    "frontend": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS"],
+    "features": ["Light Theme", "Progressive Content", "Responsive Design"]
+  },
+
+  "components": {
+    "agents": [
+      "dashboard-frontend-agent"
+    ],
+    "commands": [
+      "dashboard-dev",
+      "dashboard-build"
+    ],
+    "skills": [],
+    "knowledge": []
+  },
+
+  "features": {
+    "sections": {
+      "quickstart": "3-Schritte Anleitung zum Loslegen",
+      "ai_basics": "KI-Grundlagen für Anfänger (Prompts, Agents, Skills, LLMs, Tools)",
+      "system_guide": "Alles über das Evolving System (Commands, Erweiterung, Anpassung)"
+    },
+    "design": {
+      "theme": "Light Mode",
+      "style": "Modern, einladend für Anfänger",
+      "interactions": "Progressive Disclosure mit Detail-Modals"
+    }
+  },
+
+  "status": "active"
+}

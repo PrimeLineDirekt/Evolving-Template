@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://evolving.local/schemas/preferences.schema.json",
+  "title": "User Preferences",
+  "description": "Schema für User Preferences Profile",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "User-Name"
+    },
+    "description": {
+      "type": "string"
+    },
+    "decision_making": {
+      "type": "object",
+      "properties": {
+        "when_multiple_approaches": {
+          "type": "string",
+          "enum": ["prefer_simpler", "prefer_thorough", "ask_user", "prefer_faster"],
+          "default": "prefer_simpler"
+        },
+        "when_uncertain": {
+          "type": "string",
+          "enum": ["batch_questions", "ask_immediately", "make_assumption", "skip_step"],
+          "default": "batch_questions"
+        },
+        "when_error": {
+          "type": "string",
+          "enum": ["fix_and_continue", "abort", "ask_user", "retry"],
+          "default": "fix_and_continue"
+        },
+        "risk_tolerance": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "default": "medium"
+        }
+      }
+    },
+    "coding": {
+      "type": "object",
+      "properties": {
+        "languages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Bevorzugte Programmiersprachen"
+        },
+        "style": {
+          "type": "string",
+          "enum": ["functional", "object-oriented", "procedural", "mixed"],
+          "default": "functional"
+        },
+        "comments": {
+          "type": "string",
+          "enum": ["minimal", "moderate", "verbose"],
+          "default": "minimal"
+        }
+      }
+    },
+    "communication": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "default": "German"
+        },
+        "verbosity": {
+          "type": "string",
+          "enum": ["concise", "moderate", "detailed"],
+          "default": "concise"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["markdown", "plain", "structured"],
+          "default": "markdown"
+        },
+        "emojis": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "properties": {
+        "focus_areas": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Thematische Fokus-Bereiche"
+        },
+        "tech_stack": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Bevorzugte Technologien"
+        },
+        "avoid": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Zu vermeidende Technologien/Themen"
+        }
+      }
+    },
+    "automation": {
+      "type": "object",
+      "properties": {
+        "auto_commit": {
+          "type": "boolean",
+          "default": false
+        },
+        "auto_fix_lint": {
+          "type": "boolean",
+          "default": true
+        },
+        "auto_update_docs": {
+          "type": "boolean",
+          "default": true
+        },
+        "batch_similar_tasks": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "model_preferences": {
+      "type": "object",
+      "properties": {
+        "default": {
+          "type": "string",
+          "enum": ["haiku", "sonnet", "opus"],
+          "default": "sonnet"
+        },
+        "complex_reasoning": {
+          "type": "string",
+          "enum": ["haiku", "sonnet", "opus"],
+          "default": "opus"
+        },
+        "simple_tasks": {
+          "type": "string",
+          "enum": ["haiku", "sonnet", "opus"],
+          "default": "haiku"
+        },
+        "cost_sensitivity": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "default": "medium"
+        }
+      }
+    }
+  }
+}

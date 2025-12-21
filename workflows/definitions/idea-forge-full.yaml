@@ -1,0 +1,441 @@
+# Idea Forge Full Pipeline
+# Komplette automatisierte Ideenentwicklung
+
+name: idea-forge-full
+description: Automatisierte Ideenentwicklung durch alle 4 Phasen (Analyse, Divergenz, Konvergenz, Roadmap)
+version: "1.0"
+
+trigger:
+  type: manual
+
+permissions_profile: idea-forge
+preferences_profile: default
+
+variables:
+  - name: idea_input
+    type: string
+    prompt: "Beschreibe deine Idee (kurz und prägnant):"
+    required: true
+
+  - name: max_cycles
+    type: number
+    default: 5
+    prompt: "Maximale Divergenz-Zyklen (3-7):"
+
+  - name: expert_domains
+    type: list
+    default:
+      - technical
+      - market
+      - ux
+      - monetization
+    prompt: "Experten-Domains für Divergenz:"
+
+steps:
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 1: ERFASSUNG
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: Erfasse Idee
+    prompt: |
+      Erfasse diese neue Idee strukturiert:
+
+      **User Input**: {{idea_input}}
+
+      Erstelle ein strukturiertes Ideen-Dokument:
+      1. **Titel**: Kurzer, prägnanter Name
+      2. **Kategorie**: SaaS | Tool | Content | Service | Other
+      3. **Kernproblem**: Welches Problem wird gelöst?
+      4. **Zielgruppe**: Wer hat dieses Problem?
+      5. **Lösungsansatz**: Wie wird es gelöst?
+      6. **Erste Einschätzung**: 1-2 Sätze
+
+      Output als JSON:
+      {
+        "title": "...",
+        "category": "...",
+        "problem": "...",
+        "target_audience": "...",
+        "solution": "...",
+        "initial_assessment": "..."
+      }
+    model: sonnet
+    store_as: captured_idea
+    timeout: 2m
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 2: INITIALE VALIDIERUNG
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: Validiere Idee
+    agent: idea-validator-agent
+    prompt: |
+      Führe eine initiale Validierung dieser Idee durch:
+
+      {{captured_idea}}
+
+      Bewerte nach:
+      1. **Feasibility** (1-10): Technisch umsetzbar?
+      2. **Market Fit** (1-10): Gibt es Bedarf?
+      3. **Competition** (1-10): Wie stark ist der Wettbewerb?
+      4. **Monetization** (1-10): Kann man damit Geld verdienen?
+      5. **Effort** (1-10): Wie viel Aufwand? (10 = wenig Aufwand)
+
+      Berechne Potential Score: (Feasibility + Market + Monetization + Effort - Competition) / 4
+
+      Output als JSON:
+      {
+        "feasibility": {"score": X, "reason": "..."},
+        "market_fit": {"score": X, "reason": "..."},
+        "competition": {"score": X, "reason": "..."},
+        "monetization": {"score": X, "reason": "..."},
+        "effort": {"score": X, "reason": "..."},
+        "potential_score": X.X,
+        "recommendation": "proceed" | "refine" | "reject",
+        "concerns": ["...", "..."]
+      }
+    model: opus
+    store_as: validation
+    timeout: 5m
+    confidence_gate: 70
+    on_low_confidence: manual_review
+
+  - name: Check Validation Result
+    condition: "{{validation.recommendation}} == 'reject'"
+    prompt: |
+      Die Idee wurde abgelehnt. Grund:
+      {{validation.concerns}}
+
+      Soll trotzdem fortgefahren werden? (Wird übersprungen wenn reject)
+    store_as: rejection_note
+    on_error: abort
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 3: DIVERGENZ (Idea Forge Kernphase)
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: Divergenz - Technischer Experte
+    prompt: |
+      Du bist ein **Technischer Experte**. Analysiere diese Idee:
+
+      {{captured_idea}}
+
+      Bisherige Validierung: {{validation}}
+
+      Generiere technische Erweiterungen:
+      1. Alternative Technologie-Stacks
+      2. Architektur-Varianten
+      3. Skalierbarkeits-Optionen
+      4. Integration mit bestehenden Tools
+      5. MVP vs. Full-Feature Approaches
+
+      Pro Punkt: Konkrete Idee + Vor-/Nachteile
+
+      Output als JSON Array mit 5+ Ideen.
+    model: opus
+    store_as: divergence_technical
+    timeout: 4m
+
+  - name: Divergenz - Markt Experte
+    prompt: |
+      Du bist ein **Markt-Analyst**. Analysiere diese Idee:
+
+      {{captured_idea}}
+
+      Bisherige Validierung: {{validation}}
+
+      Generiere Markt-Erweiterungen:
+      1. Alternative Zielgruppen
+      2. Verschiedene Pricing-Modelle
+      3. Go-to-Market Strategien
+      4. Partnerschaft-Möglichkeiten
+      5. Nischen vs. Massenmarkt
+
+      Pro Punkt: Konkrete Idee + Marktpotenzial
+
+      Output als JSON Array mit 5+ Ideen.
+    model: opus
+    store_as: divergence_market
+    timeout: 4m
+
+  - name: Divergenz - UX Experte
+    prompt: |
+      Du bist ein **UX Designer**. Analysiere diese Idee:
+
+      {{captured_idea}}
+
+      Generiere UX-Erweiterungen:
+      1. Verschiedene User Journeys
+      2. Interface-Varianten (CLI, Web, Mobile, API)
+      3. Onboarding-Strategien
+      4. Gamification-Elemente
+      5. Accessibility-Features
+
+      Pro Punkt: Konkrete Idee + User Impact
+
+      Output als JSON Array mit 5+ Ideen.
+    model: sonnet
+    store_as: divergence_ux
+    timeout: 3m
+
+  - name: Divergenz - Monetization Experte
+    prompt: |
+      Du bist ein **Business Strategist**. Analysiere diese Idee:
+
+      {{captured_idea}}
+
+      Generiere Monetization-Erweiterungen:
+      1. Revenue Streams (Subscription, One-time, Freemium, etc.)
+      2. Upselling/Cross-Selling Möglichkeiten
+      3. B2B vs. B2C Ansätze
+      4. Affiliate/Partner-Programme
+      5. Content Monetization
+
+      Pro Punkt: Konkrete Idee + Revenue Potential
+
+      Output als JSON Array mit 5+ Ideen.
+    model: sonnet
+    store_as: divergence_monetization
+    timeout: 3m
+
+  - name: Kombiniere Divergenz
+    prompt: |
+      Kombiniere alle Divergenz-Ergebnisse:
+
+      **Technisch**: {{divergence_technical}}
+      **Markt**: {{divergence_market}}
+      **UX**: {{divergence_ux}}
+      **Monetization**: {{divergence_monetization}}
+
+      Erstelle eine konsolidierte Liste aller Ideen:
+      1. Entferne Duplikate
+      2. Gruppiere nach Thema
+      3. Markiere besonders vielversprechende Kombinationen
+      4. Identifiziere Synergien zwischen Ideen
+
+      Output als strukturiertes JSON mit allen Ideen und Kategorien.
+    model: sonnet
+    store_as: divergence_combined
+    timeout: 3m
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 4: KONVERGENZ
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: Priorisiere Ideen
+    prompt: |
+      Priorisiere die Ideen aus der Divergenz-Phase:
+
+      {{divergence_combined}}
+
+      Nutze eine Impact/Effort Matrix:
+      - **Impact**: Wie stark verbessert es die Idee? (1-10)
+      - **Effort**: Wie viel Aufwand? (1-10, 10 = wenig)
+
+      Kategorisiere:
+      - **Quick Wins**: High Impact, Low Effort → Sofort umsetzen
+      - **Big Bets**: High Impact, High Effort → Planen
+      - **Fill-Ins**: Low Impact, Low Effort → Wenn Zeit
+      - **Money Pits**: Low Impact, High Effort → Vermeiden
+
+      Output als JSON:
+      {
+        "quick_wins": [...],
+        "big_bets": [...],
+        "fill_ins": [...],
+        "money_pits": [...],
+        "recommended_mvp": ["Top 5 Features für MVP"]
+      }
+    model: opus
+    store_as: convergence
+    timeout: 4m
+    confidence_gate: 75
+    on_low_confidence: retry
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 5: SYNERGIEN
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: Finde Synergien
+    command: /idea-list --format json
+    store_as: existing_ideas
+    timeout: 1m
+
+  - name: Analysiere Synergien
+    prompt: |
+      Vergleiche diese neue Idee mit existierenden Ideen:
+
+      **Neue Idee**: {{captured_idea}}
+
+      **Existierende Ideen**: {{existing_ideas}}
+
+      Finde Synergien:
+      1. Gemeinsame Technologien
+      2. Überlappende Zielgruppen
+      3. Cross-Selling Potenzial
+      4. Shared Infrastructure
+      5. Knowledge Transfer
+
+      Output als JSON:
+      {
+        "synergies": [
+          {"with_idea": "...", "type": "...", "description": "...", "potential": "high|medium|low"}
+        ],
+        "recommended_combinations": ["..."]
+      }
+    model: sonnet
+    store_as: synergies
+    condition: "{{existing_ideas}} != '[]'"
+    timeout: 3m
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 6: ROADMAP
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: Erstelle Roadmap
+    prompt: |
+      Erstelle eine Implementierungs-Roadmap:
+
+      **Idee**: {{captured_idea}}
+      **Validierung**: {{validation}}
+      **MVP Features**: {{convergence.recommended_mvp}}
+      **Synergien**: {{synergies}}
+
+      Erstelle eine Roadmap in Phasen:
+
+      **Phase 1: MVP** (Was ist minimal nötig?)
+      - Features
+      - Tech Stack
+      - Geschätzter Aufwand
+
+      **Phase 2: Validation** (Wie testen wir?)
+      - Metriken
+      - User Feedback Loop
+      - Pivot-Kriterien
+
+      **Phase 3: Growth** (Wie skalieren wir?)
+      - Features für Wachstum
+      - Marketing-Strategie
+      - Revenue-Ziele
+
+      Output als strukturiertes JSON.
+    model: opus
+    store_as: roadmap
+    timeout: 4m
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 7: DOKUMENTATION
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: Generiere Dokumentation
+    output: "ideas/forged/{{captured_idea.title}}-{{date}}.md"
+    template: |
+      # {{captured_idea.title}}
+
+      **Erstellt**: {{date}}
+      **Status**: Forged (Ready for Implementation)
+      **Potential Score**: {{validation.potential_score}}/10
+
+      ---
+
+      ## Executive Summary
+
+      {{captured_idea.initial_assessment}}
+
+      ---
+
+      ## 1. Idee
+
+      **Problem**: {{captured_idea.problem}}
+
+      **Zielgruppe**: {{captured_idea.target_audience}}
+
+      **Lösung**: {{captured_idea.solution}}
+
+      ---
+
+      ## 2. Validierung
+
+      | Kriterium | Score | Begründung |
+      |-----------|-------|------------|
+      | Feasibility | {{validation.feasibility.score}}/10 | {{validation.feasibility.reason}} |
+      | Market Fit | {{validation.market_fit.score}}/10 | {{validation.market_fit.reason}} |
+      | Competition | {{validation.competition.score}}/10 | {{validation.competition.reason}} |
+      | Monetization | {{validation.monetization.score}}/10 | {{validation.monetization.reason}} |
+      | Effort | {{validation.effort.score}}/10 | {{validation.effort.reason}} |
+
+      **Concerns**: {{validation.concerns}}
+
+      ---
+
+      ## 3. Divergenz-Ergebnisse
+
+      ### Technisch
+      {{divergence_technical}}
+
+      ### Markt
+      {{divergence_market}}
+
+      ### UX
+      {{divergence_ux}}
+
+      ### Monetization
+      {{divergence_monetization}}
+
+      ---
+
+      ## 4. Priorisierung
+
+      ### Quick Wins (Sofort umsetzen)
+      {{convergence.quick_wins}}
+
+      ### Big Bets (Planen)
+      {{convergence.big_bets}}
+
+      ### MVP Features
+      {{convergence.recommended_mvp}}
+
+      ---
+
+      ## 5. Synergien
+
+      {{synergies}}
+
+      ---
+
+      ## 6. Roadmap
+
+      {{roadmap}}
+
+      ---
+
+      ## Nächste Schritte
+
+      1. MVP Features definieren
+      2. Tech Stack festlegen
+      3. Erste Implementation starten
+
+      ---
+
+      *Generiert durch Idea Forge Pipeline*
+      *Workflow: idea-forge-full*
+      *Dauer: {{workflow.duration}}*
+
+on_error: pause
+max_steps: 50
+timeout: 30m
+dry_run: false
+
+budget:
+  max_tokens: 150000
+  max_cost: 2.00
+
+audit:
+  log_level: verbose
+  include_prompts: true
+  include_outputs: true
+
+notify:
+  on_complete: true
+  on_error: true
+  method: file

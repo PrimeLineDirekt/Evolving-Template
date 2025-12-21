@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-12-22",
+  "description": "Prompt Registry - Catalog of all production-ready prompts in the Knowledge Base",
+  "categories": {
+    "frameworks": {
+      "description": "Meta-level prompt engineering systems",
+      "count": 2
+    },
+    "research-agents": {
+      "description": "Specialized research & data collection prompts",
+      "count": 1
+    },
+    "skills": {
+      "description": "Specialized workflow prompts",
+      "count": 1
+    }
+  },
+  "prompts": [
+    {
+      "id": "prompt-pro-2.0",
+      "name": "Prompt Pro 2.0",
+      "category": "frameworks",
+      "file": "frameworks/prompt-pro-2.0.md",
+      "type": "prompt-framework",
+      "model": ["claude-opus-4", "claude-sonnet-4.5"],
+      "confidence": 95,
+      "status": "production-ready",
+      "tags": ["claude", "prompt-engineering", "xml-structure", "chain-of-thought", "anthropic-best-practices"],
+      "useCase": "Meta-prompt system for creating Claude-optimized prompts with 5-level technique hierarchy",
+      "source": "inbox",
+      "created": "2024-11-22"
+    },
+    {
+      "id": "idea-forge",
+      "name": "Idea Forge",
+      "category": "frameworks",
+      "file": "frameworks/idea-forge.md",
+      "type": "ideation-framework",
+      "model": ["claude-opus-4", "claude-sonnet-4.5"],
+      "confidence": 90,
+      "status": "production-ready",
+      "tags": ["ideation", "divergence", "convergence", "roadmap"],
+      "useCase": "Adaptive ideation system with multi-phase process: Divergence -> Convergence -> Roadmap",
+      "source": "inbox",
+      "created": "2024-11-22"
+    },
+    {
+      "id": "research-orchestrator",
+      "name": "Research Orchestrator",
+      "category": "research-agents",
+      "file": "research-agents/research-orchestrator.md",
+      "type": "research-agent",
+      "model": ["claude-opus-4"],
+      "confidence": 90,
+      "status": "production-ready",
+      "tags": ["research", "multi-domain", "confidence-scoring"],
+      "useCase": "Elite research coordinator for multi-domain optimization with confidence scoring",
+      "source": "inbox",
+      "created": "2024-11-22"
+    }
+  ],
+  "stats": {
+    "totalPrompts": 3,
+    "byCategory": {
+      "frameworks": 2,
+      "research-agents": 1,
+      "skills": 0
+    },
+    "byConfidence": {
+      "95+": 1,
+      "90-94": 2,
+      "85-89": 0
+    },
+    "byModel": {
+      "claude-opus-4": 3,
+      "claude-sonnet-4.5": 2
+    },
+    "bySource": {
+      "inbox": 3
+    }
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "blueprint_version": "1.0",
+
+  "metadata": {
+    "id": "multi-agent-advisory",
+    "name": "Multi-Agent Advisory System",
+    "description": "Generiert ein Experten-Team System für Beratungsthemen",
+    "type": "advisory",
+    "complexity": "high",
+    "created": "2025-12-14",
+    "source_template": ".claude/templates/scenarios/multi-agent-advisory/"
+  },
+
+  "detection_patterns": {
+    "keywords": [
+      "beratung", "advisory", "berater", "experten", "team",
+      "steuer", "legal", "recht", "finance", "finanz", "medical", "medizin",
+      "analyse", "bewertung", "empfehlung", "risiko"
+    ],
+    "domain_hints": {
+      "steuer": ["steuer", "tax", "finanzamt", "steuererklärung", "absetzbar"],
+      "legal": ["recht", "legal", "anwalt", "gesetz", "vertrag"],
+      "finance": ["finanz", "investment", "portfolio", "anlage", "vermögen"],
+      "medical": ["medizin", "gesundheit", "diagnose", "behandlung", "arzt"]
+    },
+    "complexity_indicators": ["multi-agent", "experten", "team", "koordination"]
+  },
+
+  "architecture": {
+    "pattern": "multi-agent-advisory",
+    "coordination": "orchestrated",
+    "characteristics": {
+      "input": "structured-profile",
+      "output": "comprehensive-report",
+      "interaction": "single-shot-with-followup"
+    },
+    "agent_count": {
+      "min": 3,
+      "max": 8,
+      "recommended": 5
+    },
+    "model_tiering": {
+      "enabled": true,
+      "tier1": {
+        "model": "opus",
+        "use_for": "Critical analysis, high-impact decisions",
+        "max_agents": 2
+      },
+      "tier2": {
+        "model": "sonnet",
+        "use_for": "Standard analysis, coordination",
+        "max_agents": 4
+      },
+      "tier3": {
+        "model": "haiku",
+        "use_for": "Checklists, simple lookups, reporting",
+        "max_agents": 2
+      }
+    }
+  },
+
+  "components": {
+    "agents": {
+      "mandatory": [
+        {
+          "role": "koordinator",
+          "template": ".claude/templates/agents/orchestrator-agent.md",
+          "tier": 2,
+          "description": "Koordiniert das Experten-Team, synthetisiert Ergebnisse"
+        },
+        {
+          "role": "domain-specialist-1",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 1,
+          "description": "Primärer Domain-Experte (z.B. Steuerberater)",
+          "placeholder": "{PRIMARY_SPECIALIST}"
+        },
+        {
+          "role": "reporter",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 3,
+          "description": "Erstellt finale Reports und Checklisten"
+        }
+      ],
+      "optional": [
+        {
+          "role": "domain-specialist-2",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 1,
+          "description": "Sekundärer Experte (z.B. Steueranwalt)",
+          "placeholder": "{SECONDARY_SPECIALIST}",
+          "condition": "complexity >= medium"
+        },
+        {
+          "role": "domain-specialist-3",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 2,
+          "description": "Tertiärer Experte (z.B. Software-Experte)",
+          "placeholder": "{TERTIARY_SPECIALIST}",
+          "condition": "complexity >= high"
+        },
+        {
+          "role": "validator",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 2,
+          "description": "Validiert Empfehlungen, prüft Risiken",
+          "condition": "risk_assessment == true"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "name": "{domain}-beratung",
+        "template": ".claude/templates/commands/workflow-command.md",
+        "description": "Umfassende Team-Beratung",
+        "model": "opus"
+      },
+      {
+        "name": "{domain}-check",
+        "template": ".claude/templates/commands/analysis-command.md",
+        "description": "Schnelle Prüfung einer Frage",
+        "model": "haiku"
+      }
+    ],
+    "rules": [
+      {
+        "name": "domain-memory-bootup",
+        "description": "Memory bei Session-Start laden",
+        "source": ".claude/rules/domain-memory-bootup.md"
+      }
+    ]
+  },
+
+  "knowledge_injection": {
+    "auto_detect": true,
+    "patterns": [
+      {
+        "id": "multi-agent-orchestration",
+        "path": "knowledge/patterns/multi-agent-orchestration.md",
+        "required": true,
+        "inject_as": "reference"
+      },
+      {
+        "id": "confidence-scoring",
+        "path": "knowledge/patterns/research-confidence-scoring.md",
+        "required": true,
+        "inject_as": "reference"
+      },
+      {
+        "id": "intake-gate-pattern",
+        "path": "knowledge/patterns/intake-gate-pattern.md",
+        "required": false,
+        "inject_as": "reference"
+      },
+      {
+        "id": "reflection-pattern",
+        "path": "knowledge/patterns/reflection-pattern.md",
+        "required": false,
+        "inject_as": "reference"
+      }
+    ],
+    "learnings": [
+      {
+        "id": "12-factor-agents",
+        "path": "knowledge/learnings/12-factor-agents.md",
+        "relevance": "Agent Design Best Practices"
+      },
+      {
+        "id": "multi-agent-systems",
+        "path": "knowledge/learnings/[your-multi-agent-learnings].md",
+        "relevance": "Your own multi-agent system learnings (optional)"
+      }
+    ],
+    "agent_prompts": {
+      "reference_project": "knowledge/prompts/patterns/[your-agent-patterns]/",
+      "use_as": "inspiration",
+      "note": "Production-proven agent prompts from your projects"
+    }
+  },
+
+  "generation": {
+    "target_structure": {
+      "directories": [
+        ".claude/agents/",
+        ".claude/commands/",
+        ".claude/rules/",
+        "knowledge/",
+        "knowledge/patterns/",
+        "_memory/",
+        "_memory/projects/"
+      ],
+      "required_files": [
+        "CLAUDE.md",
+        "README.md",
+        ".claude/scenario.json"
+      ],
+      "optional_files": [
+        "_memory/index.json",
+        "knowledge/index.md"
+      ]
+    },
+    "placeholders": {
+      "required": [
+        "{PROJECT_NAME}",
+        "{DOMAIN}",
+        "{DOMAIN_DISPLAY}",
+        "{DESCRIPTION}",
+        "{TARGET_PATH}"
+      ],
+      "generated": [
+        "{AGENT_LIST}",
+        "{COMMAND_LIST}",
+        "{INJECTED_PATTERNS}",
+        "{DATE}",
+        "{BLUEPRINT_NAME}"
+      ],
+      "optional": [
+        "{PRIMARY_SPECIALIST}",
+        "{SECONDARY_SPECIALIST}",
+        "{TERTIARY_SPECIALIST}",
+        "{KNOWLEDGE_BASE_PATH}"
+      ]
+    },
+    "templates": {
+      "claude_md": ".claude/templates/generated-system/CLAUDE.md.template",
+      "readme": ".claude/templates/generated-system/README.md.template",
+      "scenario_json": ".claude/templates/generated-system/scenario.json.template",
+      "memory_index": ".claude/templates/generated-system/memory-index.json.template"
+    }
+  },
+
+  "validation": {
+    "checks": [
+      "all_placeholders_replaced",
+      "directory_structure_complete",
+      "required_files_exist",
+      "claude_md_has_content",
+      "agents_have_valid_structure",
+      "commands_reference_valid_agents"
+    ],
+    "quality_gates": {
+      "min_agents": 3,
+      "claude_md_min_lines": 50,
+      "all_agents_have_description": true
+    }
+  },
+
+  "customization": {
+    "questions": [
+      {
+        "id": "domain",
+        "question": "Für welche Domain ist das System? (z.B. steuer, legal, finance)",
+        "type": "string",
+        "required": true
+      },
+      {
+        "id": "project_name",
+        "question": "Wie soll das Projekt heißen?",
+        "type": "string",
+        "required": true,
+        "default": "{domain}-advisory-system"
+      },
+      {
+        "id": "specialist_count",
+        "question": "Wie viele Domain-Spezialisten? (2-4)",
+        "type": "number",
+        "min": 2,
+        "max": 4,
+        "default": 3
+      },
+      {
+        "id": "include_validator",
+        "question": "Soll ein Validator-Agent für Risiko-Assessment inkludiert werden?",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "include_kb",
+        "question": "Soll eine Knowledge Base Struktur erstellt werden?",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+
+  "examples": {
+    "steuer": {
+      "domain": "steuer",
+      "project_name": "Steuer-Beratungs-System",
+      "specialists": ["steuerberater", "steueranwalt", "software-experte"],
+      "commands": ["steuer-beratung", "steuer-check"]
+    },
+    "legal": {
+      "domain": "legal",
+      "project_name": "Rechtsberatungs-System",
+      "specialists": ["vertragsanwalt", "arbeitsrechtler", "compliance-experte"],
+      "commands": ["legal-beratung", "legal-check"]
+    }
+  }
+}

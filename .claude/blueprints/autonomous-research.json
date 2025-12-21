@@ -1,0 +1,318 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "blueprint_version": "1.0",
+
+  "metadata": {
+    "id": "autonomous-research",
+    "name": "Autonomous Research System",
+    "description": "Task Decomposition + Parallel Research + Synthesis System",
+    "type": "research",
+    "complexity": "medium",
+    "created": "2025-12-16",
+    "source_template": ".claude/templates/scenarios/autonomous-research/"
+  },
+
+  "detection_patterns": {
+    "keywords": [
+      "research", "recherche", "analyse", "untersuchen", "evaluieren",
+      "markt", "competitor", "wettbewerb", "tech", "technologie",
+      "due diligence", "assessment", "bewertung", "vergleich"
+    ],
+    "domain_hints": {
+      "market": ["markt", "market", "competitor", "wettbewerb", "branche", "industrie"],
+      "tech": ["technologie", "tech", "framework", "tool", "stack", "evaluation"],
+      "business": ["business", "geschäft", "startup", "company", "unternehmen"],
+      "academic": ["paper", "studie", "forschung", "wissenschaft", "literatur"]
+    },
+    "complexity_indicators": ["deep dive", "umfassend", "gründlich", "detailliert", "parallel"]
+  },
+
+  "architecture": {
+    "pattern": "hierarchical-research",
+    "coordination": "hierarchical",
+    "characteristics": {
+      "input": "research-question",
+      "output": "research-report-with-sources",
+      "interaction": "iterative-refinement"
+    },
+    "agent_count": {
+      "min": 3,
+      "max": 6,
+      "recommended": 4
+    },
+    "model_tiering": {
+      "enabled": true,
+      "tier1": {
+        "model": "opus",
+        "use_for": "Synthesis, complex reasoning, final reports",
+        "max_agents": 1
+      },
+      "tier2": {
+        "model": "sonnet",
+        "use_for": "Task decomposition, research execution, fact-checking",
+        "max_agents": 3
+      },
+      "tier3": {
+        "model": "haiku",
+        "use_for": "Simple lookups, data extraction, formatting",
+        "max_agents": 2
+      }
+    },
+    "execution_pattern": {
+      "phase1": "decomposition",
+      "phase2": "parallel_research",
+      "phase3": "synthesis",
+      "phase4": "validation"
+    }
+  },
+
+  "components": {
+    "agents": {
+      "mandatory": [
+        {
+          "role": "task-decomposer",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 2,
+          "description": "Zerlegt komplexe Research-Fragen in parallele Sub-Tasks",
+          "capabilities": [
+            "question_analysis",
+            "task_breakdown",
+            "dependency_identification",
+            "priority_assignment"
+          ]
+        },
+        {
+          "role": "researcher",
+          "template": ".claude/templates/agents/research-agent.md",
+          "tier": 2,
+          "description": "Führt fokussierte Research zu einem Sub-Task durch",
+          "capabilities": [
+            "web_search",
+            "source_evaluation",
+            "data_extraction",
+            "confidence_scoring"
+          ],
+          "scalable": true,
+          "min_instances": 1,
+          "max_instances": 3
+        },
+        {
+          "role": "synthesizer",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 1,
+          "description": "Aggregiert Findings, erkennt Patterns, erstellt Report",
+          "capabilities": [
+            "information_synthesis",
+            "pattern_recognition",
+            "conflict_resolution",
+            "report_generation"
+          ]
+        }
+      ],
+      "optional": [
+        {
+          "role": "fact-checker",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 2,
+          "description": "Validiert Claims und Quellen",
+          "condition": "validation_required == true",
+          "capabilities": [
+            "source_verification",
+            "claim_validation",
+            "bias_detection"
+          ]
+        },
+        {
+          "role": "data-extractor",
+          "template": ".claude/templates/agents/specialist-agent.md",
+          "tier": 3,
+          "description": "Extrahiert strukturierte Daten aus Quellen",
+          "condition": "structured_data == true",
+          "capabilities": [
+            "data_parsing",
+            "table_extraction",
+            "metric_collection"
+          ]
+        }
+      ]
+    },
+    "commands": [
+      {
+        "name": "{domain}-research",
+        "template": ".claude/templates/commands/workflow-command.md",
+        "description": "Vollständige Research Session mit Report",
+        "model": "sonnet",
+        "workflow": [
+          "decompose_question",
+          "parallel_research",
+          "synthesize_findings",
+          "generate_report"
+        ]
+      },
+      {
+        "name": "{domain}-quick",
+        "template": ".claude/templates/commands/analysis-command.md",
+        "description": "Schnelle Faktenabfrage ohne Deep Dive",
+        "model": "haiku"
+      }
+    ],
+    "rules": [
+      {
+        "name": "research-confidence-scoring",
+        "description": "Confidence Scores für alle Findings",
+        "source": ".claude/rules/research-confidence.md",
+        "auto_generate": true
+      }
+    ]
+  },
+
+  "knowledge_injection": {
+    "auto_detect": true,
+    "patterns": [
+      {
+        "id": "research-confidence-scoring",
+        "path": "knowledge/patterns/research-confidence-scoring.md",
+        "required": true,
+        "inject_as": "reference"
+      },
+      {
+        "id": "reflection-pattern",
+        "path": "knowledge/patterns/reflection-pattern.md",
+        "required": true,
+        "inject_as": "reference"
+      },
+      {
+        "id": "pev-pattern",
+        "path": "knowledge/patterns/plan-execute-verify-pattern.md",
+        "required": false,
+        "inject_as": "reference"
+      }
+    ],
+    "learnings": [
+      {
+        "id": "12-factor-agents",
+        "path": "knowledge/learnings/12-factor-agents.md",
+        "relevance": "Agent Design Best Practices"
+      }
+    ]
+  },
+
+  "generation": {
+    "target_structure": {
+      "directories": [
+        ".claude/agents/",
+        ".claude/commands/",
+        ".claude/rules/",
+        "knowledge/",
+        "_memory/",
+        "_memory/projects/",
+        "_output/"
+      ],
+      "required_files": [
+        "CLAUDE.md",
+        "README.md",
+        ".claude/scenario.json"
+      ],
+      "optional_files": [
+        "_memory/index.json",
+        "knowledge/index.md",
+        "_output/.gitkeep"
+      ]
+    },
+    "placeholders": {
+      "required": [
+        "{PROJECT_NAME}",
+        "{DOMAIN}",
+        "{DOMAIN_DISPLAY}",
+        "{DESCRIPTION}",
+        "{TARGET_PATH}"
+      ],
+      "generated": [
+        "{AGENT_LIST}",
+        "{COMMAND_LIST}",
+        "{INJECTED_PATTERNS}",
+        "{DATE}",
+        "{BLUEPRINT_NAME}"
+      ],
+      "optional": [
+        "{RESEARCHER_COUNT}",
+        "{OUTPUT_FORMAT}"
+      ]
+    },
+    "templates": {
+      "claude_md": ".claude/templates/generated-system/CLAUDE.md.template",
+      "readme": ".claude/templates/generated-system/README.md.template",
+      "scenario_json": ".claude/templates/generated-system/scenario.json.template",
+      "memory_index": ".claude/templates/generated-system/memory-index.json.template"
+    }
+  },
+
+  "validation": {
+    "checks": [
+      "all_placeholders_replaced",
+      "directory_structure_complete",
+      "required_files_exist",
+      "claude_md_has_content",
+      "agents_have_valid_structure"
+    ],
+    "quality_gates": {
+      "min_agents": 3,
+      "claude_md_min_lines": 40,
+      "all_agents_have_description": true
+    }
+  },
+
+  "customization": {
+    "questions": [
+      {
+        "id": "domain",
+        "question": "Für welche Domain ist die Research? (z.B. market, tech, business)",
+        "type": "string",
+        "required": true
+      },
+      {
+        "id": "project_name",
+        "question": "Wie soll das Projekt heißen?",
+        "type": "string",
+        "required": true,
+        "default": "{domain}-research-system"
+      },
+      {
+        "id": "researcher_count",
+        "question": "Wie viele parallele Researcher? (1-3)",
+        "type": "number",
+        "min": 1,
+        "max": 3,
+        "default": 2
+      },
+      {
+        "id": "include_fact_checker",
+        "question": "Soll ein Fact-Checker Agent für Validierung inkludiert werden?",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "output_format",
+        "question": "Bevorzugtes Output-Format? (markdown, json, both)",
+        "type": "string",
+        "options": ["markdown", "json", "both"],
+        "default": "markdown"
+      }
+    ]
+  },
+
+  "examples": {
+    "market": {
+      "domain": "market",
+      "project_name": "Markt-Research-System",
+      "researchers": ["competitor-researcher", "trend-researcher"],
+      "commands": ["market-research", "market-quick"]
+    },
+    "tech": {
+      "domain": "tech",
+      "project_name": "Tech-Evaluation-System",
+      "researchers": ["framework-researcher", "performance-researcher"],
+      "commands": ["tech-research", "tech-quick"]
+    }
+  }
+}

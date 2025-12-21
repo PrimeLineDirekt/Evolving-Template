@@ -1,0 +1,39 @@
+# Default Preferences Profile
+# Kopiere diese Datei und passe sie an: {dein-name}.yaml
+
+name: default
+description: Standard-Präferenzen für neue User
+
+decision_making:
+  when_multiple_approaches: prefer_simpler
+  when_uncertain: ask_user
+  when_error: fix_and_continue
+  risk_tolerance: low
+
+coding:
+  languages: []
+  style: pragmatic
+  comments: helpful
+
+communication:
+  language: German
+  verbosity: balanced
+  format: markdown
+  emojis: false
+
+domain:
+  focus_areas: []
+  tech_stack: []
+  avoid: []
+
+automation:
+  auto_commit: false
+  auto_fix_lint: true
+  auto_update_docs: true
+  batch_similar_tasks: false
+
+model_preferences:
+  default: sonnet
+  complex_reasoning: opus
+  simple_tasks: haiku
+  cost_sensitivity: high

@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "description": "Blueprint Registry für den Evolving System-Builder",
+  "last_updated": "2025-12-16",
+
+  "blueprints": [
+    {
+      "id": "multi-agent-advisory",
+      "name": "Multi-Agent Advisory System",
+      "description": "Experten-Team für Beratungsthemen (Steuer, Legal, Finance, Medical)",
+      "file": "multi-agent-advisory.json",
+      "type": "advisory",
+      "complexity": "high",
+      "agent_count": "4-8",
+      "use_cases": [
+        "Steuerberatung",
+        "Rechtsberatung",
+        "Finanzplanung",
+        "Medizinische Beratung",
+        "Technische Beratung"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "autonomous-research",
+      "name": "Autonomous Research System",
+      "description": "Task Decomposition + Parallel Research + Synthesis",
+      "file": "autonomous-research.json",
+      "type": "research",
+      "complexity": "medium",
+      "agent_count": "3-6",
+      "use_cases": [
+        "Marktanalyse",
+        "Competitor Research",
+        "Tech Evaluation",
+        "Due Diligence",
+        "Literature Review"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "simple-workflow",
+      "name": "Simple Workflow System",
+      "description": "Einfacher 1-3 Agent Linear Pipeline Workflow",
+      "file": "simple-workflow.json",
+      "type": "workflow",
+      "complexity": "low",
+      "agent_count": "1-3",
+      "use_cases": [
+        "Content Creation",
+        "Code Review",
+        "Data Processing",
+        "Simple Analysis",
+        "File Transformation"
+      ],
+      "status": "active"
+    }
+  ],
+
+  "planned": [],
+
+  "stats": {
+    "total_blueprints": 3,
+    "total_planned": 0
+  }
+}

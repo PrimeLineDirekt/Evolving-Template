@@ -1,0 +1,20 @@
+# Evolving Knowledge System - Python Dependencies
+
+# MCP Server
+mcp>=0.9.0
+
+# Anthropic Claude API
+anthropic>=0.21.0
+
+# Claude Agent SDK (formerly Claude Code SDK)
+claude-code-sdk>=0.0.25
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Data Validation
+pydantic>=2.0.0
+
+# Type checking (optional, for development)
+mypy>=1.0.0

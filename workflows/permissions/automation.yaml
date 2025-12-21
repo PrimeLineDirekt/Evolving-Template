@@ -1,0 +1,72 @@
+# Automation Permissions Profile
+# Erweiterte Rechte für automatisierte Workflows
+
+name: automation
+description: Erweiterte Rechte für automatische Workflow-Ausführung
+inherits: default
+
+tools:
+  always_allow:
+    - Read
+    - Glob
+    - Grep
+    - WebSearch
+    - WebFetch
+
+  allow_with_constraints:
+    - tool: Write
+      paths:
+        - "workflows/logs/**"
+        - "_handoffs/**"
+        - "_inbox/**"
+    - tool: Edit
+      paths:
+        - "knowledge/**"
+    - tool: Bash
+      commands:
+        - "git status"
+        - "git add"
+        - "git commit"
+        - "ls"
+        - "cat"
+        - "echo"
+        - "date"
+
+  ask_once: []
+
+  never_allow:
+    - tool: Bash
+      patterns:
+        - "rm -rf"
+        - "rm -r"
+        - "git push"
+        - "git reset --hard"
+        - "sudo"
+
+file_access:
+  readable: "**/*"
+  writable:
+    - "workflows/logs/**"
+    - "_handoffs/**"
+    - "_inbox/**"
+    - "knowledge/learnings/**"
+  protected:
+    - ".git/**"
+    - ".env"
+    - "workflows/definitions/**"
+    - "workflows/permissions/**"
+    - "workflows/engine/**"
+
+resource_limits:
+  max_file_size: "10MB"
+  max_files_per_step: 20
+  max_tokens_per_step: 50000
+  max_api_calls: 100
+
+secrets:
+  allowed_env_vars:
+    - "ANTHROPIC_API_KEY"
+  never_log:
+    - "*_KEY"
+    - "*_SECRET"
+    - "*_TOKEN"

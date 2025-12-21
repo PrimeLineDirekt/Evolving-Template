@@ -1,0 +1,158 @@
+# Inbox Processing Workflow
+# Automatisch bei neuen Dateien in _inbox/
+
+name: inbox-processing
+description: Automatische Klassifizierung und Verarbeitung von Inbox-Dateien
+version: "1.0"
+
+trigger:
+  type: watch
+  watch: "_inbox/*"
+
+permissions_profile: automation
+preferences_profile: default
+
+variables:
+  - name: file_path
+    type: string
+    required: true
+
+steps:
+  - name: Lese Datei
+    bash: "cat '{{file_path}}'"
+    store_as: file_content
+    timeout: 30s
+    on_error: abort
+
+  - name: Extrahiere Metadaten
+    bash: "basename '{{file_path}}'"
+    store_as: filename
+    timeout: 10s
+
+  - name: Klassifiziere Inhalt
+    prompt: |
+      Analysiere diese Datei aus der Inbox:
+
+      **Dateiname**: {{filename}}
+
+      **Inhalt**:
+      {{file_content}}
+
+      Klassifiziere den Inhalt:
+
+      1. **Typ**: idea | learning | pattern | reference | action_item | unknown
+      2. **Priorität**: high | medium | low
+      3. **Vorgeschlagene Aktion**:
+         - idea → /idea-new
+         - learning → /knowledge-add --type learning
+         - pattern → /knowledge-add --type pattern
+         - reference → knowledge/references/
+         - action_item → _handoffs/todo/
+         - unknown → _handoffs/unsorted/
+
+      4. **Zusammenfassung**: 1-2 Sätze
+
+      Output als JSON:
+      {
+        "type": "...",
+        "priority": "...",
+        "action": "...",
+        "target_path": "...",
+        "summary": "..."
+      }
+    model: haiku
+    store_as: classification
+    timeout: 1m
+    confidence_gate: 60
+    on_low_confidence: manual_review
+
+  - name: Verarbeite basierend auf Typ
+    branch:
+      - condition: "{{classification.type}} == 'idea'"
+        steps:
+          - name: Erstelle Idee
+            command: "/idea-new {{classification.summary}}"
+            store_as: new_idea
+            timeout: 2m
+
+      - condition: "{{classification.type}} == 'learning'"
+        steps:
+          - name: Speichere Learning
+            output: "knowledge/learnings/inbox-{{date}}-{{filename}}.md"
+            template: |
+              # {{classification.summary}}
+
+              **Quelle**: Inbox - {{filename}}
+              **Erstellt**: {{date}}
+
+              ---
+
+              {{file_content}}
+
+      - condition: "{{classification.type}} == 'pattern'"
+        steps:
+          - name: Speichere Pattern
+            output: "knowledge/patterns/inbox-{{date}}-{{filename}}.md"
+            template: |
+              # {{classification.summary}}
+
+              **Quelle**: Inbox
+              **Erstellt**: {{date}}
+
+              ---
+
+              {{file_content}}
+
+      - condition: "{{classification.type}} == 'action_item'"
+        steps:
+          - name: Speichere Action Item
+            output: "_handoffs/todo/{{filename}}"
+            template: |
+              # Action Item: {{classification.summary}}
+
+              **Priorität**: {{classification.priority}}
+              **Erstellt**: {{date}}
+
+              ---
+
+              {{file_content}}
+
+      - condition: "{{classification.type}} == 'unknown'"
+        steps:
+          - name: Speichere Unsortiert
+            output: "_handoffs/unsorted/{{filename}}"
+            template: |
+              {{file_content}}
+
+  - name: Archiviere Original
+    bash: "mv '{{file_path}}' '_inbox/processed/{{filename}}'"
+    timeout: 10s
+    on_error: skip
+
+  - name: Log Verarbeitung
+    output: "workflows/logs/inbox-{{date}}.log"
+    template: |
+      [{{timestamp}}] Processed: {{filename}}
+      Type: {{classification.type}}
+      Priority: {{classification.priority}}
+      Action: {{classification.action}}
+      ---
+
+on_error: pause
+max_steps: 15
+timeout: 5m
+dry_run: false
+
+budget:
+  max_tokens: 10000
+  max_cost: 0.10
+
+audit:
+  log_level: standard
+  include_prompts: false
+  include_outputs: true
+
+notify:
+  on_complete: false
+  on_error: true
+  method: log

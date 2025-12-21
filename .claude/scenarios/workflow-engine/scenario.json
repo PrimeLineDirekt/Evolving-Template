@@ -1,0 +1,123 @@
+{
+  "name": "workflow-engine",
+  "description": "Workflow Automation Engine Development - Specialist Team",
+  "version": "1.0.0",
+  "created": "2025-12-06",
+  "status": "active",
+  "project_path": "workflows",
+
+  "team": {
+    "structure": "specialist",
+    "coordination": "orchestrated",
+    "communication": "async"
+  },
+
+  "agents": [
+    {
+      "name": "sdk-architect",
+      "file": "agents/sdk-architect-agent.md",
+      "role": "Claude Code SDK Expert & System Architect",
+      "responsibilities": [
+        "SDK Integration Patterns",
+        "Overall System Design",
+        "API Contracts",
+        "Technical Decisions"
+      ]
+    },
+    {
+      "name": "python-engineer",
+      "file": "agents/python-engineer-agent.md",
+      "role": "Core Engine Developer",
+      "responsibilities": [
+        "Engine Implementation",
+        "YAML Parser",
+        "Executor Logic",
+        "FastAPI Integration"
+      ]
+    },
+    {
+      "name": "dashboard-engineer",
+      "file": "agents/dashboard-engineer-agent.md",
+      "role": "Dashboard & UI Developer",
+      "responsibilities": [
+        "React Components",
+        "API Endpoints",
+        "WebSocket Integration",
+        "UI/UX Implementation"
+      ]
+    },
+    {
+      "name": "qa-engineer",
+      "file": "agents/qa-engineer-agent.md",
+      "role": "Quality Assurance & Testing",
+      "responsibilities": [
+        "Test Cases Design",
+        "Bug Identification",
+        "Edge Case Analysis",
+        "Validation Testing"
+      ]
+    },
+    {
+      "name": "code-reviewer",
+      "file": "agents/code-reviewer-agent.md",
+      "role": "Code Review & Best Practices",
+      "responsibilities": [
+        "Code Quality Review",
+        "Security Analysis",
+        "Performance Review",
+        "Documentation Review"
+      ]
+    }
+  ],
+
+  "workflows": {
+    "implementation": {
+      "pattern": "architect-first",
+      "steps": [
+        "1. SDK Architect: Design + Contracts",
+        "2. Python Engineer: Implement Core",
+        "3. Dashboard Engineer: Implement UI",
+        "4. QA Engineer: Test + Report",
+        "5. Code Reviewer: Final Review"
+      ]
+    },
+    "bug-fix": {
+      "pattern": "qa-first",
+      "steps": [
+        "1. QA Engineer: Reproduce + Document",
+        "2. SDK Architect: Root Cause Analysis",
+        "3. Python/Dashboard Engineer: Fix",
+        "4. QA Engineer: Verify Fix"
+      ]
+    }
+  },
+
+  "commands": [
+    {
+      "name": "workflow-design",
+      "file": "../commands/workflow-design.md",
+      "description": "SDK Architect: Design Session"
+    },
+    {
+      "name": "workflow-implement",
+      "file": "../commands/workflow-implement.md",
+      "description": "Start Implementation Phase"
+    },
+    {
+      "name": "workflow-test",
+      "file": "../commands/workflow-test.md",
+      "description": "QA: Run Test Suite"
+    },
+    {
+      "name": "workflow-review",
+      "file": "../commands/workflow-review.md",
+      "description": "Code Review Session"
+    }
+  ],
+
+  "context": {
+    "schemas": "workflows/schema/",
+    "engine": "workflows/engine/",
+    "definitions": "workflows/definitions/"
+  }
+}

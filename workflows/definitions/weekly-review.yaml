@@ -1,0 +1,116 @@
+# Weekly Review Workflow
+# Montags um 9:00 - Ideen-Hygiene und Review
+
+name: weekly-review
+description: Wöchentlicher Review aller aktiven Ideen mit Stagnations-Check
+version: "1.0"
+
+trigger:
+  type: cron
+  cron: "0 9 * * 1"  # Montag 9:00
+
+permissions_profile: idea-forge
+preferences_profile: default
+
+variables:
+  - name: review_depth
+    type: string
+    default: "standard"
+    prompt: "Review-Tiefe (quick/standard/deep)?"
+
+steps:
+  - name: Lade aktive Ideen
+    command: /idea-list --status active --format json
+    store_as: active_ideas
+    model: haiku
+    timeout: 1m
+
+  - name: Lade geparkte Ideen
+    command: /idea-list --status parked --format json
+    store_as: parked_ideas
+    model: haiku
+    timeout: 1m
+
+  - name: Analysiere Stagnation
+    prompt: |
+      Analysiere diese aktiven Ideen auf Stagnation:
+
+      {{active_ideas}}
+
+      Prüfe für jede Idee:
+      1. Letzte Aktivität (updated Datum)
+      2. Fortschritt seit Erstellung
+      3. Potential Score vs. tatsächliche Arbeit
+
+      Klassifiziere jede Idee:
+      - "continue" - Aktiv weiterarbeiten
+      - "park" - Parken (stagniert, aktuell nicht relevant)
+      - "archive" - Archivieren (nicht mehr relevant)
+      - "boost" - Priorität erhöhen (hohes Potential, wenig Fortschritt)
+
+      Output als JSON:
+      [{"id": "...", "title": "...", "recommendation": "...", "reason": "..."}]
+    model: sonnet
+    store_as: recommendations
+    timeout: 3m
+    confidence_gate: 70
+    on_low_confidence: manual_review
+
+  - name: Prüfe geparkte Ideen
+    prompt: |
+      Prüfe diese geparkten Ideen auf Reaktivierung:
+
+      {{parked_ideas}}
+
+      Gibt es Ideen, die jetzt relevant sein könnten?
+      - Marktveränderungen
+      - Neue Technologien
+      - Synergien mit aktiven Projekten
+
+      Output als JSON:
+      [{"id": "...", "title": "...", "recommendation": "reactivate"|"keep_parked", "reason": "..."}]
+    model: sonnet
+    store_as: parked_recommendations
+    condition: "{{parked_ideas}} != '[]'"
+    timeout: 2m
+
+  - name: Generiere Review-Report
+    output: "_handoffs/weekly-review-{{date}}.md"
+    template: |
+      # Weekly Idea Review - {{date}}
+
+      ## Aktive Ideen ({{active_ideas.length}})
+
+      ### Empfehlungen
+      {{recommendations}}
+
+      ## Geparkte Ideen
+      {{parked_recommendations}}
+
+      ## Zusammenfassung
+      - Aktive Ideen: {{active_ideas.length}}
+      - Geparkte Ideen: {{parked_ideas.length}}
+      - Empfohlene Aktionen: siehe oben
+
+      ---
+      *Review durchgeführt: {{timestamp}}*
+      *Tiefe: {{review_depth}}*
+
+on_error: pause
+max_steps: 20
+timeout: 15m
+dry_run: false
+
+budget:
+  max_tokens: 30000
+  max_cost: 0.50
+
+audit:
+  log_level: standard
+  include_prompts: true
+  include_outputs: true
+
+notify:
+  on_complete: true
+  on_error: true
+  method: file

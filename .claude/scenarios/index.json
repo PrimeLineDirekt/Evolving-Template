@@ -1,0 +1,10 @@
+{
+  "scenarios": {
+    "evolving-dashboard": {
+      "path": "evolving-dashboard/",
+      "status": "active",
+      "created": "2025-12-02"
+    }
+  },
+  "active_scenario": null
+}

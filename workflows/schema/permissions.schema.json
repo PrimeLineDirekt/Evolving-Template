@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://evolving.local/schemas/permissions.schema.json",
+  "title": "Permissions Profile",
+  "description": "Schema für Workflow Permission Profile",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Profil-Name",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string"
+    },
+    "inherits": {
+      "type": "string",
+      "description": "Von anderem Profil erben"
+    },
+    "tools": {
+      "type": "object",
+      "properties": {
+        "always_allow": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Read", "Glob", "Grep", "WebSearch", "WebFetch", "Write", "Edit", "Bash", "Task", "TodoWrite"]
+          },
+          "description": "Tools ohne Einschränkung erlaubt"
+        },
+        "allow_with_constraints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["tool"],
+            "properties": {
+              "tool": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Erlaubte Pfad-Patterns"
+              },
+              "commands": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Erlaubte Bash-Commands"
+              }
+            }
+          }
+        },
+        "ask_once": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Einmal pro Workflow fragen"
+        },
+        "never_allow": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tool": { "type": "string" },
+              "patterns": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "description": "Niemals erlaubt"
+        }
+      }
+    },
+    "file_access": {
+      "type": "object",
+      "properties": {
+        "readable": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ],
+          "description": "Lesbare Pfade (Glob-Patterns)"
+        },
+        "writable": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Schreibbare Pfade (Glob-Patterns)"
+        },
+        "protected": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Geschützte Pfade (niemals schreiben)"
+        }
+      }
+    },
+    "resource_limits": {
+      "type": "object",
+      "properties": {
+        "max_file_size": {
+          "type": "string",
+          "pattern": "^\\d+[KMG]B$"
+        },
+        "max_files_per_step": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_tokens_per_step": {
+          "type": "integer",
+          "minimum": 1000
+        },
+        "max_api_calls": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "command_access": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Erlaubte Commands (Patterns wie /idea-*)"
+        },
+        "denied": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Verbotene Commands"
+        }
+      }
+    },
+    "secrets": {
+      "type": "object",
+      "properties": {
+        "allowed_env_vars": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "never_log": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Patterns die nie geloggt werden"
+        }
+      }
+    }
+  }
+}

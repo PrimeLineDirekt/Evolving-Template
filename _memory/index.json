@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "last_updated": null,
+
+  "active_context": {
+    "project": null,
+    "workflow": null,
+    "focus": null
+  },
+
+  "projects": [],
+
+  "recent_sessions": [],
+
+  "stats": {
+    "total_sessions": 0,
+    "total_tasks_completed": 0,
+    "last_session": null
+  }
+}

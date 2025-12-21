@@ -1,0 +1,59 @@
+# Basic Workflow Template
+# Kopiere und passe an für neue Workflows
+
+name: my-workflow-name
+description: Beschreibung was der Workflow tut
+version: "1.0"
+
+trigger:
+  type: manual  # manual | cron | watch | event
+  # cron: "0 9 * * 1"  # Für cron trigger
+  # watch: "_inbox/*"   # Für watch trigger
+  # event: "idea.created"  # Für event trigger
+
+permissions_profile: default
+preferences_profile: default
+
+variables:
+  - name: input_var
+    type: string
+    prompt: "Frage an User:"
+    required: true
+
+steps:
+  - name: Erster Step
+    prompt: |
+      Dein Prompt hier.
+      Variable: {{input_var}}
+    model: sonnet
+    store_as: result_1
+    timeout: 2m
+
+  - name: Zweiter Step
+    prompt: |
+      Nutze Ergebnis von Step 1:
+      {{result_1}}
+    model: haiku
+    store_as: result_2
+    timeout: 1m
+
+  - name: Output generieren
+    output: "_handoffs/{{workflow}}-{{date}}.md"
+    template: |
+      # Ergebnis
+
+      {{result_2}}
+
+      ---
+      *Generiert: {{timestamp}}*
+
+on_error: abort
+max_steps: 10
+timeout: 10m
+
+budget:
+  max_tokens: 20000
+  max_cost: 0.30
+
+audit:
+  log_level: standard

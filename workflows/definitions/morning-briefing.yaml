@@ -1,0 +1,84 @@
+# Morning Briefing Workflow
+# Tägliche Übersicht um 8:00 Uhr
+
+name: morning-briefing
+description: Tägliche Übersicht über anstehende Aufgaben und Ideen-Status
+version: "1.0"
+
+trigger:
+  type: cron
+  cron: "0 8 * * *"  # Täglich 8:00
+
+permissions_profile: default
+preferences_profile: default
+
+variables: []
+
+steps:
+  - name: Sammle Ideen-Status
+    command: /idea-list --format json
+    store_as: ideas
+    model: haiku
+    timeout: 1m
+
+  - name: Prüfe Handoffs
+    bash: "ls -la _handoffs/ | tail -5"
+    store_as: recent_handoffs
+    timeout: 30s
+
+  - name: Prüfe Inbox
+    bash: "ls _inbox/ 2>/dev/null | wc -l"
+    store_as: inbox_count
+    timeout: 30s
+
+  - name: Generiere Briefing
+    prompt: |
+      Erstelle ein kurzes Morning Briefing basierend auf:
+
+      ## Ideen-Status
+      {{ideas}}
+
+      ## Inbox
+      {{inbox_count}} Dateien in der Inbox
+
+      ## Letzte Handoffs
+      {{recent_handoffs}}
+
+      Formatiere als kurze Übersicht:
+      - Aktive Ideen mit höchstem Potenzial
+      - Anstehende Aufgaben (falls aus Handoffs erkennbar)
+      - Inbox-Status
+
+      Halte es auf max. 10 Zeilen.
+    model: haiku
+    store_as: briefing
+    timeout: 2m
+
+  - name: Speichere Briefing
+    output: "_handoffs/morning-briefing-{{date}}.md"
+    template: |
+      # Morning Briefing - {{date}}
+
+      {{briefing}}
+
+      ---
+      *Automatisch generiert um {{timestamp}}*
+
+on_error: continue
+max_steps: 10
+timeout: 5m
+dry_run: false
+
+budget:
+  max_tokens: 5000
+  max_cost: 0.05
+
+audit:
+  log_level: minimal
+  include_prompts: false
+  include_outputs: true
+
+notify:
+  on_complete: false
+  on_error: true
+  method: log
