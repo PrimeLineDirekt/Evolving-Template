@@ -151,6 +151,38 @@ When you start a task, the graph routes relevant context automatically.
 
 When you add a project, pattern, or learning, all 5 files update.
 
+### Tiered Context Architecture
+
+**67% token reduction** through intelligent context loading:
+
+```
+.claude/rules/
+├── core-principles.md        # AUTO-LOAD (always)
+├── workflow-detection.md     # AUTO-LOAD (always)
+├── domain-memory-bootup.md   # AUTO-LOAD (always)
+└── on-demand/                # LOADED WHEN NEEDED
+    ├── debugging/            # → When errors occur
+    ├── memory/               # → When using /remember, /recall
+    ├── creation/             # → When creating agents/commands
+    └── ...                   # 25+ specialized rules
+```
+
+**How it works:**
+
+1. **Session Start**: Only 3 core rules load (~5K tokens)
+2. **Context Scout**: Analyzes your request for keywords
+3. **Context Router**: Maps keywords → relevant rules/patterns
+4. **On-Demand Load**: Fetches only what's needed
+
+**Why this matters:**
+
+| Approach | Tokens | Performance |
+|----------|--------|-------------|
+| Load everything | ~34K | Slower, context pollution |
+| Tiered (this system) | ~11K | Faster, focused context |
+
+The Context Router (`_graph/cache/context-router.json`) maps 20+ keyword routes to relevant nodes - so when you say "debug this", debugging rules load automatically.
+
 ### Session Handoffs
 
 Every session can be documented for continuity:
