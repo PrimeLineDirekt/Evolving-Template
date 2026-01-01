@@ -25,7 +25,7 @@ Evolving is your **personal knowledge and innovation system** - a comprehensive 
 
 ```bash
 # Clone the repository
-git clone https://github.com/youruser/evolving-template.git my-evolving
+git clone https://github.com/PrimeLineDirekt/Evolving-Template.git my-evolving
 
 # Navigate to the directory
 cd my-evolving
@@ -87,7 +87,7 @@ Agents work together orchestrated by your commands for comprehensive analysis.
 
 ### Skills System
 
-**3 Progressive Disclosure Skills** (< 500 lines each for token efficiency):
+**6 Progressive Disclosure Skills** (< 500 lines each for token efficiency):
 
 | Skill | Purpose |
 |-------|---------|
@@ -295,9 +295,9 @@ evolving/
 ├── _ONBOARDING.md              # Onboarding questionnaire
 │
 ├── .claude/
-│   ├── agents/                 # 13+ specialized agents
-│   ├── commands/               # 40+ slash commands
-│   ├── skills/                 # 4 progressive skills
+│   ├── agents/                 # 30 specialized agents
+│   ├── commands/               # 43 slash commands
+│   ├── skills/                 # 6 progressive skills
 │   ├── hooks/                  # Automation hooks
 │   ├── rules/                  # Modular behavior rules
 │   ├── scenarios/              # Context-based bundles
