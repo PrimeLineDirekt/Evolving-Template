@@ -139,6 +139,50 @@ Original + Strict Validation + Format + Prefill
 
 ---
 
+## Context Degradation Awareness
+
+**Quelle**: Agent-Skills-for-Context-Engineering Deep Dive
+
+### Das Problem
+
+Context Extraction kann zu Degradation führen:
+- Zu viel Memory geladen → Lost-in-the-Middle
+- Irrelevante Patterns → Context Poisoning
+- Alle Experiences → Context Distraction
+
+### Lösung: SELECT before EXTRACT
+
+Bei Context Extraction (Schritt 2) das 4-Bucket Framework anwenden:
+
+```
+NICHT: Lade ALLES was relevant sein könnte
+SONDERN: Selektiere die TOP-3 relevantesten Quellen
+
+1. Session Context → Immer (bereits im Context)
+2. Domain Memory → Nur aktives Projekt, kompakt
+3. Knowledge Base → Max 2 relevante Patterns
+4. Experiences → Nur Top-1 mit Score > 50
+```
+
+### Relevanz-Heuristik
+
+| Kontext-Typ | Wann laden? | Max Token Budget |
+|-------------|-------------|------------------|
+| Session Context | Immer | (bereits da) |
+| Domain Memory | Wenn Projekt-relevant | ~2K tokens |
+| Patterns | Wenn Task matcht | ~1K tokens |
+| Experiences | Wenn Fehler/Decision | ~500 tokens |
+
+### Counterintuitive Rule
+
+> "Ein einzelner irrelevanter Kontext-Chunk triggert bereits Degradation!"
+
+Lieber zu WENIG Kontext als zu VIEL.
+
+Bei Unsicherheit: Nur Session Context + Domain Memory, keine Patterns/Experiences.
+
+---
+
 ## Beispiel-Flow
 
 ### Ohne Enhancement (Level 1):
@@ -149,22 +193,22 @@ Claude: [Direkte, prägnante Antwort]
 
 ### Mit Enhancement (Level 3):
 ```
-User: "Hilf mir mit meiner E-Commerce SEO"
+User: "Hilf mir mit meinem Projekt-Marketing"
 
 Claude (intern):
   Complexity: Level 3 (Multi-Step Task)
   Context:
-    - Projekt: {active-project}
-    - Bekannt: SEO Patterns, Social Integration
-    - Learnings: Title-Optimierung wichtig
+    - Projekt: {your-project}
+    - Bekannt: Marketing Patterns, Social Integration
+    - Learnings: Content-Optimierung wichtig
 
   Enhanced Prompt:
-    "Unterstütze bei E-Commerce SEO für {project-name}:
-     Phase 1: Keyword-Analyse (mit bekannten Tools)
-     Phase 2: Title-Optimierung (Learning anwenden)
-     Phase 3: Tag-Strategie
+    "Unterstütze bei Marketing für {your-project}:
+     Phase 1: Zielgruppen-Analyse (mit bekannten Tools)
+     Phase 2: Content-Optimierung (Learning anwenden)
+     Phase 3: Kanal-Strategie
      Phase 4: Social-Integration
-     Erfolg: Bessere Rankings, mehr Traffic"
+     Erfolg: Bessere Reichweite, mehr Engagement"
 
 Claude (extern):
   [Strukturierte, fundierte Antwort mit Projekt-Bezug,
@@ -179,6 +223,7 @@ Diese Rule arbeitet zusammen mit:
 - `domain-memory-bootup.md` - Memory-Kontext laden
 - `experience-suggest.md` - Erfahrungen einbeziehen
 - `workflow-detection.md` - Komplexe Tasks erkennen
+- `context-optimization.md` - 4-Bucket Framework, Degradation Prevention
 
 ---
 

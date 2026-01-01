@@ -1,0 +1,251 @@
+{
+  "version": "1.0",
+  "updated": "2026-01-02",
+  "description": "Compact command detection patterns - replaces workflow-patterns.md",
+
+  "commands": {
+    "/idea-new": {
+      "kw": ["idee", "neue idee", "konzept", "geschäftsidee", "startup idee"],
+      "patterns": ["ich habe eine idee", "was hältst du von"],
+      "anti": ["keine idee", "gute idee!", "die idee in diesem"],
+      "conf": "high"
+    },
+    "/idea-work": {
+      "kw": ["an idee arbeiten", "weiterentwickeln", "idee ausarbeiten"],
+      "patterns": ["lass uns an * arbeiten", "brainstorming zu idea-"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/idea-list": {
+      "kw": ["zeig ideen", "ideen übersicht", "welche ideen", "alle ideen"],
+      "patterns": ["zeig mir meine ideen", "liste ideen"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/idea-connect": {
+      "kw": ["verbindungen", "synergien", "ideen verbinden", "kombinieren"],
+      "patterns": ["finde verbindungen", "welche ideen passen zusammen"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/knowledge-add": {
+      "kw": ["ich habe gelernt", "wissen hinzufügen", "notiere", "merke dir", "best practice"],
+      "patterns": ["wichtige erkenntnis", "speichere"],
+      "anti": [],
+      "conf": "medium"
+    },
+    "/knowledge-search": {
+      "kw": ["suche nach", "finde", "was weiß ich über"],
+      "patterns": ["habe ich wissen über", "gibt es informationen zu"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/project-add": {
+      "kw": ["projekt dokumentieren", "neues projekt", "projekt hinzufügen"],
+      "patterns": ["hier ist mein projekt", "readme für projekt"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/project-analyze": {
+      "kw": ["projekt analysieren", "codebase analysieren", "code analysieren"],
+      "patterns": ["architektur verstehen", "repository analysieren"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/analyze-repo": {
+      "kw": ["repo analysieren", "schau dir mal * an", "deep dive"],
+      "patterns": ["was können wir von * lernen", "ist * relevant", "untersuche"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/repo-screen": {
+      "kw": ["check diese repos", "repos checken", "relevanz prüfen", "quick check"],
+      "patterns": ["sind diese repos relevant", "screen die repos"],
+      "anti": ["analysiere das repo", "was ist in dem repo"],
+      "conf": "high"
+    },
+    "/inbox-process": {
+      "kw": ["inbox", "verarbeite die inbox", "neue dateien"],
+      "patterns": ["schau in _inbox", "dateien in inbox"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/sparring": {
+      "kw": ["brainstorming", "sparring", "diskutieren"],
+      "patterns": ["lass uns denken über", "was denkst du über", "input zu"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/think": {
+      "kw": ["80/20", "pareto", "first principles", "swot", "inversion", "pre-mortem"],
+      "patterns": ["denke nach über", "analysiere mit framework", "was könnte schief gehen"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/debug": {
+      "kw": ["bug finden", "fehler finden", "debug", "error", "crash", "exception"],
+      "patterns": ["funktioniert nicht", "problem mit", "warum geht nicht"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/onboard-process": {
+      "kw": ["onboarding", "fragebogen ausgefüllt"],
+      "patterns": ["verarbeite das onboarding", "onboarding fertig"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/whats-next": {
+      "kw": ["session beenden", "pause machen", "handoff"],
+      "patterns": ["für heute schluss", "später weitermachen", "kontext speichern"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/system-health": {
+      "kw": ["system check", "health check", "diagnostik"],
+      "patterns": ["ist alles ok", "konsistenz prüfen", "system status"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/create-agent": {
+      "kw": ["erstelle agent", "neuer agent", "create agent"],
+      "patterns": ["agent für *", "i need an agent"],
+      "anti": ["agent läuft", "welcher agent", "agent status"],
+      "conf": "high"
+    },
+    "/create-command": {
+      "kw": ["erstelle command", "neuer command", "create command", "slash command"],
+      "patterns": ["command für *", "neuer workflow"],
+      "anti": ["command läuft", "welche commands"],
+      "conf": "high"
+    },
+    "/create-hook": {
+      "kw": ["erstelle hook", "neuer hook", "create hook", "automation"],
+      "patterns": ["trigger when", "automatisch wenn"],
+      "anti": ["webhook", "git hook", "hook läuft"],
+      "conf": "medium"
+    },
+    "/create-skill": {
+      "kw": ["erstelle skill", "neuer skill", "create skill"],
+      "patterns": ["skill für *", "expertise in *"],
+      "anti": ["welche skills", "skill level", "meine skills"],
+      "conf": "medium"
+    },
+    "/create-prompt": {
+      "kw": ["prompt erstellen", "prompt schreiben", "prompt engineering"],
+      "patterns": ["optimierten prompt", "besseren prompt"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/run-prompt": {
+      "kw": ["prompt ausführen", "gespeicherten prompt", "run prompt"],
+      "patterns": ["führe prompt * aus", "starte den * prompt"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/create-system": {
+      "kw": ["system erstellen", "multi-agent system", "experten system"],
+      "patterns": ["beratungs system", "projekt scaffolden"],
+      "anti": ["system funktioniert", "welches system", "system starten"],
+      "conf": "high"
+    },
+    "/scenario": {
+      "kw": ["aktiviere szenario", "wechsle zu", "switch to", "lade szenario"],
+      "patterns": ["öffne projekt", "context wechseln"],
+      "anti": ["was ist ein szenario", "zeig szenarien", "szenario erstellen"],
+      "conf": "high"
+    },
+    "/scenario-list": {
+      "kw": ["zeig szenarien", "welche szenarien", "alle szenarien"],
+      "patterns": ["verfügbare szenarien", "szenarien übersicht"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/scenario-create": {
+      "kw": ["neues szenario", "szenario erstellen", "create scenario"],
+      "patterns": ["projekt setup", "neues projekt mit agents"],
+      "anti": ["szenario aktivieren", "welches szenario"],
+      "conf": "high"
+    },
+    "/auto-model": {
+      "kw": ["welches model", "brauche ich opus", "reicht haiku"],
+      "patterns": ["welches ai model", "model empfehlung"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/remember": {
+      "kw": ["merk dir das", "erfahrung speichern", "lösung speichern"],
+      "patterns": ["speichere diese lösung", "das sollten wir uns merken"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/recall": {
+      "kw": ["was wissen wir über", "hatten wir das schon"],
+      "patterns": ["such mal nach", "wie haben wir * gelöst"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/memory-stats": {
+      "kw": ["memory statistiken", "wie viele experiences"],
+      "patterns": ["experience übersicht", "memory status"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/preferences": {
+      "kw": ["zeig präferenzen", "was bevorzuge ich", "meine einstellungen"],
+      "patterns": ["präferenzen anzeigen"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/context": {
+      "kw": ["kontext laden", "graph kontext"],
+      "patterns": [],
+      "anti": [],
+      "conf": "medium"
+    },
+    "/security-review": {
+      "kw": ["security review", "sicherheit prüfen"],
+      "patterns": ["security check"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/interview-plan": {
+      "kw": ["interview plan", "plan interview"],
+      "patterns": [],
+      "anti": [],
+      "conf": "high"
+    },
+    "/run-workflow": {
+      "kw": ["workflow ausführen", "run workflow"],
+      "patterns": [],
+      "anti": [],
+      "conf": "high"
+    },
+    "/learning-review": {
+      "kw": ["lernfortschritt", "genauigkeit"],
+      "patterns": ["wie gut funktioniert", "accuracy"],
+      "anti": [],
+      "conf": "high"
+    }
+  },
+
+  "scenarios": {},
+
+  "memory_triggers": {
+    "save": ["dokumentiere alles", "session speichern", "progress speichern", "stand speichern"],
+    "bootup": ["neue session", "wo waren wir", "kontext laden", "fortsetzen"],
+    "status": ["wo stehen wir", "aktueller stand", "project status"]
+  },
+
+  "meta": {
+    "confidence_levels": {
+      "high": "9-10 - Klare Keywords, direkt fragen",
+      "medium": "6-8 - Vorsichtig nachfragen",
+      "low": "1-5 - Ignorieren, normal antworten"
+    },
+    "rules": [
+      "NIEMALS automatisch ausführen ohne Bestätigung",
+      "Bei Multi-Match: User fragen welcher Workflow",
+      "Lieber nicht triggern als falsch triggern"
+    ]
+  }
+}

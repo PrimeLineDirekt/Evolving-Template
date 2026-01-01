@@ -1,0 +1,295 @@
+{
+  "id": "web-scraping-project",
+  "name": "Web Scraping & Data Collection Blueprint",
+  "version": "1.0.0",
+  "description": "API-based web scraping project template extracted from KalyanM45 Article Web Scraper. Focuses on external API integration with Beautiful Soup parsing and data persistence.",
+  "category": "data-collection",
+  "source": "KalyanM45/Article-Web-Scraping",
+  "created": "2025-12-23",
+  "patterns": [
+    "api-based-scraping",
+    "environment-configuration",
+    "data-persistence",
+    "beautiful-soup-parsing",
+    "rate-limiting"
+  ],
+  "structure": {
+    "root": {
+      "files": [
+        "app.py",
+        ".env",
+        ".env.example",
+        "requirements.txt",
+        "README.md",
+        ".gitignore"
+      ],
+      "NoteBook_Experiment": {
+        "description": "Jupyter notebooks for testing and development",
+        "files": [
+          "01_API_Exploration.ipynb",
+          "02_Data_Parsing.ipynb",
+          "03_Error_Handling.ipynb"
+        ]
+      },
+      "src": {
+        "description": "Production code modules",
+        "components": [
+          "scrapers/",
+          "scrapers/__init__.py",
+          "scrapers/api_client.py",
+          "scrapers/parser.py",
+          "scrapers/data_validator.py",
+          "storage/",
+          "storage/__init__.py",
+          "storage/json_storage.py",
+          "storage/csv_storage.py",
+          "config/",
+          "config/__init__.py",
+          "config/settings.py",
+          "utils/",
+          "utils/__init__.py",
+          "utils/logging_utils.py",
+          "utils/error_handler.py"
+        ]
+      },
+      "saved_articles": {
+        "description": "Output directory for scraped data",
+        "files": [
+          "articles.json",
+          "articles.csv"
+        ]
+      },
+      "logs": {
+        "description": "Application logs",
+        "managed": true
+      }
+    }
+  },
+  "dependencies": {
+    "api_clients": [
+      "requests>=2.28.0",
+      "httpx>=0.23.0"
+    ],
+    "parsing": [
+      "beautifulsoup4>=4.11.0",
+      "lxml>=4.9.0"
+    ],
+    "data_processing": [
+      "pandas>=1.5.0"
+    ],
+    "storage": [
+      "sqlalchemy>=2.0.0"
+    ],
+    "validation": [
+      "pydantic>=1.10.0"
+    ],
+    "dev_tools": [
+      "pytest>=7.0.0",
+      "jupyter>=1.0.0",
+      "black>=22.0.0",
+      "flake8>=4.0.0"
+    ],
+    "utilities": [
+      "python-dotenv>=0.20.0",
+      "pyyaml>=6.0"
+    ]
+  },
+  "key_files": {
+    "app.py": {
+      "description": "Main scraper orchestration",
+      "pattern": "API client initialization + data collection loop + error handling",
+      "key_components": [
+        "API client setup with auth headers",
+        "Request/response handling",
+        "Rate limiting (sleep between requests)",
+        "Data validation before saving",
+        "Error recovery (retry logic)"
+      ]
+    },
+    ".env": {
+      "description": "Environment configuration (secrets)",
+      "pattern": "API keys, base URLs, credentials",
+      "key_components": [
+        "API_KEY=xxxxx",
+        "API_BASE_URL=https://...",
+        "DATA_OUTPUT_PATH=./saved_articles/"
+      ]
+    },
+    "src/scrapers/api_client.py": {
+      "description": "Wrapper around external API",
+      "pattern": "Requests session with retry logic and error handling",
+      "key_components": [
+        "API authentication (headers/params)",
+        "Request methods (GET, POST)",
+        "Response parsing",
+        "Rate limiting awareness"
+      ]
+    },
+    "src/scrapers/parser.py": {
+      "description": "HTML/JSON parsing with BeautifulSoup",
+      "pattern": "Extract structured data from API responses",
+      "key_components": [
+        "Parse JSON responses",
+        "Extract fields (title, date, content)",
+        "Clean text (remove HTML entities)",
+        "Standardize data formats"
+      ]
+    },
+    "src/storage/": {
+      "description": "Multi-format data persistence",
+      "pattern": "Adapter pattern for JSON/CSV/Database outputs",
+      "key_components": [
+        "JSONStorage - Append to JSON file",
+        "CSVStorage - Write to CSV with headers",
+        "DatabaseStorage - SQLAlchemy ORM"
+      ]
+    },
+    "src/config/settings.py": {
+      "description": "Configuration management",
+      "pattern": "Pydantic BaseSettings for type-safe config",
+      "key_components": [
+        "API credentials from .env",
+        "Output paths",
+        "Rate limits",
+        "Logging levels"
+      ]
+    },
+    "requirements.txt": {
+      "description": "Python dependencies (pinned versions)",
+      "pattern": "Exact versions for reproducibility",
+      "note": "Always pin versions in production"
+    }
+  },
+  "workflow": {
+    "phase_1_setup": {
+      "description": "Project initialization",
+      "steps": [
+        "Create virtual environment",
+        "Install requirements (pip install -r requirements.txt)",
+        "Copy .env.example to .env",
+        "Fill in API credentials",
+        "Create output directories (saved_articles/)"
+      ]
+    },
+    "phase_2_exploration": {
+      "description": "API exploration and testing",
+      "steps": [
+        "Test API connectivity in Jupyter",
+        "Explore API response structure",
+        "Identify target fields",
+        "Test parsing logic",
+        "Handle edge cases"
+      ]
+    },
+    "phase_3_implementation": {
+      "description": "Build production scraper",
+      "steps": [
+        "Implement api_client.py with auth",
+        "Implement parser.py for data extraction",
+        "Implement storage adapters",
+        "Add error handling and retries",
+        "Add logging"
+      ]
+    },
+    "phase_4_validation": {
+      "description": "Data quality assurance",
+      "steps": [
+        "Implement data validation (pydantic)",
+        "Test with sample data",
+        "Check for duplicate handling",
+        "Verify output formats",
+        "Run pytest suite"
+      ]
+    },
+    "phase_5_production": {
+      "description": "Production deployment",
+      "steps": [
+        "Add scheduling (cron or APScheduler)",
+        "Implement health checks",
+        "Add monitoring/alerts",
+        "Test rate limiting",
+        "Deploy to production server"
+      ]
+    }
+  },
+  "features": {
+    "must_have": [
+      "API client with authentication",
+      "Data parsing (BeautifulSoup or JSON)",
+      "Multi-format output (JSON/CSV)",
+      "Error handling and retries",
+      "Logging",
+      "Environment configuration (.env)"
+    ],
+    "recommended": [
+      "Data validation (pydantic)",
+      "Rate limiting awareness",
+      "Duplicate detection",
+      "Scheduling (cron/APScheduler)",
+      "Database persistence",
+      "Unit tests"
+    ],
+    "optional": [
+      "Web UI for viewing scraped data",
+      "Database dashboard",
+      "Email notifications",
+      "API webhook integration",
+      "Data transformation pipeline"
+    ]
+  },
+  "best_practices": [
+    "Always respect API rate limits (check docs, add delays)",
+    "Use .env for secrets, never commit API keys",
+    "Implement retry logic with exponential backoff",
+    "Validate data before saving (type checking, required fields)",
+    "Log all requests and errors for debugging",
+    "Use sessions for connection pooling (faster requests)",
+    "Handle API changes gracefully (versioning, error codes)",
+    "Store raw API responses for audit trail",
+    "Implement duplicate detection (hash or unique key)",
+    "Monitor API quota usage"
+  ],
+  "common_issues": [
+    {
+      "issue": "API rate limit exceeded",
+      "cause": "Too many requests without delays",
+      "solution": "Add time.sleep() between requests, calculate rate limit from headers"
+    },
+    {
+      "issue": "Failed to parse API response",
+      "cause": "API response format changed or unexpected structure",
+      "solution": "Log raw response, validate against schema, handle missing fields gracefully"
+    },
+    {
+      "issue": "Duplicate data in storage",
+      "cause": "No deduplication logic, script run twice",
+      "solution": "Hash content for uniqueness, check existing data before saving"
+    },
+    {
+      "issue": "API authentication failed",
+      "cause": "API key expired or incorrect",
+      "solution": "Check .env file, verify API key is valid, test with curl first"
+    },
+    {
+      "issue": "Memory issues with large datasets",
+      "cause": "Loading all data into memory before saving",
+      "solution": "Process in batches, stream to file/database incrementally"
+    }
+  ],
+  "quick_start": {
+    "step_1": "python -m venv venv && source venv/bin/activate",
+    "step_2": "pip install -r requirements.txt",
+    "step_3": "cp .env.example .env && nano .env",
+    "step_4": "python app.py",
+    "step_5": "Check saved_articles/ for output"
+  },
+  "learning_outcomes": [
+    "Working with external APIs (authentication, rate limiting)",
+    "Data parsing and validation",
+    "Error handling and resilience patterns",
+    "Data persistence (JSON, CSV, Database)",
+    "Environment configuration management",
+    "Logging and debugging",
+    "Testing data collection pipelines"
+  ]
+}

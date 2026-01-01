@@ -1,0 +1,405 @@
+{
+  "id": "business-intelligence-project",
+  "name": "Business Intelligence & Data Analytics Blueprint",
+  "version": "1.0.0",
+  "description": "Business Intelligence project template extracted from KalyanM45 E-Commerce Data Analysis. Focuses on Power BI/Tableau dashboards, exploratory data analysis, and stakeholder-ready insights.",
+  "category": "business-intelligence",
+  "source": "KalyanM45/E-Commerce-Data-Analysis",
+  "created": "2025-12-23",
+  "patterns": [
+    "power-bi-dashboards",
+    "exploratory-data-analysis",
+    "business-metrics",
+    "stakeholder-visualization",
+    "insights-generation"
+  ],
+  "structure": {
+    "root": {
+      "files": [
+        "README.md",
+        ".gitignore"
+      ],
+      "Data & Resources": {
+        "description": "Source data files and reference materials",
+        "files": [
+          "ecommerce_data.csv",
+          "product_catalog.xlsx",
+          "customer_metadata.json",
+          "README.md (data dictionary)"
+        ]
+      },
+      "Power BI Reports": {
+        "description": "Main BI deliverables",
+        "files": [
+          "E-Commerce-Dashboard.pbix",
+          "Customer-Analysis.pbix",
+          "Product-Performance.pbix",
+          "Sales-Trends.pbix"
+        ]
+      },
+      "Notebooks": {
+        "description": "Analysis and exploration",
+        "files": [
+          "01_Data_Exploration.ipynb",
+          "02_Customer_Segmentation.ipynb",
+          "03_Product_Analysis.ipynb",
+          "04_Revenue_Analysis.ipynb",
+          "05_Insights_Summary.ipynb"
+        ]
+      },
+      "Exports": {
+        "description": "Reports and visualizations for stakeholders",
+        "subdirs": [
+          "PDF/",
+          "PNG/",
+          "CSV/"
+        ],
+        "files": [
+          "Dashboard_Export.pdf",
+          "Key_Insights.pdf",
+          "metrics_summary.csv"
+        ]
+      },
+      "SQL Queries": {
+        "description": "Data extraction and transformation",
+        "files": [
+          "data_prep.sql",
+          "metrics_calculation.sql",
+          "customer_segmentation.sql",
+          "product_ranking.sql"
+        ]
+      },
+      "Documentation": {
+        "description": "Process and findings documentation",
+        "files": [
+          "Data Dictionary.md",
+          "Methodology.md",
+          "Key Metrics Definition.md",
+          "Limitations and Caveats.md"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "data_processing": [
+      "pandas>=1.5.0",
+      "numpy>=1.20.0"
+    ],
+    "database_access": [
+      "sqlalchemy>=2.0.0",
+      "pyodbc>=4.0.0"
+    ],
+    "visualization": [
+      "matplotlib>=3.3.0",
+      "seaborn>=0.11.0",
+      "plotly>=5.0.0"
+    ],
+    "analysis": [
+      "scipy>=1.7.0",
+      "scikit-learn>=0.24.0"
+    ],
+    "bi_tools": [
+      "python-pptx>=0.6.0"
+    ],
+    "dev_tools": [
+      "jupyter>=1.0.0",
+      "jupyter-contrib-nbextensions>=0.5.0"
+    ],
+    "utilities": [
+      "openpyxl>=3.6.0",
+      "python-dotenv>=0.19.0"
+    ],
+    "external_tools": [
+      "Power BI Desktop (Windows/Mac)",
+      "Excel 2016+"
+    ]
+  },
+  "key_files": {
+    "E-Commerce-Dashboard.pbix": {
+      "description": "Main Power BI dashboard",
+      "pattern": "Multi-page dashboard with slicers, KPIs, trend charts",
+      "pages": [
+        "Executive Summary (KPIs, top metrics)",
+        "Sales Performance (trends, by category, by region)",
+        "Customer Analytics (segmentation, lifetime value)",
+        "Product Performance (bestsellers, underperformers)",
+        "Operational Metrics (fulfillment, returns)"
+      ],
+      "visualizations": [
+        "KPI Cards (Revenue, Orders, Customer Count, Margin)",
+        "Line charts (trends over time)",
+        "Bar charts (category/region comparison)",
+        "Scatter plot (customer value vs frequency)",
+        "Map (geographic distribution)",
+        "Heatmap (product performance matrix)"
+      ]
+    },
+    "Notebooks/01_Data_Exploration.ipynb": {
+      "description": "Initial data understanding",
+      "pattern": "Load, inspect, profile, identify issues",
+      "key_components": [
+        "Load data (CSV/SQL)",
+        "Data shape and types",
+        "Missing value analysis",
+        "Outlier detection",
+        "Distribution analysis",
+        "Correlation matrix"
+      ]
+    },
+    "Notebooks/02_Customer_Segmentation.ipynb": {
+      "description": "Identify customer groups",
+      "pattern": "RFM analysis, clustering, persona definition",
+      "key_components": [
+        "RFM (Recency, Frequency, Monetary) calculation",
+        "K-means clustering",
+        "Segment profiling",
+        "Lifetime value (CLV) calculation",
+        "Segment visualization"
+      ]
+    },
+    "Notebooks/03_Product_Analysis.ipynb": {
+      "description": "Product-level insights",
+      "pattern": "Sales mix, margins, trending products",
+      "key_components": [
+        "Product category performance",
+        "SKU-level margin analysis",
+        "Cross-sell and upsell opportunities",
+        "Seasonal trends",
+        "Price elasticity"
+      ]
+    },
+    "Notebooks/04_Revenue_Analysis.ipynb": {
+      "description": "Financial performance",
+      "pattern": "Revenue drivers, growth analysis, forecasting",
+      "key_components": [
+        "Revenue by segment/category/region",
+        "Year-over-year growth",
+        "Margin analysis",
+        "Customer acquisition cost (CAC) vs lifetime value",
+        "Churn analysis"
+      ]
+    },
+    "SQL Queries/metrics_calculation.sql": {
+      "description": "Business metric calculations",
+      "pattern": "Aggregations, window functions, KPI definitions",
+      "key_components": [
+        "Monthly revenue rollup",
+        "Customer acquisition metrics",
+        "Product performance rankings",
+        "Cohort analysis",
+        "Retention rates"
+      ]
+    },
+    "Documentation/Key Metrics Definition.md": {
+      "description": "Business metric specifications",
+      "pattern": "Single source of truth for all KPIs",
+      "key_components": [
+        "Metric name and formula",
+        "Business definition (why it matters)",
+        "Data sources",
+        "Calculation examples",
+        "Refresh frequency"
+      ]
+    }
+  },
+  "workflow": {
+    "phase_1_scoping": {
+      "description": "Understand business requirements",
+      "steps": [
+        "Conduct stakeholder interviews",
+        "Define key questions to answer",
+        "Identify critical metrics (KPIs)",
+        "Document requirements",
+        "Create metrics glossary"
+      ]
+    },
+    "phase_2_data_preparation": {
+      "description": "Collect and prepare data",
+      "steps": [
+        "Identify data sources (transactional DB, marketing systems, etc.)",
+        "Extract data via SQL",
+        "Load into pandas/Excel",
+        "Data profiling and quality checks",
+        "Handle missing values and outliers",
+        "Document data lineage"
+      ]
+    },
+    "phase_3_exploration": {
+      "description": "Exploratory data analysis",
+      "steps": [
+        "Run EDA notebooks (01-04)",
+        "Visualize distributions and relationships",
+        "Identify patterns and anomalies",
+        "Perform statistical analysis",
+        "Document findings"
+      ]
+    },
+    "phase_4_insights": {
+      "description": "Generate actionable insights",
+      "steps": [
+        "Segment customers (RFM, clustering)",
+        "Analyze product performance",
+        "Identify growth opportunities",
+        "Detect risks and churn signals",
+        "Create summary (05_Insights_Summary.ipynb)"
+      ]
+    },
+    "phase_5_dashboarding": {
+      "description": "Build Power BI dashboards",
+      "steps": [
+        "Design dashboard layout and pages",
+        "Create data model (relationships, hierarchies)",
+        "Build visuals (KPIs, charts, maps)",
+        "Add slicers and filters",
+        "Implement drill-through interactions",
+        "Test on sample data"
+      ]
+    },
+    "phase_6_validation": {
+      "description": "Quality assurance and sign-off",
+      "steps": [
+        "Validate metrics against manual calculations",
+        "Test all interactive features",
+        "Get stakeholder feedback",
+        "Address comments and iterate",
+        "Document assumptions and limitations"
+      ]
+    },
+    "phase_7_deployment": {
+      "description": "Release and operationalization",
+      "steps": [
+        "Deploy to Power BI Service (cloud or on-premise)",
+        "Set up data refresh schedule",
+        "Configure row-level security (RLS) if needed",
+        "Train stakeholders on dashboard usage",
+        "Create support documentation",
+        "Monitor usage and performance"
+      ]
+    }
+  },
+  "key_metrics": {
+    "revenue_metrics": [
+      "Total Revenue (all sources)",
+      "Revenue by Category / Product / Region",
+      "Monthly Recurring Revenue (MRR) if subscription",
+      "Customer Lifetime Value (CLV)",
+      "Revenue Growth (YoY, MoM)"
+    ],
+    "customer_metrics": [
+      "Total Customers",
+      "New Customers (acquisition)",
+      "Customer Retention Rate",
+      "Customer Churn Rate",
+      "Average Order Value (AOV)",
+      "Customer Satisfaction (NPS, CSAT if available)"
+    ],
+    "product_metrics": [
+      "Top Selling Products",
+      "Product Mix (% of revenue by category)",
+      "Margin by Product / Category",
+      "Product Return Rate",
+      "Inventory Turnover"
+    ],
+    "operational_metrics": [
+      "Order Fulfillment Time",
+      "Return / Refund Rate",
+      "Customer Acquisition Cost (CAC)",
+      "Operating Margin",
+      "Inventory Levels"
+    ]
+  },
+  "best_practices": [
+    "Start with business questions, not data",
+    "Define metrics clearly in writing (single source of truth)",
+    "Validate all metrics with business users",
+    "Keep dashboards focused (one per stakeholder type)",
+    "Use consistent color schemes and naming conventions",
+    "Enable drill-down exploration (interactive)",
+    "Include context (benchmarks, targets, historical comparison)",
+    "Document data freshness and refresh frequency",
+    "Implement row-level security for sensitive data",
+    "Monitor dashboard usage and iterate based on feedback",
+    "Create simple exports for email distribution",
+    "Never trust data without profiling first"
+  ],
+  "power_bi_patterns": {
+    "date_table": {
+      "description": "Create a proper date dimension",
+      "pattern": "Separate Date table with calendar intelligence",
+      "includes": [
+        "Year, Quarter, Month, Week, Day",
+        "Day of Week, Day of Month",
+        "Fiscal year (if different from calendar)",
+        "Holidays and special dates",
+        "Relationships to fact tables"
+      ]
+    },
+    "measure_definitions": {
+      "pattern": "Use DAX formulas for calculations",
+      "examples": [
+        "Total Revenue = SUM(Sales[Amount])",
+        "YoY Growth = ([Total Revenue] - CALCULATE([Total Revenue], DATEADD('Date'[Date], -1, YEAR))) / CALCULATE([Total Revenue], DATEADD('Date'[Date], -1, YEAR))",
+        "Customer Count = DISTINCTCOUNT(Customers[CustomerID])"
+      ]
+    },
+    "slicers": {
+      "pattern": "Allow exploration without editing",
+      "types": [
+        "Date Range (From-To)",
+        "Dropdown (Category, Region)",
+        "Multi-select (Products)",
+        "Search (Customer Name)"
+      ]
+    },
+    "drill_through": {
+      "pattern": "Navigate from summary to detail",
+      "example": "Click category in summary → drill through to product-level details"
+    }
+  },
+  "common_issues": [
+    {
+      "issue": "Dashboard refresh takes too long",
+      "cause": "Complex DAX formulas, large data volume",
+      "solution": "Aggregate data in SQL first, use aggregation tables, optimize DAX"
+    },
+    {
+      "issue": "Metrics don't match business team's numbers",
+      "cause": "Different calculation methods, data source differences",
+      "solution": "Validate with business users, document calculation method, reconcile"
+    },
+    {
+      "issue": "Stakeholders request too many changes",
+      "cause": "Vague requirements at start, scope creep",
+      "solution": "Build MVP first, iterate in sprints, prioritize requests"
+    },
+    {
+      "issue": "Dashboard looks cluttered and hard to use",
+      "cause": "Too many metrics on one page",
+      "solution": "Use multiple pages, focus on most important KPIs, simplify design"
+    },
+    {
+      "issue": "Data quality issues not discovered until after deployment",
+      "cause": "Insufficient data profiling",
+      "solution": "Add data quality checks in notebooks, document assumptions"
+    }
+  ],
+  "quick_start": {
+    "step_1": "Create folder structure: 'Data & Resources', 'Notebooks', 'Power BI Reports', 'Exports'",
+    "step_2": "Load sample data (CSV/Excel) into pandas in Notebook 01",
+    "step_3": "Run EDA notebooks to explore and understand data",
+    "step_4": "Open Power BI Desktop, load data, create data model",
+    "step_5": "Design Executive Summary page with key KPIs",
+    "step_6": "Add more pages for different stakeholder needs",
+    "step_7": "Test interactivity and publish to Power BI Service"
+  },
+  "learning_outcomes": [
+    "Understanding business requirements and KPIs",
+    "Data profiling and quality assessment",
+    "Exploratory data analysis (EDA) for insights",
+    "Customer segmentation and behavioral analysis",
+    "Building effective dashboards and visualizations",
+    "Power BI data modeling and DAX formulas",
+    "Communicating data insights to non-technical stakeholders",
+    "Operational dashboard design and maintenance"
+  ]
+}

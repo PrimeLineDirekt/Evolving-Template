@@ -2,15 +2,34 @@
 
 **Priorität**: KRITISCH
 
-Bei Änderungen an Projekten, Patterns, Learnings oder Prompts müssen diese 5 Dateien synchron gehalten werden:
+Bei Änderungen an System-Komponenten müssen diese Dateien synchron gehalten werden:
 
 ## Betroffene Dateien
+
+### Master-Dokumente (5) - IMMER synchron halten
 
 1. `README.md` - System Overview & Stats
 2. `.claude/CONTEXT.md` - Technical Context & Structure
 3. `knowledge/index.md` - Knowledge Base Index
 4. `START.md` - User Stats
 5. `.claude/SYSTEM-MAP.md` - Komponenten-Inventar
+
+### Komponenten-spezifische Dokumente
+
+| Bei Änderung an | Zusätzlich updaten |
+|-----------------|-------------------|
+| Rules | `.claude/rules/README.md` |
+| Patterns | `knowledge/patterns/README.md` |
+| Learnings | `knowledge/learnings/README.md` |
+| Agents | Context Router (Route hinzufügen) |
+| Skills | Context Router (Route hinzufügen) |
+
+### Context Router (bei neuen findable Items)
+
+`_graph/cache/context-router.json` - Neue Routes hinzufügen für:
+- Neue Rules (wenn keyword-suchbar sein soll)
+- Neue Patterns (wenn keyword-suchbar sein soll)
+- Neue Agents/Skills (für Auto-Context Loading)
 
 ## Trigger
 
@@ -19,6 +38,8 @@ Diese Regel wird ausgelöst bei:
 - Neues Pattern erstellt
 - Neues Learning dokumentiert
 - Neuer Prompt erstellt
+- **Neue Rule erstellt**
+- **Neuer Agent/Skill erstellt**
 - Statistiken ändern sich (Counts)
 
 ## Workflow

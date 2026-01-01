@@ -1,0 +1,397 @@
+{
+  "id": "timeseries-prediction-project",
+  "name": "Time Series Prediction & Forecasting Blueprint",
+  "version": "1.0.0",
+  "description": "Time series forecasting project template extracted from KalyanM45 Flight Fare and Gold Price prediction projects. Focuses on temporal data handling, trend analysis, and DVC-based reproducibility.",
+  "category": "time-series",
+  "source": "KalyanM45/Flight-Fare-Prediction, KalyanM45/Gold-Price-Prediction",
+  "created": "2025-12-23",
+  "patterns": [
+    "timeseries-data-handling",
+    "feature-engineering-temporal",
+    "dvc-pipeline-orchestration",
+    "mlflow-experiment-tracking",
+    "train-test-split-temporal"
+  ],
+  "structure": {
+    "root": {
+      "src/{project_name}": {
+        "components": [
+          "__init__.py",
+          "config/config.yaml",
+          "data/data_loader.py",
+          "data/data_preprocessor.py",
+          "features/feature_engineering.py",
+          "features/feature_scaler.py",
+          "features/temporal_features.py",
+          "models/model_trainer.py",
+          "models/model_evaluator.py",
+          "models/forecast_generator.py",
+          "utils/logging_utils.py",
+          "utils/data_utils.py",
+          "utils/visualization_utils.py"
+        ]
+      },
+      "Notebook_Experiments": {
+        "description": "Jupyter notebooks for exploration and analysis",
+        "files": [
+          "01_Data_Exploration.ipynb",
+          "02_Temporal_Feature_Engineering.ipynb",
+          "03_Trend_Analysis.ipynb",
+          "04_Stationarity_Testing.ipynb",
+          "05_Model_Training.ipynb",
+          "06_Forecast_Evaluation.ipynb",
+          "07_Hyperparameter_Tuning.ipynb"
+        ]
+      },
+      "Artifacts": {
+        "description": "Trained models and preprocessing objects",
+        "files": [
+          "model.pkl",
+          "scaler.pkl",
+          "feature_names.json",
+          "model_metadata.json"
+        ]
+      },
+      "templates": {
+        "description": "HTML templates for Flask forecasting UI",
+        "files": [
+          "index.html",
+          "forecast.html",
+          "analytics.html",
+          "upload_data.html"
+        ]
+      },
+      "static": {
+        "description": "CSS, JS, charts for visualization",
+        "subdirs": [
+          "css/",
+          "js/",
+          "charts/"
+        ]
+      },
+      ".github/workflows": {
+        "description": "CI/CD pipelines",
+        "files": [
+          "tests.yml",
+          "deployment.yml"
+        ]
+      },
+      ".dvc": {
+        "description": "Data Version Control configuration",
+        "managed": true
+      },
+      "mlruns": {
+        "description": "MLFlow experiment tracking",
+        "managed": true
+      },
+      "logs": {
+        "description": "Application and training logs",
+        "managed": true
+      },
+      "data": {
+        "description": "Data storage (raw and processed)",
+        "subdirs": [
+          "raw/",
+          "processed/",
+          "splits/"
+        ]
+      },
+      "root_files": [
+        "app.py",
+        "setup.py",
+        "template.py",
+        "requirements.txt",
+        "dvc.yaml",
+        "dvc.lock",
+        ".gitignore",
+        "README.md",
+        "Dockerfile"
+      ]
+    }
+  },
+  "dependencies": {
+    "timeseries": [
+      "pandas>=1.5.0",
+      "numpy>=1.20.0",
+      "statsmodels>=0.13.0",
+      "prophet>=1.1.0"
+    ],
+    "ml_regression": [
+      "scikit-learn>=0.24.0",
+      "xgboost>=1.5.0",
+      "lightgbm>=3.3.0"
+    ],
+    "visualization": [
+      "matplotlib>=3.3.0",
+      "seaborn>=0.11.0",
+      "plotly>=5.0.0"
+    ],
+    "web_framework": [
+      "flask>=2.0.0",
+      "flask-cors>=3.0.10"
+    ],
+    "ml_ops": [
+      "dvc[s3]>=2.0.0",
+      "mlflow>=1.20.0"
+    ],
+    "dev_tools": [
+      "pytest>=6.0.0",
+      "jupyter>=1.0.0",
+      "ipykernel>=6.0.0"
+    ],
+    "utilities": [
+      "python-dotenv>=0.19.0",
+      "pyyaml>=5.4.0"
+    ]
+  },
+  "key_files": {
+    "src/{project_name}/features/temporal_features.py": {
+      "description": "Time series specific feature engineering",
+      "pattern": "Extract temporal patterns (trends, seasonality, lags)",
+      "key_components": [
+        "Lag features (t-1, t-7, t-30 for different periods)",
+        "Rolling statistics (mean, std over windows)",
+        "Seasonal decomposition",
+        "Trend extraction",
+        "Holiday/special date encoding"
+      ]
+    },
+    "src/{project_name}/data/data_preprocessor.py": {
+      "description": "Time series preprocessing",
+      "pattern": "Handle missing values, outliers, temporal coherence",
+      "key_components": [
+        "Forward fill for missing time steps",
+        "Outlier detection (IQR, Isolation Forest)",
+        "Date parsing and validation",
+        "Timezone handling",
+        "Stationarity transformation (differencing, log)"
+      ]
+    },
+    "src/{project_name}/models/forecast_generator.py": {
+      "description": "Generate future predictions",
+      "pattern": "Recursive or direct multi-step forecasting",
+      "key_components": [
+        "Single-step vs multi-step forecasting",
+        "Confidence intervals",
+        "Handling forecast horizon",
+        "Ensemble methods for robustness"
+      ]
+    },
+    "dvc.yaml": {
+      "description": "Data Version Control pipeline for time series",
+      "pattern": "Stages: data_load → preprocess → feature_eng → train → forecast → evaluate",
+      "key_components": [
+        "stages: data_load (download, validate temporal continuity)",
+        "stages: preprocess (missing values, stationarity checks)",
+        "stages: feature_engineering (lags, rolling stats)",
+        "stages: train_test_split (temporal split, NO shuffling)",
+        "stages: model_training (with MLFlow logging)",
+        "stages: evaluation (RMSE, MAPE, directional accuracy)",
+        "metrics: metrics.json (model performance)"
+      ]
+    },
+    "Notebook_Experiments/04_Stationarity_Testing.ipynb": {
+      "description": "Critical for time series: test data properties",
+      "pattern": "ADF test, KPSS test, autocorrelation analysis",
+      "key_components": [
+        "Augmented Dickey-Fuller test",
+        "KPSS test for stationarity",
+        "ACF/PACF plots",
+        "Differencing strategy if needed"
+      ]
+    },
+    "setup.py": {
+      "description": "Python package configuration",
+      "pattern": "Standard setuptools setup for reproducibility",
+      "key_components": [
+        "name, version, packages",
+        "install_requires (pinned)",
+        "entry_points for CLI"
+      ]
+    },
+    "app.py": {
+      "description": "Flask application for forecasting",
+      "pattern": "API endpoints for prediction and analytics",
+      "key_components": [
+        "Flask app initialization",
+        "Load pre-trained model from Artifacts/",
+        "Prediction endpoint (/predict)",
+        "Historical data visualization (/analytics)",
+        "Model info endpoint (/model-info)",
+        "Upload new data endpoint (/upload)"
+      ]
+    }
+  },
+  "workflow": {
+    "phase_1_setup": {
+      "description": "Project initialization",
+      "steps": [
+        "Run template.py to create directory structure",
+        "Initialize git repository",
+        "Initialize DVC (dvc init)",
+        "Create virtual environment",
+        "Install requirements (pip install -r requirements.txt)"
+      ]
+    },
+    "phase_2_exploration": {
+      "description": "Time series data exploration",
+      "steps": [
+        "Load historical data in 01_Data_Exploration.ipynb",
+        "Visualize trends and seasonality",
+        "Check for missing values and outliers",
+        "Perform stationarity tests (04_Stationarity_Testing.ipynb)",
+        "Analyze autocorrelation (ACF/PACF)"
+      ]
+    },
+    "phase_3_feature_engineering": {
+      "description": "Create temporal features",
+      "steps": [
+        "Generate lag features in 02_Temporal_Feature_Engineering.ipynb",
+        "Calculate rolling statistics",
+        "Extract trend components (detrending)",
+        "Encode seasonal patterns",
+        "Handle special dates (holidays, events)"
+      ]
+    },
+    "phase_4_modeling": {
+      "description": "Train forecasting models",
+      "steps": [
+        "Split data (temporal split: 70% train, 20% val, 10% test)",
+        "Train baseline model (ARIMA or Prophet)",
+        "Train advanced model (XGBoost, LightGBM)",
+        "Log experiments in MLFlow",
+        "Evaluate on validation set"
+      ]
+    },
+    "phase_5_evaluation": {
+      "description": "Model evaluation and selection",
+      "steps": [
+        "Calculate metrics (RMSE, MAE, MAPE, directional accuracy)",
+        "Compare train vs test performance (check overfitting)",
+        "Analyze residuals (should be white noise)",
+        "Test on different time periods (robustness)",
+        "Select best model"
+      ]
+    },
+    "phase_6_pipeline": {
+      "description": "DVC pipeline definition",
+      "steps": [
+        "Define dvc.yaml with all stages",
+        "Track data/ with DVC",
+        "Track Artifacts/ with DVC",
+        "Run dvc repro for full pipeline",
+        "Commit dvc.lock to git"
+      ]
+    },
+    "phase_7_deployment": {
+      "description": "Web interface and deployment",
+      "steps": [
+        "Create app.py with Flask routes",
+        "Load pre-trained model from Artifacts/",
+        "Create HTML templates for forecasting",
+        "Add interactive charts (Plotly)",
+        "Test with localhost:5000",
+        "Deploy to production"
+      ]
+    }
+  },
+  "timeseries_specifics": {
+    "data_splitting": {
+      "pattern": "Temporal split (never shuffle)",
+      "example": "First 70% → train, next 20% → validation, last 10% → test",
+      "why": "Avoid data leakage; future predictions can't use future data"
+    },
+    "stationarity": {
+      "pattern": "Test with ADF/KPSS, transform if needed",
+      "methods": [
+        "Differencing (first-order or seasonal)",
+        "Log transformation",
+        "Detrending"
+      ]
+    },
+    "lag_features": {
+      "pattern": "Create temporal delays as features",
+      "example": [
+        "lag_1: value at t-1",
+        "lag_7: value at t-7 (weekly pattern)",
+        "lag_30: value at t-30 (monthly pattern)"
+      ]
+    },
+    "rolling_statistics": {
+      "pattern": "Aggregate over windows",
+      "example": [
+        "rolling_mean_7: 7-day moving average",
+        "rolling_std_30: 30-day volatility"
+      ]
+    },
+    "seasonality": {
+      "pattern": "Model repeating patterns",
+      "methods": [
+        "Seasonal decomposition (STL)",
+        "Prophet (automatic seasonality)",
+        "Seasonal dummies (month, quarter, day-of-week)"
+      ]
+    }
+  },
+  "best_practices": [
+    "NEVER shuffle time series data - temporal order matters",
+    "Use temporal split, not random split, for train/test",
+    "Check for stationarity before modeling (ADF test)",
+    "Create multiple lag features (different periods)",
+    "Calculate rolling statistics (volatility, trends)",
+    "Encode seasonality explicitly (day-of-week, month, etc.)",
+    "Log all experiments in MLFlow for comparison",
+    "Evaluate on multiple metrics (RMSE, MAE, MAPE)",
+    "Test on different time periods (robustness)",
+    "Always visualize actual vs predicted",
+    "Use confidence intervals for uncertainty quantification",
+    "Track data/models with DVC for reproducibility"
+  ],
+  "common_issues": [
+    {
+      "issue": "Model overfits to training period",
+      "cause": "Trained on one season/trend, fails on others",
+      "solution": "Test on multiple time periods, use walk-forward validation"
+    },
+    {
+      "issue": "Predictions ignore recent trends",
+      "cause": "Old lag features dilute signal",
+      "solution": "Use exponential weighted lag features, recency-bias features"
+    },
+    {
+      "issue": "Poor performance on special events (holidays, crashes)",
+      "cause": "Training data doesn't represent anomalies",
+      "solution": "Encode special dates, use anomaly detection separately"
+    },
+    {
+      "issue": "High RMSE but reasonable predictions",
+      "cause": "Using wrong metric for domain",
+      "solution": "Use MAPE (percentage error) or directional accuracy"
+    },
+    {
+      "issue": "Data shift (distribution changes over time)",
+      "cause": "External factors change, old patterns irrelevant",
+      "solution": "Use recent data only, detect drift, retrain frequently"
+    }
+  ],
+  "quick_start": {
+    "step_1": "python template.py --name my_forecast",
+    "step_2": "cd my_forecast && python -m venv venv && source venv/bin/activate",
+    "step_3": "pip install -r requirements.txt",
+    "step_4": "dvc init && dvc remote add -d local ./dvc_storage",
+    "step_5": "jupyter notebook Notebook_Experiments/",
+    "step_6": "dvc repro (runs full pipeline)",
+    "step_7": "python app.py (test Flask app)"
+  },
+  "learning_outcomes": [
+    "Time series data characteristics (trends, seasonality, stationarity)",
+    "Feature engineering for temporal data (lags, rolling stats)",
+    "Forecasting algorithms (ARIMA, Prophet, XGBoost)",
+    "Proper train/test splitting for time series",
+    "MLOps for reproducible time series pipelines",
+    "Deploying forecasts with Flask",
+    "Handling non-stationary data",
+    "Measuring forecast accuracy properly"
+  ]
+}

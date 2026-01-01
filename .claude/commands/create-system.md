@@ -11,8 +11,8 @@ Generiert ein vollständiges Multi-Agent System mit Agents, Commands, Knowledge-
 ## Übersicht
 
 ```
-/create-system ~/projects/my-system
-/create-system ~/projects/advisory-system --blueprint multi-agent-advisory
+/create-system ~/projects/steuer-system
+/create-system ~/projects/legal-advisor --blueprint multi-agent-advisory
 ```
 
 **Was passiert:**
@@ -124,8 +124,8 @@ Starte Task-Agent mit:
 ```
 Konfiguration für Multi-Agent Advisory:
 
-1. Domain-Name: {your-domain}
-2. Projekt-Name: {Your Advisory System} [Enter für Default]
+1. Domain-Name: steuer
+2. Projekt-Name: Steuer-Beratungs-System [Enter für Default]
 3. Anzahl Spezialisten (2-4): 3
 
 Optionale Features:
@@ -134,9 +134,9 @@ Optionale Features:
 [ ] Memory-System
 
 Welche Spezialisten-Rollen?
-1. Expert 1 (Hauptexperte) [Opus]
-2. Expert 2 (Spezialgebiet) [Opus]
-3. Expert 3 (Tool-Bedienung) [Sonnet]
+1. Steuerberater (Hauptexperte) [Opus]
+2. Steueranwalt (Rechtssicherheit) [Opus]
+3. Software-Experte (Tool-Bedienung) [Sonnet]
 
 Proceed? (Y/n)
 ```
@@ -150,13 +150,13 @@ Proceed? (Y/n)
 ```
 Architektur-Design:
 
-System: {Your Advisory System}
-Domain: {your-domain}
+System: Steuer-Beratungs-System
+Domain: steuer
 Pattern: multi-agent-advisory
 
 Agents (5):
 ┌─────────────────────────────────────────────────────────────────┐
-│                     coordinator-agent                           │
+│                     steuer-koordinator                          │
 │                        (Sonnet)                                 │
 └───────────────────────────┬─────────────────────────────────────┘
                             │
@@ -164,9 +164,9 @@ Agents (5):
         │                   │                   │
         ▼                   ▼                   ▼
 ┌───────────────┐   ┌───────────────┐   ┌───────────────┐
-│   expert-1    │   │   expert-2    │   │   expert-3    │
-│    (Opus)     │   │    (Opus)     │   │  (Sonnet)     │
-│               │   │               │   │               │
+│ steuerberater │   │ steueranwalt  │   │ software-     │
+│    (Opus)     │   │    (Opus)     │   │ experte       │
+│               │   │               │   │  (Sonnet)     │
 └───────┬───────┘   └───────┬───────┘   └───────────────┘
         │                   │
         └─────────┬─────────┘
@@ -178,13 +178,13 @@ Agents (5):
           └───────────────┘
 
 Commands (2):
-- /domain-consult → Umfassende Team-Beratung (Opus)
-- /domain-check → Schnelle Prüfung (Haiku)
+- /steuer-beratung → Umfassende Team-Beratung (Opus)
+- /steuer-check → Schnelle Prüfung (Haiku)
 
 Knowledge Injection:
 - multi-agent-orchestration.md (Pattern)
 - confidence-scoring.md (Pattern)
-- {relevant-learnings}.md (Reference)
+- ki-auswanderungs-berater-learnings.md (Reference)
 
 Model-Verteilung:
 - Opus: 2 Agents (kritische Analyse)
@@ -266,21 +266,21 @@ Score: 95/100 - PASS
 ```
 System erfolgreich generiert!
 
-Pfad: ~/projects/my-system/
+Pfad: ~/projects/steuer-system/
 
 Dateien erstellt:
 ├── .claude/
 │   ├── CLAUDE.md
 │   ├── scenario.json
 │   ├── agents/
-│   │   ├── coordinator-agent.md
-│   │   ├── expert-1-agent.md
-│   │   ├── expert-2-agent.md
-│   │   ├── expert-3-agent.md
-│   │   └── reporter-agent.md
+│   │   ├── steuer-koordinator-agent.md
+│   │   ├── steuerberater-agent.md
+│   │   ├── steueranwalt-agent.md
+│   │   ├── software-experte-agent.md
+│   │   └── steuer-reporter-agent.md
 │   └── commands/
-│       ├── domain-consult.md
-│       └── domain-check.md
+│       ├── steuer-beratung.md
+│       └── steuer-check.md
 ├── knowledge/
 │   └── patterns/
 │       ├── multi-agent-orchestration.md
@@ -292,10 +292,10 @@ Dateien erstellt:
 Total: 14 Dateien, 5 Agents, 2 Commands
 
 Nächste Schritte:
-1. cd ~/projects/my-system
+1. cd ~/projects/steuer-system
 2. claude code (startet Claude Code im Projekt)
-3. /domain-consult für umfassende Beratung
-4. /domain-check für schnelle Prüfungen
+3. /steuer-beratung für umfassende Beratung
+4. /steuer-check für schnelle Prüfungen
 
 Optional:
 - Füge Domain-Wissen zu knowledge/ hinzu
@@ -361,12 +361,12 @@ IF validation_failed:
 
 **Minimal:**
 ```
-/create-system ~/projects/my-advisor
+/create-system ~/projects/tax-advisor
 ```
 
 **Mit Blueprint:**
 ```
-/create-system ~/projects/advisory-system --blueprint multi-agent-advisory --domain consulting
+/create-system ~/projects/legal-system --blueprint multi-agent-advisory --domain legal
 ```
 
 **Auto-Mode:**

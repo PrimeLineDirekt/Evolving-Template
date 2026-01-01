@@ -4,8 +4,8 @@ Automatische Erkennung von Slash-Command Triggern aus natürlicher Sprache.
 
 ## Referenzen
 
-- Alle Workflows & Trigger: @.claude/COMMANDS.md
-- Trigger-Patterns: @.claude/workflow-patterns.md
+- Alle Workflows: `.claude/COMMANDS.md`
+- **Detection-Index**: `.claude/detection-index.json` (kompakt, alle 47 Commands)
 
 ## Confidence-basierte Erkennung
 

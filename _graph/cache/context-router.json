@@ -1,0 +1,483 @@
+{
+  "version": "2.3",
+  "generated": "2026-01-02T00:00:00Z",
+  "description": "Maps keywords/intents to relevant nodes for auto-context loading",
+
+  "routes": {
+    "agent-creation": {
+      "keywords": ["create agent", "neuer agent", "agent erstellen", "agent template", "prd"],
+      "primary": [
+        "template-specialist-agent",
+        "template-research-agent",
+        "template-orchestrator-agent",
+        "template-prd-planning",
+        "skill-template-creator"
+      ],
+      "secondary": [
+        "pattern-progressive-disclosure",
+        "pattern-intake-gate",
+        "pattern-multi-agent-orchestration",
+        "pattern-multi-agent-ultrathink",
+        "pattern-agentic-maturity-model",
+        "pattern-interview-before-implement",
+        "learning-better-agents-patterns",
+        "learning-12-factor-agents",
+        "reference-claude-code-system-prompts",
+        "reference-awesome-claude-resources"
+      ],
+      "context_files": []
+    },
+
+    "planning": {
+      "keywords": ["plan", "interview", "validate plan", "implementation plan", "vor implementation"],
+      "primary": [
+        "command-interview-plan",
+        "pattern-interview-before-implement"
+      ],
+      "secondary": [
+        "pattern-pev",
+        "pattern-task-decomposition",
+        "skill-subagent-driven-development",
+        "template-prd-planning"
+      ],
+      "context_files": []
+    },
+
+    "skill-creation": {
+      "keywords": ["create skill", "neuer skill", "skill erstellen", "skill template"],
+      "primary": [
+        "template-progressive-skill",
+        "template-simple-skill",
+        "skill-template-creator",
+        "reference-anthropic-skill-best-practices"
+      ],
+      "secondary": [
+        "pattern-progressive-disclosure",
+        "pattern-meta-component-creation",
+        "skill-prompt-pro-framework",
+        "skill-research-orchestrator",
+        "skill-subagent-driven-development",
+        "learning-skill-creation-tdd-methodology",
+        "learning-skill-anti-patterns-structure"
+      ],
+      "context_files": []
+    },
+
+    "command-creation": {
+      "keywords": ["create command", "neuer command", "command erstellen", "command template"],
+      "primary": [
+        "template-workflow-command",
+        "template-analysis-command",
+        "skill-template-creator",
+        "rule-command-creation"
+      ],
+      "secondary": [
+        "pattern-intake-gate",
+        "rule-workflow-detection"
+      ],
+      "context_files": []
+    },
+
+    "research": {
+      "keywords": ["research", "recherche", "analyse", "untersuchen", "multi-source"],
+      "primary": [
+        "agent-research-analyst",
+        "skill-research-orchestrator",
+        "pattern-research-confidence-scoring",
+        "pattern-research-orchestration"
+      ],
+      "secondary": [
+        "template-research-agent",
+        "prompt-research-orchestrator",
+        "template-scenario-autonomous-research",
+        "pattern-recursive-research",
+        "reference-awesome-claude-resources"
+      ],
+      "context_files": []
+    },
+
+    "idea-management": {
+      "keywords": ["idee", "idea", "ideation", "brainstorm", "new idea", "neue idee"],
+      "primary": [
+        "command-idea-new",
+        "command-idea-work",
+        "agent-idea-validator",
+        "agent-idea-expander",
+        "agent-idea-connector"
+      ],
+      "secondary": [
+        "command-idea-list",
+        "command-idea-connect",
+        "prompt-framework-idea-forge",
+        "command-sparring"
+      ],
+      "context_files": [
+        "ideas/index.json"
+      ]
+    },
+
+    "prompt-engineering": {
+      "keywords": ["prompt", "prompt engineering", "prompt erstellen", "optimize prompt"],
+      "primary": [
+        "skill-prompt-pro-framework",
+        "prompt-framework-prompt-pro",
+        "command-create-prompt"
+      ],
+      "secondary": [
+        "command-run-prompt",
+        "pattern-progressive-disclosure",
+        "pattern-auto-prompt-enhancement",
+        "learning-prompt-coach-analysis"
+      ],
+      "context_files": []
+    },
+
+    "debugging": {
+      "keywords": ["debug", "fehler", "error", "problem", "fix", "issue", "bug"],
+      "primary": [
+        "command-debug",
+        "pattern-pev",
+        "pattern-systematic-debugging",
+        "agent-ext-problem-solver-specialist",
+        "agent-ext-debugger"
+      ],
+      "secondary": [
+        "pattern-reflection",
+        "pattern-compact-errors",
+        "learning-agent-observability-langsmith",
+        "reference-claude-code-system-prompts"
+      ],
+      "rules": [
+        ".claude/rules/on-demand/observe-before-editing.md",
+        ".claude/rules/on-demand/evidence-before-claims.md"
+      ],
+      "context_files": []
+    },
+
+    "automation": {
+      "keywords": ["automat", "loop", "iteration", "self-improv", "continuous", "hook", "ralph"],
+      "primary": [
+        "pattern-ralph-wiggum-loop",
+        "hook-session-summary",
+        "rule-auto-archival"
+      ],
+      "secondary": [
+        "pattern-pev",
+        "pattern-hook-patterns-library",
+        "pattern-hook-development-reference",
+        "pattern-safety-hooks-framework",
+        "pattern-self-improving-rules",
+        "reference-just-bash"
+      ],
+      "context_files": []
+    },
+
+    "orchestration": {
+      "keywords": ["orchestrat", "multi-agent", "koordin", "workflow", "pipeline", "ultrathink", "subagent"],
+      "primary": [
+        "pattern-multi-agent-orchestration",
+        "pattern-multi-agent-ultrathink",
+        "pattern-task-decomposition",
+        "template-orchestrator-agent",
+        "template-quality-orchestrator",
+        "skill-subagent-driven-development",
+        "rule-sub-agent-delegation"
+      ],
+      "secondary": [
+        "pattern-blackboard",
+        "pattern-parallel-agent-dispatch",
+        "pattern-manager-multi-agent-systems",
+        "pattern-swarm-team-coordination",
+        "learning-agentic-architectures",
+        "agent-ext-workflow-optimizer",
+        "agent-ext-code-reviewer",
+        "reference-cc-wf-studio",
+        "rule-context-budget-awareness"
+      ],
+      "context_files": []
+    },
+
+    "scenario-work": {
+      "keywords": ["scenario", "szenario", "activate", "aktivieren"],
+      "primary": [
+        "command-scenario",
+        "command-scenario-list",
+        "rule-scenario-agents"
+      ],
+      "secondary": [
+        "command-scenario-create",
+        "command-scenario-edit"
+      ],
+      "context_files": []
+    },
+
+    "model-selection": {
+      "keywords": ["model", "opus", "sonnet", "haiku", "auto-model"],
+      "primary": [
+        "agent-model-selector",
+        "command-auto-model",
+        "pattern-metacognitive"
+      ],
+      "secondary": [
+        "command-opus",
+        "command-opus-plus",
+        "command-sonnet",
+        "command-haiku"
+      ],
+      "context_files": []
+    },
+
+    "knowledge-management": {
+      "keywords": ["wissen", "knowledge", "learning", "pattern", "best practice"],
+      "primary": [
+        "agent-knowledge-synthesizer",
+        "command-knowledge-add",
+        "command-knowledge-search",
+        "rule-knowledge-linking"
+      ],
+      "secondary": [
+        "pattern-reflection",
+        "pattern-checkpoint-validation",
+        "pattern-observation-compression",
+        "pattern-self-improving-rules",
+        "learning-self-improving-feedback-loop",
+        "reference-awesome-claude-resources"
+      ],
+      "context_files": [
+        "knowledge/index.md"
+      ]
+    },
+
+    "session-handoff": {
+      "keywords": ["session", "handoff", "whats next", "continue", "resume", "context", "memory"],
+      "primary": [
+        "command-whats-next",
+        "rule-domain-memory-bootup",
+        "rule-clear-dont-compact",
+        "pattern-context-window-ownership"
+      ],
+      "secondary": [
+        "pattern-four-bucket-context",
+        "pattern-memory-architecture",
+        "pattern-resume-strategies",
+        "learning-context-degradation-patterns",
+        "learning-domain-memory-pattern",
+        "hook-session-summary",
+        "rule-context-budget-awareness",
+        "rule-sub-agent-delegation"
+      ],
+      "context_files": [
+        "_memory/index.json"
+      ]
+    },
+
+    "codebase-analysis": {
+      "keywords": ["codebase", "analyze", "repo", "repository", "github", "n8n"],
+      "primary": [
+        "agent-codebase-analyzer",
+        "agent-github-repo-analyzer",
+        "command-project-analyze",
+        "command-analyze-repo"
+      ],
+      "secondary": [
+        "agent-n8n-expert",
+        "agent-ext-n8n-workflow-builder",
+        "command-ext-analyze-codebase"
+      ],
+      "context_files": []
+    },
+
+    "saas-business": {
+      "keywords": ["saas", "freemium", "subscription", "business model", "gdpr"],
+      "primary": [
+        "pattern-freemium-saas-gates",
+        "pattern-gdpr-compliant-saas"
+      ],
+      "secondary": [
+        "pattern-8-block-profile"
+      ],
+      "context_files": []
+    },
+
+    "system-creation": {
+      "keywords": [
+        "create system", "system erstellen", "neues system", "generate system",
+        "scaffold", "projekt generieren", "advisory system", "experten system",
+        "beratungs system", "multi-agent system erstellen"
+      ],
+      "primary": [
+        "blueprint-multi-agent-advisory",
+        "agent-system-analyzer",
+        "agent-system-architect",
+        "agent-system-generator",
+        "agent-system-validator",
+        "pattern-multi-agent-orchestration",
+        "pattern-task-decomposition",
+        "pattern-system-generation"
+      ],
+      "secondary": [
+        "template-scenario-multi-agent-advisory",
+        "template-specialist-agent",
+        "template-orchestrator-agent",
+        "pattern-confidence-scoring",
+        "pattern-intake-gate",
+        "pattern-reflection",
+        "learning-12-factor-agents",
+        "learning-agentic-architectures"
+      ],
+      "context_files": [
+        ".claude/blueprints/index.json"
+      ]
+    },
+
+    "security": {
+      "keywords": ["security", "vulnerability", "owasp", "audit", "penetration"],
+      "primary": [
+        "pattern-security-review",
+        "command-security-review"
+      ],
+      "secondary": [],
+      "context_files": []
+    },
+
+    "browser": {
+      "keywords": ["browser", "chrome", "puppeteer", "selenium", "web automation"],
+      "primary": [
+        "pattern-browser-automation"
+      ],
+      "secondary": [
+        "learning-chrome-automation-best-practices"
+      ],
+      "context_files": []
+    },
+
+    "code-review": {
+      "keywords": ["review", "code-quality", "pr", "pull request", "code review"],
+      "primary": [
+        "pattern-technical-code-review",
+        "agent-ext-code-reviewer",
+        "agent-ext-claude-workflow-code-reviewer"
+      ],
+      "secondary": [
+        "pattern-parallel-agent-dispatch",
+        "skill-subagent-driven-development",
+        "agent-ext-claude-workflow-security-auditor"
+      ],
+      "context_files": []
+    },
+
+    "claude-workflow-patterns": {
+      "keywords": ["project analysis", "architecture pattern", "testing strategy", "api design", "performance", "git workflow", "refactor"],
+      "primary": [
+        "agent-ext-claude-workflow-orchestrator",
+        "skill-ext-claude-workflow-project-analysis",
+        "skill-ext-claude-workflow-architecture-patterns"
+      ],
+      "secondary": [
+        "agent-ext-claude-workflow-debugger",
+        "agent-ext-claude-workflow-test-architect",
+        "agent-ext-claude-workflow-refactorer",
+        "agent-ext-claude-workflow-docs-writer",
+        "skill-ext-claude-workflow-testing-strategy",
+        "skill-ext-claude-workflow-api-design",
+        "skill-ext-claude-workflow-performance-optimization",
+        "skill-ext-claude-workflow-git-workflow"
+      ],
+      "context_files": []
+    },
+
+    "pkm-digital-brain": {
+      "keywords": ["pkm", "personal knowledge", "digital brain", "second brain", "jsonl", "relationship tiers", "content creation"],
+      "primary": [
+        "pattern-pkm-digital-brain"
+      ],
+      "secondary": [
+        "pattern-progressive-disclosure",
+        "pattern-memory-architecture"
+      ],
+      "context_files": []
+    },
+
+    "ml-projects": {
+      "keywords": ["ml", "machine learning", "data science", "regression", "timeseries", "prediction model"],
+      "primary": [
+        "pattern-ml-project-structure",
+        "blueprint-end-to-end-ml-project",
+        "blueprint-timeseries-prediction-project"
+      ],
+      "secondary": [
+        "learning-kalyan-ml-projects",
+        "blueprint-web-scraping-project",
+        "blueprint-business-intelligence-project"
+      ],
+      "context_files": []
+    },
+
+    "mcp": {
+      "keywords": ["mcp", "server", "protocol", "claude desktop", "tool"],
+      "primary": [
+        "learning-mcp-server-implementation"
+      ],
+      "secondary": [
+        "reference-awesome-claude-resources"
+      ],
+      "context_files": []
+    },
+
+    "data-aggregation": {
+      "keywords": ["aggregat", "feed", "news feed", "trend", "tracking", "multi-source", "scraping", "crawler"],
+      "primary": [
+        "pattern-multi-source-aggregation",
+        "template-multi-source-aggregator"
+      ],
+      "secondary": [
+        "pattern-parallel-agent-dispatch",
+        "pattern-idempotent-redundancy",
+        "skill-research-orchestrator"
+      ],
+      "context_files": []
+    },
+
+    "agent-sdk": {
+      "keywords": ["agent sdk", "claude sdk", "claude-agent-sdk", "programmatic agent", "sdk hooks", "sdk subagent"],
+      "primary": [
+        "learning-claude-agent-sdk-insights",
+        "learning-claude-code-dec-2025-features"
+      ],
+      "secondary": [
+        "pattern-multi-agent-orchestration",
+        "learning-agentic-architectures",
+        "learning-12-factor-agents"
+      ],
+      "context_files": []
+    },
+
+    "delegation": {
+      "keywords": ["delegation", "delegieren", "sub-agent", "subagent", "agent spawn", "task agent", "explore agent", "checkpoint", "context budget"],
+      "primary": [
+        "rule-sub-agent-delegation",
+        "rule-context-budget-awareness",
+        "pattern-context-window-ownership"
+      ],
+      "secondary": [
+        "rule-clear-dont-compact",
+        "rule-explicit-identity",
+        "pattern-parallel-agent-dispatch",
+        "skill-subagent-driven-development",
+        "pattern-multi-agent-orchestration"
+      ],
+      "context_files": []
+    }
+  },
+
+  "fallback": {
+    "description": "Default nodes when no specific route matches",
+    "primary": [
+      "agent-context-manager",
+      "rule-domain-memory-bootup"
+    ],
+    "context_files": [
+      "_memory/index.json"
+    ]
+  }
+}

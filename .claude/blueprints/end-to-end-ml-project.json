@@ -1,0 +1,369 @@
+{
+  "id": "end-to-end-ml-project",
+  "name": "End-to-End ML Project Blueprint",
+  "version": "1.0.0",
+  "description": "Production-ready ML project template extracted from KalyanM45 portfolio analysis. Covers regression, classification, and web scraping projects with MLOps integration.",
+  "category": "ml-projects",
+  "source": "KalyanM45/AI-Project-Gallery",
+  "created": "2025-12-23",
+  "patterns": [
+    "modular-ml-pipeline",
+    "dvc-ml-versioning",
+    "mlflow-experiment-tracking",
+    "docker-containerization",
+    "flask-web-interface",
+    "notebook-driven-development"
+  ],
+  "structure": {
+    "root": {
+      "src/{project_name}": {
+        "components": [
+          "__init__.py",
+          "config/config.yaml",
+          "data/data_processor.py",
+          "features/feature_engineering.py",
+          "models/model_trainer.py",
+          "models/model_evaluator.py",
+          "utils/logging_utils.py",
+          "utils/data_utils.py"
+        ]
+      },
+      "Notebook_Experiments": {
+        "description": "Jupyter notebooks for experimentation and EDA",
+        "files": [
+          "01_EDA.ipynb",
+          "02_Feature_Engineering.ipynb",
+          "03_Model_Training.ipynb",
+          "04_Model_Evaluation.ipynb",
+          "05_Hyperparameter_Tuning.ipynb"
+        ]
+      },
+      "Artifacts": {
+        "description": "Trained models and preprocessors",
+        "files": [
+          "model.pkl",
+          "preprocessor.pkl",
+          "scaler.pkl"
+        ]
+      },
+      "templates": {
+        "description": "HTML templates for Flask UI",
+        "files": ["index.html", "prediction.html", "results.html"]
+      },
+      "static": {
+        "description": "CSS, JS, images",
+        "subdirs": ["css/", "js/", "images/"]
+      },
+      ".github/workflows": {
+        "description": "GitHub Actions CI/CD",
+        "files": ["tests.yml", "deployment.yml"]
+      },
+      ".dvc": {
+        "description": "Data Version Control configuration",
+        "managed": true
+      },
+      "mlruns": {
+        "description": "MLFlow experiment tracking (optional)",
+        "managed": true
+      },
+      "logs": {
+        "description": "Application logs",
+        "managed": true
+      },
+      "root_files": [
+        "app.py",
+        "setup.py",
+        "template.py",
+        "requirements.txt",
+        "Dockerfile",
+        "dvc.yaml",
+        "dvc.lock",
+        ".gitignore",
+        "README.md",
+        "LICENSE"
+      ]
+    }
+  },
+  "dependencies": {
+    "core_ml": [
+      "pandas>=1.3.0",
+      "numpy>=1.20.0",
+      "scikit-learn>=0.24.0",
+      "xgboost>=1.5.0",
+      "catboost>=1.0.0"
+    ],
+    "visualization": [
+      "matplotlib>=3.3.0",
+      "seaborn>=0.11.0"
+    ],
+    "web_framework": [
+      "flask>=2.0.0",
+      "flask-cors>=3.0.10"
+    ],
+    "ml_ops": [
+      "dvc[s3]>=2.0.0",
+      "mlflow>=1.20.0"
+    ],
+    "dev_tools": [
+      "pytest>=6.0.0",
+      "jupyter>=1.0.0",
+      "ipykernel>=6.0.0"
+    ],
+    "utilities": [
+      "python-dotenv>=0.19.0",
+      "pyyaml>=5.4.0"
+    ]
+  },
+  "key_files": {
+    "app.py": {
+      "description": "Flask application entry point",
+      "pattern": "Flask server with routes for prediction, model info, training",
+      "key_components": [
+        "Flask app initialization",
+        "Model loading from Artifacts/",
+        "Prediction endpoint (/predict)",
+        "Training endpoint (/train)",
+        "Model info endpoint (/model-info)"
+      ]
+    },
+    "setup.py": {
+      "description": "Python package configuration",
+      "pattern": "Standard setuptools setup with package discovery",
+      "key_components": ["name", "version", "packages", "install_requires"]
+    },
+    "template.py": {
+      "description": "Directory structure generator (CRITICAL)",
+      "pattern": "Creates modular project structure from scratch",
+      "key_components": [
+        "Directory creation function",
+        "File template generation",
+        "Gitkeep placement for empty dirs"
+      ]
+    },
+    "dvc.yaml": {
+      "description": "Data Version Control pipeline definition",
+      "pattern": "Defines data processing, feature engineering, training stages",
+      "key_components": [
+        "stages: data_preparation",
+        "stages: feature_engineering",
+        "stages: model_training",
+        "metrics and plots"
+      ]
+    },
+    "requirements.txt": {
+      "description": "Python dependencies (pinned versions)",
+      "pattern": "Exact versions for reproducibility",
+      "note": "Always use pinned versions for production"
+    },
+    "Dockerfile": {
+      "description": "Container configuration",
+      "pattern": "Multi-stage build with Python 3.x, minimal image size",
+      "key_components": [
+        "FROM python:3.9-slim",
+        "WORKDIR /app",
+        "COPY requirements.txt . && pip install",
+        "EXPOSE 5000",
+        "CMD ['python', 'app.py']"
+      ]
+    },
+    ".gitignore": {
+      "description": "Git exclusion patterns",
+      "patterns": [
+        "*.pkl, *.joblib (models)",
+        "mlruns/, dvc.lock (ML artifacts)",
+        ".env (secrets)",
+        "__pycache__/, *.pyc",
+        "venv/, .venv/",
+        "*.xlsx, *.csv (large data)"
+      ]
+    }
+  },
+  "workflow": {
+    "phase_1_setup": {
+      "description": "Project initialization",
+      "steps": [
+        "Run template.py to create directory structure",
+        "Initialize git repository",
+        "Initialize DVC (dvc init)",
+        "Create virtual environment",
+        "Install requirements (pip install -r requirements.txt)"
+      ]
+    },
+    "phase_2_development": {
+      "description": "Model development in notebooks",
+      "steps": [
+        "EDA in Notebook_Experiments/01_EDA.ipynb",
+        "Feature engineering in 02_Feature_Engineering.ipynb",
+        "Model training in 03_Model_Training.ipynb",
+        "Model evaluation in 04_Model_Evaluation.ipynb",
+        "Hyperparameter tuning in 05_Hyperparameter_Tuning.ipynb"
+      ]
+    },
+    "phase_3_modularization": {
+      "description": "Convert notebooks to production code",
+      "steps": [
+        "Extract data_processor.py from EDA",
+        "Extract feature_engineering.py from FE notebook",
+        "Extract model_trainer.py from training notebook",
+        "Extract model_evaluator.py from evaluation",
+        "Create config.yaml for hyperparameters"
+      ]
+    },
+    "phase_4_pipeline": {
+      "description": "DVC pipeline definition",
+      "steps": [
+        "Define dvc.yaml with stages",
+        "Track Artifacts/ with DVC",
+        "Run dvc repro for full pipeline",
+        "Commit dvc.lock to git"
+      ]
+    },
+    "phase_5_web_interface": {
+      "description": "Flask web application",
+      "steps": [
+        "Create app.py with Flask routes",
+        "Load pre-trained model from Artifacts/",
+        "Create HTML templates in templates/",
+        "Add static assets (CSS, JS)",
+        "Test with localhost:5000"
+      ]
+    },
+    "phase_6_containerization": {
+      "description": "Docker deployment",
+      "steps": [
+        "Create Dockerfile",
+        "Build image: docker build -t project:latest .",
+        "Test image: docker run -p 5000:5000 project:latest",
+        "Push to DockerHub (optional)"
+      ]
+    },
+    "phase_7_mlops": {
+      "description": "Experiment tracking (optional)",
+      "steps": [
+        "Initialize MLFlow tracking",
+        "Log experiments in model_trainer.py",
+        "View UI: mlflow ui",
+        "Compare experiments and select best model"
+      ]
+    }
+  },
+  "features": {
+    "must_have": [
+      "Modular src/ structure with components",
+      "Jupyter notebooks for experimentation",
+      "DVC for data/model versioning",
+      "Flask web interface for predictions",
+      "Docker for containerization",
+      "setup.py for package distribution",
+      "requirements.txt with pinned versions",
+      ".gitignore with ML artifacts"
+    ],
+    "recommended": [
+      "MLFlow for experiment tracking",
+      "GitHub Actions for CI/CD",
+      "pytest for unit tests",
+      "Logging configuration",
+      "Config files (YAML/JSON)",
+      "Error handling and validation"
+    ],
+    "optional": [
+      "FastAPI instead of Flask",
+      "Ray for distributed training",
+      "Weights & Biases for monitoring",
+      "REST API documentation (Swagger)"
+    ]
+  },
+  "ml_ops_stack": {
+    "data_versioning": {
+      "tool": "DVC (Data Version Control)",
+      "usage": "dvc.yaml and dvc.lock track data, models, metrics",
+      "example": "Track Artifacts/ folder with DVC for reproducibility"
+    },
+    "experiment_tracking": {
+      "tool": "MLFlow (optional)",
+      "usage": "Log hyperparameters, metrics, models for comparison",
+      "example": "mlflow.log_param('learning_rate', 0.01)"
+    },
+    "containerization": {
+      "tool": "Docker",
+      "usage": "Package application with all dependencies",
+      "example": "docker run -p 5000:5000 kalyan45/ml-project"
+    },
+    "ci_cd": {
+      "tool": "GitHub Actions",
+      "usage": ".github/workflows for automated testing and deployment",
+      "example": "tests.yml runs pytest on every push"
+    }
+  },
+  "best_practices": [
+    "Always use virtual environments (conda/venv)",
+    "Pin exact dependency versions in requirements.txt",
+    "Use setup.py for package distribution",
+    "Separate data, models, code into different directories",
+    "Track Artifacts/ with DVC, not Git",
+    "Write notebooks for exploration, convert to .py for production",
+    "Use config files (YAML) for hyperparameters, not hardcoding",
+    "Include comprehensive .gitignore",
+    "Use template.py to scaffold new projects",
+    "Test containerization before deployment",
+    "Document installation steps in README.md",
+    "Use Dockerfile for reproducibility across environments"
+  ],
+  "common_issues": [
+    {
+      "issue": "Git repo becomes too large",
+      "cause": "Committing models and data directly",
+      "solution": "Use DVC to track large files, commit only dvc.lock"
+    },
+    {
+      "issue": "Model works in notebook but not in app",
+      "cause": "Missing preprocessing or different library versions",
+      "solution": "Save preprocessor.pkl alongside model, use same library versions"
+    },
+    {
+      "issue": "Dependency conflicts",
+      "cause": "Different versions installed locally vs in Docker",
+      "solution": "Use pinned versions in requirements.txt, test in Docker"
+    },
+    {
+      "issue": "Slow Docker builds",
+      "cause": "Large layer sizes or repeated pip installs",
+      "solution": "Use multi-stage builds, cache pip layers"
+    }
+  ],
+  "templates": {
+    "app.py": {
+      "description": "Flask application template",
+      "location": ".claude/templates/generated-system/flask-ml-app.py"
+    },
+    "setup.py": {
+      "description": "Setup configuration template",
+      "location": ".claude/templates/generated-system/setup.py.template"
+    },
+    "Dockerfile": {
+      "description": "Docker template",
+      "location": ".claude/templates/generated-system/Dockerfile.template"
+    },
+    "dvc.yaml": {
+      "description": "DVC pipeline template",
+      "location": ".claude/templates/generated-system/dvc.yaml.template"
+    }
+  },
+  "quick_start": {
+    "step_1": "python template.py --name my_project",
+    "step_2": "cd my_project && python -m venv venv && source venv/bin/activate",
+    "step_3": "pip install -r requirements.txt",
+    "step_4": "dvc init && dvc remote add -d local ./dvc_storage",
+    "step_5": "jupyter notebook Notebook_Experiments/",
+    "step_6": "python app.py  # Test Flask app",
+    "step_7": "docker build -t my_project:latest . && docker run -p 5000:5000 my_project:latest"
+  },
+  "learning_outcomes": [
+    "Modular Python project organization",
+    "ML pipeline automation with DVC",
+    "Experiment tracking with MLFlow",
+    "Web application deployment with Flask/Docker",
+    "ML DevOps and reproducibility",
+    "Production ML systems"
+  ]
+}

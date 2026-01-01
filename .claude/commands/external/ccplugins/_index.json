@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/ccplugins/awesome-claude-code-plugins",
+  "extracted": "2025-12-29",
+  "commands": [
+    {
+      "name": "analyze-codebase",
+      "description": "Comprehensive codebase analysis with 9-section output",
+      "relevance": "Complements our codebase-analyzer agent and /project-analyze",
+      "output": "codebase_analysis.md",
+      "tags": ["analysis", "documentation", "onboarding"]
+    }
+  ]
+}
