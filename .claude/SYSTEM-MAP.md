@@ -49,8 +49,8 @@ printf "\033[38;5;6m%s | %s\033[0m%s" "$dir" "$m" "$git_info"
 
 # Evolving System Map (continued)
 
-**Last Updated**: 2025-12-22
-**Version**: 1.5.3
+**Last Updated**: 2026-01-02
+**Version**: 3.1.0
 **Purpose**: Persistent system documentation for repository analysis and integration
 
 ---
@@ -59,19 +59,17 @@ printf "\033[38;5;6m%s | %s\033[0m%s" "$dir" "$m" "$git_info"
 
 | Component | Count | Location |
 |-----------|-------|----------|
-| **Agents** | 13 | .claude/agents/ |
-| **Skills** | 3 | .claude/skills/ |
-| **Commands** | 34 | .claude/commands/ |
+| **Agents** | 30 | .claude/agents/ |
+| **Skills** | 6 | .claude/skills/ |
+| **Commands** | 43 | .claude/commands/ |
 | **Hooks** | 4 | .claude/hooks/ |
-| **Rules** | 11 | .claude/rules/ |
+| **Rules** | 28 | .claude/rules/ |
 | **Scenarios** | 2 | .claude/scenarios/ |
-| **Blueprints** | 3 | .claude/blueprints/ |
+| **Blueprints** | 7 | .claude/blueprints/ |
 | **Templates** | 37 | .claude/templates/ |
-| **Tests** | 1 | .claude/tests/scenarios/ |
+| **Patterns** | 50 | knowledge/patterns/ |
+| **Learnings** | 28 | knowledge/learnings/ |
 | **Prompts** | 24 | knowledge/prompts/ |
-| **Knowledge Files** | 70+ | knowledge/ |
-| **Plans** | 0 | knowledge/plans/ |
-| **Ideas** | 0 | ideas/ |
 | **MCP Servers** | 3 | .mcp.json |
 | **Domain Memory** | 1 | _memory/ |
 

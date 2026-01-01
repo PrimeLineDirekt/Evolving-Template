@@ -113,13 +113,13 @@ evolving/
     ├── SYSTEM-MAP.md            # Component Inventory
     ├── workflow-patterns.md     # Auto-Detection Patterns
     ├── settings.json            # Hook Configuration
-    ├── commands/                # Slash Commands (40+)
-    ├── agents/                  # Multi-Agent Orchestration (13+)
-    ├── scenarios/               # Context-based Project Bundles
+    ├── commands/                # Slash Commands (43)
+    ├── agents/                  # Multi-Agent Orchestration (30)
+    ├── scenarios/               # Context-based Project Bundles (2)
     ├── tests/                   # Scenario Testing Framework
-    ├── skills/                  # Progressive Disclosure (4)
+    ├── skills/                  # Progressive Disclosure (6)
     ├── hooks/                   # Automation (4)
-    ├── rules/                   # Modular Behavior Rules (12)
+    ├── rules/                   # Modular Behavior Rules (28)
     └── templates/               # Template System (37 files)
 ```
 
@@ -211,7 +211,7 @@ See `.claude/COMMANDS.md` for complete reference.
 
 ## Current System Status
 
-**Last Updated**: 2025-12-22
+**Last Updated**: 2026-01-02
 
 ### Ideas
 - **Total**: 0 (will be populated through `/idea-new` or onboarding)
@@ -220,12 +220,14 @@ See `.claude/COMMANDS.md` for complete reference.
 - **Total**: 0 (will be populated through `/project-add` or onboarding)
 
 ### Knowledge Items
-- **Agents**: 13+ (Multi-Agent Orchestration System)
-- **Skills**: 3 (Progressive Disclosure Pattern)
-- **Commands**: 40+ (Model Switchers, Idea Management, Knowledge Management, etc.)
+- **Agents**: 30 (18 internal + 12 external)
+- **Skills**: 6 (4 internal + 2 external)
+- **Commands**: 43 workflows available
 - **Templates**: 37 files
-- **Patterns**: 24 (core patterns included)
-- **Rules**: 12 (modular behavior rules)
+- **Patterns**: 50
+- **Learnings**: 28
+- **Rules**: 28 (3 core + 25 on-demand)
+- **Blueprints**: 7
 
 ---
 
@@ -357,9 +359,9 @@ tech_stack: [techs]
 
 ## Version
 
-- **Current**: 3.0.0
+- **Current**: 3.1.0
 - **Created**: 2024-11-22
-- **Last Updated**: 2025-12-22
+- **Last Updated**: 2026-01-02
 
 ---
 

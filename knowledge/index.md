@@ -237,16 +237,14 @@ Declarative YAML-based workflow automation with permission engine and user prefe
 
 ## Statistics
 <!-- Auto-updated by workflows -->
-- **Total Projects**: 0
+- **Total Agents**: 30 (18 internal + 12 external)
+- **Total Commands**: 43
+- **Total Skills**: 6 (4 internal + 2 external)
+- **Total Rules**: 28 (3 core + 25 on-demand)
+- **Total Patterns**: 50
+- **Total Learnings**: 28
+- **Total Blueprints**: 7
 - **Total Scenarios**: 2 (evolving-dashboard, workflow-engine)
-- **Total Workflows**: 4 (morning-briefing, weekly-review, inbox-processing, idea-forge-full)
-- **Total Prompts**: 4+ files (2 Frameworks, 1 Research Agent, examples)
-- **Total Learnings**: 13+ (technical learnings, external findings)
-- **Total Patterns**: 24 (4 complete, 20+ production)
-- **Total Personal Docs**: 3 (to be filled via onboarding)
-- **Total Resources**: Variable
-- **Total Sessions**: Variable
-- **Total Ideas**: 0
-- **Total External Projects**: 0
-- **Total Plans**: 0
-- **Last Updated**: 2025-12-22
+- **Total Prompts**: 24+ files (2 Frameworks, 1 Research Agent, examples)
+- **Total Projects**: 0
+- **Last Updated**: 2026-01-02

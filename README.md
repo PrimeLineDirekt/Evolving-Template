@@ -74,7 +74,7 @@ You don't need to memorize commands. Just speak naturally:
 
 ### Multi-Agent System
 
-**13+ Specialized Agents** for different workflows:
+**30 Specialized Agents** for different workflows (18 internal + 12 external):
 
 | Agent Type | Agents | Purpose |
 |------------|--------|---------|
@@ -393,14 +393,16 @@ See [SETUP_MCP.md](SETUP_MCP.md) for detailed instructions.
 
 | Component | Count |
 |-----------|-------|
-| Agents | 13+ |
-| Commands | 40+ |
-| Skills | 3 |
+| Agents | 30 |
+| Commands | 43 |
+| Skills | 6 |
 | Hooks | 4 |
-| Rules | 12 |
-| Scenarios | 3 |
+| Rules | 28 |
+| Scenarios | 2 |
 | Templates | 37 |
-| Patterns | 24 |
+| Patterns | 50 |
+| Learnings | 28 |
+| Blueprints | 7 |
 
 ---
 
@@ -450,9 +452,9 @@ The system grows with you:
 
 ## Version
 
-**Version**: 3.0.0
+**Version**: 3.1.0
 **Created**: 2024-11-22
-**Last Updated**: 2025-12-22
+**Last Updated**: 2026-01-02
 **Status**: Production Ready
 
 ---

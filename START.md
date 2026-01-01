@@ -172,10 +172,11 @@ Different modes:
 _Start with onboarding to populate your system!_
 
 **System components (ready):**
-- Agents: 13+ (Multi-Agent Orchestration System)
-- Skills: 3 (Progressive Disclosure Pattern)
+- Agents: 30 (Multi-Agent Orchestration System)
+- Skills: 6 (Progressive Disclosure Pattern)
 - Templates: 37 (Agents, Commands, Hooks, Skills)
-- Commands: 40+ workflows available
+- Commands: 43 workflows available
+- Rules: 28, Patterns: 50, Learnings: 28
 
 ---
 
@@ -448,7 +449,7 @@ This system grows with you. The more you use it, the more valuable it becomes.
 
 ---
 
-**Version**: 3.0.0
+**Version**: 3.1.0
 **Created**: 2024-11-22
-**Last Updated**: 2025-12-22
+**Last Updated**: 2026-01-02
 **Status**: Ready to use
