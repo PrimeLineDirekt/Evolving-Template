@@ -1,6 +1,5 @@
 # just-bash Reference
 
-**URL**: https://github.com/vercel-labs/just-bash
 **NPM**: `npm install just-bash`
 **Typ**: Sandboxed Bash Environment for AI Agents
 **Status**: Alpha (Pre-release)

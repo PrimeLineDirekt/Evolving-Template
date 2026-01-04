@@ -1,6 +1,5 @@
 # 12-Factor Agents Framework
 
-**Source**: HumanLayer (https://github.com/humanlayer/12-factor-agents)
 **Type**: External Learning / Reference Framework
 **Confidence**: 90%
 **Date**: 2025-12-10

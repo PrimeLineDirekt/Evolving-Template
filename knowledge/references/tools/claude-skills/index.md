@@ -11,7 +11,7 @@ tags: [skills, index, methodology, development, debugging, testing]
 
 # Claude Skills Reference
 
-Comprehensive skill library from [obra/superpowers](https://github.com/obra/superpowers) for Claude Code.
+Comprehensive skill library from obra/superpowers for Claude Code.
 
 ## Quick Lookup
 

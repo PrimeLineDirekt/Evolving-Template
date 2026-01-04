@@ -1,6 +1,6 @@
 # Anthropic Advanced Tool Use - Learnings
 
-**Quelle:** [Anthropic Engineering Blog - Advanced Tool Use](https://www.anthropic.com/engineering/advanced-tool-use)
+**Quelle:** Anthropic Engineering Blog - Advanced Tool Use
 **Datum:** November 2024
 **Confidence:** 95% (Offizielles Anthropic Engineering)
 

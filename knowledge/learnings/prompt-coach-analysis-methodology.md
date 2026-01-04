@@ -1,7 +1,6 @@
 # Prompt Coach Analysis Methodology
 
-> **Source**: [hancengiz/claude-code-prompt-coach-skill](https://github.com/hancengiz/claude-code-prompt-coach-skill)
-> **Type**: Learning / Prompt Quality Analysis
+> > **Type**: Learning / Prompt Quality Analysis
 > **Relevance**: HIGH - Komplementiert unser prompt-pro-framework
 
 ## Konzept

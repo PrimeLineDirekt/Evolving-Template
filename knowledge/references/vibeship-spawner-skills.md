@@ -1,6 +1,5 @@
 # Vibeship Spawner Skills
 
-**Quelle**: https://github.com/obra/vibeship-spawner-skills
 **Extrahiert**: 2026-01-01
 **Kategorie**: reference
 

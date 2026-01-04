@@ -702,7 +702,7 @@ Diese sind **native Commands** von Claude Code selbst - keine Evolving-eigenen W
 
 | Command | Zweck | Status |
 |---------|-------|--------|
-| `/chrome` | Browser-Kontrolle via Extension | Beta - [Setup](https://claude.ai/chrome) |
+| `/chrome` | Browser-Kontrolle via Extension | Beta - Setup |
 | `/stats` | Nutzungsstatistiken (Model, Streak) | Verfügbar |
 | `/config` | Settings anpassen | Verfügbar |
 | `/permissions` | Permission-Regeln verwalten | Verfügbar |

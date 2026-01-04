@@ -1,7 +1,6 @@
 # Claude Code December 2025 Features
 
-> **Source**: [Claude Code CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
-> **Relevanz**: Hoch - Features die Evolving-Workflows verbessern
+> > **Relevanz**: Hoch - Features die Evolving-Workflows verbessern
 > **Stand**: 2025-12-19 (aktualisiert)
 
 ---

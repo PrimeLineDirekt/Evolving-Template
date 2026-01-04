@@ -1,7 +1,6 @@
 # AgentFS Unified Agent Storage
 
-> **Source**: [tursodatabase/agentfs](https://github.com/tursodatabase/agentfs)
-> **Type**: Learning / Infrastructure Pattern
+> > **Type**: Learning / Infrastructure Pattern
 > **Relevance**: HIGH - Agent State Management, Audit Trail, Reproducibility
 
 ## Konzept

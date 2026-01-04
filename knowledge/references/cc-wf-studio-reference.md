@@ -1,6 +1,5 @@
 # CC Workflow Studio Reference
 
-**URL**: https://github.com/breaking-brake/cc-wf-studio
 **Typ**: VSCode Extension
 **Status**: Tool Reference (nicht extrahiert)
 **Checked**: 2025-12-29

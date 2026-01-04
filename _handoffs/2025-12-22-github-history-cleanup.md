@@ -89,7 +89,6 @@ Posting-Strategie: 1-2 Tage Abstand zwischen Tweets
 
 ## Repository Status
 
-**URL**: https://github.com/PrimeLineDirekt/Evolving-Template
 
 **Final State**:
 - 297 files (all clean, no personal data)

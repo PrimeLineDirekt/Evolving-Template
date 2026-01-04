@@ -1,9 +1,8 @@
 # Claude Code System Prompts Reference
 
-> **Source**: [Piebald-AI/claude-code-system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts)
-> **Version**: 2.0.69 (December 12, 2025)
+> > **Version**: 2.0.69 (December 12, 2025)
 > **Total Prompts**: 59
-> **Related Tool**: [tweakcc](https://github.com/Piebald-AI/tweakcc) - Customize Claude Code prompts
+> **Related Tool**: tweakcc - Customize Claude Code prompts
 
 ## Überblick
 
@@ -265,6 +264,5 @@ curl -s https://registry.npmjs.org/@anthropic-ai/claude-code | jq '.["dist-tags"
 
 ## Links
 
-- **Repository**: https://github.com/Piebald-AI/claude-code-system-prompts
 - **tweakcc Tool**: https://github.com/Piebald-AI/tweakcc
 - **Piebald**: https://piebald.ai/

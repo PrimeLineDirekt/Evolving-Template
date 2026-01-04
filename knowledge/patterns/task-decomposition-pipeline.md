@@ -440,7 +440,7 @@ Query → Planner → [User Review] → Executor → Synthesizer → Answer
 ## Further Reading
 
 **Source Projects**:
-- [Dexter](https://github.com/virattt/dexter) - Ursprüngliche Implementierung für Finance
+- Dexter - Ursprüngliche Implementierung für Finance
 
 **Related Knowledge**:
 - `knowledge/patterns/multi-agent-orchestration.md`

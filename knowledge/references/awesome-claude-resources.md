@@ -1,7 +1,6 @@
 # Awesome Claude Resources
 
-> **Source**: [alvinunreal/awesome-claude](https://github.com/alvinunreal/awesome-claude)
-> **Type**: Curated Resource List / Reference
+> > **Type**: Curated Resource List / Reference
 > **Updated**: 2025-12-16
 
 ## Übersicht

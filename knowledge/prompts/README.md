@@ -268,8 +268,8 @@ BAD: (implizite Annahmen)
 _Deine Projekte werden hier erscheinen, nachdem du sie mit /project-add hinzufügst._
 
 **Externe Ressourcen:**
-- [Anthropic Prompt Engineering Guide](https://docs.anthropic.com/claude/docs/prompt-engineering)
-- [Claude Best Practices](https://docs.anthropic.com/claude/docs/how-to-use-the-api)
+- Anthropic Prompt Engineering Guide
+- Claude Best Practices
 
 ## Statistiken
 

@@ -604,4 +604,4 @@ SCHLECHT:
 
 - [Etsy Poster Creator](../skills/etsy-poster-creator/) - Vollständiger Workflow
 - [Content Creation Patterns](../../knowledge/patterns/) - Wiederverwendbare Frameworks
-- [FAL.ai Docs](https://fal.ai/models/fal-ai/nano-banana-pro/api) - API Reference
+- FAL.ai Docs - API Reference

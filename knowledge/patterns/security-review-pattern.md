@@ -190,6 +190,6 @@ cursor.execute(query, (f"%{search_term}%",))
 
 ## Related
 
-- [OWASP Top 10](https://owasp.org/Top10/)
-- [CWE Database](https://cwe.mitre.org/)
+- OWASP Top 10
+- CWE Database
 - `.claude/commands/security-review.md` - Der Command

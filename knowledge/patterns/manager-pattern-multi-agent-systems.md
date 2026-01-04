@@ -301,7 +301,7 @@ class AsyncManager:
 
 ## Related Patterns
 
-- [Repository Pattern](https://martinfowler.com/eaaCatalog/repository.html) - Similar concept for DB access
+- Repository Pattern - Similar concept for DB access
 - [Atomic Operations Pattern](atomic-operations-pattern.md) - Für write safety
 - [Lazy Loading Pattern](lazy-loading-pattern.md) - Performance optimization
 - [Dataclass Pattern](dataclass-serialization-pattern.md) - Model serialization

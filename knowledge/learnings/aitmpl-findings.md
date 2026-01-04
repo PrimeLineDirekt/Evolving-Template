@@ -348,7 +348,6 @@ Templates are structured scaffolds with placeholders, conditional logic, validat
 
 - **AITMPL Website**: https://aitmpl.com
 - **AITMPL Docs**: https://aitmpl.com/docs
-- **GitHub Repository**: https://github.com/aitmpl/aitmpl
 - **Complete Guide**: https://aitmpl.com/guide
 - **Skills Marketplace**: https://aitmpl.com/skills
 

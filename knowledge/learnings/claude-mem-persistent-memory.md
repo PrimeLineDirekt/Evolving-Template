@@ -1,7 +1,6 @@
 # Claude-Mem Persistent Memory System
 
-> **Source**: [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)
-> **Version**: v6.4.9+
+> > **Version**: v6.4.9+
 > **Type**: Learning / External Project Analysis
 > **Relevance**: HIGH - Persistent Memory, Hook Architecture, Token Efficiency
 

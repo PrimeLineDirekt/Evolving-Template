@@ -1,6 +1,5 @@
 # Learning: Better Agents Patterns
 
-**Quelle**: https://github.com/langwatch/better-agents
 **Analysiert**: 2025-12-01
 **Relevanz für Evolving**: 7/10
 
@@ -153,9 +152,9 @@ Backlog - evaluieren wenn Agent-Nutzung steigt.
 
 ## Quellen
 
-- [Better Agents GitHub](https://github.com/langwatch/better-agents)
-- [Top 10 MCP Servers 2025](https://apidog.com/blog/top-10-mcp-servers-for-claude-code/)
-- [Claude Code MCP Docs](https://docs.anthropic.com/en/docs/claude-code/mcp)
+- Better Agents GitHub
+- Top 10 MCP Servers 2025
+- Claude Code MCP Docs
 
 ---
 

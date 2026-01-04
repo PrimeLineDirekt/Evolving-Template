@@ -1,6 +1,5 @@
 # Agentic Architectures - Pattern Learnings
 
-**Source**: https://github.com/FareedKhan-dev/all-agentic-architectures
 **Analysiert**: 2025-12-09
 **Typ**: External Learning
 **Confidence**: 90%
@@ -915,5 +914,4 @@ class SimulatorAgent:
 ---
 
 **Confidence**: 90%
-**Source**: https://github.com/FareedKhan-dev/all-agentic-architectures
 **Related**: Multi-Agent Orchestration, Task Decomposition Pipeline

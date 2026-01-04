@@ -93,5 +93,5 @@ Nutze `.claude/templates/tests/scenario-test.md` für neue Tests.
 
 ## Referenzen
 
-- [Better Agents Testing Pyramid](https://github.com/langwatch/better-agents)
-- [Scenario Testing Best Practices](https://scenario.langwatch.ai/)
+- Better Agents Testing Pyramid
+- Scenario Testing Best Practices

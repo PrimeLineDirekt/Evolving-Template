@@ -67,5 +67,4 @@ See reference.md for full prompts:
 
 ---
 
-**Source**: https://github.com/obra/superpowers
 **Integrated**: 2025-12-30

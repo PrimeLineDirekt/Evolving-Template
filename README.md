@@ -18,7 +18,7 @@ Evolving is your **personal knowledge and innovation system** - a comprehensive 
 
 ### Prerequisites
 
-- [Claude Code CLI](https://claude.ai/claude-code) installed
+- Claude Code CLI installed
 - Clone this repository
 
 ### Getting Started

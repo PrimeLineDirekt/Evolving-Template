@@ -308,6 +308,6 @@ async def collect_feedback(run_id: str, user_rating: int):
 
 ## Quellen
 
-- [LangSmith Docs](https://docs.langchain.com/langsmith/observability)
-- [Debugging Deep Agents Blog](https://blog.langchain.com/debugging-deep-agents-with-langsmith/)
+- LangSmith Docs
+- Debugging Deep Agents Blog
 - LangSmith Pricing: https://www.langchain.com/langsmith

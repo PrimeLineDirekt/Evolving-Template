@@ -1,6 +1,5 @@
 # Anthropic Skill Best Practices Reference
 
-**Source**: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
 **Type**: Official Documentation
 **Extracted**: 2025-12-30
 

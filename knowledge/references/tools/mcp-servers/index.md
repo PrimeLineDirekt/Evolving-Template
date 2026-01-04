@@ -322,7 +322,6 @@ Relation: { from, to, relationType }
 - News search
 - Local search (optional)
 
-**Get API Key**: https://brave.com/search/api/
 
 ---
 
@@ -356,7 +355,7 @@ File: `.mcp.json`
 
 ## Adding New Servers
 
-1. **Find server** on [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+1. **Find server** on awesome-mcp-servers
 2. **Install**: Usually `npx -y @scope/server-name`
 3. **Configure** in `.mcp.json`
 4. **Restart** Claude Code to load

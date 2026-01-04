@@ -798,10 +798,10 @@ Generate comprehensive reports in `knowledge/external-projects/{slug}/n8n-workfl
 
 **Fetched from docs.n8n.io**:
 
-- [HTTP Request Node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/)
-- [Webhook Node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/)
-- [Best Practices](https://docs.n8n.io/workflows/best-practices/)
-- [Error Handling](https://docs.n8n.io/workflows/error-handling/)
+- HTTP Request Node
+- Webhook Node
+- Best Practices
+- Error Handling
 
 ---
 
