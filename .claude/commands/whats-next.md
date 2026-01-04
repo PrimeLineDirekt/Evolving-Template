@@ -3,36 +3,51 @@ description: Session-Handoff erstellen für Kontextwechsel oder Pause
 model: haiku
 ---
 
-Du erstellst ein strukturiertes Handoff-Dokument für Session-Übergaben. Perfekt wenn:
-- Die Session lang wird und Context knapp
-- Du eine Pause machst
-- Du den Kontext an eine neue Session übergeben willst
+Du erstellst ein strukturiertes Handoff-Dokument für Session-Übergaben.
+
+**Features:**
+- Learning-Extraktion am Ende komplexer Sessions
+- `--detailed` Flag für Enhanced Session Notes
 
 ---
 
-## Schritt 1: Aktuellen Stand analysieren
+## KRITISCH: Workflow-Reihenfolge
 
-**Sammle Informationen über**:
+```
+1. Analysieren (intern, kein Output)
+2. mkdir -p _handoffs
+3. Write Tool ausführen (PFLICHT!)
+4. Erst NACH Write: User kurz informieren
+```
 
-1. **Was wurde gemacht?**
-   - Lies die letzten Aktionen aus dem Kontext
-   - Welche Dateien wurden erstellt/geändert?
-   - Welche Entscheidungen wurden getroffen?
-
-2. **Was ist noch offen?**
-   - Offene TODOs
-   - Ungelöste Fragen
-   - Bekannte Issues
-
-3. **Was ist der nächste logische Schritt?**
-   - Unmittelbar nächste Aktion
-   - Abhängigkeiten
+**⚠️ NIEMALS Handoff-Inhalt im Chat anzeigen!**
+Der User sieht den Inhalt in der gespeicherten Datei.
 
 ---
 
-## Schritt 2: Handoff-Dokument erstellen
+## Schritt 1: Analysieren (KEIN Output!)
 
-**Speichere als**: `_handoffs/YYYY-MM-DD-{topic}.md`
+Sammle INTERN (nicht im Chat ausgeben):
+
+1. **Was wurde gemacht?** - Aktionen, Dateien, Entscheidungen
+2. **Was ist offen?** - TODOs, Fragen, Issues
+3. **Nächster Schritt?** - Konkrete nächste Aktion
+
+---
+
+## Schritt 2: Ordner erstellen
+
+```bash
+mkdir -p _handoffs
+```
+
+---
+
+## Schritt 3: Write Tool SOFORT ausführen
+
+**JETZT Write Tool aufrufen** mit Pfad: `_handoffs/YYYY-MM-DD-{topic}.md`
+
+Nutze dieses Template für den Datei-Inhalt:
 
 ```markdown
 # Session Handoff: {TOPIC}
@@ -56,8 +71,9 @@ Du erstellst ein strukturiertes Handoff-Dokument für Session-Übergaben. Perfek
 | {path} | Modified | {was geändert} |
 
 ### Entscheidungen
-- **{Entscheidung 1}**: {Begründung}
-- **{Entscheidung 2}**: {Begründung}
+| Entscheidung | Begründung | Datum |
+|--------------|------------|-------|
+| {Entscheidung 1} | {Warum} | {YYYY-MM-DD} |
 
 ---
 
@@ -69,10 +85,6 @@ Du erstellst ein strukturiertes Handoff-Dokument für Session-Übergaben. Perfek
 
 ### Offene Fragen
 - {Frage 1}?
-- {Frage 2}?
-
-### Bekannte Issues
-- {Issue}: {Beschreibung}
 
 ---
 
@@ -88,118 +100,68 @@ Du erstellst ein strukturiertes Handoff-Dokument für Session-Übergaben. Perfek
 2. {Zweite Aktion}
 
 ### Kontext laden
-Diese Dateien sind relevant:
 - `{datei1}` - {warum}
 - `{datei2}` - {warum}
 
 ---
 
-## Quick Summary (Copy-Paste für neue Session)
+## Quick Summary
 
 ```
 Letzte Session: {TOPIC}
-
-Stand:
-- {1-Satz was gemacht wurde}
-
-Nächster Schritt:
-- {konkrete nächste Aktion}
-
-Relevante Dateien:
-- {datei1}
-- {datei2}
+Stand: {1-Satz}
+Nächster Schritt: {konkret}
+Dateien: {wichtigste}
 ```
 ```
 
 ---
 
-## Schritt 3: Ordner erstellen falls nötig
+## Schritt 4: User informieren (NACH Write!)
 
-```bash
-mkdir -p _handoffs
+**Erst wenn Write erfolgreich war**, kurze Bestätigung:
+
+```
+✅ Handoff gespeichert: `_handoffs/{filename}.md`
+
+Nächste Session: @_handoffs/{filename}.md
+
+Zusammenfassung:
+- Erreicht: {1 Satz}
+- Offen: {1 Satz}
+- Nächster Schritt: {konkret}
 ```
 
----
-
-## Schritt 4: User informieren
-
-```markdown
-## Session Handoff erstellt
-
-**Gespeichert**: `_handoffs/{filename}.md`
-
-### Für die nächste Session
-
-Starte mit:
-```
-@_handoffs/{filename}.md - Fortsetzung
-```
-
-Oder kopiere den Quick Summary oben.
-
-### Zusammenfassung
-
-**Erreicht**: {kurz}
-**Offen**: {kurz}
-**Nächster Schritt**: {konkret}
-```
+**Das ist ALLES was im Chat erscheint!** Kein Handoff-Inhalt!
 
 ---
 
-## Automatische Erkennung
+## Schritt 5: Learning-Extraktion (Optional)
 
-**Dieser Command wird vorgeschlagen wenn**:
-- Session länger als 30 Minuten
-- Viele Dateien geändert wurden
-- User sagt "Pause", "später", "morgen weiter"
-- Context-Warnung erscheint
+**Complexity Score berechnen:**
 
----
+| Indikator | Punkte |
+|-----------|--------|
+| Mehrere Retries/Korrekturen | +2 |
+| User-Feedback zur Korrektur | +2 |
+| Neuer Ansatz entwickelt | +2 |
+| Multi-Step Problemlösung | +1 |
+| Externe Recherche nötig | +1 |
 
-## Beispiel Output
-
-```markdown
-# Session Handoff: GitHub Repo Analyzer Integration
-
-**Erstellt**: 2025-12-01 14:30
-**Session-Dauer**: ~2h
-**Kontext-Nutzung**: hoch
+**Score ≥ 3?** → Frage ob Learning gespeichert werden soll.
 
 ---
 
-## Was wurde erreicht
+## Enhanced Mode: `--detailed`
 
-### Abgeschlossen
-- [x] github-repo-analyzer-agent erstellt
-- [x] /analyze-repo Command erstellt
-- [x] SYSTEM-MAP.md erstellt
-- [x] better-agents analysiert und integriert
-
-### Erstellt/Geändert
-| Datei | Aktion | Beschreibung |
-|-------|--------|--------------|
-| .claude/agents/github-repo-analyzer-agent.md | Created | Dual-System Analyzer |
-| .claude/commands/analyze-repo.md | Created | Repo Analysis Command |
-| .claude/SYSTEM-MAP.md | Created | System Inventory |
-| .mcp.json | Created | MCP Configuration |
+Bei `--detailed` oder langen Sessions:
+- Nutze 10-Section Template aus `.claude/templates/session-notes-template.md`
+- Mehr Details zu Errors, Workflow, Learnings
 
 ---
 
-## Nächste Session
+## Checkliste vor Abschluss
 
-### Sofort-Aktionen
-1. Claude Code neu starten (für neue Commands)
-2. /analyze-repo testen
-
-### Kontext laden
-- `.claude/SYSTEM-MAP.md`
-- `knowledge/learnings/better-agents-patterns.md`
-```
-
----
-
-## Related
-
-- `/sparring` - Für Brainstorming vor Handoff
-- `/system-health` - System-Status prüfen
-- `START.md` - Standard Session-Einstieg
+- [ ] Write Tool wurde ausgeführt (nicht nur Text generiert!)
+- [ ] Datei existiert in `_handoffs/`
+- [ ] User wurde informiert (kurz, nicht der volle Inhalt)

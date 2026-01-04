@@ -1,0 +1,1478 @@
+{
+  "version": "1.1",
+  "generated": "2026-01-01T12:00:00Z",
+  "count": 245,
+  "explicit_count": 157,
+  "auto_count": 100,
+  "edges": [
+    {
+      "source": "command-idea-work",
+      "target": "agent-idea-validator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-idea-work",
+      "target": "agent-idea-expander",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-idea-work",
+      "target": "agent-idea-connector",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-project-analyze",
+      "target": "agent-codebase-analyzer",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-project-analyze",
+      "target": "agent-n8n-expert",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-analyze-repo",
+      "target": "agent-github-repo-analyzer",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-analyze-pitch-docs",
+      "target": "agent-pitch-document-analyzer",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-analyze-pitch-docs",
+      "target": "agent-pitch-content-categorizer",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-analyze-pitch-docs",
+      "target": "agent-pitch-style-extractor",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-auto-model",
+      "target": "agent-model-selector",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-agent",
+      "target": "skill-template-creator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-command",
+      "target": "skill-template-creator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-hook",
+      "target": "skill-template-creator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-skill",
+      "target": "skill-template-creator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-prompt",
+      "target": "skill-prompt-pro-framework",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-codebase-analyzer",
+      "target": "agent-n8n-expert",
+      "type": "triggers",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-pitch-document-analyzer",
+      "target": "agent-pitch-content-categorizer",
+      "type": "triggers",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-pitch-document-analyzer",
+      "target": "agent-pitch-style-extractor",
+      "type": "triggers",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-context-manager",
+      "target": "agent-knowledge-synthesizer",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-context-manager",
+      "target": "agent-research-analyst",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-idea-validator",
+      "target": "agent-context-manager",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-idea-validator",
+      "target": "agent-research-analyst",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-idea-expander",
+      "target": "agent-idea-validator",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-idea-expander",
+      "target": "agent-research-analyst",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-idea-connector",
+      "target": "agent-knowledge-synthesizer",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-idea-connector",
+      "target": "agent-idea-validator",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-knowledge-synthesizer",
+      "target": "agent-research-analyst",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-knowledge-synthesizer",
+      "target": "agent-context-manager",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-research-analyst",
+      "target": "agent-context-manager",
+      "type": "depends_on",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-research-analyst",
+      "target": "pattern-research-confidence-scoring",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-research-orchestrator",
+      "target": "pattern-research-confidence-scoring",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-prompt-pro-framework",
+      "target": "pattern-progressive-disclosure",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "pattern-progressive-disclosure",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "skill-etsy-poster-creator",
+      "target": "pattern-bilingual-seo",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "command-idea-new",
+      "target": "pattern-intake-gate",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "command-knowledge-add",
+      "target": "pattern-intake-gate",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "command-project-add",
+      "target": "pattern-intake-gate",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "pattern-pev",
+      "target": "pattern-reflection",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "pattern-metacognitive",
+      "target": "pattern-reflection",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "pattern-blackboard",
+      "target": "pattern-multi-agent-orchestration",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "pattern-task-decomposition",
+      "target": "pattern-multi-agent-orchestration",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "template-specialist-agent",
+      "target": "pattern-progressive-disclosure",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "template-research-agent",
+      "target": "pattern-research-confidence-scoring",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "template-orchestrator-agent",
+      "target": "pattern-multi-agent-orchestration",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "template-scenario-multi-agent-advisory",
+      "target": "pattern-multi-agent-orchestration",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "template-scenario-multi-agent-advisory",
+      "target": "pattern-research-confidence-scoring",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-context-manager",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-knowledge-synthesizer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-idea-validator",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-idea-expander",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-idea-connector",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-codebase-analyzer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-n8n-expert",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-github-repo-analyzer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-model-selector",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-pitch-document-analyzer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-pitch-content-categorizer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-pitch-style-extractor",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-research-analyst",
+      "target": "template-research-agent",
+      "type": "extends",
+      "auto_generated": true
+    },
+    {
+      "source": "scenario-evolving-dashboard",
+      "target": "project-ai-poster-hub",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "scenario-steuererklaerung-2024",
+      "target": "learning-ki-auswanderungs-berater",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "scenario-workflow-engine",
+      "target": "learning-claude-sdk-insights",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-ai-poster-hub",
+      "target": "project-ai-poster-hub",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-ki-auswanderungs-berater",
+      "target": "project-ki-auswanderungs-berater",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-{PROJECT_ID}",
+      "target": "project-{PROJECT_ID}",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-domain-memory-pattern",
+      "target": "rule-domain-memory-bootup",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-12-factor-agents",
+      "target": "pattern-context-window-ownership",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-12-factor-agents",
+      "target": "pattern-compact-errors",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-better-agents-patterns",
+      "target": "pattern-multi-agent-orchestration",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-agentic-architectures",
+      "target": "pattern-blackboard",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-agentic-architectures",
+      "target": "pattern-pev",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "memory-evolving-system",
+      "target": "project-ai-poster-hub",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "memory-{PROJECT_ID}",
+      "target": "project-{PROJECT_ID}",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "idea-evolving-mvp-saas",
+      "target": "memory-evolving-system",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "prompt-framework-prompt-pro",
+      "target": "skill-prompt-pro-framework",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-framework-idea-forge",
+      "target": "command-idea-new",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-research-orchestrator",
+      "target": "skill-research-orchestrator",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-etsy-poster-creator",
+      "target": "skill-etsy-poster-creator",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-checkliste",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-digitale-nomaden",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-familie-kinder",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-finanzplanung",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-krankenversicherung",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-kryptowaehrungen",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-notfall-krisen",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-probe-auswanderung",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-profil-analyse",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-reporter",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-rueckkehr-deutschland",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-senioren",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-steueroptimierung",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-tierverlagerung",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-umzug-logistik",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-unternehmens-verlagerung",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "prompt-aki-vertragsmanagement",
+      "target": "project-{PROJECT_ID}",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "hook-auto-cross-reference",
+      "target": "rule-cross-reference-sync",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "hook-session-summary",
+      "target": "command-whats-next",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-workflow-detection",
+      "target": "command-idea-new",
+      "type": "triggers",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-workflow-detection",
+      "target": "command-knowledge-search",
+      "type": "triggers",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-workflow-detection",
+      "target": "command-sparring",
+      "type": "triggers",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-scenario-agents",
+      "target": "scenario-evolving-dashboard",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-scenario-agents",
+      "target": "scenario-steuererklaerung-2024",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-scenario-agents",
+      "target": "scenario-workflow-engine",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-knowledge-linking",
+      "target": "pattern-knowledge-linking",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-domain-memory-bootup",
+      "target": "memory-evolving-system",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-domain-memory-bootup",
+      "target": "memory-{PROJECT_ID}",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-opus",
+      "target": "command-sonnet",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-opus",
+      "target": "command-haiku",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-opus-plus",
+      "target": "command-opus",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "command-sonnet",
+      "target": "command-haiku",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-idea-new",
+      "target": "command-idea-list",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-idea-new",
+      "target": "command-idea-work",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-idea-new",
+      "target": "command-idea-connect",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-idea-work",
+      "target": "command-idea-connect",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-idea-list",
+      "target": "command-idea-connect",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-knowledge-add",
+      "target": "command-knowledge-search",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-project-add",
+      "target": "command-project-analyze",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-scenario",
+      "target": "command-scenario-list",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-scenario",
+      "target": "command-scenario-create",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-scenario",
+      "target": "command-scenario-edit",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-scenario-create",
+      "target": "command-scenario-edit",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-create-agent",
+      "target": "command-create-command",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-create-agent",
+      "target": "command-create-skill",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-create-agent",
+      "target": "command-create-hook",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-create-command",
+      "target": "command-create-skill",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-create-command",
+      "target": "command-create-hook",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-create-skill",
+      "target": "command-create-hook",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-create-prompt",
+      "target": "command-run-prompt",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-idea-validator",
+      "target": "agent-idea-expander",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-idea-validator",
+      "target": "agent-idea-connector",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-idea-expander",
+      "target": "agent-idea-connector",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-pitch-document-analyzer",
+      "target": "agent-pitch-content-categorizer",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-pitch-document-analyzer",
+      "target": "agent-pitch-style-extractor",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "agent-pitch-content-categorizer",
+      "target": "agent-pitch-style-extractor",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-specialist-agent",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-research-agent",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-orchestrator-agent",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-workflow-command",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-analysis-command",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-progressive-skill",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-simple-skill",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-reusable-pattern",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-template-creator",
+      "target": "template-project-learning",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "pattern-reflection",
+      "target": "pattern-checkpoint-validation",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "pattern-multi-agent-orchestration",
+      "target": "pattern-task-decomposition",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "pattern-context-window-ownership",
+      "target": "pattern-compact-errors",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "pattern-freemium-saas-gates",
+      "target": "pattern-gdpr-compliant-saas",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "project-ki-auswanderungs-berater",
+      "target": "project-{PROJECT_ID}",
+      "type": "supersedes",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-{PROJECT_ID}",
+      "target": "learning-ki-auswanderungs-berater",
+      "type": "supersedes",
+      "auto_generated": true
+    },
+    {
+      "source": "template-specialist-agent",
+      "target": "template-research-agent",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "template-specialist-agent",
+      "target": "template-orchestrator-agent",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "template-research-agent",
+      "target": "template-orchestrator-agent",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "template-workflow-command",
+      "target": "template-analysis-command",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "template-progressive-skill",
+      "target": "template-simple-skill",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "template-scenario-autonomous-research",
+      "target": "template-scenario-multi-agent-advisory",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "skill-etsy-poster-creator",
+      "target": "project-ai-poster-hub",
+      "type": "part_of",
+      "auto_generated": false
+    },
+    {
+      "source": "skill-research-orchestrator",
+      "target": "agent-research-analyst",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "learning-anthropic-tool-use",
+      "target": "pattern-intake-gate",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "learning-acontext-skill-distillation",
+      "target": "command-whats-next",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-model-selector",
+      "target": "pattern-metacognitive",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "command-think",
+      "target": "pattern-metacognitive",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "command-debug",
+      "target": "pattern-pev",
+      "type": "implements",
+      "auto_generated": true
+    },
+    {
+      "source": "scenario-evolving-dashboard",
+      "target": "memory-evolving-system",
+      "type": "part_of",
+      "auto_generated": true
+    },
+    {
+      "source": "scenario-steuererklaerung-2024",
+      "target": "project-ki-auswanderungs-berater",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "scenario-workflow-engine",
+      "target": "template-scenario-autonomous-research",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "command-inbox-process",
+      "target": "command-knowledge-add",
+      "type": "triggers",
+      "auto_generated": true
+    },
+    {
+      "source": "command-inbox-process",
+      "target": "command-project-add",
+      "type": "triggers",
+      "auto_generated": true
+    },
+    {
+      "source": "learning-copilotkit-evaluation",
+      "target": "scenario-evolving-dashboard",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "pattern-8-block-profile",
+      "target": "prompt-aki-profil-analyse",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "pattern-ai-content-pipeline",
+      "target": "skill-etsy-poster-creator",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "pattern-ai-content-pipeline",
+      "target": "project-ai-poster-hub",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-command-creation",
+      "target": "command-create-command",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-plan-archival",
+      "target": "command-whats-next",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-core-principles",
+      "target": "command-sparring",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-core-principles",
+      "target": "command-think",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "hook-context-monitor",
+      "target": "rule-domain-memory-bootup",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "idea-evolving-mvp-saas",
+      "target": "pattern-freemium-saas-gates",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "idea-evolving-mvp-saas",
+      "target": "pattern-gdpr-compliant-saas",
+      "type": "related_to",
+      "auto_generated": true
+    },
+    {
+      "source": "rule-context-budget-awareness",
+      "target": "rule-clear-dont-compact",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-context-budget-awareness",
+      "target": "pattern-parallel-agent-dispatch",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-context-budget-awareness",
+      "target": "hook-context-monitor",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-explicit-identity",
+      "target": "rule-context-budget-awareness",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-explicit-identity",
+      "target": "pattern-multi-agent-orchestration",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-idempotent-redundancy",
+      "target": "rule-cross-reference-sync",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-idempotent-redundancy",
+      "target": "rule-index-at-creation",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-system",
+      "target": "agent-system-analyzer",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-system",
+      "target": "agent-system-architect",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-system",
+      "target": "agent-system-generator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "command-create-system",
+      "target": "agent-system-validator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-system-analyzer",
+      "target": "agent-system-architect",
+      "type": "triggers",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-system-architect",
+      "target": "agent-system-generator",
+      "type": "triggers",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-system-generator",
+      "target": "agent-system-validator",
+      "type": "triggers",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-system-analyzer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-system-architect",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-system-generator",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-system-validator",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "command-macro-forecast",
+      "target": "agent-macro-orchestrator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "agent-macro-data-collector",
+      "type": "orchestrates",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "agent-market-technical-analyst",
+      "type": "orchestrates",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "agent-macro-economist",
+      "type": "orchestrates",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "agent-meta-analyst",
+      "type": "orchestrates",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "agent-pattern-recognizer",
+      "type": "orchestrates",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "agent-forecast-synthesizer",
+      "type": "orchestrates",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "agent-learning-optimizer",
+      "type": "orchestrates",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-data-collector",
+      "target": "agent-market-technical-analyst",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-data-collector",
+      "target": "agent-macro-economist",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-data-collector",
+      "target": "agent-meta-analyst",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-market-technical-analyst",
+      "target": "agent-pattern-recognizer",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-economist",
+      "target": "agent-forecast-synthesizer",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-pattern-recognizer",
+      "target": "agent-forecast-synthesizer",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-meta-analyst",
+      "target": "agent-forecast-synthesizer",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-forecast-synthesizer",
+      "target": "agent-learning-optimizer",
+      "type": "feeds",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-orchestrator",
+      "target": "template-orchestrator-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-data-collector",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-market-technical-analyst",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-macro-economist",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-meta-analyst",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-pattern-recognizer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-forecast-synthesizer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "agent-learning-optimizer",
+      "target": "template-specialist-agent",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "scenario-macro-analyse",
+      "target": "agent-macro-orchestrator",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "scenario-macro-analyse",
+      "target": "command-macro-forecast",
+      "type": "provides",
+      "auto_generated": false
+    },
+    {
+      "source": "scenario-{PROJECT_ID}",
+      "target": "command-nhien-menu",
+      "type": "provides",
+      "auto_generated": false
+    },
+    {
+      "source": "scenario-{PROJECT_ID}",
+      "target": "command-didit-analyze",
+      "type": "provides",
+      "auto_generated": false
+    },
+    {
+      "source": "hook-graph-update",
+      "target": "rule-cross-reference-sync",
+      "type": "implements",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-experience-suggest",
+      "target": "command-recall",
+      "type": "triggers",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-memory-decay",
+      "target": "command-memory-stats",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-session-evaluation",
+      "target": "command-whats-next",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-context-optimization",
+      "target": "rule-domain-memory-bootup",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-auto-enhancement",
+      "target": "rule-domain-memory-bootup",
+      "type": "uses",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-ultrathink",
+      "target": "rule-core-principles",
+      "type": "extends",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-token-efficiency",
+      "target": "rule-context-optimization",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-no-reference-only",
+      "target": "rule-relevance-extraction",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-relevance-extraction",
+      "target": "command-analyze-repo",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-observe-before-editing",
+      "target": "rule-clear-dont-compact",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-index-at-creation",
+      "target": "hook-graph-update",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-evidence-before-claims",
+      "target": "command-debug",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "rule-auto-archival",
+      "target": "command-whats-next",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-context-degradation-patterns",
+      "target": "rule-context-optimization",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-skill-antipatterns",
+      "target": "skill-template-creator",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-memory-decay-pattern",
+      "target": "rule-memory-decay",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-self-improving-feedback-loop",
+      "target": "rule-session-evaluation",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-hook-output-visibility",
+      "target": "hook-auto-cross-reference",
+      "type": "documents",
+      "auto_generated": false
+    },
+    {
+      "source": "learning-agent-observability-langsmith",
+      "target": "pattern-multi-agent-orchestration",
+      "type": "related_to",
+      "auto_generated": false
+    },
+    {
+      "source": "command-generate-image",
+      "target": "agent-fal-image-generator",
+      "relationship": "uses"
+    }
+  ]
+}

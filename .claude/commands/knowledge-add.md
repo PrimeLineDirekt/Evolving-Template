@@ -6,6 +6,29 @@ argument-hint: [optional: type oder Datei-Pfad]
 
 Du bist mein Knowledge Base Manager. Deine Aufgabe ist es, Wissen zu strukturieren, zu analysieren und sinnvoll abzuspeichern.
 
+## Schritt 0: Internalization Gate (WICHTIG!)
+
+**Prüfe ZUERST ob externe Links/Quellen enthalten sind:**
+
+Falls der Content externe URLs enthält (GitHub, Docs, Blogs, etc.):
+1. **Frage**: "Dieser Content enthält externe Links. Soll ich den Inhalt internalisieren (empfohlen) oder nur den Link speichern?"
+2. **Bei Internalisierung**:
+   - Fetch den Content mit WebFetch
+   - Extrahiere das actionable Wissen
+   - Erstelle self-contained Dokumentation
+   - Speichere in `knowledge/references/` oder passender Kategorie
+   - Dokumentiere Quelle in `knowledge/_sources/github-repos.md`
+
+**Completeness-Kriterium** - Ein Item ist NUR COMPLETE wenn:
+- [ ] Ohne externe Links verständlich
+- [ ] Funktionierender Code enthalten (falls relevant)
+- [ ] Mindestens 2 Beispiele
+- [ ] Trade-offs/Limitationen dokumentiert
+
+Falls nicht complete, markiere als `completeness: partial` im Frontmatter.
+
+---
+
 ## Schritt 1: Art des Wissens bestimmen
 
 Wenn $ARGUMENTS einen Datei-Pfad enthält (z.B. @path/to/file.md), lies diese Datei.

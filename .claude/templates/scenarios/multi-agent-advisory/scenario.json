@@ -1,0 +1,131 @@
+{
+  "name": "{DOMAIN}-advisory",
+  "displayName": "{DOMAIN_NAME} Advisory System",
+  "description": "Multi-Agent Advisory System für {DOMAIN_NAME}",
+  "version": "1.0.0",
+  "template_source": "multi-agent-advisory",
+
+  "pattern": "multi-agent-advisory",
+  "characteristics": {
+    "input": "structured-profile",
+    "output": "comprehensive-report",
+    "interaction": "single-shot",
+    "follow_up": false
+  },
+
+  "orchestration": {
+    "type": "resilient",
+    "checkpoints": true,
+    "crash_recovery": true,
+    "parallel_execution": true,
+    "max_concurrent_agents": 5
+  },
+
+  "model_tiers": {
+    "tier1": {
+      "model": "claude-opus-4-5-20251101",
+      "max_tokens": 64000,
+      "description": "Critical analysis, high-impact decisions",
+      "agents": ["{CRITICAL_AGENT_1}", "{CRITICAL_AGENT_2}"]
+    },
+    "tier2": {
+      "model": "claude-sonnet-4-5-20251101",
+      "max_tokens": 64000,
+      "description": "Standard analysis, moderate complexity",
+      "agents": ["{STANDARD_AGENT_1}", "{STANDARD_AGENT_2}", "{STANDARD_AGENT_3}"]
+    },
+    "tier3": {
+      "model": "claude-haiku-4-5-20251101",
+      "max_tokens": 64000,
+      "description": "Structured tasks, checklists, simple lookups",
+      "agents": ["checkliste", "reporter"]
+    }
+  },
+
+  "agents": {
+    "mandatory": [
+      "profil_analyse",
+      "{CORE_DOMAIN_AGENT}",
+      "checkliste"
+    ],
+    "conditional": {
+      "{CONDITIONAL_AGENT_1}": {
+        "condition": "profile.{FIELD} > {THRESHOLD}",
+        "description": "Activated when {CONDITION_DESCRIPTION}"
+      },
+      "{CONDITIONAL_AGENT_2}": {
+        "condition": "profile.{FIELD} == true",
+        "description": "Activated when {CONDITION_DESCRIPTION}"
+      }
+    },
+    "always_last": ["reporter"]
+  },
+
+  "complexity_scoring": {
+    "base_score": 20,
+    "factors": [
+      {"condition": "income > 120000", "points": 15},
+      {"condition": "net_worth > 500000", "points": 20},
+      {"condition": "has_business", "points": 15},
+      {"condition": "has_children", "points": 5, "multiplier": "num_children"},
+      {"condition": "age > 60", "points": 10}
+    ],
+    "max_score": 100
+  },
+
+  "confidence": {
+    "hitl_threshold": 0.75,
+    "minimum_publish": 0.50,
+    "premium_quality": 0.85,
+    "penalties": {
+      "no_kb_sources": -0.15,
+      "unresolved_conflict": -0.10,
+      "low_agent_confidence": -0.05
+    }
+  },
+
+  "risk_zones": {
+    "enabled": true,
+    "zones": ["green", "yellow", "orange"],
+    "minimum_green_options": 2,
+    "minimum_total_options": 3
+  },
+
+  "knowledge_base": {
+    "path": "knowledge-base/{DOMAIN}/",
+    "categories": [
+      "{CATEGORY_1}",
+      "{CATEGORY_2}",
+      "{CATEGORY_3}"
+    ],
+    "source_tiers": {
+      "tier1": "Primary sources (laws, regulations)",
+      "tier2": "Secondary sources (guidelines, rulings)",
+      "tier3": "Tertiary sources (articles, summaries)"
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "sections": [
+      "executive_summary",
+      "profile_analysis",
+      "recommendations",
+      "financial_analysis",
+      "risk_assessment",
+      "action_plan",
+      "checklist"
+    ],
+    "disclaimer_required": true
+  },
+
+  "placeholders": {
+    "{DOMAIN}": "Replace with domain identifier (e.g., 'tax', 'legal', 'medical')",
+    "{DOMAIN_NAME}": "Replace with human-readable domain name",
+    "{CORE_DOMAIN_AGENT}": "Replace with main domain agent ID",
+    "{CRITICAL_AGENT_N}": "Replace with Tier 1 agent IDs",
+    "{STANDARD_AGENT_N}": "Replace with Tier 2 agent IDs",
+    "{CONDITIONAL_AGENT_N}": "Replace with conditional agent IDs",
+    "{CATEGORY_N}": "Replace with KB category names"
+  }
+}

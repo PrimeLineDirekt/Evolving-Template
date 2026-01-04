@@ -85,6 +85,7 @@ Hochadaptives Prompt-Engineering-System das jeden Input in optimal strukturierte
   <prompt_chaining>Subtasks → Output-Input Pipeline → Parallel wo möglich</prompt_chaining>
   <verification_loops>Generate → Review → Refine → Validate</verification_loops>
   <conditional_branching>IF/THEN, Fallbacks, Error handling</conditional_branching>
+  <reflection_loop>Generator → Critic → Refiner → Repeat until quality threshold</reflection_loop>
 </complex_techniques>
 ```
 
@@ -153,6 +154,63 @@ Hochadaptives Prompt-Engineering-System das jeden Input in optimal strukturierte
   □ Messbarkeit: Erfolgskriterien definiert?
   □ Debugging: Thinking-Process nachvollziehbar?
 </optimization_checklist>
+```
+
+### Phase 5: Reflection Loop (für Level 3+ Prompts)
+
+Self-Critique Cycle zur Qualitätsverbesserung komplexer Prompts:
+
+```xml
+<reflection_cycle max_iterations="3">
+  <generator>
+    <!-- Initial prompt from Phase 3 -->
+    <draft>{{constructed_prompt}}</draft>
+  </generator>
+
+  <critic>
+    <evaluate_against>
+      - Technique Selection: Passt Level zur Komplexität?
+      - Clarity: Sind Instruktionen eindeutig?
+      - Completeness: Fehlt kritischer Kontext?
+      - Structure: Ist XML-Struktur optimal?
+      - Edge Cases: Werden Grenzfälle behandelt?
+      - Output Format: Ist das Format präzise definiert?
+    </evaluate_against>
+    <feedback>
+      <issues>[Gefundene Probleme]</issues>
+      <suggestions>[Konkrete Verbesserungen]</suggestions>
+      <quality_score>[1-10]</quality_score>
+      <is_acceptable>[true wenn score >= 8]</is_acceptable>
+    </feedback>
+  </critic>
+
+  <refiner condition="!is_acceptable AND iteration < max">
+    <apply>{{critic.suggestions}}</apply>
+    <improved_prompt>[Verbesserte Version]</improved_prompt>
+    <!-- Loop back to critic -->
+  </refiner>
+
+  <finalize condition="is_acceptable OR iteration >= max">
+    <final_prompt>{{current_best}}</final_prompt>
+    <quality_report>
+      - Iterations: [Anzahl Durchläufe]
+      - Final Score: [Qualitätswert]
+      - Key Improvements: [Wichtigste Änderungen]
+    </quality_report>
+  </finalize>
+</reflection_cycle>
+```
+
+**Wann Reflection nutzen:**
+- Level 3+ Prompts (Complex, Advanced, Specialized)
+- Prompts für Production Use
+- Kritische Business-Anwendungen
+- Wenn initiale Qualität < 8/10
+
+**Wann NICHT:**
+- Simple Level 1-2 Prompts
+- Schnelle Prototypen
+- Einmalige Ad-hoc Anfragen
 
 <performance_considerations>
   - Token Budget: [Input + Output]

@@ -1,0 +1,162 @@
+# {PROJECT_NAME}
+
+## System Overview
+
+{DESCRIPTION}
+
+**Generiert mit**: Evolving System-Builder
+**Blueprint**: {BLUEPRINT_NAME}
+**Datum**: {DATE}
+
+---
+
+## Quick Start
+
+```bash
+# 1. In das Projekt wechseln
+cd {TARGET_PATH}
+
+# 2. Claude Code starten
+claude code
+
+# 3. Hauptbefehl ausführen
+{MAIN_COMMAND}
+```
+
+---
+
+## Agents ({AGENT_COUNT})
+
+{AGENT_LIST}
+
+### Model-Verteilung
+
+| Tier | Model | Agents | Verwendung |
+|------|-------|--------|------------|
+| 1 | Opus | {OPUS_COUNT} | Kritische Analyse, wichtige Entscheidungen |
+| 2 | Sonnet | {SONNET_COUNT} | Standard-Analyse, Koordination |
+| 3 | Haiku | {HAIKU_COUNT} | Reports, Checklisten, einfache Tasks |
+
+---
+
+## Commands
+
+{COMMAND_LIST}
+
+---
+
+## Architektur
+
+```
+{FLOW_DIAGRAM}
+```
+
+### Agent-Dependencies
+
+{DEPENDENCY_LIST}
+
+---
+
+## Knowledge Base
+
+### Injizierte Patterns
+
+Folgende Patterns wurden aus dem Evolving-System übernommen:
+
+{PATTERN_LIST}
+
+### Hinzufügen von Domain-Wissen
+
+Lege Domain-spezifisches Wissen in `knowledge/` ab:
+
+```
+knowledge/
+├── patterns/          # Wiederverwendbare Patterns
+├── {DOMAIN}/          # Domain-spezifische Dokumente
+└── index.md           # Wissens-Index
+```
+
+---
+
+## Memory System
+
+Das System nutzt Domain Memory für persistenten Kontext:
+
+```
+_memory/
+├── index.json         # Aktiver Kontext
+└── projects/          # Projekt-spezifische Memory
+```
+
+### Session-Start
+
+Bei jeder neuen Session wird automatisch der letzte Stand geladen.
+
+---
+
+## Anpassung
+
+### Agents anpassen
+
+Agents befinden sich in `.claude/agents/`:
+
+```
+.claude/agents/
+{AGENT_FILES}
+```
+
+Jeder Agent hat:
+- Frontmatter mit Metadaten
+- Rolle & Expertise
+- Input/Output Spezifikation
+- Best Practices
+
+### Commands anpassen
+
+Commands befinden sich in `.claude/commands/`:
+
+```
+.claude/commands/
+{COMMAND_FILES}
+```
+
+### Neue Komponenten hinzufügen
+
+```bash
+# Neuer Agent
+# Erstelle .claude/agents/{name}-agent.md nach Template
+
+# Neuer Command
+# Erstelle .claude/commands/{name}.md nach Template
+```
+
+---
+
+## Projekt-Kontext
+
+| Attribut | Wert |
+|----------|------|
+| Name | {PROJECT_NAME} |
+| Domain | {DOMAIN} |
+| Blueprint | {BLUEPRINT_NAME} |
+| Agents | {AGENT_COUNT} |
+| Commands | {COMMAND_COUNT} |
+| Generiert | {DATE} |
+
+---
+
+## Nächste Schritte
+
+1. **Testen**: Führe `{MAIN_COMMAND}` aus
+2. **Anpassen**: Passe Agents in `.claude/agents/` an
+3. **Erweitern**: Füge Domain-Wissen zu `knowledge/` hinzu
+4. **Iterieren**: Verbessere basierend auf Nutzung
+
+---
+
+## Ursprung
+
+Dieses System wurde generiert mit dem [Evolving System-Builder](https://github.com/PrimeLineDirekt/Evolving).
+
+**Source Blueprint**: {BLUEPRINT_ID}
+**Generator Version**: 1.0

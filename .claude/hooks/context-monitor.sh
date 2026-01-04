@@ -1,59 +1,148 @@
 #!/bin/bash
-# Context Monitor - Statusline with Cost & Token Usage Display
-# SIMPLIFIED: Just use the API cost data, don't parse transcript
+# Context Monitor v2 - StatusLine with Context Budget Awareness
 #
-# Display Format: Evolving 🟢 $0.0234 | API Data | 45.3s
-#                          │   │                  └─ Session Duration
-#                          │   └─ Real API Cost in USD
-#                          └─ Status based on cost
-#
-# NOTE: Token counting from JSONL transcript is extremely complex:
-# - Multiple agent transcripts exist
-# - Cache tokens counted differently
-# - No single source of truth for session total
-#
-# Solution: Display cost (accurate from API) + duration instead
+# Format: 145K 72% | Evolving | Opus | main *3 | ✓ Last → Current
+# Colors: Green (<60%) | Yellow (60-79%) | Red (≥80%)
+# Writes context % to /tmp for hooks
 
-# Read JSON input from stdin
-json=$(cat)
+input=$(cat)
 
-# Extract metrics using jq (fallback to grep/sed if jq not available)
-if command -v jq &> /dev/null; then
-  cost=$(echo "$json" | jq -r '.cost.total_cost_usd // 0')
-  duration=$(echo "$json" | jq -r '.cost.total_duration_ms // 0')
-  model=$(echo "$json" | jq -r '.model.display_name // "sonnet-4.5"')
+project_dir="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+cwd=$(echo "$input" | jq -r '.workspace.current_dir // ""' 2>/dev/null)
+[[ -z "$cwd" || "$cwd" == "null" ]] && cwd="$project_dir"
+dir=$(basename "$cwd")
+
+# ─────────────────────────────────────────────────────────────────
+# MODEL - Shorten display name
+# ─────────────────────────────────────────────────────────────────
+model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
+if [[ "$model" =~ Opus ]]; then
+  m="Opus"
+elif [[ "$model" =~ Sonnet ]]; then
+  m="Sonnet"
+elif [[ "$model" =~ Haiku ]]; then
+  m="Haiku"
 else
-  # Fallback: basic parsing without jq
-  cost=$(echo "$json" | grep -o '"total_cost_usd":[^,}]*' | cut -d: -f2 | tr -d ' ' || echo "0")
-  duration=$(echo "$json" | grep -o '"total_duration_ms":[^,}]*' | cut -d: -f2 | tr -d ' ' || echo "0")
-  model="sonnet-4.5"
+  m="${model%% *}"
 fi
 
-# Color coding based on cost
-cost_float=$(awk "BEGIN {print $cost}")
-if awk "BEGIN {exit !($cost_float >= 1.0)}"; then
-  STATUS="🔴"  # High cost (>$1)
-elif awk "BEGIN {exit !($cost_float >= 0.50)}"; then
-  STATUS="🟠"  # Medium cost ($0.50-$1)
-elif awk "BEGIN {exit !($cost_float >= 0.10)}"; then
-  STATUS="🟡"  # Low cost ($0.10-$0.50)
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT % - Token usage with color coding
+# ─────────────────────────────────────────────────────────────────
+input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0' 2>/dev/null)
+cache_read=$(echo "$input" | jq -r '.context_window.current_usage.cache_read_input_tokens // 0' 2>/dev/null)
+cache_creation=$(echo "$input" | jq -r '.context_window.current_usage.cache_creation_input_tokens // 0' 2>/dev/null)
+
+# Fallback to old field names if new ones are empty
+[[ "$input_tokens" == "0" || "$input_tokens" == "null" ]] && \
+  input_tokens=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0' 2>/dev/null)
+
+# Dynamic system overhead based on project structure
+# Base: Claude Code system prompt (~25K) + Tool definitions (~10K)
+base_overhead=35000
+
+# CLAUDE.md size (chars / 4 ≈ tokens)
+claude_md="$project_dir/CLAUDE.md"
+if [[ -f "$claude_md" ]]; then
+  claude_md_chars=$(wc -c < "$claude_md" 2>/dev/null | tr -d ' ')
+  claude_md_tokens=$((claude_md_chars / 4))
 else
-  STATUS="🟢"  # Minimal cost (<$0.10)
+  claude_md_tokens=0
 fi
 
-# Format cost
-cost_display=$(awk "BEGIN {printf \"%.4f\", $cost}" 2>/dev/null || echo "$cost")
-
-# Convert duration to seconds if > 1000ms
-if [ "${duration%.*}" -gt 1000 ] 2>/dev/null; then
-  duration_sec=$(awk "BEGIN {printf \"%.1f\", $duration/1000}")
-  duration_display="${duration_sec}s"
+# Rules overhead: count active rules × ~800 tokens avg
+rules_dir="$project_dir/.claude/rules"
+if [[ -d "$rules_dir" ]]; then
+  rules_count=$(find "$rules_dir" -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
+  rules_tokens=$((rules_count * 800))
 else
-  duration_display="${duration}ms"
+  rules_tokens=0
 fi
 
-# Format model name (shorten if needed)
-model_short=$(echo "$model" | sed 's/claude-//' | sed 's/-202[0-9].*//')
+# Total overhead (capped at 100K to prevent runaway)
+system_overhead=$((base_overhead + claude_md_tokens + rules_tokens))
+[[ "$system_overhead" -gt 100000 ]] && system_overhead=100000
 
-# Output statusline: Cost + Model + Duration (no token count - too complex/unreliable)
-echo "Evolving ${STATUS} \$${cost_display} | ${model_short} | ${duration_display}"
+total_tokens=$((input_tokens + cache_read + cache_creation + system_overhead))
+context_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000' 2>/dev/null)
+
+# Fallback if context_size is empty or invalid
+[[ -z "$context_size" || "$context_size" == "null" || "$context_size" -lt 1 ]] && context_size=200000
+
+# Calculate percentage
+context_pct=$((total_tokens * 100 / context_size))
+[[ "$context_pct" -gt 100 ]] && context_pct=100
+[[ "$context_pct" -lt 0 ]] && context_pct=0
+
+# Write for hooks (per-session to avoid conflicts)
+session_id="${CLAUDE_SESSION_ID:-$PPID}"
+echo "$context_pct" > "/tmp/claude-context-pct-${session_id}.txt"
+
+# Format as K
+if [[ "$total_tokens" -gt 1000 ]]; then
+  token_display=$(awk "BEGIN {printf \"%.0fK\", $total_tokens/1000}")
+else
+  token_display="${total_tokens}"
+fi
+
+# Color based on threshold
+if [[ "$context_pct" -ge 80 ]]; then
+  # CRITICAL - Red with warning
+  ctx_display="\033[31m⚠ ${token_display} ${context_pct}%\033[0m"
+elif [[ "$context_pct" -ge 60 ]]; then
+  # WARNING - Yellow
+  ctx_display="\033[33m${token_display} ${context_pct}%\033[0m"
+else
+  # NORMAL - Green
+  ctx_display="\033[32m${token_display} ${context_pct}%\033[0m"
+fi
+
+# ─────────────────────────────────────────────────────────────────
+# GIT - Branch + status indicator
+# ─────────────────────────────────────────────────────────────────
+git_info=""
+if git -C "$cwd" rev-parse --git-dir &>/dev/null 2>&1; then
+  branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null)
+  [[ -z "$branch" ]] && branch="detached"
+  [[ ${#branch} -gt 12 ]] && branch="${branch:0:10}.."
+
+  # Count changes
+  staged=$(git -C "$cwd" --no-optional-locks diff --cached --name-only 2>/dev/null | wc -l | tr -d ' ')
+  unstaged=$(git -C "$cwd" --no-optional-locks diff --name-only 2>/dev/null | wc -l | tr -d ' ')
+  added=$(git -C "$cwd" --no-optional-locks ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
+
+  total_changes=$((staged + unstaged + added))
+
+  if [[ "$total_changes" -gt 0 ]]; then
+    git_info="$branch \033[33m*$total_changes\033[0m"
+  else
+    git_info="\033[32m$branch ✓\033[0m"
+  fi
+fi
+
+# ─────────────────────────────────────────────────────────────────
+# LEDGER - Last done + Current focus (Evolving format)
+# ─────────────────────────────────────────────────────────────────
+ledger="$project_dir/_ledgers/CURRENT.md"
+continuity=""
+
+if [[ -f "$ledger" ]]; then
+  # Get current focus (Now: or [→])
+  now_focus=$(grep -E '^\s*-\s*Now:|\[→\]' "$ledger" 2>/dev/null | head -1 | \
+    sed 's/^[[:space:]]*-[[:space:]]*Now:[[:space:]]*//' | \
+    sed 's/^[[:space:]]*-[[:space:]]*\[→\][[:space:]]*//')
+
+  # Truncate
+  [[ ${#now_focus} -gt 30 ]] && now_focus="${now_focus:0:28}.."
+
+  [[ -n "$now_focus" ]] && continuity="→ $now_focus"
+fi
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT - Build final status line
+# ─────────────────────────────────────────────────────────────────
+output="$ctx_display | \033[38;5;6m$dir\033[0m | $m"
+[[ -n "$git_info" ]] && output="$output | $git_info"
+[[ -n "$continuity" ]] && output="$output | $continuity"
+
+echo -e "$output"

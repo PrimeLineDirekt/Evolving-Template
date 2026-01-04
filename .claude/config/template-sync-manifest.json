@@ -1,0 +1,124 @@
+{
+  "version": "1.0",
+  "description": "Configuration for template sync workflow between Evolving and Evolving-Template",
+
+  "paths": {
+    "source": "{EVOLVING_PATH}",
+    "target": "{EVOLVING_PATH}-Template",
+    "env_var": "EVOLVING_TEMPLATE",
+    "default_relative": "../Evolving-Template"
+  },
+
+  "sync_rules": {
+    "include": [
+      ".claude/agents/*.md",
+      ".claude/commands/*.md",
+      ".claude/skills/**/*",
+      ".claude/rules/*.md",
+      ".claude/blueprints/*.json",
+      ".claude/templates/**/*",
+      ".claude/hooks/*.sh",
+      ".claude/hooks/README.md",
+      ".claude/detection-index.json",
+      ".claude/COMMANDS.md",
+      ".claude/CONTEXT.md",
+      ".claude/SYSTEM-MAP.md",
+      ".claude/config/template-sync-manifest.json",
+      "knowledge/rules/**/*.md",
+      "knowledge/patterns/**/*.md",
+      "knowledge/techniques/**/*.md",
+      "knowledge/prompts/frameworks/**/*.md",
+      "knowledge/prompts/research-agents/**/*.md",
+      "knowledge/prompts/skills/**/*.md",
+      "knowledge/references/**/*.md",
+      "_graph/nodes.json",
+      "_graph/edges.json",
+      "_graph/taxonomy.json",
+      "_graph/index/*.json",
+      "_graph/cache/context-router.json"
+    ],
+    "exclude_always": [
+      "_memory/**/*",
+      "_ledgers/**/*",
+      "_handoffs/**/*",
+      "knowledge/personal/**/*",
+      "knowledge/projects/**/*",
+      "knowledge/external-projects/**/*",
+      "knowledge/sessions/**/*",
+      "knowledge/learnings/**/*",
+      ".claude/settings.local.json",
+      ".claude/scenarios/steuererklaerung-2024/**/*",
+      ".claude/scenarios/{PROJECT_ID}/**/*",
+      ".claude/scenarios/{PROJECT_ID}/**/*",
+      ".claude/scenarios/{PROJECT_ID}/**/*",
+      ".claude/scenarios/macro-analyse/**/*",
+      "ideas/**/*",
+      "*.backup_*",
+      ".env",
+      ".env.local",
+      "credentials.json"
+    ]
+  },
+
+  "template_protected": [
+    "README.md",
+    "START.md",
+    "START-SMALL.md",
+    "BEGINNER-GUIDE.md",
+    "_ONBOARDING.md",
+    "knowledge/personal/about-me.md",
+    "knowledge/personal/system-instructions.md",
+    "knowledge/personal/skills.md",
+    ".claude/CLAUDE.md"
+  ],
+
+  "anonymization": {
+    "personal": [
+      {"find": "Robin", "replace": "{USER}", "case_sensitive": true},
+      {"find": "Mandy", "replace": "{USER_2}", "case_sensitive": true},
+      {"find": "{USERNAME}", "replace": "{USERNAME}", "case_sensitive": false},
+      {"find": "{HOME}", "replace": "{HOME}", "case_sensitive": true},
+      {"find": "Da Nang", "replace": "{LOCATION}", "case_sensitive": false},
+      {"find": "Vietnam", "replace": "{COUNTRY}", "case_sensitive": false}
+    ],
+    "projects": [
+      {"find": "{PROJECT}", "replace": "{PROJECT}"},
+      {"find": "{PROJECT}", "replace": "{PROJECT}"},
+      {"find": "{PROJECT_ID}", "replace": "{PROJECT_ID}"},
+      {"find": "KI Auswanderungs-Berater", "replace": "{PROJECT}"},
+      {"find": "{PROJECT}", "replace": "{PROJECT}"},
+      {"find": "{PROJECT}", "replace": "{PROJECT}"},
+      {"find": "{PROJECT_ID}", "replace": "{PROJECT_ID}"},
+      {"find": "{PROJECT_ID}", "replace": "{PROJECT_ID}"},
+      {"find": "AI Poster Creation Hub", "replace": "{PROJECT}"},
+      {"find": "{PROJECT}", "replace": "{PROJECT}"},
+      {"find": "{PROJECT_ID}", "replace": "{PROJECT_ID}"},
+      {"find": "{PROJECT}", "replace": "{PROJECT}"},
+      {"find": "{PROJECT_ID}", "replace": "{PROJECT_ID}"},
+      {"find": "Gold Price Prediction", "replace": "{PROJECT}"},
+      {"find": "gold-price-prediction", "replace": "{PROJECT_ID}"}
+    ],
+    "secrets": [
+      {"pattern": "sk-[a-zA-Z0-9]{20,}", "action": "block"},
+      {"pattern": "ghp_[a-zA-Z0-9]{36}", "action": "block"},
+      {"pattern": "api_key\\s*[:=]\\s*['\"][^'\"]+", "action": "block"},
+      {"pattern": "password\\s*[:=]\\s*['\"][^'\"]+", "action": "block"}
+    ]
+  },
+
+  "post_sync_validation": {
+    "enabled": true,
+    "checks": [
+      "git_clean",
+      "privacy_rescan",
+      "protected_intact",
+      "json_valid",
+      "no_absolute_paths"
+    ],
+    "fail_on_critical": true,
+    "warn_on_high": true
+  },
+
+  "last_sync": null,
+  "sync_history": []
+}

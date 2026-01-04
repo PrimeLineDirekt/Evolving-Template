@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "updated": "2026-01-02",
+  "version": "1.1",
+  "updated": "2026-01-03",
   "description": "Compact command detection patterns - replaces workflow-patterns.md",
 
   "commands": {
@@ -166,9 +166,59 @@
       "anti": ["szenario aktivieren", "welches szenario"],
       "conf": "high"
     },
+    "/scenario-edit": {
+      "kw": ["szenario bearbeiten", "scenario edit", "szenario ändern"],
+      "patterns": ["komponente hinzufügen", "agent zu szenario"],
+      "anti": ["szenario erstellen", "neues szenario"],
+      "conf": "high"
+    },
+    "/analyze-pitch-docs": {
+      "kw": ["pitch analyse", "pitch docs", "pitch dokumente"],
+      "patterns": ["analysiere pitch", "pitch dokumentation"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/steuer-beratung": {
+      "kw": ["steuerfrage", "steuerlich absetzbar", "werbungskosten", "sonderausgaben"],
+      "patterns": ["kann ich absetzen", "wo eintragen", "steuererklärung hilfe"],
+      "anti": [],
+      "conf": "high",
+      "requires": "steuererklaerung-2024"
+    },
+    "/steuer-check": {
+      "kw": ["schnell prüfen steuer", "kurze frage steuer"],
+      "patterns": ["ist * absetzbar", "kann ich * absetzen"],
+      "anti": [],
+      "conf": "high",
+      "requires": "steuererklaerung-2024"
+    },
     "/auto-model": {
       "kw": ["welches model", "brauche ich opus", "reicht haiku"],
       "patterns": ["welches ai model", "model empfehlung"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/opus": {
+      "kw": ["switch to opus", "use opus", "wechsle zu opus", "nutze opus"],
+      "patterns": ["opus model", "opus aktivieren"],
+      "anti": ["opus 4", "claude opus"],
+      "conf": "high"
+    },
+    "/sonnet": {
+      "kw": ["switch to sonnet", "use sonnet", "wechsle zu sonnet", "nutze sonnet"],
+      "patterns": ["sonnet model", "sonnet aktivieren"],
+      "anti": ["claude sonnet"],
+      "conf": "high"
+    },
+    "/haiku": {
+      "kw": ["switch to haiku", "use haiku", "wechsle zu haiku", "nutze haiku"],
+      "patterns": ["haiku model", "haiku aktivieren", "schnelles model"],
+      "anti": ["claude haiku"],
+      "conf": "high"
+    },
+    "/opus+": {
+      "kw": ["opus+", "ultrathink", "extended thinking", "tiefes denken"],
+      "patterns": ["maximales reasoning", "opus mit ultrathink"],
       "anti": [],
       "conf": "high"
     },
@@ -202,6 +252,24 @@
       "anti": [],
       "conf": "medium"
     },
+    "/pattern-scan": {
+      "kw": ["muster finden", "historical patterns"],
+      "patterns": ["welche muster", "pattern erkennung"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/learning-review": {
+      "kw": ["lernfortschritt", "genauigkeit"],
+      "patterns": ["wie gut funktioniert", "accuracy"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/analyze-batch": {
+      "kw": ["batch analyse", "alle dokumente analysieren"],
+      "patterns": [],
+      "anti": [],
+      "conf": "high"
+    },
     "/security-review": {
       "kw": ["security review", "sicherheit prüfen"],
       "patterns": ["security check"],
@@ -220,19 +288,62 @@
       "anti": [],
       "conf": "high"
     },
-    "/learning-review": {
-      "kw": ["lernfortschritt", "genauigkeit"],
-      "patterns": ["wie gut funktioniert", "accuracy"],
+    "/macro-forecast": {
+      "kw": ["forecast", "30-tage vorhersage"],
+      "patterns": ["wie entwickelt sich der markt"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/market-analysis": {
+      "kw": ["markt analysieren", "marktanalyse"],
+      "patterns": ["aktuelle marktsituation"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/generate-image": {
+      "kw": ["bild generieren", "image erstellen", "generate image", "bild erstellen", "fal.ai", "nano banana"],
+      "patterns": ["erstelle ein bild", "generiere ein bild", "create an image", "mach ein bild"],
+      "anti": ["bild hochladen", "bild bearbeiten", "welches bild"],
+      "conf": "high"
+    },
+    "/loop-until-done": {
+      "kw": ["loop", "iterate", "wiederholen bis", "bis fertig", "alle fixen", "ralph wiggum"],
+      "patterns": ["fix alle * bis", "mach weiter bis", "iterate bis", "wiederhole bis"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/update-check": {
+      "kw": ["update check", "neue features", "anthropic updates", "claude changelog"],
+      "patterns": ["check for updates", "gibt es neue features", "was ist neu bei claude"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/knowledge-refresh": {
+      "kw": ["knowledge refresh", "learnings validieren", "wissen aktualisieren", "stale learnings"],
+      "patterns": ["aktualisiere learnings", "prüfe ob wissen noch aktuell"],
+      "anti": [],
+      "conf": "high"
+    },
+    "/template-sync": {
+      "kw": ["template sync", "sync template", "template aktualisieren", "evolving-template", "template updaten"],
+      "patterns": ["synchronisiere zum template", "update das template", "neue sachen ins template"],
       "anti": [],
       "conf": "high"
     }
   },
 
-  "scenarios": {},
+  "scenarios": {
+    "steuererklaerung-2024": ["steuer", "absetzen", "werbungskosten", "steuererklärung"],
+    "evolving-dashboard": ["dashboard", "terminal", "command center"],
+    "macro-analyse": ["markt", "forecast", "wzrd", "signals"],
+    "{PROJECT_ID}": ["bistro", "restaurant", "order", "menu"],
+    "{PROJECT_ID}": ["medical", "krankenhaus", "didit"]
+  },
 
   "memory_triggers": {
     "save": ["dokumentiere alles", "session speichern", "progress speichern", "stand speichern"],
-    "bootup": ["neue session", "wo waren wir", "kontext laden", "fortsetzen"],
+    "bootup": ["neue session", "wo waren wir", "kontext laden"],
+    "continue": ["continue", "weiter", "weitermachen", "fortsetzen", "mach weiter"],
     "status": ["wo stehen wir", "aktueller stand", "project status"]
   },
 

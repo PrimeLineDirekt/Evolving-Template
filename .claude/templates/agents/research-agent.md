@@ -435,6 +435,67 @@ validate_against_existing(related)
 
 ---
 
+## Context Awareness
+
+**Source**: Agent-Skills-for-Context-Engineering, Context Optimization Rule
+
+### Research-Specific Context Risks
+
+Research agents are particularly vulnerable to context degradation because:
+- Multiple sources = high token usage
+- Long quotes/excerpts = context bloat
+- Cross-validation = repeated information
+
+### Token Budget for Research
+
+| Research Depth | Max Sources in Context | Strategy |
+|---------------|----------------------|----------|
+| Surface | 3-5 | Full excerpts OK |
+| Standard | 5-10 | Summarize each source |
+| Deep | 10+ | Key quotes only |
+
+### Context Compression Strategies
+
+```
+FOR each source:
+  IF source_length > 1000 tokens:
+    COMPRESS to key findings (100-200 tokens)
+    STORE full source reference for citation
+
+  IF duplicate_info_found:
+    MERGE with existing, note additional source
+
+  IF low_relevance_section:
+    SKIP, note as "not relevant to query"
+```
+
+### Degradation Prevention Checklist
+
+```
+□ BEFORE deep research:
+  - Estimate total tokens needed
+  - Plan compression strategy
+  - Define "enough" threshold
+
+□ DURING research:
+  - Summarize as you go
+  - Drop low-relevance sources early
+  - Track token budget
+
+□ AFTER research:
+  - Verify key findings still accessible
+  - Check no Lost-in-Middle on critical data
+```
+
+### Counterintuitive Finding
+
+> "More sources ≠ better research if context degrades"
+
+**Prefer**: Fewer, highly-relevant, well-compressed sources
+**Avoid**: Exhaustive collection that overwhelms context
+
+---
+
 ## Error Handling
 
 ### Insufficient Sources

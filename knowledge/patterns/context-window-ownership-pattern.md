@@ -231,7 +231,7 @@ class ContextBuilder:
 
 ### Empfehlung
 
-**Für komplexe Multi-Agent Systeme**: Bei nächstem Refactoring Context Builder Pattern einführen:
+**Für {PROJECT}**: Bei nächstem Refactoring Context Builder Pattern einführen:
 
 ```python
 # In resilient_orchestrator.py
@@ -251,11 +251,133 @@ context = (
 - **JA**: Multi-Turn Agents, RAG Systems, Tool-Heavy Workflows
 - **NEIN**: Simple Single-Turn Calls, Bereits optimierte Pipelines
 
+## 4-Bucket Mitigation Framework
+
+Systematischer Ansatz zur Context-Optimierung (Source: Agent-Skills-for-Context-Engineering):
+
+```
+┌─────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
+│  WRITE  │ →  │  SELECT  │ →  │ COMPRESS │ →  │ ISOLATE  │
+│         │    │          │    │          │    │          │
+│ Bessere │    │ Richtige │    │ Weniger  │    │ Saubere  │
+│ Inputs  │    │ Auswahl  │    │ Tokens   │    │ Trennung │
+└─────────┘    └──────────┘    └──────────┘    └──────────┘
+```
+
+| Bucket | Aktion | Beispiel |
+|--------|--------|----------|
+| **WRITE** | Input-Qualität verbessern | Tool Descriptions präzisieren |
+| **SELECT** | Nur relevantes inkludieren | Top-3 statt Top-10 RAG Results |
+| **COMPRESS** | Token-Reduktion | JSON→YAML, AI-Summarization |
+| **ISOLATE** | Klare Trennung | XML-Tags für Sections |
+
+**Details**: Siehe [Context Degradation Patterns Learning](../learnings/context-degradation-patterns.md)
+
+---
+
+## Token Economics (Empirische Daten)
+
+| Metrik | Wert | Quelle |
+|--------|------|--------|
+| Tool Outputs Anteil | 83.9% | Agent-Skills Repo |
+| Multi-Agent Overhead | ~15x Baseline | Agent-Skills Repo |
+| Performance-Varianz durch Tokens | 80% | BrowseComp |
+
+**Implikation**: Token-Optimierung hat den größten ROI für Agent-Performance.
+
+---
+
+## Token Budget Formula (10/15/40/10/25)
+
+**Source**: vibeship-spawner-skills/context-window-management
+
+Systematische Budget-Allokation für Context-Komponenten:
+
+```
+┌─────────────────────────────────────────────────┐
+│              Total Token Budget                  │
+│                (z.B. 100K)                       │
+└─────────────────────────────────────────────────┘
+                      │
+    ┌─────────────────┼─────────────────┐
+    │                 │                 │
+    ▼                 ▼                 ▼
+┌────────┐      ┌──────────┐      ┌──────────┐
+│ System │      │ Critical │      │ History  │
+│  10%   │      │ Context  │      │   40%    │
+│        │      │   15%    │      │          │
+└────────┘      └──────────┘      └──────────┘
+    │                 │                 │
+    ▼                 ▼                 ▼
+┌────────┐                        ┌──────────┐
+│ Query  │                        │ Response │
+│  10%   │                        │   25%    │
+└────────┘                        └──────────┘
+```
+
+### Allocation Table
+
+| Component | Budget | Purpose | Priority |
+|-----------|--------|---------|----------|
+| **System Prompt** | 10% | Core instructions, role definition | NEVER compress |
+| **Critical Context** | 15% | User preferences, key decisions | High priority |
+| **History** | 40% | Conversation history | Summarize if needed |
+| **Query** | 10% | Current user request | Full fidelity |
+| **Response** | 25% | Reserved for model output | MUST reserve |
+
+### Implementation
+
+```python
+def allocate_budget(total_tokens: int) -> dict:
+    """
+    Allocate token budget across context components.
+    Based on empirical testing with Claude and GPT models.
+    """
+    return {
+        "system": int(total_tokens * 0.10),           # 10%
+        "critical_context": int(total_tokens * 0.15), # 15%
+        "history": int(total_tokens * 0.40),          # 40%
+        "query": int(total_tokens * 0.10),            # 10%
+        "response": int(total_tokens * 0.25),         # 25%
+    }
+
+# Example: 100K model
+budget = allocate_budget(100_000)
+# → system: 10K, critical: 15K, history: 40K, query: 10K, response: 25K
+```
+
+### Budget Reallocation
+
+Wenn eine Komponente unter Budget bleibt, Remainder an **History** geben:
+
+```python
+used = sum([system_tokens, critical_tokens, query_tokens])
+remaining = total_tokens - used - budget["response"]
+
+if remaining > 0:
+    # Extra zu History (most valuable for conversation)
+    budget["history"] += remaining
+```
+
+### Model-Specific Adjustments
+
+| Model | Total Budget | Adjust History | Adjust Response |
+|-------|--------------|----------------|-----------------|
+| Claude Opus 4.5 | 200K | +50% möglich | Standard |
+| Claude Sonnet 4.5 | 200K | Standard | Standard |
+| GPT-5.2 (Thinking) | 128K | -20% (Thinking reserved) | +20% für Reasoning |
+| Haiku/Fast | 100K | -30% | Standard |
+
+**Key Insight**: Response-Budget IMMER reservieren! Sonst Output-Truncation.
+
+---
+
 ## Related Patterns
 
 - [Compact Errors Pattern](compact-errors-pattern.md) - Error-spezifische Context-Optimierung
 - [Checkpoint Validation](checkpoint-validation-pattern.md) - Context State Management
 - [Multi-Agent Orchestration](multi-agent-orchestration.md) - Context Sharing zwischen Agents
+- [Context Degradation Patterns](../learnings/context-degradation-patterns.md) - 5 Degradation Patterns + Mitigation
 
 ---
 

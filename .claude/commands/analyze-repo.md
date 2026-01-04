@@ -1,399 +1,550 @@
 ---
-description: Analysiere externes Repository mit Dual-System Mapping
+description: 5-Phasen Repository-Analyse mit Rel-Extraktion + Tpl-Abstraktion
 model: opus
-argument-hint: [GitHub-URL oder lokaler Pfad]
+argument-hint: [GitHub-URL]
 ---
 
-Du analysierst externe Repositories und mappst Findings gegen unser Evolving-System. Jedes Finding wird kontextualisiert und mit konkreten Integrations-Vorschlägen versehen.
+## Plain Text Trigger (PFLICHT!)
 
-## Plain Text Detection
-
-**Dieser Workflow wird ausgelöst durch**:
-- `/analyze-repo https://github.com/owner/repo`
-- `/analyze-repo /path/to/local/repo`
-- "Analysiere dieses Repo: ..."
-- "Schau dir mal ... an"
-- "Was können wir von ... lernen?"
-- "Untersuche das Repository ..."
-
-**Bei Plain Text ohne Slash Command**:
-1. Erkenne Intent (Repository analysieren)
-2. Extrahiere URL/Pfad aus User-Message
-3. Frage: "Soll ich `/analyze-repo` mit `{url/path}` ausführen?"
-4. Bei "Ja" → Starte Analyse
+**Natürliche Sprache funktioniert:**
+- "Analysiere dieses Repo: {url}"
+- "Schau dir mal {url} an"
+- "Was können wir von {url} lernen?"
+- "Check das Repo {url}"
+- "Deep Dive auf {url}"
+- "Untersuche {url}"
+- "Ist {url} relevant für uns?"
 
 ---
 
-## Schritt 1: Input validieren
+## 5-Phasen Architektur
 
-### URL/Pfad parsen
-
-**$ARGUMENTS Format**:
-- GitHub URL: `https://github.com/owner/repo`
-- Lokaler Pfad: `/path/to/repo`
-
-**Erkennung**:
-```python
-def detect_source_type(input):
-    if input.startswith("https://github.com/"):
-        return "remote", parse_github_url(input)
-    elif os.path.exists(input):
-        return "local", os.path.abspath(input)
-    else:
-        return "invalid", None
 ```
-
-**Bei Fehler**: "Repository nicht gefunden. Bitte gib eine gültige GitHub-URL oder einen lokalen Pfad an."
-
----
-
-## Schritt 2: SYSTEM-MAP laden (Phase 1)
-
-**KRITISCH**: Vor der Repo-Analyse MUSS die SYSTEM-MAP gelesen werden!
-
-```python
-system_map_path = ".claude/SYSTEM-MAP.md"
-
-if not os.path.exists(system_map_path):
-    print("""
-    ⚠️ SYSTEM-MAP.md nicht gefunden!
-
-    Die SYSTEM-MAP ist erforderlich für kontextualisierte Findings.
-
-    Soll ich sie jetzt erstellen? (Dauert ca. 2 Minuten)
-    """)
-    # If yes: Run system scan and create SYSTEM-MAP.md
-else:
-    system_context = Read(system_map_path)
-    print(f"""
-    ✅ SYSTEM-MAP geladen
-
-    Unser System:
-    - {count_agents} Agents
-    - {count_skills} Skills
-    - {count_commands} Commands
-    - {count_patterns} Patterns
-
-    Starte Repository-Analyse...
-    """)
+P1: Relevanz-Check (Remote)
+├── README.md via WebFetch
+├── Struktur via GitHub Page
+├── Relevanz-Score (0-10)
+└── Output: RELEVANT / NICHT RELEVANT
+     │
+     ▼ (Wenn RELEVANT + User OK)
+P2: Deep Dive (Local Clone)
+├── git clone → /tmp/{repo}
+├── Glob/Read/Grep auf echtem Code
+├── Funktionssignaturen extrahieren
+└── Mapping gegen Evolving
+     │
+     ▼
+P3: REL-EXTRAKTION (Kernlogik!)
+├── Rel? → .claude/*/external/{repo}/
+├── Interessant? → .claude/templates/{tpl}.md
+└── Irrelevant? → Skip-Notes
+     │
+     ▼
+P4: Archivierung
+└── /tmp/{repo} → _archive/repos/{date}-{name}/
+     │
+     ▼
+P5: Integration
+└── Findings → knowledge/, .claude/SYSTEM-MAP.md
 ```
 
 ---
 
-## Schritt 3: Repository analysieren (Phase 2)
+## Phase 1: Relevanz-Check
 
-### Für Remote Repos (GitHub)
-
-```python
-def analyze_remote(github_url):
-    owner, repo = parse_url(github_url)
-    base_raw = f"https://raw.githubusercontent.com/{owner}/{repo}/main"
-
-    # Core files
-    readme = WebFetch(f"{base_raw}/README.md",
-                      prompt="Extrahiere: Purpose, Features, Tech Stack, Architecture, Key Patterns")
-
-    # Config files (try multiple)
-    for config in ["package.json", "pyproject.toml", "Cargo.toml", "go.mod"]:
-        try:
-            config_content = WebFetch(f"{base_raw}/{config}",
-                                      prompt="Extrahiere: Dependencies, Scripts, Metadata")
-            break
-        except:
-            continue
-
-    # Structure via GitHub page
-    structure = WebFetch(github_url,
-                         prompt="Extrahiere: Ordnerstruktur, Key Files, Patterns")
-
-    # Additional key files based on structure
-    for important_file in identify_key_files(structure):
-        WebFetch(f"{base_raw}/{important_file}")
-
-    return findings
-```
-
-### Für Lokale Repos
+### 1.1 Remote-Analyse
 
 ```python
-def analyze_local(repo_path):
-    # Structure
-    all_files = Glob(f"{repo_path}/**/*")
-
-    # Core files
-    readme = Read(f"{repo_path}/README.md")
-    config = Read(f"{repo_path}/package.json")  # or equivalent
-
-    # Pattern search
-    patterns = Grep(pattern="class |function |export |def ", path=repo_path)
-
-    # Git info
-    commits = Bash(f"cd {repo_path} && git log --oneline -20")
-    remote = Bash(f"cd {repo_path} && git remote -v")
-
-    return findings
+# README + Struktur fetchen
+readme = WebFetch(f"{raw_url}/README.md")
+structure = WebFetch(github_url, prompt="Ordnerstruktur")
 ```
 
----
+### 1.2 Relevanz-Indikatoren
 
-## Schritt 4: Findings gegen System mappen (Phase 3)
+| Indikator | Gewicht | Check |
+|-----------|---------|-------|
+| Claude Code Integration | +3 | `.claude/`, CLAUDE.md |
+| MCP Server/Tools | +2 | mcp, tools, server |
+| Agent Patterns | +2 | agents, multi-agent |
+| Skills/Commands | +2 | skills, commands, workflows |
+| Memory/Persistence | +1 | memory, persistence, state |
+| Prompt Engineering | +1 | prompts, templates |
 
-**Für JEDES Finding**:
+### 1.3 Relevanz-Score berechnen
 
-```python
-def categorize_finding(finding, system_context):
-    # Check our system for equivalent
-    equivalent = find_in_system(finding.type, system_context)
-
-    if not equivalent:
-        return {
-            "category": "NEU",
-            "emoji": "🟢",
-            "action": f"Add to {suggest_location(finding)}",
-            "effort": estimate_effort(finding)
-        }
-
-    comparison = compare(finding, equivalent)
-
-    if comparison.is_better:
-        return {
-            "category": "BESSER",
-            "emoji": "🟡",
-            "our_version": equivalent,
-            "improvement": comparison.improvements,
-            "action": f"Upgrade {equivalent.name}",
-            "effort": estimate_effort(finding)
-        }
-
-    if comparison.is_different:
-        return {
-            "category": "ANDERS",
-            "emoji": "🔵",
-            "our_approach": equivalent.approach,
-            "their_approach": finding.approach,
-            "recommendation": evaluate_approaches(finding, equivalent),
-            "action": "Evaluate and decide"
-        }
-
-    return {
-        "category": "REDUNDANT",
-        "emoji": "⚪",
-        "our_equivalent": equivalent,
-        "action": "Document only"
-    }
+```
+Score < 4  → NICHT RELEVANT (Report + Ende)
+Score 4-5  → GRENZWERTIG (User entscheiden lassen)
+Score >= 6 → RELEVANT (Deep Dive anbieten)
 ```
 
----
-
-## Schritt 5: Report generieren (Phase 4)
-
-### Output Format
+### 1.4 Phase 1 Output
 
 ```markdown
-# 📊 Repository Analysis: {REPO_NAME}
-
-## Executive Summary
+## Phase 1: Relevanz-Check
 
 | Metric | Value |
 |--------|-------|
-| **Repository** | {url or path} |
-| **Purpose** | {1-sentence} |
-| **Tech Stack** | {technologies} |
-| **Relevance** | {X}/10 |
-| **Actionable Findings** | {count} |
+| Repo | {name} |
+| Score | {X}/10 |
+| Indikatoren | {liste} |
+
+**Fazit**: {RELEVANT/NICHT RELEVANT}
+
+{Wenn RELEVANT}:
+Für Code-Level Analyse muss ich clonen.
+Soll ich Deep Dive starten?
+```
 
 ---
 
-## Evolving System Context
+## Phase 2: Deep Dive
 
-SYSTEM-MAP.md loaded:
-- Agents: {count}
-- Skills: {count}
-- Commands: {count}
-- Patterns: {count}
+### 2.1 Clone
+
+```bash
+git clone {url} /tmp/{repo-name}
+```
+
+### 2.2 Tech-Stack Detection
+
+| Stack | Erkennungsdateien | Key-Patterns |
+|-------|-------------------|--------------|
+| Python | pyproject.toml, setup.py, *.py | `^(class\|def\|@dataclass)` |
+| TypeScript | package.json, tsconfig.json, *.ts | `^(export\|interface\|type\|class)` |
+| Claude Code | .claude/*, CLAUDE.md | agents, commands, skills |
+| Go | go.mod, *.go | `^(func\|type\|package)` |
+
+### 2.3 Code-Level Extraktion
+
+**Für Python:**
+```bash
+Grep "^(class |def |@dataclass)" **/*.py
+Read pyproject.toml, requirements.txt
+```
+
+Extrahiere:
+- Klassen mit Methoden-Signaturen
+- Dataclass/Pydantic Felder
+- Dependencies
+
+**Für TypeScript:**
+```bash
+Grep "^(export |interface |type )" **/*.ts
+Read package.json
+```
+
+Extrahiere:
+- Interface Definitionen
+- Type Aliases
+- Exported Functions
+
+**Für Claude Code (.claude/):**
+```bash
+Glob .claude/agents/*.md
+Glob .claude/commands/*.md
+Glob .claude/skills/*
+```
+
+Extrahiere:
+- Agent-Definitionen (Typ, Domain)
+- Command-Workflows
+- Skill-Strukturen
+- Hooks, Rules
+
+### 2.4 Mapping gegen Evolving
+
+Für JEDES Finding:
+
+| Kategorie | Bedeutung | Aktion |
+|-----------|-----------|--------|
+| 🟢 NEU | Haben wir nicht | → patterns/ oder learnings/ |
+| 🟡 BESSER | Ihre Version überlegen | → Upgrade unsere |
+| 🔵 ANDERS | Andere Herangehensweise | → Evaluieren |
+| ⚪ REDUNDANT | Haben wir schon | → Nur dokumentieren |
+
+### 2.5 Automatisches Tagging
+
+Neue Findings werden getaggt aus `_graph/taxonomy.json`:
+
+```markdown
+---
+tags: [memory, persistence, context-management]
+---
+# {Finding Title}
+```
 
 ---
 
-## Repository Overview
+## Phase 3: REL-EXTRAKTION (Kernlogik!)
 
-### Purpose
-{Description}
+**Regel**: Lies `.claude/rules/relevance-extraction.md`
 
-### Tech Stack
-{Technologies}
+### 3.1 Entscheidungsbaum
 
-### Key Features
-1. {Feature 1}
-2. {Feature 2}
-3. {Feature 3}
+Für JEDE Komponente (A, S, C, H, R, P):
+
+```
+Komponente gefunden
+       │
+       ▼
+┌──────────────────┐
+│ Für UNS nutzbar? │
+└────────┬─────────┘
+    Ja   │   Nein
+    ▼    │    ▼
+   EXT   │  ┌──────────────────┐
+         │  │ Framework        │
+         │  │ interessant?     │
+         │  └────────┬─────────┘
+         │      Ja   │   Nein
+         │      ▼    │    ▼
+         │    TPL    │  SKIP
+```
+
+### 3.2 EXT → external/
+
+Direkt nutzbare Komponenten:
+
+```
+.claude/{type}/external/{repo}/
+├── {komponente}.md          # Vollständiger Inhalt
+└── _index.json              # Tags + Beschreibungen
+```
+
+**_index.json Format:**
+```json
+{
+  "source": "{github-url}",
+  "extracted": "{date}",
+  "components": [
+    {
+      "name": "{name}",
+      "type": "agent|skill|command|hook",
+      "tags": ["tag1", "tag2"],
+      "status": "extracted|adapted|integrated"
+    }
+  ]
+}
+```
+
+### 3.3 TPL → templates/
+
+Interessantes Framework, aber irrelevanter Use-Case:
+
+```
+.claude/templates/{abstrahierter-name}.md
+```
+
+**Abstraktion:**
+- Themen-Referenzen → Platzhalter
+- "kubernetes" → "{domain}"
+- "deployment" → "{task}"
+- Framework/Struktur behalten
+
+### 3.4 SKIP → Skip-Notes
+
+Irrelevante Komponenten dokumentieren:
+
+```
+knowledge/learnings/{repo}-skip-notes.md
+```
+
+**Format:**
+```markdown
+# {Repo} Skip Notes
+
+| Komponente | Grund |
+|------------|-------|
+| discord-bot | Discord-spezifisch |
+| aws-lambda | AWS, kein neues Framework |
+```
+
+### 3.5 Rel-Extraktion Output
+
+```markdown
+## Phase 3: Rel-Extraktion
+
+| Komponente | Entscheidung | Aktion |
+|------------|--------------|--------|
+| context-mgr-agent | EXT | → agents/external/{repo}/ |
+| k8s-validator | TPL | → templates/validation-checklist.md |
+| discord-bot | SKIP | → {repo}-skip-notes.md |
+
+Extrahiert: {X} | Templates: {Y} | Skipped: {Z}
+```
 
 ---
 
-## 🎯 Mapping & Findings
+## Phase 4: Archivierung
 
-### 🟢 NEU - We Don't Have This
+Nach Rel-Extraktion:
 
-| Finding | Description | Integration Point | Effort |
-|---------|-------------|-------------------|--------|
-| {name} | {desc} | {where} | {estimate} |
+```bash
+# Verschieben
+mv /tmp/{repo-name} _archive/repos/{YYYY-MM-DD}-{repo-name}/
 
-### 🟡 BESSER - Upgrade Potential
-
-| Finding | Our Current | Improvement | Action |
-|---------|-------------|-------------|--------|
-| {name} | {our version} | {what's better} | {action} |
-
-### 🔵 ANDERS - Alternative Approaches
-
-| Finding | Our Way | Their Way | Recommendation |
-|---------|---------|-----------|----------------|
-| {name} | {ours} | {theirs} | {recommendation} |
-
-### ⚪ REDUNDANT - Already Have
-
-| Finding | Our Equivalent |
-|---------|----------------|
-| {name} | {our version} |
+# Summary erstellen
+Write _archive/repos/{date}-{repo-name}/_analysis.md
+```
 
 ---
 
-## 📋 Integration Roadmap
+## Phase 5: Integration (WICHTIG!)
 
-### Quick Wins (< 1h)
-- [ ] {Action} → {Location}
+**Archivieren reicht NICHT!** Relevante Findings müssen ins System:
 
-### Medium Effort (1-4h)
-- [ ] {Action}
-  - Create: {files}
-  - Modify: {files}
+### 5.1 Für jedes 🟢 NEU Finding
 
-### Larger Projects (> 4h)
-- [ ] {Action}
-  - Scope: {description}
+```
+1. Pattern/Learning erstellen:
+   → knowledge/patterns/{name}-pattern.md
+   → knowledge/learnings/{name}.md
+
+2. Mit Tags aus taxonomy.json versehen
+
+3. SYSTEM-MAP.md Changelog updaten
+```
+
+### 5.2 Für jedes 🟡 BESSER Finding
+
+```
+1. Bestehende Datei identifizieren
+2. Verbesserung einarbeiten
+3. Quelle im Dokument vermerken
+```
+
+### 5.3 Integration-Checkliste
+
+Nach jedem Deep Dive FRAGEN:
+
+```markdown
+## Integration
+
+Ich habe folgende Findings identifiziert:
+
+| # | Finding | Kategorie | Integrieren? |
+|---|---------|-----------|--------------|
+| 1 | {name} | 🟢 NEU | ☐ |
+| 2 | {name} | 🟡 BESSER | ☐ |
+| 3 | {name} | 🔵 ANDERS | ☐ Evaluieren |
+
+Welche soll ich jetzt integrieren?
+- Alle NEU
+- Alle NEU + BESSER
+- Spezifische (Nummern nennen)
+- Keine (nur archivieren)
+```
+
+### 5.4 Nach Integration
+
+```markdown
+## Integriert
+
+| Finding | Location | Done |
+|---------|----------|------|
+| {name} | knowledge/patterns/{file}.md | ✓ |
+| {name} | knowledge/learnings/{file}.md | ✓ |
+
+SYSTEM-MAP.md Changelog aktualisiert.
+```
 
 ---
+
+**_analysis.md Format:**
+```markdown
+# {Repo} Analysis
+
+**Datum**: {date}
+**URL**: {url}
+**Score**: {X}/10
+
+## Extrahierte Patterns
+
+| Pattern | Code | Integration |
+|---------|------|-------------|
+| {name} | `{signature}` | patterns/{file} |
+
+## Integration Status
+
+| Finding | Integriert | Location |
+|---------|------------|----------|
+| {name} | ✓/✗ | {path} |
+
+## Quick Access
+
+`cd _archive/repos/{date}-{name}/`
+```
+
+---
+
+## Output: Deep Dive Report
+
+```markdown
+# {REPO_NAME} Deep Dive
+
+## Summary
+
+| Metric | Value |
+|--------|-------|
+| Score | {X}/10 |
+| Tech Stack | {stack} |
+| Code Files | {count} |
+| Extrahierte Patterns | {count} |
+
+## 🟢 NEU (Code-Level)
+
+### Pattern: {name}
+**Datei**: `{path}`
+**Code**:
+```{lang}
+{extracted_code}
+```
+**Integration**: → knowledge/patterns/{name}.md
+**Tags**: {auto-tags}
+
+## 🟡 BESSER (vs. unsere Version)
+
+| Finding | Unser Code | Ihr Code | Verbesserung |
+|---------|-----------|----------|--------------|
+| {name} | {ours} | {theirs} | {improvement} |
+
+## 🔵 ANDERS
+
+{alternative approaches}
+
+## Archiv
+
+Repo archiviert: `_archive/repos/{date}-{name}/`
+Für Details: Dort reinschauen.
 
 ## SYSTEM-MAP Update
 
-Add to `.claude/SYSTEM-MAP.md` Changelog:
-
-| Datum | Quelle | Finding | Integration | Status |
-|-------|--------|---------|-------------|--------|
-| {today} | {repo} | {finding} | {action} | Pending |
-
----
-
-## Next Steps
-
-1. Review findings above
-2. Approve integrations you want
-3. I'll update SYSTEM-MAP after implementation
-
-**Sage einfach**: "Integriere {finding}" oder "Zeig mir mehr zu {finding}"
+| Datum | Finding | Integration | Status |
+|-------|---------|-------------|--------|
+| {date} | {finding} | {location} | Pending |
 ```
 
 ---
 
-## Schritt 6: User-Interaktion
+## Beispiel-Flow
 
-### Nach Report
-
-**Optionen anbieten**:
 ```
-📊 Analyse abgeschlossen!
+User: "Schau dir mal https://github.com/some/claude-tools an"
 
-Was möchtest du tun?
+Claude:
+## Phase 1: Relevanz-Check
 
-1. **Details zu Finding** - "Zeig mir mehr zu {finding}"
-2. **Integration starten** - "Integriere {finding}"
-3. **Alles Quick Wins** - "Mach alle Quick Wins"
-4. **Später** - "Speicher für später"
+| Metric | Value |
+|--------|-------|
+| Repo | claude-tools |
+| Score | 8/10 |
+| Indikatoren | .claude/ ✓, MCP ✓, Hooks ✓ |
 
-Oder frag mich etwas Spezifisches!
+**Fazit**: RELEVANT
+
+Für Code-Level Analyse muss ich clonen.
+Deep Dive starten?
+
+User: Ja
+
+Claude:
+Cloning...
+Analysiere Code...
+Extrahiere Patterns...
+
+[Deep Dive Report mit Code-Level Details]
+
+✓ Archiviert: _archive/repos/2025-12-27-claude-tools/
 ```
 
-### Bei Integration
+---
 
-**Vor jeder Änderung**:
+## KRITISCH: Nicht überspringen!
+
+**Wenn eine Datei/Seite nicht gelesen werden kann:**
+
+1. **NIEMALS stillschweigend überspringen**
+2. **User informieren**: "Konnte {datei} nicht lesen"
+3. **Alternativen versuchen**:
+   - Raw GitHub URL statt Page
+   - Lokaler Clone falls Remote fehlschlägt
+   - Andere Dateien im gleichen Ordner
+4. **Explizit fragen**: "Soll ich anders vorgehen?"
+
+**Warum?** Nicht lesbare Dateien können die wichtigsten Findings enthalten!
+
+**Beispiel:**
 ```
-⚠️ Integration: {FINDING_NAME}
+⚠ Konnte docs/architecture.md nicht lesen (404)
 
-Ich werde:
-- Erstellen: {files}
-- Ändern: {files}
+Das könnte relevante Patterns enthalten.
+Alternativen:
+1. Lokal clonen und dann lesen
+2. Ähnliche Dateien suchen (docs/*.md)
+3. Überspringen (mit Vermerk im Report)
 
-Fortfahren? (ja/nein)
+Wie soll ich vorgehen?
 ```
 
-**Nach Integration**:
-- SYSTEM-MAP.md Changelog updaten
-- Betroffene Statistiken aktualisieren
+**Im Report dokumentieren:**
+```markdown
+## Nicht gelesene Dateien
+
+| Datei | Grund | Potentielle Relevanz |
+|-------|-------|---------------------|
+| docs/architecture.md | 404 | Hoch (Architecture Patterns) |
+| src/internal/ | Private | Mittel |
+```
 
 ---
 
 ## Error Handling
 
-### Repository nicht erreichbar
+### Nicht erreichbar
 ```
-❌ Repository nicht erreichbar
+❌ Repo nicht erreichbar
 
-URL: {url}
-
-Mögliche Gründe:
-- Privates Repository
-- URL fehlerhaft
-- Netzwerkproblem
-
-Alternativen:
-1. Repository lokal klonen: `git clone {url}`
-2. Dann: `/analyze-repo /path/to/cloned/repo`
+Optionen:
+1. Lokal klonen: git clone {url}
+2. Dann: "Analysiere /path/to/repo"
 ```
 
-### SYSTEM-MAP fehlt
+### Score zu niedrig
 ```
-⚠️ SYSTEM-MAP.md nicht gefunden
+Score: 2/10
 
-Für kontextualisierte Findings brauche ich die SYSTEM-MAP.
-
-Soll ich sie jetzt erstellen? (Dauert ~2 Min)
+Keine Claude Code Relevanz erkannt.
+Analyse beenden.
 ```
 
-### Keine relevanten Findings
+### Datei nicht lesbar
 ```
-✅ Analyse abgeschlossen
+⚠ {datei} nicht lesbar
 
-Ergebnis: Keine neuen Findings für Evolving.
-
-Das Repository {name} bietet nichts, was wir nicht schon haben.
-
-Alle {count} Findings wurden als REDUNDANT kategorisiert.
-Details: {kurze Auflistung}
+Nicht überspringen! Alternativen versuchen oder User fragen.
 ```
 
 ---
 
-## Success Criteria
+## Reads
 
-- ✅ SYSTEM-MAP.md wurde gelesen (Phase 1)
-- ✅ Repository vollständig analysiert (Phase 2)
-- ✅ ALLE Findings kategorisiert (NEU/BESSER/ANDERS/REDUNDANT)
-- ✅ Konkrete Integration Points für actionable Findings
-- ✅ SYSTEM-MAP Changelog vorbereitet
+- `.claude/SYSTEM-MAP.md` (für Mapping)
+- `_graph/taxonomy.json` (für Auto-Tagging)
+- `.claude/rules/relevance-extraction.md` (Rel-Check + Tpl Framework)
+- `.claude/rules/no-reference-only.md` (Kein URL-only!)
 
----
+## Creates/Updates
 
-## Related
-
-**Reads**:
-- `.claude/SYSTEM-MAP.md` (immer)
-
-**Updates** (nach Integration):
-- `.claude/SYSTEM-MAP.md` (Changelog)
-- Betroffene Komponenten
-
-**Invokes**:
-- `@github-repo-analyzer-agent` (intern)
+- `.claude/{type}/external/{repo}/` (EXT-Komponenten)
+- `.claude/{type}/external/{repo}/_index.json` (Index + Tags)
+- `.claude/templates/{name}.md` (TPL-Abstraktionen)
+- `knowledge/learnings/{repo}-skip-notes.md` (SKIP-Dok)
+- `_archive/repos/{date}-{name}/` (nach Archivierung)
+- `.claude/SYSTEM-MAP.md` Changelog (nach Integration)
+- `knowledge/patterns/` oder `knowledge/learnings/` (bei Integration)
 
 ---
 
-**Command Philosophy**: Keine isolierten Findings! Alles wird gegen unser System gemappt. Konkrete Integrations-Vorschläge statt abstrakter Empfehlungen.
+**Philosophie**: README-Level reicht nicht. Echte Deep Dives extrahieren Code, Signaturen, Schemas. Implementierbare Details statt Beschreibungen.

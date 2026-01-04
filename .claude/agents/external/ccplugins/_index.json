@@ -1,0 +1,48 @@
+{
+  "source": "https://github.com/ccplugins/awesome-claude-code-plugins",
+  "extracted": "2025-12-29",
+  "total_plugins_in_source": 250,
+  "extracted_count": 4,
+  "plugins": [
+    {
+      "name": "problem-solver-specialist",
+      "type": "agent",
+      "size": "24KB",
+      "description": "Universal debugging agent with multi-source research (GitHub MCP, Perplexity, Context7, Playwright)",
+      "relevance": "Complements /debug command with advanced research capabilities",
+      "tags": ["debugging", "research", "multi-source", "mcp-integration"]
+    },
+    {
+      "name": "n8n-workflow-builder",
+      "type": "agent",
+      "size": "~5KB",
+      "description": "6-Phase n8n workflow builder with validation-first approach",
+      "relevance": "Complements our n8n-expert agent",
+      "tags": ["n8n", "automation", "workflow", "validation"]
+    },
+    {
+      "name": "debugger",
+      "type": "agent",
+      "size": "~3KB",
+      "description": "Simple 5-step debugging agent with root cause analysis focus",
+      "relevance": "Lighter alternative to problem-solver-specialist",
+      "tags": ["debugging", "root-cause", "simple"]
+    },
+    {
+      "name": "workflow-optimizer",
+      "type": "agent",
+      "size": "8KB",
+      "description": "Human-AI collaboration optimizer with workflow anti-patterns",
+      "relevance": "Workflow efficiency and human-AI handoff optimization",
+      "tags": ["workflow", "optimization", "human-ai", "efficiency"]
+    }
+  ],
+  "skipped": {
+    "reason": "Too specialized for Evolving (sales, marketing, social media, legal, compliance)",
+    "examples": ["product-sales-specialist", "technical-sales-engineer", "legal-advisor", "twitter-engager", "instagram-curator"]
+  },
+  "templates_created": [
+    "prd-planning-template.md (from planning-prd-agent)",
+    "quality-orchestrator-template.md (from ceo-quality-controller-agent)"
+  ]
+}

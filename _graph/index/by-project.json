@@ -1,0 +1,136 @@
+{
+  "version": "1.0",
+  "generated": "2025-12-13T23:55:00Z",
+  "description": "Nodes grouped by project/scenario membership",
+
+  "evolving-system": {
+    "description": "Core Evolving system components",
+    "memory_file": "_memory/projects/evolving-system.json",
+    "nodes": [
+      "agent-context-manager",
+      "agent-knowledge-synthesizer",
+      "agent-research-analyst",
+      "agent-idea-validator",
+      "agent-idea-expander",
+      "agent-idea-connector",
+      "agent-model-selector",
+      "skill-template-creator",
+      "skill-prompt-pro-framework",
+      "skill-research-orchestrator",
+      "command-idea-new",
+      "command-idea-work",
+      "command-idea-list",
+      "command-idea-connect",
+      "command-knowledge-add",
+      "command-knowledge-search",
+      "command-sparring",
+      "command-think",
+      "command-debug",
+      "command-whats-next",
+      "command-create-agent",
+      "command-create-command",
+      "command-create-skill",
+      "command-create-hook",
+      "command-create-prompt",
+      "command-run-prompt",
+      "hook-auto-cross-reference",
+      "hook-session-summary",
+      "hook-context-monitor",
+      "rule-core-principles",
+      "rule-cross-reference-sync",
+      "rule-workflow-detection",
+      "rule-knowledge-linking",
+      "rule-domain-memory-bootup",
+      "memory-evolving-system",
+      "idea-evolving-mvp-saas",
+      "prompt-framework-prompt-pro",
+      "prompt-framework-idea-forge"
+    ]
+  },
+
+  "{PROJECT_ID}": {
+    "description": "{PROJECT} v1 and v2 components",
+    "memory_file": "_memory/projects/{PROJECT_ID}.json",
+    "nodes": [
+      "project-ki-auswanderungs-berater",
+      "project-{PROJECT_ID}",
+      "learning-ki-auswanderungs-berater",
+      "learning-{PROJECT_ID}",
+      "memory-{PROJECT_ID}",
+      "prompt-aki-checkliste",
+      "prompt-aki-digitale-nomaden",
+      "prompt-aki-familie-kinder",
+      "prompt-aki-finanzplanung",
+      "prompt-aki-krankenversicherung",
+      "prompt-aki-kryptowaehrungen",
+      "prompt-aki-notfall-krisen",
+      "prompt-aki-probe-auswanderung",
+      "prompt-aki-profil-analyse",
+      "prompt-aki-reporter",
+      "prompt-aki-rueckkehr-deutschland",
+      "prompt-aki-senioren",
+      "prompt-aki-steueroptimierung",
+      "prompt-aki-tierverlagerung",
+      "prompt-aki-umzug-logistik",
+      "prompt-aki-unternehmens-verlagerung",
+      "prompt-aki-vertragsmanagement",
+      "agent-n8n-expert"
+    ]
+  },
+
+  "{PROJECT_ID}": {
+    "description": "{PROJECT} Etsy components",
+    "memory_file": "_memory/projects/{PROJECT_ID}.json",
+    "nodes": [
+      "project-ai-poster-hub",
+      "learning-ai-poster-hub",
+      "skill-etsy-poster-creator",
+      "prompt-etsy-poster-creator",
+      "pattern-bilingual-seo",
+      "pattern-ai-content-pipeline"
+    ]
+  },
+
+  "scenario-evolving-dashboard": {
+    "description": "Evolving Dashboard scenario",
+    "nodes": [
+      "scenario-evolving-dashboard",
+      "learning-copilotkit-evaluation"
+    ]
+  },
+
+  "scenario-steuererklaerung-2024": {
+    "description": "Steuererklarung 2024 scenario",
+    "nodes": [
+      "scenario-steuererklaerung-2024"
+    ]
+  },
+
+  "scenario-workflow-engine": {
+    "description": "Workflow Engine SDK scenario",
+    "nodes": [
+      "scenario-workflow-engine",
+      "learning-claude-sdk-insights"
+    ]
+  },
+
+  "external-analysis": {
+    "description": "External codebase and repo analysis",
+    "nodes": [
+      "agent-codebase-analyzer",
+      "agent-github-repo-analyzer",
+      "command-project-analyze",
+      "command-analyze-repo"
+    ]
+  },
+
+  "pitch-system": {
+    "description": "Pitch documentation system",
+    "nodes": [
+      "agent-pitch-document-analyzer",
+      "agent-pitch-content-categorizer",
+      "agent-pitch-style-extractor",
+      "command-analyze-pitch-docs"
+    ]
+  }
+}

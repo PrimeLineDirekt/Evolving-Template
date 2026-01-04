@@ -2,7 +2,7 @@
 
 **Quelle**: LangChain Docs, Blog "Debugging Deep Agents"
 **Typ**: Learning
-**Relevanz**: Auswanderungs-KI v2, zukünftige Multi-Agent Systeme
+**Relevanz**: {PROJECT} v2, zukünftige Multi-Agent Systeme
 **Erstellt**: 2025-12-22
 
 ---
@@ -99,7 +99,7 @@ Thread (Conversation)
 import os
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_API_KEY"] = "ls__xxx"
-os.environ["LANGCHAIN_PROJECT"] = "auswanderungs-ki-v2"
+os.environ["LANGCHAIN_PROJECT"] = "{PROJECT_ID}"
 
 # Das war's - alle LangGraph Calls werden automatisch getraced
 ```
@@ -108,7 +108,7 @@ os.environ["LANGCHAIN_PROJECT"] = "auswanderungs-ki-v2"
 
 **Was:** Token-Kosten pro Model aggregieren.
 
-**Nutzen für Auswanderungs-KI:**
+**Nutzen für {PROJECT}:**
 ```
 Query: "Wie optimiere ich meine Steuern als Auswanderer?"
 
@@ -176,12 +176,12 @@ evaluator = {
 **CLI (für IDE-Integration):**
 ```bash
 # Traces exportieren für lokale Analyse
-langsmith fetch --project auswanderungs-ki-v2 --last 24h --output traces.json
+langsmith fetch --project {PROJECT_ID} --last 24h --output traces.json
 ```
 
 ---
 
-## Integration mit Auswanderungs-KI v2
+## Integration mit {PROJECT} v2
 
 ### Minimal Setup (10 Min)
 
@@ -194,7 +194,7 @@ def setup_langsmith():
     """Enable LangSmith tracing."""
     os.environ["LANGCHAIN_TRACING_V2"] = "true"
     os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGSMITH_API_KEY")
-    os.environ["LANGCHAIN_PROJECT"] = "auswanderungs-ki-v2"
+    os.environ["LANGCHAIN_PROJECT"] = "{PROJECT_ID}"
 
 # In main.py
 if os.getenv("ENABLE_TRACING"):
@@ -262,7 +262,7 @@ async def collect_feedback(run_id: str, user_rating: int):
 - Plus: $39/Monat, 50k Traces
 - Enterprise: Custom
 
-**Für Auswanderungs-KI:**
+**Für {PROJECT}:**
 - Development: Free Tier reicht
 - Production (100 Queries/Tag): ~3k Traces/Monat → Free Tier
 - Scale (1000 Queries/Tag): Plus Tier nötig
@@ -300,7 +300,7 @@ async def collect_feedback(run_id: str, user_rating: int):
 
 ## Related
 
-- [Auswanderungs-KI v2](../projects/auswanderungs-ki-v2/README.md)
+- [{PROJECT} v2](../projects/{PROJECT_ID}/README.md)
 - [Multi-Agent Orchestration Pattern](../patterns/multi-agent-orchestration.md)
 - [Compact Errors Pattern](../patterns/compact-errors-pattern.md)
 

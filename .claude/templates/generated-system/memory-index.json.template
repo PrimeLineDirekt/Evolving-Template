@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "last_updated": "{DATE}",
+
+  "active_context": {
+    "project": "{PROJECT_ID}",
+    "workflow": null,
+    "focus": "Initial Setup"
+  },
+
+  "projects": [
+    {
+      "id": "{PROJECT_ID}",
+      "name": "{PROJECT_NAME}",
+      "status": "active",
+      "memory_file": "projects/{PROJECT_ID}.json"
+    }
+  ],
+
+  "recent_sessions": [],
+
+  "stats": {
+    "total_sessions": 0,
+    "total_tasks_completed": 0,
+    "last_session": null
+  },
+
+  "generated": {
+    "source": "Evolving System-Builder",
+    "date": "{DATE}"
+  }
+}

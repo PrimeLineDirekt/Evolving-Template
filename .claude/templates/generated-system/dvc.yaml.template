@@ -1,0 +1,134 @@
+# DVC Pipeline Template
+# Generated from: KalyanM45/AI-Project-Gallery Analysis
+# Purpose: Define reproducible ML pipeline stages
+#
+# Usage:
+# 1. Customize paths and commands based on your project
+# 2. Run: dvc repro
+# 3. Commit dvc.lock to git for reproducibility
+
+stages:
+  # Stage 1: Data Loading
+  # Purpose: Load raw data from source (CSV, database, API, etc.)
+  data_load:
+    cmd: python -m src.data.data_loader
+    deps:
+      - src/data/data_loader.py
+      - raw_data.csv                    # Change to your raw data file
+    outs:
+      - data/loaded_data.pkl:           # Pickled loaded data
+          cache: true
+    params:
+      - data.source
+      - data.encoding
+
+  # Stage 2: Data Validation
+  # Purpose: Validate data integrity, check for nulls, duplicates, etc.
+  validate:
+    cmd: python -m src.data.data_validator
+    deps:
+      - src/data/data_validator.py
+      - data/loaded_data.pkl
+    outs:
+      - data/validation_report.json:
+          cache: false
+    metrics:
+      - data/validation_metrics.json:
+          cache: false
+
+  # Stage 3: Data Preprocessing
+  # Purpose: Clean data, handle missing values, normalize
+  preprocess:
+    cmd: python -m src.data.data_processor
+    deps:
+      - src/data/data_processor.py
+      - data/loaded_data.pkl
+    outs:
+      - data/processed_data.pkl:
+          cache: true
+      - Artifacts/preprocessor.pkl:     # Save preprocessor for inference
+          cache: true
+    params:
+      - preprocessing.normalize
+      - preprocessing.outlier_method
+      - preprocessing.train_test_split
+
+  # Stage 4: Feature Engineering
+  # Purpose: Create new features, select important ones
+  feature_engineering:
+    cmd: python -m src.features.feature_engineering
+    deps:
+      - src/features/feature_engineering.py
+      - data/processed_data.pkl
+    outs:
+      - data/features_data.pkl:
+          cache: true
+      - Artifacts/feature_scaler.pkl:
+          cache: true
+    params:
+      - features.lag_features
+      - features.rolling_window
+
+  # Stage 5: Model Training
+  # Purpose: Train ML model on training data
+  train:
+    cmd: python -m src.models.model_trainer
+    deps:
+      - src/models/model_trainer.py
+      - src/models/base_model.py
+      - data/features_data.pkl
+    outs:
+      - Artifacts/model.pkl:
+          cache: true
+    metrics:
+      - metrics.json:
+          cache: false
+          x: epoch
+          y: loss
+    params:
+      - model.type
+      - model.hyperparameters
+
+  # Stage 6: Model Evaluation
+  # Purpose: Evaluate model performance on validation/test set
+  evaluate:
+    cmd: python -m src.models.model_evaluator
+    deps:
+      - src/models/model_evaluator.py
+      - Artifacts/model.pkl
+      - data/features_data.pkl
+    metrics:
+      - evaluation_metrics.json:
+          cache: false
+    plots:
+      - evaluation_plot.csv:
+          x: actual
+          y: predicted
+
+  # Optional Stage: Hyperparameter Tuning
+  # Purpose: Find optimal hyperparameters (can be expensive)
+  # Uncomment if needed
+  # tune_hyperparameters:
+  #   cmd: python -m src.models.hyperparameter_tuner
+  #   deps:
+  #     - src/models/hyperparameter_tuner.py
+  #     - data/features_data.pkl
+  #   outs:
+  #     - tuning_results.json:
+  #         cache: false
+  #   params:
+  #     - tuning.param_grid
+
+# Parameters file (params.yaml)
+# This file should contain all hyperparameters and configuration
+
+# Metrics and plots
+# Automatically tracked and visualized by DVC
+
+# Usage commands:
+# dvc repro              - Run entire pipeline
+# dvc dag               - Show pipeline DAG (directed acyclic graph)
+# dvc metrics show      - Display all metrics
+# dvc plots show        - Display all plots
+# dvc status            - Show which stages need rerunning
+# git add dvc.lock      - Commit for reproducibility

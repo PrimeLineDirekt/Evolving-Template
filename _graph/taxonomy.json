@@ -1,0 +1,157 @@
+{
+  "version": "1.0",
+  "generated": "2025-12-13T23:55:00Z",
+  "description": "Unified taxonomy of domain tags for the Evolving Knowledge Graph",
+
+  "categories": {
+    "system": {
+      "description": "System-level concerns and infrastructure",
+      "tags": [
+        "agent-design",
+        "skill-design",
+        "command-design",
+        "orchestration",
+        "coordination",
+        "automation",
+        "context-management",
+        "memory",
+        "persistence",
+        "templates",
+        "hooks",
+        "rules",
+        "scenarios"
+      ]
+    },
+
+    "knowledge": {
+      "description": "Knowledge management and learning",
+      "tags": [
+        "research",
+        "analysis",
+        "synthesis",
+        "prompt-engineering",
+        "debugging",
+        "testing",
+        "patterns",
+        "best-practices",
+        "documentation",
+        "knowledge",
+        "learning",
+        "framework"
+      ]
+    },
+
+    "agents": {
+      "description": "Agent-specific concerns",
+      "tags": [
+        "multi-agent",
+        "specialist",
+        "research",
+        "orchestrator",
+        "validator",
+        "expander",
+        "connector",
+        "analyzer"
+      ]
+    },
+
+    "projects": {
+      "description": "Project and domain-specific tags",
+      "tags": [
+        "etsy",
+        "e-commerce",
+        "seo",
+        "auswanderung",
+        "steuer",
+        "legal",
+        "dashboard",
+        "frontend",
+        "backend",
+        "saas",
+        "business",
+        "pitch"
+      ]
+    },
+
+    "patterns": {
+      "description": "Pattern-related tags",
+      "tags": [
+        "confidence-scoring",
+        "reflection",
+        "progressive-disclosure",
+        "intake-gate",
+        "cross-reference",
+        "metacognitive",
+        "self-correction",
+        "plan-execute-verify",
+        "blackboard",
+        "shared-memory",
+        "task-decomposition"
+      ]
+    },
+
+    "models": {
+      "description": "AI model-related tags",
+      "tags": [
+        "model-selection",
+        "ultrathink",
+        "opus",
+        "sonnet",
+        "haiku"
+      ]
+    },
+
+    "workflows": {
+      "description": "Workflow and process tags",
+      "tags": [
+        "creation",
+        "execution",
+        "validation",
+        "search",
+        "overview",
+        "synergies",
+        "handoff",
+        "session"
+      ]
+    }
+  },
+
+  "synonyms": {
+    "agent": ["agents", "agent-design"],
+    "skill": ["skills", "skill-design"],
+    "command": ["commands", "command-design"],
+    "template": ["templates"],
+    "pattern": ["patterns"],
+    "memory": ["domain-memory", "persistence"],
+    "research": ["analysis", "synthesis"],
+    "etsy": ["e-commerce", "{PROJECT_ID}"],
+    "auswanderung": ["emigration", "tax-optimization", "steuer"],
+    "orchestration": ["coordination", "multi-agent"],
+    "validation": ["verification", "checking"]
+  },
+
+  "all_tags": [
+    "agent-design", "analysis", "analyzer", "anthropic", "architecture", "automation",
+    "backend", "best-practices", "bilingual", "blackboard", "brainstorming", "business",
+    "business-relocation", "categorization", "checklists", "confidence-scoring",
+    "connector", "content", "context", "context-management", "contracts", "coordination",
+    "creation", "cross-reference", "crypto", "dashboard", "debugging", "decomposition",
+    "digital-nomad", "documentation", "documents", "e-commerce", "editing", "emergency",
+    "errors", "etsy", "evaluation", "evolving", "execution", "expansion", "expander",
+    "extraction", "family", "feasibility", "finance", "findings", "formatting", "framework",
+    "freemium", "frontend", "gdpr", "github", "guidelines", "haiku", "handoff", "health-insurance",
+    "hooks", "idea-management", "ideation", "integration", "knowledge", "knowledge-base",
+    "langgraph", "learning", "legal", "linking", "listings", "logistics", "memory", "mental-models",
+    "metacognitive", "model-selection", "monitoring", "multi-agent", "multi-source", "n8n",
+    "onboarding", "opportunities", "optimization", "opus", "orchestration", "orchestrator",
+    "overview", "ownership", "patterns", "persistence", "pets", "pitch", "plan-execute-verify",
+    "plans", "principles", "problem-solving", "profiling", "progressive-disclosure",
+    "prompt-engineering", "projects", "python", "quality", "reflection", "reporting",
+    "repository", "research", "return", "rules", "saas", "scenarios", "sdk", "search",
+    "self-assessment", "self-correction", "seniors", "seo", "session", "shared-memory",
+    "skill-design", "skills", "sonnet", "specialist", "steuer", "style", "synchronization",
+    "synergies", "synthesis", "system", "task-decomposition", "tax-optimization", "templates",
+    "testing", "tools", "trial", "triggers", "ultrathink", "validation", "validator",
+    "verification", "workflows"
+  ]
+}

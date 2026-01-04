@@ -1,6 +1,6 @@
 ---
 description: Arbeite an einer Idee (Sparring Session)
-model: opusplan
+model: opus
 argument-hint: [optional: idea-id oder Filter]
 ---
 
@@ -83,11 +83,80 @@ Session-Modus für "{Titel}":
 
 [1] Brainstorming - Idee erweitern & neue Aspekte finden
 [2] Validierung - Kritisch hinterfragen & Schwächen identifizieren
-[3] Konkretisierung - Von Idee zu konkretem Umsetzungsplan
+[3] Konkretisierung (PEV) - Von Idee zu konkretem Umsetzungsplan mit Plan-Execute-Verify
 [4] Problemlösung - Spezifisches Problem/Blocker bearbeiten
 [5] Freies Sparring - Du sagst mir was du tun willst
 
 Wähle einen Modus:
+```
+
+## PEV-Struktur (Plan-Execute-Verify)
+
+Für robustere Sessions nutzen wir das PEV-Pattern:
+
+```
+┌─────────────────────────────────────────────────┐
+│                  PEV CYCLE                       │
+│                                                  │
+│  PLAN → EXECUTE → VERIFY → (REPLAN wenn nötig)  │
+└─────────────────────────────────────────────────┘
+```
+
+### Bei Session-Start: PLAN Phase
+
+```xml
+<session_plan>
+  <objectives>
+    <primary>Was ist das Hauptziel dieser Session?</primary>
+    <secondary>Welche Nebenziele gibt es?</secondary>
+  </objectives>
+  <steps>
+    <step id="1" agent="context-manager">Kontext laden & verifizieren</step>
+    <step id="2" agent="{mode-specific}">Agent-gestützte Analyse</step>
+    <step id="3" agent="idea-connector">Verbindungen prüfen</step>
+    <step id="4">Session dokumentieren</step>
+  </steps>
+  <success_criteria>
+    - Mindestens 3 neue Insights
+    - Konkrete nächste Schritte definiert
+    - Fortschritt dokumentiert
+  </success_criteria>
+</session_plan>
+```
+
+### Nach jedem Schritt: VERIFY
+
+```xml
+<verification step="{current}">
+  <expected>{step.expected_output}</expected>
+  <actual>{step.actual_output}</actual>
+  <check>
+    - Qualität ausreichend? [ja/nein]
+    - Ziel erreicht? [ja/nein]
+    - Probleme aufgetreten? [beschreibung]
+  </check>
+  <decision>
+    IF quality_ok AND goal_reached → CONTINUE to next step
+    ELIF minor_issues → REFINE current step output
+    ELSE → REPLAN (adjust remaining steps)
+  </decision>
+</verification>
+```
+
+### Bei Problemen: REPLAN
+
+```xml
+<replan trigger="{verification_failure}">
+  <issue>{was ist schief gelaufen}</issue>
+  <adjustment>
+    - Anderen Agent hinzuziehen?
+    - Schritt aufteilen?
+    - Ziel anpassen?
+  </adjustment>
+  <new_steps>
+    <!-- Aktualisierte Schritte -->
+  </new_steps>
+</replan>
 ```
 
 ## Schritt 4: Multi-Agent Sparring Session durchführen
@@ -134,11 +203,47 @@ Wähle einen Modus:
    - Prüfung gegen Best Practices
    - Entwicklung von Risk-Mitigation-Strategien
 
-### Modus: Konkretisierung
+### Modus: Konkretisierung (PEV-Enhanced)
+
+**Dieser Modus nutzt explizit das Plan-Execute-Verify Pattern für robuste Planung.**
 
 **Agent-Support**: @idea-validator-agent + @idea-expander-agent
 
-**Validator Input**:
+#### PLAN Phase
+
+```xml
+<konkretisierung_plan>
+  <goal>Von Idee zu konkretem, umsetzbarem Plan</goal>
+  <steps>
+    <step id="1" agent="idea-validator">
+      <objective>Feasibility & Resource Assessment</objective>
+      <expected_output>Validation Report mit Go/No-Go Empfehlung</expected_output>
+    </step>
+    <step id="2" agent="idea-expander" depends_on="1">
+      <objective>MVP Features & Phasen definieren</objective>
+      <expected_output>Feature-Liste mit Priorisierung</expected_output>
+    </step>
+    <step id="3" depends_on="1,2">
+      <objective>Timeline & Milestones erstellen</objective>
+      <expected_output>Realistischer Zeitplan</expected_output>
+    </step>
+    <step id="4" depends_on="3">
+      <objective>Konkrete nächste Schritte definieren</objective>
+      <expected_output>Actionable Task-Liste</expected_output>
+    </step>
+  </steps>
+  <success_criteria>
+    - Feasibility Score >= 7/10
+    - MVP klar definiert
+    - Timeline realistisch (User bestätigt)
+    - Mindestens 5 konkrete nächste Schritte
+  </success_criteria>
+</konkretisierung_plan>
+```
+
+#### EXECUTE Phase
+
+**Step 1: Validator**
 ```json
 {
   "idea_data": {idea_object},
@@ -148,24 +253,55 @@ Wähle einen Modus:
 }
 ```
 
-**Expander Input**:
+**→ VERIFY Step 1**:
+```
+Feasibility Score: {score}/10
+Resources identified: [ja/nein]
+Blockers: {liste}
+
+IF score < 7 → REPLAN: Scope reduzieren oder Blocker adressieren
+ELSE → CONTINUE
+```
+
+**Step 2: Expander**
 ```json
 {
   "idea_data": {idea_object},
   "expansion_dimensions": ["mvp-features", "implementation-phases"],
-  "constraints": {"focus": "concrete_plan"},
+  "constraints": {"focus": "concrete_plan", "feasibility_input": "{step1_output}"},
   "context_refs": [context_from_step_2_5]
 }
 ```
 
-**Workflow**:
-1. Validator Agent prüft Feasibility & Resource Requirements
-2. Expander Agent schlägt konkrete Features & Phasen vor
-3. Du nutzt Agent-Outputs für:
-   - Entwicklung konkreten Umsetzungsplan
-   - Definition realistischer Meilensteine
-   - Ressourcen-Bedarf & Timeline-Estimation
-   - MVP-Planning basierend auf Validation
+**→ VERIFY Step 2**:
+```
+Features priorisiert: [ja/nein]
+MVP scope klar: [ja/nein]
+Passt zu Resources: [ja/nein]
+
+IF mvp_unclear → REFINE: Feature-Scope mit User klären
+ELSE → CONTINUE
+```
+
+**Step 3 & 4**: Timeline & Action Items mit User-Validation
+
+#### VERIFY Phase (Session-Ende)
+
+```xml
+<session_verification>
+  <criteria_check>
+    □ Feasibility Score >= 7/10: {status}
+    □ MVP klar definiert: {status}
+    □ Timeline realistisch: {status}
+    □ 5+ konkrete nächste Schritte: {status}
+  </criteria_check>
+  <overall_success>{alle_criteria_erfüllt}</overall_success>
+  <if_not_success>
+    <missing>{was fehlt}</missing>
+    <recommendation>Nächste Session fokussieren auf: {missing}</recommendation>
+  </if_not_success>
+</session_verification>
+```
 
 ### Modus: Problemlösung
 

@@ -1,0 +1,48 @@
+{
+  "name": "{PROJECT_ID}",
+  "display_name": "{PROJECT_NAME}",
+  "description": "{DESCRIPTION}",
+  "version": "1.0.0",
+  "created": "{DATE}",
+
+  "generated": {
+    "source": "Evolving System-Builder",
+    "blueprint": "{BLUEPRINT_ID}",
+    "blueprint_version": "{BLUEPRINT_VERSION}",
+    "date": "{DATE}"
+  },
+
+  "domain": "{DOMAIN}",
+
+  "architecture": {
+    "pattern": "{ARCHITECTURE_PATTERN}",
+    "coordination": "orchestrated"
+  },
+
+  "model_tiers": {
+    "tier1": {
+      "model": "opus",
+      "agents": {TIER1_AGENTS}
+    },
+    "tier2": {
+      "model": "sonnet",
+      "agents": {TIER2_AGENTS}
+    },
+    "tier3": {
+      "model": "haiku",
+      "agents": {TIER3_AGENTS}
+    }
+  },
+
+  "components": {
+    "agents": {AGENT_IDS},
+    "commands": {COMMAND_IDS}
+  },
+
+  "knowledge_injection": {
+    "patterns": {INJECTED_PATTERNS},
+    "source_system": "Evolving"
+  },
+
+  "status": "active"
+}

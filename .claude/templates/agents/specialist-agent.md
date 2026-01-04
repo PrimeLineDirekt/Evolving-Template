@@ -277,6 +277,47 @@ Generate the following structured report:
 
 ---
 
+## Context Awareness
+
+**Source**: Agent-Skills-for-Context-Engineering, Context Optimization Rule
+
+### Token Budget Management
+
+| Context Type | Max Tokens | When to Load |
+|-------------|------------|--------------|
+| Input Data | Unlimited | Always |
+| Domain Memory | 2K | If project-relevant |
+| Related Patterns | 1K | If task matches |
+| Past Experiences | 500 | If error/decision |
+
+### Degradation Prevention
+
+**4-Bucket Framework** for context management:
+
+1. **WRITE**: Optimize input descriptions for clarity
+2. **SELECT**: Only load top-3 most relevant sources
+3. **COMPRESS**: Summarize verbose data before processing
+4. **ISOLATE**: Use clear section markers
+
+### Context Loading Priority
+
+```
+1. Input Data → Always (primary)
+2. Agent Context → Always (execution params)
+3. Domain Memory → If needed (project state)
+4. Patterns → Sparingly (max 2 relevant)
+5. Experiences → Only on error/decision
+```
+
+### Counterintuitive Rule
+
+> "A single irrelevant context chunk triggers degradation!"
+
+**Prefer**: Minimal, focused context
+**Avoid**: Loading everything "just in case"
+
+---
+
 ## Error Handling
 
 ### Incomplete Input Data

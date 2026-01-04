@@ -1,0 +1,2118 @@
+{
+  "version": "1.1",
+  "generated": "2026-01-01T12:00:00Z",
+  "count": 183,
+  "nodes": [
+    {
+      "id": "agent-context-manager",
+      "type": "agent",
+      "name": "Context Manager Agent",
+      "path": ".claude/agents/context-manager-agent.md",
+      "domain": [
+        "context-management",
+        "coordination",
+        "persistence"
+      ],
+      "description": "Context sharing, persistence, coordination"
+    },
+    {
+      "id": "agent-knowledge-synthesizer",
+      "type": "agent",
+      "name": "Knowledge Synthesizer Agent",
+      "path": ".claude/agents/knowledge-synthesizer-agent.md",
+      "domain": [
+        "knowledge",
+        "synthesis",
+        "multi-source"
+      ],
+      "description": "Multi-source integration, pattern recognition"
+    },
+    {
+      "id": "agent-research-analyst",
+      "type": "agent",
+      "name": "Research Analyst Agent",
+      "path": ".claude/agents/research-analyst-agent.md",
+      "domain": [
+        "research",
+        "analysis",
+        "confidence-scoring"
+      ],
+      "description": "Multi-source research with confidence scoring"
+    },
+    {
+      "id": "agent-idea-validator",
+      "type": "agent",
+      "name": "Idea Validator Agent",
+      "path": ".claude/agents/idea-validator-agent.md",
+      "domain": [
+        "idea-management",
+        "validation",
+        "feasibility"
+      ],
+      "description": "Feasibility, market, technical assessment"
+    },
+    {
+      "id": "agent-idea-expander",
+      "type": "agent",
+      "name": "Idea Expander Agent",
+      "path": ".claude/agents/idea-expander-agent.md",
+      "domain": [
+        "idea-management",
+        "expansion",
+        "opportunities"
+      ],
+      "description": "Opportunity discovery, feature generation"
+    },
+    {
+      "id": "agent-idea-connector",
+      "type": "agent",
+      "name": "Idea Connector Agent",
+      "path": ".claude/agents/idea-connector-agent.md",
+      "domain": [
+        "idea-management",
+        "synergies",
+        "connections"
+      ],
+      "description": "Cross-idea synergy discovery"
+    },
+    {
+      "id": "agent-codebase-analyzer",
+      "type": "agent",
+      "name": "Codebase Analyzer Agent",
+      "path": ".claude/agents/codebase-analyzer-agent.md",
+      "domain": [
+        "codebase",
+        "analysis",
+        "architecture"
+      ],
+      "description": "External codebase analysis, n8n detection"
+    },
+    {
+      "id": "agent-n8n-expert",
+      "type": "agent",
+      "name": "n8n Expert Agent",
+      "path": ".claude/agents/n8n-expert-agent.md",
+      "domain": [
+        "n8n",
+        "workflows",
+        "automation"
+      ],
+      "description": "n8n workflow analysis, optimization"
+    },
+    {
+      "id": "agent-github-repo-analyzer",
+      "type": "agent",
+      "name": "GitHub Repo Analyzer Agent",
+      "path": ".claude/agents/github-repo-analyzer-agent.md",
+      "domain": [
+        "github",
+        "repository",
+        "analysis"
+      ],
+      "description": "GitHub repository analysis with dual-system mapping"
+    },
+    {
+      "id": "agent-model-selector",
+      "type": "agent",
+      "name": "Model Selector Agent",
+      "path": ".claude/agents/model-selector-agent.md",
+      "domain": [
+        "model-selection",
+        "metacognitive",
+        "optimization"
+      ],
+      "description": "Metacognitive self-assessment for model selection"
+    },
+    {
+      "id": "agent-pitch-document-analyzer",
+      "type": "agent",
+      "name": "Pitch Document Analyzer Agent",
+      "path": ".claude/agents/pitch-document-analyzer-agent.md",
+      "domain": [
+        "pitch",
+        "documents",
+        "analysis"
+      ],
+      "description": "Technical documentation analysis"
+    },
+    {
+      "id": "agent-pitch-content-categorizer",
+      "type": "agent",
+      "name": "Pitch Content Categorizer Agent",
+      "path": ".claude/agents/pitch-content-categorizer-agent.md",
+      "domain": [
+        "pitch",
+        "categorization",
+        "knowledge-base"
+      ],
+      "description": "KB categorization for pitch content"
+    },
+    {
+      "id": "agent-pitch-style-extractor",
+      "type": "agent",
+      "name": "Pitch Style Extractor Agent",
+      "path": ".claude/agents/pitch-style-extractor-agent.md",
+      "domain": [
+        "pitch",
+        "style",
+        "extraction"
+      ],
+      "description": "Style extraction from PPTX"
+    },
+    {
+      "id": "skill-template-creator",
+      "type": "skill",
+      "name": "Template Creator",
+      "path": ".claude/skills/template-creator/",
+      "domain": [
+        "templates",
+        "creation",
+        "agents",
+        "commands"
+      ],
+      "description": "Template creation for Agents, Commands, Hooks, Skills"
+    },
+    {
+      "id": "skill-prompt-pro-framework",
+      "type": "skill",
+      "name": "Prompt Pro Framework",
+      "path": ".claude/skills/prompt-pro-framework/",
+      "domain": [
+        "prompt-engineering",
+        "optimization",
+        "framework"
+      ],
+      "description": "5-Level Prompt Engineering System"
+    },
+    {
+      "id": "skill-research-orchestrator",
+      "type": "skill",
+      "name": "Research Orchestrator",
+      "path": ".claude/skills/research-orchestrator/",
+      "domain": [
+        "research",
+        "orchestration",
+        "confidence-scoring"
+      ],
+      "description": "Multi-domain research with confidence scoring"
+    },
+    {
+      "id": "skill-etsy-poster-creator",
+      "type": "skill",
+      "name": "Etsy Poster Creator",
+      "path": ".claude/skills/etsy-poster-creator/",
+      "domain": [
+        "etsy",
+        "seo",
+        "e-commerce",
+        "listings"
+      ],
+      "description": "Viral-optimized Etsy Listings with SEO"
+    },
+    {
+      "id": "skill-subagent-driven-development",
+      "type": "skill",
+      "name": "Subagent Driven Development",
+      "path": ".claude/skills/subagent-driven-development/",
+      "domain": [
+        "development",
+        "orchestration",
+        "review"
+      ],
+      "description": "Execute implementation plans with systematic review"
+    },
+    {
+      "id": "command-opus",
+      "type": "command",
+      "name": "/opus",
+      "path": ".claude/commands/opus.md",
+      "domain": [
+        "model-selection"
+      ],
+      "description": "Switch to Opus (maximum quality)"
+    },
+    {
+      "id": "command-opus-plus",
+      "type": "command",
+      "name": "/opus+",
+      "path": ".claude/commands/opus+.md",
+      "domain": [
+        "model-selection",
+        "ultrathink"
+      ],
+      "description": "Opus with Extended Thinking"
+    },
+    {
+      "id": "command-sonnet",
+      "type": "command",
+      "name": "/sonnet",
+      "path": ".claude/commands/sonnet.md",
+      "domain": [
+        "model-selection"
+      ],
+      "description": "Switch to Sonnet (balanced)"
+    },
+    {
+      "id": "command-haiku",
+      "type": "command",
+      "name": "/haiku",
+      "path": ".claude/commands/haiku.md",
+      "domain": [
+        "model-selection"
+      ],
+      "description": "Switch to Haiku (fast & cheap)"
+    },
+    {
+      "id": "command-sparring",
+      "type": "command",
+      "name": "/sparring",
+      "path": ".claude/commands/sparring.md",
+      "domain": [
+        "brainstorming",
+        "ideation"
+      ],
+      "description": "Freies Brainstorming mit 7 Modi"
+    },
+    {
+      "id": "command-idea-new",
+      "type": "command",
+      "name": "/idea-new",
+      "path": ".claude/commands/idea-new.md",
+      "domain": [
+        "idea-management",
+        "creation"
+      ],
+      "description": "Neue Idee mit KI-Analyse erfassen"
+    },
+    {
+      "id": "command-idea-work",
+      "type": "command",
+      "name": "/idea-work",
+      "path": ".claude/commands/idea-work.md",
+      "domain": [
+        "idea-management",
+        "sparring"
+      ],
+      "description": "An bestehender Idee arbeiten"
+    },
+    {
+      "id": "command-idea-list",
+      "type": "command",
+      "name": "/idea-list",
+      "path": ".claude/commands/idea-list.md",
+      "domain": [
+        "idea-management",
+        "overview"
+      ],
+      "description": "Ideen-\u00dcbersicht mit Filtern"
+    },
+    {
+      "id": "command-idea-connect",
+      "type": "command",
+      "name": "/idea-connect",
+      "path": ".claude/commands/idea-connect.md",
+      "domain": [
+        "idea-management",
+        "synergies"
+      ],
+      "description": "Synergien zwischen Ideen finden"
+    },
+    {
+      "id": "command-knowledge-add",
+      "type": "command",
+      "name": "/knowledge-add",
+      "path": ".claude/commands/knowledge-add.md",
+      "domain": [
+        "knowledge",
+        "creation"
+      ],
+      "description": "Wissen zur KB hinzufuegen"
+    },
+    {
+      "id": "command-knowledge-search",
+      "type": "command",
+      "name": "/knowledge-search",
+      "path": ".claude/commands/knowledge-search.md",
+      "domain": [
+        "knowledge",
+        "search"
+      ],
+      "description": "Semantische KB-Suche"
+    },
+    {
+      "id": "command-project-add",
+      "type": "command",
+      "name": "/project-add",
+      "path": ".claude/commands/project-add.md",
+      "domain": [
+        "projects",
+        "documentation"
+      ],
+      "description": "Projekt in KB dokumentieren"
+    },
+    {
+      "id": "command-project-analyze",
+      "type": "command",
+      "name": "/project-analyze",
+      "path": ".claude/commands/project-analyze.md",
+      "domain": [
+        "projects",
+        "codebase",
+        "analysis"
+      ],
+      "description": "Externe Codebase analysieren"
+    },
+    {
+      "id": "command-analyze-repo",
+      "type": "command",
+      "name": "/analyze-repo",
+      "path": ".claude/commands/analyze-repo.md",
+      "domain": [
+        "github",
+        "analysis",
+        "integration"
+      ],
+      "description": "GitHub Repo mit System-Mapping analysieren"
+    },
+    {
+      "id": "command-inbox-process",
+      "type": "command",
+      "name": "/inbox-process",
+      "path": ".claude/commands/inbox-process.md",
+      "domain": [
+        "automation",
+        "inbox"
+      ],
+      "description": "Inbox automatisch verarbeiten"
+    },
+    {
+      "id": "command-onboard-process",
+      "type": "command",
+      "name": "/onboard-process",
+      "path": ".claude/commands/onboard-process.md",
+      "domain": [
+        "onboarding",
+        "automation"
+      ],
+      "description": "Onboarding-Fragebogen verarbeiten"
+    },
+    {
+      "id": "command-debug",
+      "type": "command",
+      "name": "/debug",
+      "path": ".claude/commands/debug.md",
+      "domain": [
+        "debugging",
+        "problem-solving"
+      ],
+      "description": "Systematisches Debugging"
+    },
+    {
+      "id": "command-think",
+      "type": "command",
+      "name": "/think",
+      "path": ".claude/commands/think.md",
+      "domain": [
+        "mental-models",
+        "frameworks"
+      ],
+      "description": "Mental Models anwenden (8 Frameworks)"
+    },
+    {
+      "id": "command-create-agent",
+      "type": "command",
+      "name": "/create-agent",
+      "path": ".claude/commands/create-agent.md",
+      "domain": [
+        "agent-design",
+        "creation"
+      ],
+      "description": "Agent aus Template erstellen"
+    },
+    {
+      "id": "command-create-command",
+      "type": "command",
+      "name": "/create-command",
+      "path": ".claude/commands/create-command.md",
+      "domain": [
+        "command-design",
+        "creation"
+      ],
+      "description": "Command aus Template erstellen"
+    },
+    {
+      "id": "command-create-hook",
+      "type": "command",
+      "name": "/create-hook",
+      "path": ".claude/commands/create-hook.md",
+      "domain": [
+        "hooks",
+        "creation"
+      ],
+      "description": "Hook aus Template erstellen"
+    },
+    {
+      "id": "command-create-skill",
+      "type": "command",
+      "name": "/create-skill",
+      "path": ".claude/commands/create-skill.md",
+      "domain": [
+        "skill-design",
+        "creation"
+      ],
+      "description": "Skill aus Template erstellen"
+    },
+    {
+      "id": "command-create-prompt",
+      "type": "command",
+      "name": "/create-prompt",
+      "path": ".claude/commands/create-prompt.md",
+      "domain": [
+        "prompt-engineering",
+        "creation"
+      ],
+      "description": "Optimierten Prompt erstellen & speichern"
+    },
+    {
+      "id": "command-run-prompt",
+      "type": "command",
+      "name": "/run-prompt",
+      "path": ".claude/commands/run-prompt.md",
+      "domain": [
+        "prompt-engineering",
+        "execution"
+      ],
+      "description": "Gespeicherte Prompts ausfuehren"
+    },
+    {
+      "id": "command-system-health",
+      "type": "command",
+      "name": "/system-health",
+      "path": ".claude/commands/system-health.md",
+      "domain": [
+        "system",
+        "diagnostics"
+      ],
+      "description": "System-Diagnostik"
+    },
+    {
+      "id": "command-scenario",
+      "type": "command",
+      "name": "/scenario",
+      "path": ".claude/commands/scenario.md",
+      "domain": [
+        "scenarios",
+        "activation"
+      ],
+      "description": "Szenario aktivieren"
+    },
+    {
+      "id": "command-scenario-list",
+      "type": "command",
+      "name": "/scenario-list",
+      "path": ".claude/commands/scenario-list.md",
+      "domain": [
+        "scenarios",
+        "overview"
+      ],
+      "description": "Szenarien anzeigen"
+    },
+    {
+      "id": "command-scenario-create",
+      "type": "command",
+      "name": "/scenario-create",
+      "path": ".claude/commands/scenario-create.md",
+      "domain": [
+        "scenarios",
+        "creation"
+      ],
+      "description": "Neues Szenario erstellen"
+    },
+    {
+      "id": "command-scenario-edit",
+      "type": "command",
+      "name": "/scenario-edit",
+      "path": ".claude/commands/scenario-edit.md",
+      "domain": [
+        "scenarios",
+        "editing"
+      ],
+      "description": "Szenario bearbeiten"
+    },
+    {
+      "id": "command-whats-next",
+      "type": "command",
+      "name": "/whats-next",
+      "path": ".claude/commands/whats-next.md",
+      "domain": [
+        "session",
+        "handoff"
+      ],
+      "description": "Session-Handoff erstellen"
+    },
+    {
+      "id": "command-auto-model",
+      "type": "command",
+      "name": "/auto-model",
+      "path": ".claude/commands/auto-model.md",
+      "domain": [
+        "model-selection",
+        "automation"
+      ],
+      "description": "Automatische Model-Auswahl"
+    },
+    {
+      "id": "command-run-workflow",
+      "type": "command",
+      "name": "/run-workflow",
+      "path": ".claude/commands/run-workflow.md",
+      "domain": [
+        "workflows",
+        "execution"
+      ],
+      "description": "Workflow ausfuehren"
+    },
+    {
+      "id": "command-analyze-pitch-docs",
+      "type": "command",
+      "name": "/analyze-pitch-docs",
+      "path": ".claude/commands/analyze-pitch-docs.md",
+      "domain": [
+        "pitch",
+        "analysis"
+      ],
+      "description": "Pitch-Dokumente analysieren"
+    },
+    {
+      "id": "hook-auto-cross-reference",
+      "type": "hook",
+      "name": "Auto Cross-Reference Hook",
+      "path": ".claude/hooks/auto-cross-reference.sh",
+      "domain": [
+        "cross-reference",
+        "automation"
+      ],
+      "description": "Master-Dokumente synchronisieren"
+    },
+    {
+      "id": "hook-session-summary",
+      "type": "hook",
+      "name": "Session Summary Hook",
+      "path": ".claude/hooks/session-summary.sh",
+      "domain": [
+        "session",
+        "documentation"
+      ],
+      "description": "Session-Dokumentation erstellen"
+    },
+    {
+      "id": "hook-context-monitor",
+      "type": "hook",
+      "name": "Context Monitor Hook",
+      "path": ".claude/hooks/context-monitor.sh",
+      "domain": [
+        "context",
+        "monitoring"
+      ],
+      "description": "Session-Kosten & Dauer anzeigen"
+    },
+    {
+      "id": "rule-core-principles",
+      "type": "rule",
+      "name": "Core Principles",
+      "path": ".claude/rules/core-principles.md",
+      "domain": [
+        "principles",
+        "guidelines"
+      ],
+      "description": "AI-First, Sparring, 80/20, Chain of Thought"
+    },
+    {
+      "id": "rule-cross-reference-sync",
+      "type": "rule",
+      "name": "Cross-Reference Sync",
+      "path": ".claude/rules/cross-reference-sync.md",
+      "domain": [
+        "cross-reference",
+        "synchronization"
+      ],
+      "description": "5 Master-Dokumente synchron halten"
+    },
+    {
+      "id": "rule-plan-archival",
+      "type": "rule",
+      "name": "Plan Archival",
+      "path": ".claude/rules/plan-archival.md",
+      "domain": [
+        "plans",
+        "archival"
+      ],
+      "description": "Plan-Archivierung Workflow"
+    },
+    {
+      "id": "rule-workflow-detection",
+      "type": "rule",
+      "name": "Workflow Detection",
+      "path": ".claude/rules/workflow-detection.md",
+      "domain": [
+        "workflows",
+        "detection"
+      ],
+      "description": "Confidence-basierte Slash-Command Erkennung"
+    },
+    {
+      "id": "rule-command-creation",
+      "type": "rule",
+      "name": "Command Creation",
+      "path": ".claude/rules/command-creation.md",
+      "domain": [
+        "commands",
+        "creation"
+      ],
+      "description": "Neue Commands korrekt erstellen"
+    },
+    {
+      "id": "rule-scenario-agents",
+      "type": "rule",
+      "name": "Scenario Agents",
+      "path": ".claude/rules/scenario-agents.md",
+      "domain": [
+        "scenarios",
+        "agents"
+      ],
+      "description": "Agent-Nutzung in Szenarien"
+    },
+    {
+      "id": "rule-knowledge-linking",
+      "type": "rule",
+      "name": "Knowledge Linking",
+      "path": ".claude/rules/knowledge-linking.md",
+      "domain": [
+        "knowledge",
+        "linking"
+      ],
+      "description": "Proaktive Wissensvernetzung"
+    },
+    {
+      "id": "rule-domain-memory-bootup",
+      "type": "rule",
+      "name": "Domain Memory Bootup",
+      "path": ".claude/rules/domain-memory-bootup.md",
+      "domain": [
+        "memory",
+        "bootup",
+        "session"
+      ],
+      "description": "Session-Start mit Memory laden"
+    },
+    {
+      "id": "scenario-evolving-dashboard",
+      "type": "scenario",
+      "name": "Evolving Dashboard",
+      "path": ".claude/scenarios/evolving-dashboard/",
+      "domain": [
+        "dashboard",
+        "frontend",
+        "backend"
+      ],
+      "description": "TileGrid-Guide + Chat Panel (v2.0.0)"
+    },
+    {
+      "id": "scenario-steuererklaerung-2024",
+      "type": "scenario",
+      "name": "Steuererklarung 2024",
+      "path": ".claude/scenarios/steuererklaerung-2024/",
+      "domain": [
+        "steuer",
+        "legal",
+        "advisory"
+      ],
+      "description": "Experten-Team fuer Steuererklarung 2024"
+    },
+    {
+      "id": "scenario-workflow-engine",
+      "type": "scenario",
+      "name": "Workflow Engine",
+      "path": ".claude/scenarios/workflow-engine/",
+      "domain": [
+        "workflows",
+        "sdk",
+        "automation"
+      ],
+      "description": "Claude Agent SDK Implementation"
+    },
+    {
+      "id": "pattern-research-confidence-scoring",
+      "type": "pattern",
+      "name": "Research Confidence Scoring",
+      "path": "knowledge/patterns/research-confidence-scoring.md",
+      "domain": [
+        "research",
+        "confidence-scoring"
+      ],
+      "description": "Multi-source research with confidence tiers"
+    },
+    {
+      "id": "pattern-bilingual-seo",
+      "type": "pattern",
+      "name": "Bilingual SEO System",
+      "path": "knowledge/patterns/bilingual-seo-system.md",
+      "domain": [
+        "seo",
+        "bilingual",
+        "e-commerce"
+      ],
+      "description": "EN/DE SEO optimization"
+    },
+    {
+      "id": "pattern-freemium-saas-gates",
+      "type": "pattern",
+      "name": "Freemium SaaS Gates",
+      "path": "knowledge/patterns/freemium-saas-gates.md",
+      "domain": [
+        "saas",
+        "freemium",
+        "business"
+      ],
+      "description": "Freemium model gates and conversion"
+    },
+    {
+      "id": "pattern-intake-gate",
+      "type": "pattern",
+      "name": "Intake Gate Pattern",
+      "path": "knowledge/patterns/intake-gate-pattern.md",
+      "domain": [
+        "validation",
+        "commands"
+      ],
+      "description": "Input validation before execution"
+    },
+    {
+      "id": "pattern-task-decomposition",
+      "type": "pattern",
+      "name": "Task Decomposition Pipeline",
+      "path": "knowledge/patterns/task-decomposition-pipeline.md",
+      "domain": [
+        "orchestration",
+        "decomposition"
+      ],
+      "description": "Breaking complex tasks into steps"
+    },
+    {
+      "id": "pattern-multi-agent-orchestration",
+      "type": "pattern",
+      "name": "Multi-Agent Orchestration",
+      "path": "knowledge/patterns/multi-agent-orchestration.md",
+      "domain": [
+        "multi-agent",
+        "orchestration"
+      ],
+      "description": "Coordinating multiple agents"
+    },
+    {
+      "id": "pattern-pev",
+      "type": "pattern",
+      "name": "PEV Pattern",
+      "path": "knowledge/patterns/pev-pattern.md",
+      "domain": [
+        "plan-execute-verify",
+        "self-correction"
+      ],
+      "description": "Plan-Execute-Verify with self-correction"
+    },
+    {
+      "id": "pattern-blackboard",
+      "type": "pattern",
+      "name": "Blackboard Pattern",
+      "path": "knowledge/patterns/blackboard-pattern.md",
+      "domain": [
+        "coordination",
+        "shared-memory"
+      ],
+      "description": "Shared memory + controller coordination"
+    },
+    {
+      "id": "pattern-metacognitive",
+      "type": "pattern",
+      "name": "Metacognitive Pattern",
+      "path": "knowledge/patterns/metacognitive-pattern.md",
+      "domain": [
+        "metacognitive",
+        "self-assessment"
+      ],
+      "description": "Self-assessment before actions"
+    },
+    {
+      "id": "pattern-reflection",
+      "type": "pattern",
+      "name": "Reflection Pattern",
+      "path": "knowledge/patterns/reflection-pattern.md",
+      "domain": [
+        "reflection",
+        "quality"
+      ],
+      "description": "Generator-Critic-Refiner loop"
+    },
+    {
+      "id": "pattern-checkpoint-validation",
+      "type": "pattern",
+      "name": "Checkpoint Validation Pattern",
+      "path": "knowledge/patterns/checkpoint-validation-pattern.md",
+      "domain": [
+        "validation",
+        "checkpoints"
+      ],
+      "description": "Validation at key checkpoints"
+    },
+    {
+      "id": "pattern-context-window-ownership",
+      "type": "pattern",
+      "name": "Context Window Ownership Pattern",
+      "path": "knowledge/patterns/context-window-ownership-pattern.md",
+      "domain": [
+        "context",
+        "ownership"
+      ],
+      "description": "Agent owns and manages context window"
+    },
+    {
+      "id": "pattern-compact-errors",
+      "type": "pattern",
+      "name": "Compact Errors Pattern",
+      "path": "knowledge/patterns/compact-errors-pattern.md",
+      "domain": [
+        "errors",
+        "formatting"
+      ],
+      "description": "Structured error representation"
+    },
+    {
+      "id": "pattern-8-block-profile",
+      "type": "pattern",
+      "name": "8-Block Profile System",
+      "path": "knowledge/patterns/8-block-profile-system.md",
+      "domain": [
+        "profiles",
+        "data-structure"
+      ],
+      "description": "Structured profile blocks"
+    },
+    {
+      "id": "pattern-gdpr-compliant-saas",
+      "type": "pattern",
+      "name": "GDPR Compliant SaaS",
+      "path": "knowledge/patterns/gdpr-compliant-saas.md",
+      "domain": [
+        "gdpr",
+        "legal",
+        "saas"
+      ],
+      "description": "GDPR-compliant SaaS architecture"
+    },
+    {
+      "id": "pattern-ai-content-pipeline",
+      "type": "pattern",
+      "name": "AI Content Generation Pipeline",
+      "path": "knowledge/patterns/ai-content-generation-pipeline.md",
+      "domain": [
+        "content",
+        "ai",
+        "automation"
+      ],
+      "description": "Automated AI content generation"
+    },
+    {
+      "id": "learning-ai-poster-hub",
+      "type": "learning",
+      "name": "AI Poster Hub Learnings",
+      "path": "knowledge/learnings/ai-poster-hub-learnings.md",
+      "domain": [
+        "etsy",
+        "ai",
+        "posters"
+      ],
+      "description": "Learnings from AI Poster Creation Hub"
+    },
+    {
+      "id": "learning-ki-auswanderungs-berater",
+      "type": "learning",
+      "name": "KI Auswanderungs-Berater Learnings",
+      "path": "knowledge/learnings/ki-auswanderungs-berater-learnings.md",
+      "domain": [
+        "auswanderung",
+        "n8n"
+      ],
+      "description": "Learnings from v1 (n8n)"
+    },
+    {
+      "id": "learning-{PROJECT_ID}",
+      "type": "learning",
+      "name": "{PROJECT} v2 Learnings",
+      "path": "knowledge/learnings/{PROJECT_ID}-learnings.md",
+      "domain": [
+        "auswanderung",
+        "python",
+        "langgraph"
+      ],
+      "description": "Learnings from v2.1 Resilient Orchestrator"
+    },
+    {
+      "id": "learning-aitmpl-findings",
+      "type": "learning",
+      "name": "AITMPL Findings",
+      "path": "knowledge/learnings/aitmpl-findings.md",
+      "domain": [
+        "templates",
+        "findings"
+      ],
+      "description": "AI Template findings and patterns"
+    },
+    {
+      "id": "learning-anthropic-tool-use",
+      "type": "learning",
+      "name": "Anthropic Advanced Tool Use",
+      "path": "knowledge/learnings/anthropic-advanced-tool-use.md",
+      "domain": [
+        "anthropic",
+        "tools",
+        "best-practices"
+      ],
+      "description": "Advanced tool use patterns"
+    },
+    {
+      "id": "learning-better-agents-patterns",
+      "type": "learning",
+      "name": "Better Agents Patterns",
+      "path": "knowledge/learnings/better-agents-patterns.md",
+      "domain": [
+        "agents",
+        "patterns"
+      ],
+      "description": "Agent design patterns from langwatch"
+    },
+    {
+      "id": "learning-agentic-architectures",
+      "type": "learning",
+      "name": "Agentic Architectures Patterns",
+      "path": "knowledge/learnings/agentic-architectures-patterns.md",
+      "domain": [
+        "architecture",
+        "agents"
+      ],
+      "description": "Agentic system architectures"
+    },
+    {
+      "id": "learning-12-factor-agents",
+      "type": "learning",
+      "name": "12-Factor Agents Framework",
+      "path": "knowledge/learnings/12-factor-agents-framework.md",
+      "domain": [
+        "agents",
+        "framework",
+        "best-practices"
+      ],
+      "description": "12 principles for agent design"
+    },
+    {
+      "id": "learning-claude-sdk-insights",
+      "type": "learning",
+      "name": "Claude Agent SDK Insights",
+      "path": "knowledge/learnings/claude-agent-sdk-insights.md",
+      "domain": [
+        "claude",
+        "sdk",
+        "agents"
+      ],
+      "description": "Claude Agent SDK patterns"
+    },
+    {
+      "id": "learning-acontext-skill-distillation",
+      "type": "learning",
+      "name": "Acontext Automatic Skill Distillation",
+      "path": "knowledge/learnings/acontext-automatic-skill-distillation.md",
+      "domain": [
+        "skills",
+        "automation"
+      ],
+      "description": "Automatic skill extraction"
+    },
+    {
+      "id": "learning-copilotkit-evaluation",
+      "type": "learning",
+      "name": "CopilotKit Evaluation",
+      "path": "knowledge/learnings/copilotkit-evaluation.md",
+      "domain": [
+        "copilotkit",
+        "evaluation"
+      ],
+      "description": "CopilotKit framework evaluation"
+    },
+    {
+      "id": "learning-domain-memory-pattern",
+      "type": "learning",
+      "name": "Domain Memory Pattern",
+      "path": "knowledge/learnings/domain-memory-pattern.md",
+      "domain": [
+        "memory",
+        "persistence",
+        "agents"
+      ],
+      "description": "Domain memory for long-running agents"
+    },
+    {
+      "id": "project-ki-auswanderungs-berater",
+      "type": "project",
+      "name": "KI Auswanderungs-Berater v1",
+      "path": "knowledge/projects/ki-auswanderungs-berater/",
+      "domain": [
+        "auswanderung",
+        "n8n",
+        "saas"
+      ],
+      "description": "n8n-based emigration advisor"
+    },
+    {
+      "id": "project-ai-poster-hub",
+      "type": "project",
+      "name": "AI Poster Creation Hub",
+      "path": "knowledge/projects/ai-poster-creation-hub/",
+      "domain": [
+        "etsy",
+        "ai",
+        "e-commerce"
+      ],
+      "description": "{PROJECT} Etsy automation"
+    },
+    {
+      "id": "project-{PROJECT_ID}",
+      "type": "project",
+      "name": "{PROJECT}",
+      "path": "knowledge/projects/{PROJECT_ID}/",
+      "domain": [
+        "auswanderung",
+        "python",
+        "langgraph"
+      ],
+      "description": "Python/LangGraph emigration advisor"
+    },
+    {
+      "id": "prompt-framework-prompt-pro",
+      "type": "prompt",
+      "name": "Prompt Pro 2.0 Framework",
+      "path": "knowledge/prompts/frameworks/prompt-pro-2.0.md",
+      "domain": [
+        "prompt-engineering",
+        "framework"
+      ],
+      "description": "5-Level Prompt Engineering Framework"
+    },
+    {
+      "id": "prompt-framework-idea-forge",
+      "type": "prompt",
+      "name": "Idea Forge Framework",
+      "path": "knowledge/prompts/frameworks/idea-forge.md",
+      "domain": [
+        "ideation",
+        "framework"
+      ],
+      "description": "Idea development framework"
+    },
+    {
+      "id": "prompt-research-orchestrator",
+      "type": "prompt",
+      "name": "Research Orchestrator Prompt",
+      "path": "knowledge/prompts/research-agents/research-orchestrator.md",
+      "domain": [
+        "research",
+        "orchestration"
+      ],
+      "description": "Multi-domain research orchestration"
+    },
+    {
+      "id": "prompt-etsy-poster-creator",
+      "type": "prompt",
+      "name": "Etsy Poster Creator Prompt",
+      "path": "knowledge/prompts/skills/etsy-poster-creator.md",
+      "domain": [
+        "etsy",
+        "seo",
+        "e-commerce"
+      ],
+      "description": "Etsy listing creation prompt"
+    },
+    {
+      "id": "prompt-aki-checkliste",
+      "type": "prompt",
+      "name": "AKI Checkliste Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/checkliste.md",
+      "domain": [
+        "auswanderung",
+        "checklists"
+      ],
+      "description": "Emigration checklist agent"
+    },
+    {
+      "id": "prompt-aki-digitale-nomaden",
+      "type": "prompt",
+      "name": "AKI Digitale Nomaden Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/digitale-nomaden.md",
+      "domain": [
+        "auswanderung",
+        "digital-nomad"
+      ],
+      "description": "Digital nomad specialist"
+    },
+    {
+      "id": "prompt-aki-familie-kinder",
+      "type": "prompt",
+      "name": "AKI Familie/Kinder Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/familie-kinder.md",
+      "domain": [
+        "auswanderung",
+        "family"
+      ],
+      "description": "Family emigration specialist"
+    },
+    {
+      "id": "prompt-aki-finanzplanung",
+      "type": "prompt",
+      "name": "AKI Finanzplanung Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/finanzplanung.md",
+      "domain": [
+        "auswanderung",
+        "finance"
+      ],
+      "description": "Financial planning specialist"
+    },
+    {
+      "id": "prompt-aki-krankenversicherung",
+      "type": "prompt",
+      "name": "AKI Krankenversicherung Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/krankenversicherung.md",
+      "domain": [
+        "auswanderung",
+        "health-insurance"
+      ],
+      "description": "Health insurance specialist"
+    },
+    {
+      "id": "prompt-aki-kryptowaehrungen",
+      "type": "prompt",
+      "name": "AKI Kryptowaehrungen Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/kryptowaehrungen.md",
+      "domain": [
+        "auswanderung",
+        "crypto"
+      ],
+      "description": "Cryptocurrency specialist"
+    },
+    {
+      "id": "prompt-aki-notfall-krisen",
+      "type": "prompt",
+      "name": "AKI Notfall/Krisen Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/notfall-krisen.md",
+      "domain": [
+        "auswanderung",
+        "emergency"
+      ],
+      "description": "Emergency situations specialist"
+    },
+    {
+      "id": "prompt-aki-probe-auswanderung",
+      "type": "prompt",
+      "name": "AKI Probe-Auswanderung Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/probe-auswanderung.md",
+      "domain": [
+        "auswanderung",
+        "trial"
+      ],
+      "description": "Trial emigration specialist"
+    },
+    {
+      "id": "prompt-aki-profil-analyse",
+      "type": "prompt",
+      "name": "AKI Profil-Analyse Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/profil-analyse.md",
+      "domain": [
+        "auswanderung",
+        "profiling"
+      ],
+      "description": "Profile analysis specialist"
+    },
+    {
+      "id": "prompt-aki-reporter",
+      "type": "prompt",
+      "name": "AKI Reporter Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/reporter.md",
+      "domain": [
+        "auswanderung",
+        "reporting"
+      ],
+      "description": "Report generation specialist"
+    },
+    {
+      "id": "prompt-aki-rueckkehr-deutschland",
+      "type": "prompt",
+      "name": "AKI Rueckkehr Deutschland Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/rueckkehr-deutschland.md",
+      "domain": [
+        "auswanderung",
+        "return"
+      ],
+      "description": "Return to Germany specialist"
+    },
+    {
+      "id": "prompt-aki-senioren",
+      "type": "prompt",
+      "name": "AKI Senioren Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/senioren.md",
+      "domain": [
+        "auswanderung",
+        "seniors"
+      ],
+      "description": "Senior emigration specialist"
+    },
+    {
+      "id": "prompt-aki-steueroptimierung",
+      "type": "prompt",
+      "name": "AKI Steueroptimierung Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/steueroptimierung.md",
+      "domain": [
+        "auswanderung",
+        "tax-optimization"
+      ],
+      "description": "Tax optimization specialist"
+    },
+    {
+      "id": "prompt-aki-tierverlagerung",
+      "type": "prompt",
+      "name": "AKI Tierverlagerung Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/tierverlagerung.md",
+      "domain": [
+        "auswanderung",
+        "pets"
+      ],
+      "description": "Pet relocation specialist"
+    },
+    {
+      "id": "prompt-aki-umzug-logistik",
+      "type": "prompt",
+      "name": "AKI Umzug/Logistik Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/umzug-logistik.md",
+      "domain": [
+        "auswanderung",
+        "logistics"
+      ],
+      "description": "Moving logistics specialist"
+    },
+    {
+      "id": "prompt-aki-unternehmens-verlagerung",
+      "type": "prompt",
+      "name": "AKI Unternehmens-Verlagerung Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/unternehmens-verlagerung.md",
+      "domain": [
+        "auswanderung",
+        "business-relocation"
+      ],
+      "description": "Business relocation specialist"
+    },
+    {
+      "id": "prompt-aki-vertragsmanagement",
+      "type": "prompt",
+      "name": "AKI Vertragsmanagement Agent",
+      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/vertragsmanagement.md",
+      "domain": [
+        "auswanderung",
+        "contracts"
+      ],
+      "description": "Contract management specialist"
+    },
+    {
+      "id": "template-specialist-agent",
+      "type": "template",
+      "name": "Specialist Agent Template",
+      "path": ".claude/templates/agents/specialist-agent.md",
+      "domain": [
+        "templates",
+        "agents"
+      ],
+      "description": "Template for specialist agents"
+    },
+    {
+      "id": "template-research-agent",
+      "type": "template",
+      "name": "Research Agent Template",
+      "path": ".claude/templates/agents/research-agent.md",
+      "domain": [
+        "templates",
+        "agents",
+        "research"
+      ],
+      "description": "Template for research agents"
+    },
+    {
+      "id": "template-orchestrator-agent",
+      "type": "template",
+      "name": "Orchestrator Agent Template",
+      "path": ".claude/templates/agents/orchestrator-agent.md",
+      "domain": [
+        "templates",
+        "agents",
+        "orchestration"
+      ],
+      "description": "Template for orchestrator agents"
+    },
+    {
+      "id": "template-workflow-command",
+      "type": "template",
+      "name": "Workflow Command Template",
+      "path": ".claude/templates/commands/workflow-command.md",
+      "domain": [
+        "templates",
+        "commands"
+      ],
+      "description": "Template for workflow commands"
+    },
+    {
+      "id": "template-analysis-command",
+      "type": "template",
+      "name": "Analysis Command Template",
+      "path": ".claude/templates/commands/analysis-command.md",
+      "domain": [
+        "templates",
+        "commands",
+        "analysis"
+      ],
+      "description": "Template for analysis commands"
+    },
+    {
+      "id": "template-progressive-skill",
+      "type": "template",
+      "name": "Progressive Skill Template",
+      "path": ".claude/templates/skills/progressive-skill/",
+      "domain": [
+        "templates",
+        "skills",
+        "progressive-disclosure"
+      ],
+      "description": "Template for progressive disclosure skills"
+    },
+    {
+      "id": "template-simple-skill",
+      "type": "template",
+      "name": "Simple Skill Template",
+      "path": ".claude/templates/skills/simple-skill/",
+      "domain": [
+        "templates",
+        "skills"
+      ],
+      "description": "Template for simple skills"
+    },
+    {
+      "id": "template-reusable-pattern",
+      "type": "template",
+      "name": "Reusable Pattern Template",
+      "path": ".claude/templates/patterns/reusable-pattern.md",
+      "domain": [
+        "templates",
+        "patterns"
+      ],
+      "description": "Template for documenting patterns"
+    },
+    {
+      "id": "template-project-learning",
+      "type": "template",
+      "name": "Project Learning Template",
+      "path": ".claude/templates/learnings/project-learning.md",
+      "domain": [
+        "templates",
+        "learnings"
+      ],
+      "description": "Template for project learnings"
+    },
+    {
+      "id": "template-scenario-autonomous-research",
+      "type": "template",
+      "name": "Autonomous Research Scenario",
+      "path": ".claude/templates/scenarios/autonomous-research/",
+      "domain": [
+        "templates",
+        "scenarios",
+        "research"
+      ],
+      "description": "Template for research scenarios"
+    },
+    {
+      "id": "template-scenario-multi-agent-advisory",
+      "type": "template",
+      "name": "Multi-Agent Advisory Scenario",
+      "path": ".claude/templates/scenarios/multi-agent-advisory/",
+      "domain": [
+        "templates",
+        "scenarios",
+        "advisory"
+      ],
+      "description": "Template for advisory scenarios"
+    },
+    {
+      "id": "idea-evolving-mvp-saas",
+      "type": "idea",
+      "name": "Evolving MVP SaaS",
+      "path": "ideas/business/saas/idea-2024-001.md",
+      "domain": [
+        "saas",
+        "business",
+        "evolving"
+      ],
+      "description": "SaaS version of Evolving system"
+    },
+    {
+      "id": "memory-evolving-system",
+      "type": "memory",
+      "name": "Evolving System Memory",
+      "path": "_memory/projects/evolving-system.json",
+      "domain": [
+        "memory",
+        "evolving"
+      ],
+      "description": "Domain memory for Evolving project"
+    },
+    {
+      "id": "memory-{PROJECT_ID}",
+      "type": "memory",
+      "name": "{PROJECT} v2 Memory",
+      "path": "_memory/projects/{PROJECT_ID}.json",
+      "domain": [
+        "memory",
+        "auswanderung"
+      ],
+      "description": "Domain memory for {PROJECT}"
+    },
+    {
+      "id": "rule-context-budget-awareness",
+      "type": "rule",
+      "name": "Context Budget Awareness",
+      "path": ".claude/rules/context-budget-awareness.md",
+      "domain": [
+        "context-management",
+        "parallelization",
+        "multi-agent",
+        "session-management"
+      ],
+      "description": "v3 Emergent Behavior - Proaktive Parallelisierung bei hohem Context"
+    },
+    {
+      "id": "rule-explicit-identity",
+      "type": "rule",
+      "name": "Explicit Identity",
+      "path": ".claude/rules/explicit-identity.md",
+      "domain": [
+        "process-boundaries",
+        "session-management",
+        "concurrency"
+      ],
+      "description": "IDs durch Process-Boundaries durchreichen, Race Conditions vermeiden"
+    },
+    {
+      "id": "rule-idempotent-redundancy",
+      "type": "rule",
+      "name": "Idempotent Redundancy",
+      "path": ".claude/rules/idempotent-redundancy.md",
+      "domain": [
+        "idempotency",
+        "safety",
+        "operations"
+      ],
+      "description": "Redundanz nur wenn Operationen idempotent sind"
+    },
+    {
+      "id": "agent-system-analyzer",
+      "type": "agent",
+      "name": "System Analyzer Agent",
+      "path": ".claude/agents/system-analyzer-agent.md",
+      "domain": [
+        "system-building",
+        "analysis",
+        "requirements"
+      ],
+      "description": "Analysiert Anforderungen und matcht sie mit passenden Blueprints"
+    },
+    {
+      "id": "agent-system-architect",
+      "type": "agent",
+      "name": "System Architect Agent",
+      "path": ".claude/agents/system-architect-agent.md",
+      "domain": [
+        "system-building",
+        "architecture",
+        "design"
+      ],
+      "description": "Designt die Architektur des zu generierenden Systems"
+    },
+    {
+      "id": "agent-system-generator",
+      "type": "agent",
+      "name": "System Generator Agent",
+      "path": ".claude/agents/system-generator-agent.md",
+      "domain": [
+        "system-building",
+        "code-generation",
+        "templates"
+      ],
+      "description": "Generiert alle Dateien f\u00fcr das neue System"
+    },
+    {
+      "id": "agent-system-validator",
+      "type": "agent",
+      "name": "System Validator Agent",
+      "path": ".claude/agents/system-validator-agent.md",
+      "domain": [
+        "system-building",
+        "validation",
+        "quality-gates"
+      ],
+      "description": "Validiert das generierte System auf Vollst\u00e4ndigkeit und Korrektheit"
+    },
+    {
+      "id": "agent-dashboard-features",
+      "type": "agent",
+      "name": "Dashboard Features Agent",
+      "path": ".claude/agents/dashboard-features-agent.md",
+      "domain": [
+        "dashboard",
+        "features",
+        "ux-design"
+      ],
+      "description": "Generiert Feature-Ideen f\u00fcr das Evolving Dashboard"
+    },
+    {
+      "id": "agent-macro-data-collector",
+      "type": "agent",
+      "name": "Macro Data Collector Agent",
+      "path": ".claude/agents/macro-data-collector-agent.md",
+      "domain": [
+        "market-analysis",
+        "data-collection",
+        "api"
+      ],
+      "description": "Orchestriert parallele Datensammlung von 7 freien API-Quellen"
+    },
+    {
+      "id": "agent-meta-analyst",
+      "type": "agent",
+      "name": "Meta-Analyst Agent",
+      "path": ".claude/agents/meta-analyst-agent.md",
+      "domain": [
+        "market-analysis",
+        "meta-analysis",
+        "narrative-detection"
+      ],
+      "description": "Findet versteckte Muster, Narrative-Diskrepanzen und Cui Bono Analysen"
+    },
+    {
+      "id": "agent-pattern-recognizer",
+      "type": "agent",
+      "name": "Pattern Recognizer Agent",
+      "path": ".claude/agents/pattern-recognizer-agent.md",
+      "domain": [
+        "market-analysis",
+        "patterns",
+        "contrarian-signals"
+      ],
+      "description": "Erkennt historische Zyklen, Verhaltensmuster und wiederkehrende Marktstrukturen"
+    },
+    {
+      "id": "agent-forecast-synthesizer",
+      "type": "agent",
+      "name": "Forecast Synthesizer Agent",
+      "path": ".claude/agents/forecast-synthesizer-agent.md",
+      "domain": [
+        "market-analysis",
+        "forecasting",
+        "scenarios"
+      ],
+      "description": "Konvertiert Analysen in wahrscheinlichkeitsgewichtete Multi-Szenario-Prognosen"
+    },
+    {
+      "id": "agent-learning-optimizer",
+      "type": "agent",
+      "name": "Learning Optimizer Agent",
+      "path": ".claude/agents/learning-optimizer-agent.md",
+      "domain": [
+        "market-analysis",
+        "learning",
+        "model-refinement"
+      ],
+      "description": "Trackt Vorhersagegenauigkeit, analysiert Fehler und optimiert das System"
+    },
+    {
+      "id": "agent-market-technical-analyst",
+      "type": "agent",
+      "name": "Market Technical Analyst Agent",
+      "path": ".claude/agents/market-technical-analyst-agent.md",
+      "domain": [
+        "market-analysis",
+        "technical-analysis",
+        "indicators"
+      ],
+      "description": "Analysiert Price Action, Support/Resistance und Momentum-Indikatoren"
+    },
+    {
+      "id": "agent-macro-economist",
+      "type": "agent",
+      "name": "Macro Economist Agent",
+      "path": ".claude/agents/macro-economist-agent.md",
+      "domain": [
+        "market-analysis",
+        "macroeconomics",
+        "liquidity"
+      ],
+      "description": "Analysiert makro\u00f6konomische Bedingungen, Liquidit\u00e4tszyklen und fundamentale Treiber"
+    },
+    {
+      "id": "agent-macro-orchestrator",
+      "type": "agent",
+      "name": "Macro Orchestrator Agent",
+      "path": ".claude/agents/macro-orchestrator-agent.md",
+      "domain": [
+        "market-analysis",
+        "orchestration",
+        "synthesis"
+      ],
+      "description": "Koordiniert alle Macro-Analyse Agents und synthetisiert Marktanalysen"
+    },
+    {
+      "id": "rule-experience-suggest",
+      "type": "rule",
+      "name": "Experience Auto-Suggest",
+      "path": ".claude/rules/experience-suggest.md",
+      "domain": [
+        "experience-memory",
+        "auto-suggest"
+      ],
+      "description": "Automatisches Vorschlagen relevanter Experiences bei Fehlern"
+    },
+    {
+      "id": "rule-ultrathink",
+      "type": "rule",
+      "name": "Ultrathink Quality Principles",
+      "path": ".claude/rules/ultrathink.md",
+      "domain": [
+        "quality",
+        "principles",
+        "architecture"
+      ],
+      "description": "5 Qualit\u00e4tsprinzipien: Foundation First, SSOT, Composition, Naming, Roadmap"
+    },
+    {
+      "id": "rule-memory-decay",
+      "type": "rule",
+      "name": "Memory Decay",
+      "path": ".claude/rules/memory-decay.md",
+      "domain": [
+        "memory",
+        "decay",
+        "relevance"
+      ],
+      "description": "Time-based Memory Relevance Decay"
+    },
+    {
+      "id": "rule-session-evaluation",
+      "type": "rule",
+      "name": "Session Evaluation",
+      "path": ".claude/rules/session-evaluation.md",
+      "domain": [
+        "session",
+        "evaluation",
+        "quality"
+      ],
+      "description": "Rubric-basierte Session-Qualit\u00e4tsbewertung"
+    },
+    {
+      "id": "rule-context-optimization",
+      "type": "rule",
+      "name": "Context Optimization",
+      "path": ".claude/rules/context-optimization.md",
+      "domain": [
+        "context",
+        "optimization",
+        "degradation"
+      ],
+      "description": "4-Bucket Framework, Degradation Prevention"
+    },
+    {
+      "id": "rule-auto-enhancement",
+      "type": "rule",
+      "name": "Auto-Enhancement",
+      "path": ".claude/rules/auto-enhancement.md",
+      "domain": [
+        "prompt-engineering",
+        "enhancement"
+      ],
+      "description": "Automatisches Prompt-Enhancement in Thinking"
+    },
+    {
+      "id": "rule-token-efficiency",
+      "type": "rule",
+      "name": "Token Efficiency",
+      "path": ".claude/rules/token-efficiency.md",
+      "domain": [
+        "token",
+        "efficiency",
+        "abbreviations"
+      ],
+      "description": "Abk\u00fcrzungen f\u00fcr interne Nutzung"
+    },
+    {
+      "id": "rule-no-reference-only",
+      "type": "rule",
+      "name": "No Reference-Only",
+      "path": ".claude/rules/no-reference-only.md",
+      "domain": [
+        "integration",
+        "extraction"
+      ],
+      "description": "Kein URL-only, echte Integration erforderlich"
+    },
+    {
+      "id": "rule-relevance-extraction",
+      "type": "rule",
+      "name": "Relevance Extraction",
+      "path": ".claude/rules/relevance-extraction.md",
+      "domain": [
+        "relevance",
+        "extraction",
+        "templates"
+      ],
+      "description": "Rel-Check + Tpl-Abstraktion Framework"
+    },
+    {
+      "id": "rule-observe-before-editing",
+      "type": "rule",
+      "name": "Observe Before Editing",
+      "path": ".claude/rules/observe-before-editing.md",
+      "domain": [
+        "debugging",
+        "observation"
+      ],
+      "description": "Outputs pr\u00fcfen vor Code-\u00c4nderung"
+    },
+    {
+      "id": "rule-index-at-creation",
+      "type": "rule",
+      "name": "Index at Creation",
+      "path": ".claude/rules/index-at-creation.md",
+      "domain": [
+        "indexing",
+        "creation"
+      ],
+      "description": "Index sofort bei Erstellung"
+    },
+    {
+      "id": "rule-clear-dont-compact",
+      "type": "rule",
+      "name": "Clear Don't Compact",
+      "path": ".claude/rules/clear-dont-compact.md",
+      "domain": [
+        "session",
+        "ledger",
+        "context"
+      ],
+      "description": "Ledger-basierte Session-State statt Compaction"
+    },
+    {
+      "id": "rule-evidence-before-claims",
+      "type": "rule",
+      "name": "Evidence Before Claims",
+      "path": ".claude/rules/evidence-before-claims.md",
+      "domain": [
+        "verification",
+        "evidence"
+      ],
+      "description": "Verification Gate vor Completion"
+    },
+    {
+      "id": "rule-auto-archival",
+      "type": "rule",
+      "name": "Auto-Archival",
+      "path": ".claude/rules/auto-archival.md",
+      "domain": [
+        "archival",
+        "automation"
+      ],
+      "description": "Automatische Archivierung von Ledgers, Handoffs, Plans"
+    },
+    {
+      "id": "scenario-{PROJECT_ID}",
+      "type": "scenario",
+      "name": "{PROJECT} Order",
+      "path": ".claude/scenarios/{PROJECT_ID}/",
+      "domain": [
+        "restaurant",
+        "ordering",
+        "qr-system"
+      ],
+      "description": "QR-Order System f\u00fcr NHI\u00caN Bistro, Da Nang"
+    },
+    {
+      "id": "scenario-{PROJECT_ID}",
+      "type": "scenario",
+      "name": "{PROJECT}",
+      "path": ".claude/scenarios/{PROJECT_ID}/",
+      "domain": [
+        "medical",
+        "coordination",
+        "logistics"
+      ],
+      "description": "Koordination der medizinischen Versorgung Lombok \u2192 Jakarta"
+    },
+    {
+      "id": "scenario-{PROJECT_ID}",
+      "type": "scenario",
+      "name": "{PROJECT} v2",
+      "path": ".claude/scenarios/{PROJECT_ID}/",
+      "domain": [
+        "emigration",
+        "tax",
+        "legal",
+        "advisory"
+      ],
+      "description": "17 Specialist Agents für Auswanderungsberatung mit 3-Tier LLM"
+    },
+    {
+      "id": "hook-graph-update",
+      "type": "hook",
+      "name": "Graph Update Hook",
+      "path": ".claude/hooks/graph-update.sh",
+      "domain": [
+        "knowledge-graph",
+        "automation"
+      ],
+      "description": "Knowledge Graph aktualisieren bei Entity-\u00c4nderungen"
+    },
+    {
+      "id": "learning-system-builder",
+      "type": "learning",
+      "name": "System Builder Learnings",
+      "path": "knowledge/learnings/system-builder-learnings.md",
+      "domain": [
+        "system-building",
+        "learnings"
+      ],
+      "description": "Learnings aus der System-Builder Implementierung"
+    },
+    {
+      "id": "learning-mcp-server",
+      "type": "learning",
+      "name": "MCP Server Implementation Lessons",
+      "path": "knowledge/learnings/mcp-server-implementation-lessons.md",
+      "domain": [
+        "mcp",
+        "implementation"
+      ],
+      "description": "Lessons aus der MCP Server Implementierung"
+    },
+    {
+      "id": "learning-claude-mem",
+      "type": "learning",
+      "name": "Claude Mem Persistent Memory",
+      "path": "knowledge/learnings/claude-mem-persistent-memory.md",
+      "domain": [
+        "memory",
+        "persistence"
+      ],
+      "description": "Learnings zu persistentem Memory"
+    },
+    {
+      "id": "learning-prompt-coach",
+      "type": "learning",
+      "name": "Prompt Coach Analysis Methodology",
+      "path": "knowledge/learnings/prompt-coach-analysis-methodology.md",
+      "domain": [
+        "prompt-engineering",
+        "methodology"
+      ],
+      "description": "Analyse-Methodologie f\u00fcr Prompts"
+    },
+    {
+      "id": "learning-agentfs",
+      "type": "learning",
+      "name": "AgentFS Unified Storage",
+      "path": "knowledge/learnings/agentfs-unified-storage.md",
+      "domain": [
+        "storage",
+        "agents"
+      ],
+      "description": "Unified Storage f\u00fcr Agents"
+    },
+    {
+      "id": "learning-ultrathink-software",
+      "type": "learning",
+      "name": "Ultrathink Software Craftsmanship",
+      "path": "knowledge/learnings/ultrathink-software-craftsmanship.md",
+      "domain": [
+        "software",
+        "craftsmanship",
+        "quality"
+      ],
+      "description": "Code-spezifische Ultrathink Details"
+    },
+    {
+      "id": "learning-claude-code-dec-2025",
+      "type": "learning",
+      "name": "Claude Code Dec 2025 Features",
+      "path": "knowledge/learnings/claude-code-dec-2025-features.md",
+      "domain": [
+        "claude-code",
+        "features"
+      ],
+      "description": "Aktuelle Claude Code Features (Dez 2025)"
+    },
+    {
+      "id": "learning-chrome-automation",
+      "type": "learning",
+      "name": "Chrome Automation Best Practices",
+      "path": "knowledge/learnings/chrome-automation-best-practices.md",
+      "domain": [
+        "chrome",
+        "automation"
+      ],
+      "description": "Best Practices f\u00fcr Chrome Automation"
+    },
+    {
+      "id": "learning-chrome-experiments",
+      "type": "learning",
+      "name": "Chrome Experiments Results",
+      "path": "knowledge/learnings/chrome-experiments-results.md",
+      "domain": [
+        "chrome",
+        "experiments"
+      ],
+      "description": "Ergebnisse der Chrome Experimente"
+    },
+    {
+      "id": "learning-memory-decay-pattern",
+      "type": "learning",
+      "name": "Memory Decay Pattern",
+      "path": "knowledge/learnings/memory-decay-pattern.md",
+      "domain": [
+        "memory",
+        "decay",
+        "pattern"
+      ],
+      "description": "Pattern f\u00fcr Time-based Memory Decay"
+    },
+    {
+      "id": "learning-agent-observability",
+      "type": "learning",
+      "name": "Agent Observability LangSmith",
+      "path": "knowledge/learnings/agent-observability-langsmith.md",
+      "domain": [
+        "observability",
+        "langsmith"
+      ],
+      "description": "Agent Observability mit LangSmith"
+    },
+    {
+      "id": "learning-self-improving",
+      "type": "learning",
+      "name": "Self-Improving Feedback Loop",
+      "path": "knowledge/learnings/self-improving-feedback-loop.md",
+      "domain": [
+        "learning",
+        "feedback-loop"
+      ],
+      "description": "Self-Improving Feedback Loop Pattern"
+    },
+    {
+      "id": "learning-kalyan-ml",
+      "type": "learning",
+      "name": "Kalyan ML Projects Analysis",
+      "path": "knowledge/learnings/kalyan-ml-projects-analysis.md",
+      "domain": [
+        "ml",
+        "analysis"
+      ],
+      "description": "Analyse der Kalyan ML Projekte"
+    },
+    {
+      "id": "learning-skill-anti-patterns",
+      "type": "learning",
+      "name": "Skill Anti-Patterns Structure",
+      "path": "knowledge/learnings/skill-anti-patterns-structure.md",
+      "domain": [
+        "skills",
+        "anti-patterns"
+      ],
+      "description": "Skill Anti-Patterns und Struktur"
+    },
+    {
+      "id": "learning-context-degradation",
+      "type": "learning",
+      "name": "Context Degradation Patterns",
+      "path": "knowledge/learnings/context-degradation-patterns.md",
+      "domain": [
+        "context",
+        "degradation"
+      ],
+      "description": "Context Degradation Patterns Deep Dive"
+    },
+    {
+      "id": "learning-notebook-audit",
+      "type": "learning",
+      "name": "Notebook Audit Methodology",
+      "path": "knowledge/learnings/notebook-audit-methodology.md",
+      "domain": [
+        "notebooks",
+        "audit"
+      ],
+      "description": "Methodologie f\u00fcr Notebook Audits"
+    },
+    {
+      "id": "learning-skill-creation-tdd",
+      "type": "learning",
+      "name": "Skill Creation TDD Methodology",
+      "path": "knowledge/learnings/skill-creation-tdd-methodology.md",
+      "domain": [
+        "skills",
+        "tdd"
+      ],
+      "description": "TDD Methodologie f\u00fcr Skill-Erstellung"
+    },
+    {
+      "id": "learning-hook-output-visibility",
+      "type": "learning",
+      "name": "Hook Output Visibility",
+      "path": "knowledge/learnings/hook-output-visibility.md",
+      "domain": [
+        "hooks",
+        "visibility"
+      ],
+      "description": "Hook Output Visibility Learnings"
+    },
+    {
+      "id": "agent-fal-image-generator",
+      "type": "agent",
+      "name": "FAL Image Generator Agent",
+      "path": ".claude/agents/fal-image-generator-agent.md",
+      "domain": [
+        "image-generation",
+        "content-creation",
+        "fal-ai",
+        "nano-banana-pro"
+      ],
+      "description": "Elite Image Generation with ICS Framework, 20 Style Categories"
+    },
+    {
+      "id": "command-generate-image",
+      "type": "command",
+      "name": "Generate Image Command",
+      "path": ".claude/commands/generate-image.md",
+      "domain": [
+        "image-generation",
+        "content-creation"
+      ],
+      "description": "Generate images with FAL.ai Nano Banana Pro"
+    }
+  ]
+}

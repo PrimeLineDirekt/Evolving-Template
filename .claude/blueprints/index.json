@@ -54,13 +54,81 @@
         "File Transformation"
       ],
       "status": "active"
+    },
+    {
+      "id": "business-intelligence-project",
+      "name": "Business Intelligence & Data Analytics Blueprint",
+      "description": "Power BI/Tableau dashboards, exploratory data analysis, stakeholder-ready insights",
+      "file": "business-intelligence-project.json",
+      "type": "business-intelligence",
+      "complexity": "medium",
+      "agent_count": "2-4",
+      "use_cases": [
+        "E-Commerce Analytics",
+        "Customer Segmentation",
+        "Sales Dashboards",
+        "Revenue Analysis",
+        "Stakeholder Reporting"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "end-to-end-ml-project",
+      "name": "End-to-End ML Project Blueprint",
+      "description": "Production-ready ML template with DVC, MLflow, Flask, Docker",
+      "file": "end-to-end-ml-project.json",
+      "type": "ml-projects",
+      "complexity": "high",
+      "agent_count": "3-5",
+      "use_cases": [
+        "Regression Projects",
+        "Classification Projects",
+        "MLOps Pipelines",
+        "Model Deployment",
+        "Experiment Tracking"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "timeseries-prediction-project",
+      "name": "Time Series Prediction & Forecasting Blueprint",
+      "description": "Temporal data handling, trend analysis, forecasting with DVC reproducibility",
+      "file": "timeseries-prediction-project.json",
+      "type": "time-series",
+      "complexity": "high",
+      "agent_count": "2-4",
+      "use_cases": [
+        "Price Prediction",
+        "Demand Forecasting",
+        "Trend Analysis",
+        "Seasonality Modeling",
+        "Financial Forecasting"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "web-scraping-project",
+      "name": "Web Scraping & Data Collection Blueprint",
+      "description": "API-based scraping with Beautiful Soup parsing and data persistence",
+      "file": "web-scraping-project.json",
+      "type": "data-collection",
+      "complexity": "low",
+      "agent_count": "1-2",
+      "use_cases": [
+        "Article Scraping",
+        "API Data Collection",
+        "News Aggregation",
+        "Content Monitoring",
+        "Data Pipeline Input"
+      ],
+      "status": "active"
     }
   ],
 
   "planned": [],
 
   "stats": {
-    "total_blueprints": 3,
+    "total_blueprints": 7,
     "total_planned": 0
   }
 }

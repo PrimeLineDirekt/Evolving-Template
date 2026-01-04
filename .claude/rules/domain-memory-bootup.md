@@ -55,6 +55,89 @@ Teile dem User den Context mit:
 - Nicht mehrere gleichzeitig
 - Atomic Progress
 
+### 5. UPDATE-CHECK (Automatisch alle 7 Tage)
+
+```
+Lies _memory/system-updates.json
+    │
+    ├─ last_check < 7 Tage? → Skip, weiter mit Task
+    │
+    └─ last_check >= 7 Tage?
+        │
+        ▼
+    KURZER Check (max 2K Tokens):
+    - WebSearch: "Claude Code changelog 2026"
+    - Diff gegen known_features
+    - Neue Features? → Learning erstellen
+    - Timestamp aktualisieren
+        │
+        ▼
+    Kurze Info an User:
+    "ℹ️ Update-Check: [X neue Features gefunden / Alles aktuell]"
+```
+
+**Wichtig:**
+- Nur wenn Context < 60% (nicht bei hohem Context)
+- Max 2K Tokens Budget
+- Nicht blockierend - bei Fehler einfach skippen
+- User kann mit `/update-check` manuell triggern
+
+---
+
+## Continue-Trigger (nach /clear)
+
+**Trigger-Wörter**: "continue", "weiter", "weitermachen", "fortsetzen"
+
+### Automatischer Ablauf
+
+```
+User sagt "continue" (oder Variante)
+    │
+    ▼
+1. HANDOFF LADEN
+   ls -t _handoffs/*.md | head -1
+   → Neuesten Handoff lesen
+   → Offene Punkte extrahieren
+    │
+    ▼
+2. PLAN LADEN (falls referenziert)
+   → Plan-Datei aus Handoff lesen
+   → Offene Phasen/Tasks identifizieren
+    │
+    ▼
+3. SOFORT WEITERMACHEN
+   → Keine Rückfragen
+   → Ersten offenen Task starten
+   → TodoWrite mit offenen Tasks
+```
+
+### Beispiel
+
+```
+User: "continue"
+
+Claude:
+  [Liest _handoffs/2026-01-03-v3.3.0-intelligence-system.md]
+  [Liest Plan falls vorhanden]
+
+  "Fortsetze v3.3.0 Plan. Offene Punkte:
+   - Blueprints Index aktualisieren
+   - Broken References fixen
+   - domain-memory-bootup erweitern
+
+   Starte mit Blueprints Index..."
+
+  [Beginnt sofort mit Arbeit]
+```
+
+### Wichtig
+
+- **Keine Rückfrage** "Soll ich weitermachen?" - User hat bereits "continue" gesagt
+- **Sofort starten** - nicht erst alles auflisten und warten
+- **TodoWrite nutzen** - offene Tasks tracken
+
+---
+
 ## Session-Ende Ritual
 
 ### 1. LOG PROGRESS
@@ -103,8 +186,8 @@ _memory/
 ├── index.json              # Aktiver Context
 ├── projects/
 │   ├── evolving-system.json
-│   ├── auswanderungs-ki-v2.json
-│   └── thrive-vibes-art.json
+│   ├── {PROJECT_ID}.json
+│   └── {PROJECT_ID}.json
 ├── workflows/
 │   └── active.json         # Laufender Workflow
 └── sessions/

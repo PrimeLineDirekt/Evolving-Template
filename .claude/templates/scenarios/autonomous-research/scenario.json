@@ -1,0 +1,70 @@
+{
+  "name": "{SCENARIO_NAME}",
+  "description": "Autonomous Research Pipeline für {DOMAIN_DESCRIPTION}",
+  "version": "1.0.0",
+  "created": "{TIMESTAMP}",
+  "pattern": "task-decomposition-pipeline",
+
+  "agents": [
+    {
+      "name": "planner",
+      "file": "agents/planner-agent.md",
+      "role": "Zerlegt komplexe Queries in Research Tasks"
+    },
+    {
+      "name": "executor",
+      "file": "agents/executor-agent.md",
+      "role": "Führt Tasks aus und sammelt Daten"
+    },
+    {
+      "name": "synthesizer",
+      "file": "agents/synthesizer-agent.md",
+      "role": "Erstellt finale, strukturierte Antwort"
+    }
+  ],
+
+  "tools": [
+    {
+      "name": "search_knowledge_base",
+      "description": "Durchsucht die Knowledge Base nach {DOMAIN}-Informationen",
+      "parameters": ["query"]
+    },
+    {
+      "name": "{DOMAIN_TOOL_1}",
+      "description": "{TOOL_1_DESCRIPTION}",
+      "parameters": ["{PARAM_1}", "{PARAM_2}"]
+    },
+    {
+      "name": "{DOMAIN_TOOL_2}",
+      "description": "{TOOL_2_DESCRIPTION}",
+      "parameters": ["{PARAM_1}"]
+    }
+  ],
+
+  "knowledge_sources": [
+    "knowledge/projects/{PROJECT_PATH}/",
+    "{ADDITIONAL_KB_PATH}"
+  ],
+
+  "config": {
+    "max_tasks": 5,
+    "max_subtasks_per_task": 5,
+    "max_executor_iterations": 5,
+    "parallel_execution": true,
+    "save_context_to_disk": false,
+    "streaming_output": true
+  },
+
+  "triggers": {
+    "complexity_keywords": ["vergleiche", "analysiere", "recherchiere", "bewerte", "optimiere"],
+    "min_query_length": 20,
+    "auto_activate": false
+  },
+
+  "output": {
+    "format": "markdown",
+    "include_sources": true,
+    "include_confidence": true,
+    "include_next_steps": true
+  }
+}

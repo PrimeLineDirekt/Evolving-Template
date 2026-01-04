@@ -1,0 +1,56 @@
+# {PROJECT_NAME}
+
+{DESCRIPTION}
+
+## Quick Start
+
+```bash
+# In das Projekt wechseln
+cd {TARGET_PATH}
+
+# Claude Code starten
+claude code
+
+# Hauptbefehl ausführen
+{MAIN_COMMAND}
+```
+
+## Commands
+
+| Command | Beschreibung | Model |
+|---------|--------------|-------|
+{COMMAND_TABLE}
+
+## Agents
+
+Dieses System nutzt {AGENT_COUNT} spezialisierte Agents:
+
+{AGENT_SUMMARY}
+
+## Architektur
+
+```
+{FLOW_DIAGRAM}
+```
+
+## Struktur
+
+```
+{FILE_TREE}
+```
+
+## Anpassung
+
+- **Agents anpassen**: `.claude/agents/`
+- **Commands anpassen**: `.claude/commands/`
+- **Wissen hinzufügen**: `knowledge/`
+
+## Generiert mit
+
+- **Tool**: Evolving System-Builder
+- **Blueprint**: {BLUEPRINT_NAME}
+- **Datum**: {DATE}
+
+---
+
+Erstellt mit [Evolving](https://github.com/PrimeLineDirekt/Evolving)

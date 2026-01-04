@@ -1,6 +1,6 @@
 {
   "version": "2.3",
-  "generated": "2026-01-02T00:00:00Z",
+  "generated": "2026-01-01T14:00:00Z",
   "description": "Maps keywords/intents to relevant nodes for auto-context loading",
 
   "routes": {
@@ -25,7 +25,9 @@
         "reference-claude-code-system-prompts",
         "reference-awesome-claude-resources"
       ],
-      "context_files": []
+      "context_files": [
+        "_memory/projects/evolving-system.json"
+      ]
     },
 
     "planning": {
@@ -56,11 +58,14 @@
         "pattern-meta-component-creation",
         "skill-prompt-pro-framework",
         "skill-research-orchestrator",
+        "skill-etsy-poster-creator",
         "skill-subagent-driven-development",
         "learning-skill-creation-tdd-methodology",
         "learning-skill-anti-patterns-structure"
       ],
-      "context_files": []
+      "context_files": [
+        "_memory/projects/evolving-system.json"
+      ]
     },
 
     "command-creation": {
@@ -75,7 +80,9 @@
         "pattern-intake-gate",
         "rule-workflow-detection"
       ],
-      "context_files": []
+      "context_files": [
+        "_memory/projects/evolving-system.json"
+      ]
     },
 
     "research": {
@@ -116,6 +123,41 @@
       ]
     },
 
+    "etsy": {
+      "keywords": ["etsy", "listing", "poster", "thrive", "seo", "pinterest"],
+      "primary": [
+        "skill-etsy-poster-creator",
+        "project-ai-poster-hub",
+        "pattern-bilingual-seo"
+      ],
+      "secondary": [
+        "learning-ai-poster-hub",
+        "prompt-etsy-poster-creator",
+        "pattern-ai-content-pipeline"
+      ],
+      "context_files": [
+        "_memory/projects/{PROJECT_ID}.json"
+      ]
+    },
+
+    "auswanderung": {
+      "keywords": ["auswander", "emigration", "steuer", "tax", "dba", "sozialversicherung"],
+      "primary": [
+        "project-{PROJECT_ID}",
+        "learning-{PROJECT_ID}"
+      ],
+      "secondary": [
+        "prompt-aki-steueroptimierung",
+        "prompt-aki-profil-analyse",
+        "prompt-aki-checkliste",
+        "memory-{PROJECT_ID}",
+        "learning-ki-auswanderungs-berater"
+      ],
+      "context_files": [
+        "_memory/projects/{PROJECT_ID}.json"
+      ]
+    },
+
     "prompt-engineering": {
       "keywords": ["prompt", "prompt engineering", "prompt erstellen", "optimize prompt"],
       "primary": [
@@ -148,8 +190,8 @@
         "reference-claude-code-system-prompts"
       ],
       "rules": [
-        ".claude/rules/on-demand/observe-before-editing.md",
-        ".claude/rules/on-demand/evidence-before-claims.md"
+        "knowledge/rules/debugging/observe-before-editing.md",
+        "knowledge/rules/debugging/evidence-before-claims.md"
       ],
       "context_files": []
     },
@@ -189,6 +231,7 @@
         "pattern-manager-multi-agent-systems",
         "pattern-swarm-team-coordination",
         "learning-agentic-architectures",
+        "scenario-workflow-engine",
         "agent-ext-workflow-optimizer",
         "agent-ext-code-reviewer",
         "reference-cc-wf-studio",
@@ -205,6 +248,9 @@
         "rule-scenario-agents"
       ],
       "secondary": [
+        "scenario-evolving-dashboard",
+        "scenario-steuererklaerung-2024",
+        "scenario-workflow-engine",
         "command-scenario-create",
         "command-scenario-edit"
       ],
@@ -263,6 +309,7 @@
         "learning-context-degradation-patterns",
         "learning-domain-memory-pattern",
         "hook-session-summary",
+        "memory-evolving-system",
         "rule-context-budget-awareness",
         "rule-sub-agent-delegation"
       ],
@@ -291,7 +338,8 @@
       "keywords": ["saas", "freemium", "subscription", "business model", "gdpr"],
       "primary": [
         "pattern-freemium-saas-gates",
-        "pattern-gdpr-compliant-saas"
+        "pattern-gdpr-compliant-saas",
+        "idea-evolving-mvp-saas"
       ],
       "secondary": [
         "pattern-8-block-profile"
@@ -323,11 +371,59 @@
         "pattern-intake-gate",
         "pattern-reflection",
         "learning-12-factor-agents",
-        "learning-agentic-architectures"
+        "learning-ki-auswanderungs-berater",
+        "learning-agentic-architectures",
+        "scenario-steuererklaerung-2024"
       ],
       "context_files": [
+        "_memory/projects/evolving-system.json",
         ".claude/blueprints/index.json"
       ]
+    },
+
+    "pitch-systems": {
+      "keywords": ["pitch", "windenergie", "schulung", "pptx", "präsentation"],
+      "primary": [
+        "agent-pitch-document-analyzer",
+        "agent-pitch-style-extractor",
+        "agent-pitch-content-categorizer",
+        "command-analyze-pitch-docs"
+      ],
+      "secondary": [],
+      "context_files": []
+    },
+
+    "macro-analysis": {
+      "keywords": ["macro", "forecast", "wzrd", "market", "gold", "prediction", "trading", "signal"],
+      "primary": [
+        "agent-macro-orchestrator",
+        "agent-forecast-synthesizer",
+        "agent-pattern-recognizer",
+        "agent-meta-analyst",
+        "agent-macro-economist",
+        "agent-market-technical-analyst"
+      ],
+      "secondary": [
+        "agent-macro-data-collector",
+        "agent-learning-optimizer",
+        "learning-kalyan-ml-projects",
+        "project-macro-analyse"
+      ],
+      "context_files": [
+        "_memory/projects/macro-analyse.json"
+      ]
+    },
+
+    "dashboard": {
+      "keywords": ["dashboard", "evolving-dashboard", "tile", "terminal", "command center"],
+      "primary": [
+        "agent-dashboard-features",
+        "scenario-evolving-dashboard"
+      ],
+      "secondary": [
+        "learning-ultrathink-software-craftsmanship"
+      ],
+      "context_files": []
     },
 
     "security": {
@@ -346,7 +442,8 @@
         "pattern-browser-automation"
       ],
       "secondary": [
-        "learning-chrome-automation-best-practices"
+        "learning-chrome-automation-best-practices",
+        "learning-chrome-experiments-results"
       ],
       "context_files": []
     },
@@ -449,7 +546,9 @@
         "learning-agentic-architectures",
         "learning-12-factor-agents"
       ],
-      "context_files": []
+      "context_files": [
+        "_sandbox/agent-sdk-poc/README.md"
+      ]
     },
 
     "delegation": {
@@ -467,6 +566,65 @@
         "pattern-multi-agent-orchestration"
       ],
       "context_files": []
+    },
+
+    "image-generation": {
+      "keywords": ["image", "bild", "generate", "generieren", "fal", "nano banana", "picture", "foto", "illustration", "visual", "graphic"],
+      "primary": [
+        "agent-fal-image-generator"
+      ],
+      "secondary": [
+        "skill-etsy-poster-creator"
+      ],
+      "context_files": []
+    },
+
+    "autonomy": {
+      "keywords": ["autonom", "selbständig", "hitl", "human in the loop", "permission", "auto-fix", "proaktiv", "proactive", "auto-learn", "lernen", "skill level"],
+      "primary": [
+        "rule-autonomy-classifier",
+        "rule-proactive-behavior",
+        "rule-auto-learning"
+      ],
+      "secondary": [
+        "rule-token-sustainability",
+        "command-loop-until-done",
+        "rule-sub-agent-delegation",
+        "rule-context-budget-awareness"
+      ],
+      "context_files": [
+        "_memory/user-profile.json"
+      ]
+    },
+
+    "loop-iteration": {
+      "keywords": ["loop", "iterate", "repeat", "until done", "verify", "ralph", "wiggum", "fix all", "alle fixen"],
+      "primary": [
+        "command-loop-until-done",
+        "pattern-ralph-wiggum-loop"
+      ],
+      "secondary": [
+        "rule-proactive-behavior",
+        "rule-evidence-before-claims"
+      ],
+      "context_files": []
+    },
+
+    "system-updates": {
+      "keywords": ["update", "neue features", "changelog", "anthropic", "refresh", "stale", "validieren"],
+      "primary": [
+        "command-update-check",
+        "command-knowledge-refresh",
+        "rule-update-monitor"
+      ],
+      "secondary": [
+        "rule-knowledge-refresh-cycle",
+        "rule-correction-learning-feedback",
+        "rule-auto-learning"
+      ],
+      "context_files": [
+        "_memory/system-updates.json"
+      ]
     }
   },
 

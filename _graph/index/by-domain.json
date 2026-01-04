@@ -1,0 +1,345 @@
+{
+  "version": "1.0",
+  "generated": "2025-12-29T11:30:00Z",
+  "description": "Nodes grouped by domain tags",
+
+  "agent-design": [
+    "command-create-agent",
+    "template-specialist-agent",
+    "template-research-agent",
+    "template-orchestrator-agent"
+  ],
+
+  "analysis": [
+    "agent-research-analyst",
+    "agent-codebase-analyzer",
+    "agent-github-repo-analyzer",
+    "agent-pitch-document-analyzer",
+    "command-project-analyze",
+    "command-analyze-repo",
+    "command-analyze-pitch-docs",
+    "template-analysis-command"
+  ],
+
+  "auswanderung": [
+    "project-ki-auswanderungs-berater",
+    "project-{PROJECT_ID}",
+    "learning-ki-auswanderungs-berater",
+    "learning-{PROJECT_ID}",
+    "memory-{PROJECT_ID}",
+    "prompt-aki-checkliste",
+    "prompt-aki-digitale-nomaden",
+    "prompt-aki-familie-kinder",
+    "prompt-aki-finanzplanung",
+    "prompt-aki-krankenversicherung",
+    "prompt-aki-kryptowaehrungen",
+    "prompt-aki-notfall-krisen",
+    "prompt-aki-probe-auswanderung",
+    "prompt-aki-profil-analyse",
+    "prompt-aki-reporter",
+    "prompt-aki-rueckkehr-deutschland",
+    "prompt-aki-senioren",
+    "prompt-aki-steueroptimierung",
+    "prompt-aki-tierverlagerung",
+    "prompt-aki-umzug-logistik",
+    "prompt-aki-unternehmens-verlagerung",
+    "prompt-aki-vertragsmanagement"
+  ],
+
+  "automation": [
+    "agent-n8n-expert",
+    "command-inbox-process",
+    "command-auto-model",
+    "command-run-workflow",
+    "hook-auto-cross-reference",
+    "learning-acontext-skill-distillation",
+    "pattern-ai-content-pipeline",
+    "scenario-workflow-engine"
+  ],
+
+  "brainstorming": [
+    "command-sparring"
+  ],
+
+  "confidence-scoring": [
+    "agent-research-analyst",
+    "skill-research-orchestrator",
+    "pattern-research-confidence-scoring",
+    "template-research-agent",
+    "template-scenario-multi-agent-advisory"
+  ],
+
+  "context-management": [
+    "agent-context-manager",
+    "hook-context-monitor",
+    "pattern-context-window-ownership",
+    "rule-context-budget-awareness"
+  ],
+
+  "parallelization": [
+    "rule-context-budget-awareness",
+    "pattern-parallel-agent-dispatch"
+  ],
+
+  "session-management": [
+    "rule-context-budget-awareness",
+    "rule-explicit-identity",
+    "rule-clear-dont-compact"
+  ],
+
+  "process-boundaries": [
+    "rule-explicit-identity"
+  ],
+
+  "concurrency": [
+    "rule-explicit-identity"
+  ],
+
+  "idempotency": [
+    "rule-idempotent-redundancy",
+    "rule-index-at-creation"
+  ],
+
+  "safety": [
+    "rule-idempotent-redundancy"
+  ],
+
+  "creation": [
+    "command-idea-new",
+    "command-knowledge-add",
+    "command-create-agent",
+    "command-create-command",
+    "command-create-hook",
+    "command-create-skill",
+    "command-create-prompt"
+  ],
+
+  "cross-reference": [
+    "hook-auto-cross-reference",
+    "rule-cross-reference-sync"
+  ],
+
+  "debugging": [
+    "command-debug"
+  ],
+
+  "e-commerce": [
+    "skill-etsy-poster-creator",
+    "project-ai-poster-hub",
+    "pattern-bilingual-seo"
+  ],
+
+  "etsy": [
+    "skill-etsy-poster-creator",
+    "project-ai-poster-hub",
+    "learning-ai-poster-hub",
+    "prompt-etsy-poster-creator"
+  ],
+
+  "framework": [
+    "skill-prompt-pro-framework",
+    "prompt-framework-prompt-pro",
+    "prompt-framework-idea-forge",
+    "learning-12-factor-agents"
+  ],
+
+  "github": [
+    "agent-github-repo-analyzer",
+    "command-analyze-repo"
+  ],
+
+  "idea-management": [
+    "agent-idea-validator",
+    "agent-idea-expander",
+    "agent-idea-connector",
+    "command-idea-new",
+    "command-idea-work",
+    "command-idea-list",
+    "command-idea-connect",
+    "prompt-framework-idea-forge"
+  ],
+
+  "knowledge": [
+    "agent-knowledge-synthesizer",
+    "command-knowledge-add",
+    "command-knowledge-search",
+    "rule-knowledge-linking"
+  ],
+
+  "memory": [
+    "rule-domain-memory-bootup",
+    "memory-evolving-system",
+    "memory-{PROJECT_ID}",
+    "learning-domain-memory-pattern"
+  ],
+
+  "metacognitive": [
+    "agent-model-selector",
+    "pattern-metacognitive",
+    "command-think"
+  ],
+
+  "model-selection": [
+    "agent-model-selector",
+    "command-opus",
+    "command-opus-plus",
+    "command-sonnet",
+    "command-haiku",
+    "command-auto-model"
+  ],
+
+  "multi-agent": [
+    "pattern-multi-agent-orchestration",
+    "pattern-blackboard",
+    "template-scenario-multi-agent-advisory",
+    "learning-better-agents-patterns",
+    "learning-agentic-architectures",
+    "rule-context-budget-awareness",
+    "rule-explicit-identity"
+  ],
+
+  "n8n": [
+    "agent-n8n-expert",
+    "project-ki-auswanderungs-berater",
+    "learning-ki-auswanderungs-berater"
+  ],
+
+  "orchestration": [
+    "skill-research-orchestrator",
+    "prompt-research-orchestrator",
+    "template-orchestrator-agent",
+    "pattern-multi-agent-orchestration",
+    "pattern-task-decomposition"
+  ],
+
+  "patterns": [
+    "pattern-research-confidence-scoring",
+    "pattern-bilingual-seo",
+    "pattern-freemium-saas-gates",
+    "pattern-intake-gate",
+    "pattern-task-decomposition",
+    "pattern-multi-agent-orchestration",
+    "pattern-pev",
+    "pattern-blackboard",
+    "pattern-metacognitive",
+    "pattern-reflection",
+    "pattern-checkpoint-validation",
+    "pattern-context-window-ownership",
+    "pattern-compact-errors",
+    "pattern-8-block-profile",
+    "pattern-gdpr-compliant-saas",
+    "pattern-ai-content-pipeline",
+    "template-reusable-pattern",
+    "learning-better-agents-patterns",
+    "learning-agentic-architectures"
+  ],
+
+  "pitch": [
+    "agent-pitch-document-analyzer",
+    "agent-pitch-content-categorizer",
+    "agent-pitch-style-extractor",
+    "command-analyze-pitch-docs"
+  ],
+
+  "progressive-disclosure": [
+    "skill-template-creator",
+    "skill-prompt-pro-framework",
+    "template-progressive-skill"
+  ],
+
+  "prompt-engineering": [
+    "skill-prompt-pro-framework",
+    "prompt-framework-prompt-pro",
+    "command-create-prompt",
+    "command-run-prompt"
+  ],
+
+  "reflection": [
+    "pattern-reflection",
+    "pattern-pev"
+  ],
+
+  "research": [
+    "agent-research-analyst",
+    "skill-research-orchestrator",
+    "prompt-research-orchestrator",
+    "pattern-research-confidence-scoring",
+    "template-research-agent",
+    "template-scenario-autonomous-research"
+  ],
+
+  "saas": [
+    "pattern-freemium-saas-gates",
+    "pattern-gdpr-compliant-saas",
+    "idea-evolving-mvp-saas",
+    "project-ki-auswanderungs-berater"
+  ],
+
+  "scenarios": [
+    "scenario-evolving-dashboard",
+    "scenario-steuererklaerung-2024",
+    "scenario-workflow-engine",
+    "command-scenario",
+    "command-scenario-list",
+    "command-scenario-create",
+    "command-scenario-edit",
+    "rule-scenario-agents",
+    "template-scenario-autonomous-research",
+    "template-scenario-multi-agent-advisory"
+  ],
+
+  "sdk": [
+    "learning-claude-sdk-insights",
+    "scenario-workflow-engine"
+  ],
+
+  "seo": [
+    "skill-etsy-poster-creator",
+    "pattern-bilingual-seo"
+  ],
+
+  "session": [
+    "hook-session-summary",
+    "command-whats-next",
+    "rule-domain-memory-bootup"
+  ],
+
+  "steuer": [
+    "scenario-steuererklaerung-2024",
+    "prompt-aki-steueroptimierung"
+  ],
+
+  "synthesis": [
+    "agent-knowledge-synthesizer"
+  ],
+
+  "templates": [
+    "skill-template-creator",
+    "template-specialist-agent",
+    "template-research-agent",
+    "template-orchestrator-agent",
+    "template-workflow-command",
+    "template-analysis-command",
+    "template-progressive-skill",
+    "template-simple-skill",
+    "template-reusable-pattern",
+    "template-project-learning",
+    "template-scenario-autonomous-research",
+    "template-scenario-multi-agent-advisory",
+    "learning-aitmpl-findings"
+  ],
+
+  "validation": [
+    "agent-idea-validator",
+    "pattern-intake-gate",
+    "pattern-checkpoint-validation"
+  ],
+
+  "workflows": [
+    "agent-n8n-expert",
+    "command-run-workflow",
+    "rule-workflow-detection",
+    "scenario-workflow-engine",
+    "template-workflow-command"
+  ]
+}

@@ -34,7 +34,7 @@ Du bist ein Experte für Codebase-Analyse mit spezialisierter Unterstützung fü
 
 **Beispiele**:
 ```bash
-/project-analyze /Users/username/projects/my-project
+/project-analyze {HOME}/projects/my-project
 /project-analyze ~/projects/my-app --refresh
 /project-analyze /path/to/project --deep
 ```
@@ -96,7 +96,7 @@ def generate_project_slug(codebase_path):
 ```
 
 **Beispiel**:
-- `/Users/username/projects/My-Project` → `my-project`
+- `{HOME}/projects/My-Project` → `my-project`
 - `/home/user/my_next_app` → `my-next-app`
 
 ### Context-Existenz prüfen
@@ -624,7 +624,7 @@ Report verfügbar ohne n8n-Details.
 ### Flow 1: Erste Analyse
 
 ```
-User: "Analysiere /Users/me/projects/my-project"
+User: "Analysiere {HOME}/projects/my-project"
 
 Du: "🆕 Erste Analyse für 'my-project'..."
     (Invokes @codebase-analyzer-agent)
