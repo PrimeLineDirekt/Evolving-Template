@@ -304,7 +304,7 @@
         "idea-management",
         "overview"
       ],
-      "description": "Ideen-\u00dcbersicht mit Filtern"
+      "description": "Ideen-Übersicht mit Filtern"
     },
     {
       "id": "command-idea-connect",
@@ -1559,7 +1559,7 @@
         "code-generation",
         "templates"
       ],
-      "description": "Generiert alle Dateien f\u00fcr das neue System"
+      "description": "Generiert alle Dateien für das neue System"
     },
     {
       "id": "agent-system-validator",
@@ -1571,7 +1571,7 @@
         "validation",
         "quality-gates"
       ],
-      "description": "Validiert das generierte System auf Vollst\u00e4ndigkeit und Korrektheit"
+      "description": "Validiert das generierte System auf Vollständigkeit und Korrektheit"
     },
     {
       "id": "agent-dashboard-features",
@@ -1583,7 +1583,7 @@
         "features",
         "ux-design"
       ],
-      "description": "Generiert Feature-Ideen f\u00fcr das Evolving Dashboard"
+      "description": "Generiert Feature-Ideen für das Evolving Dashboard"
     },
     {
       "id": "agent-macro-data-collector",
@@ -1667,7 +1667,7 @@
         "macroeconomics",
         "liquidity"
       ],
-      "description": "Analysiert makro\u00f6konomische Bedingungen, Liquidit\u00e4tszyklen und fundamentale Treiber"
+      "description": "Analysiert makroökonomische Bedingungen, Liquiditätszyklen und fundamentale Treiber"
     },
     {
       "id": "agent-macro-orchestrator",
@@ -1702,7 +1702,7 @@
         "principles",
         "architecture"
       ],
-      "description": "5 Qualit\u00e4tsprinzipien: Foundation First, SSOT, Composition, Naming, Roadmap"
+      "description": "5 Qualitätsprinzipien: Foundation First, SSOT, Composition, Naming, Roadmap"
     },
     {
       "id": "rule-memory-decay",
@@ -1726,7 +1726,7 @@
         "evaluation",
         "quality"
       ],
-      "description": "Rubric-basierte Session-Qualit\u00e4tsbewertung"
+      "description": "Rubric-basierte Session-Qualitätsbewertung"
     },
     {
       "id": "rule-context-optimization",
@@ -1761,7 +1761,7 @@
         "efficiency",
         "abbreviations"
       ],
-      "description": "Abk\u00fcrzungen f\u00fcr interne Nutzung"
+      "description": "Abkürzungen für interne Nutzung"
     },
     {
       "id": "rule-no-reference-only",
@@ -1795,7 +1795,7 @@
         "debugging",
         "observation"
       ],
-      "description": "Outputs pr\u00fcfen vor Code-\u00c4nderung"
+      "description": "Outputs prüfen vor Code-Änderung"
     },
     {
       "id": "rule-index-at-creation",
@@ -1852,7 +1852,7 @@
         "ordering",
         "qr-system"
       ],
-      "description": "QR-Order System f\u00fcr NHI\u00caN Bistro, Da Nang"
+      "description": "QR-Order System für {PROJECT}, {LOCATION}"
     },
     {
       "id": "scenario-{PROJECT_ID}",
@@ -1864,7 +1864,7 @@
         "coordination",
         "logistics"
       ],
-      "description": "Koordination der medizinischen Versorgung Lombok \u2192 Jakarta"
+      "description": "Koordination der medizinischen Versorgung Lombok → Jakarta"
     },
     {
       "id": "scenario-{PROJECT_ID}",
@@ -1888,7 +1888,7 @@
         "knowledge-graph",
         "automation"
       ],
-      "description": "Knowledge Graph aktualisieren bei Entity-\u00c4nderungen"
+      "description": "Knowledge Graph aktualisieren bei Entity-Änderungen"
     },
     {
       "id": "learning-system-builder",
@@ -1932,7 +1932,7 @@
         "prompt-engineering",
         "methodology"
       ],
-      "description": "Analyse-Methodologie f\u00fcr Prompts"
+      "description": "Analyse-Methodologie für Prompts"
     },
     {
       "id": "learning-agentfs",
@@ -1943,7 +1943,7 @@
         "storage",
         "agents"
       ],
-      "description": "Unified Storage f\u00fcr Agents"
+      "description": "Unified Storage für Agents"
     },
     {
       "id": "learning-ultrathink-software",
@@ -1977,7 +1977,7 @@
         "chrome",
         "automation"
       ],
-      "description": "Best Practices f\u00fcr Chrome Automation"
+      "description": "Best Practices für Chrome Automation"
     },
     {
       "id": "learning-chrome-experiments",
@@ -2000,7 +2000,7 @@
         "decay",
         "pattern"
       ],
-      "description": "Pattern f\u00fcr Time-based Memory Decay"
+      "description": "Pattern für Time-based Memory Decay"
     },
     {
       "id": "learning-agent-observability",
@@ -2066,7 +2066,7 @@
         "notebooks",
         "audit"
       ],
-      "description": "Methodologie f\u00fcr Notebook Audits"
+      "description": "Methodologie für Notebook Audits"
     },
     {
       "id": "learning-skill-creation-tdd",
@@ -2077,7 +2077,7 @@
         "skills",
         "tdd"
       ],
-      "description": "TDD Methodologie f\u00fcr Skill-Erstellung"
+      "description": "TDD Methodologie für Skill-Erstellung"
     },
     {
       "id": "learning-hook-output-visibility",
