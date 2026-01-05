@@ -81,8 +81,8 @@ Diese Datei enthält das **Detail-Inventar** aller Komponenten mit Beschreibunge
 | Datei | Inhalt | Beschreibung |
 |-------|--------|--------------|
 | schema.json | Schema | Graph-Schema Definition |
-| nodes.json | ~148 Nodes | Alle Entities im System |
-| edges.json | ~187 Edges | Beziehungen zwischen Entities |
+| nodes.json | 222 Nodes | Alle Entities im System |
+| edges.json | 293 Edges | Beziehungen zwischen Entities |
 | taxonomy.json | ~120 Tags | Unified Keyword-Taxonomie |
 | index/by-type.json | Index | Nach Entity-Typ gruppiert |
 | index/by-domain.json | Index | Nach Domain/Keywords |

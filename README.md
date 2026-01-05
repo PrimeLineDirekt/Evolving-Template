@@ -222,8 +222,8 @@ Level 3: Full Documentation (3000+ Tokens)
 | **Templates** | 58 | `.claude/templates/` |
 | **Agent Traits** | 480 | `knowledge/agents/` |
 | **References** | 13 | `knowledge/references/` |
-| **Graph Nodes** | 183 | `_graph/nodes.json` |
-| **Graph Edges** | 245 | `_graph/edges.json` |
+| **Graph Nodes** | 222 | `_graph/nodes.json` |
+| **Graph Edges** | 293 | `_graph/edges.json` |
 | **Context Routes** | 31 | `_graph/cache/context-router.json` |
 
 ---
@@ -375,8 +375,8 @@ evolving/
 │   └── preferences/         # User Preferences
 │
 ├── _graph/                  # Knowledge Graph
-│   ├── nodes.json           # 183 Entities
-│   ├── edges.json           # 245 Relationships
+│   ├── nodes.json           # 222 Entities
+│   ├── edges.json           # 293 Relationships
 │   └── cache/
 │       └── context-router.json  # 29 Auto-Routes
 │
