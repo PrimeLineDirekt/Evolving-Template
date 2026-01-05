@@ -2,253 +2,313 @@
 
 ---
 
-## SETUP: Status Line Script
+## SETUP: Status Line Script (v2 - Context Budget Awareness)
 
 **File:** `~/.claude/statusline.sh`
 **Make executable:** `chmod +x ~/.claude/statusline.sh`
 
+**Format:** `145K 72% | dir | Opus | main *3 | ✓ Last → Current`
+
+**Colors:**
+- 🟢 Green: < 60% (normal)
+- 🟡 Yellow: 60-79% (warning)
+- 🔴 Red: ≥ 80% (critical, shows ⚠)
+
+**Features:**
+- Context % aus Token-Usage berechnet
+- Schreibt % nach `/tmp/claude-context-pct-{session}.txt` für Hooks
+- Liest Ledger (`_ledgers/CURRENT.md`) für Continuity-Anzeige
+- Git-Status mit Change-Count
+
 ```bash
 #!/bin/bash
-# Claude Code Auto-Updating Status Line
-# Displays: directory | model | git-status
-# Auto-refreshes between commands (no manual refresh needed)
+# Claude Code StatusLine with Context Budget Awareness
+# Format: 145K 72% | dir | Opus | main *3 | ✓ Last → Current
+# Colors: Green (<60%) | Yellow (60-79%) | Red (≥80%)
 
 input=$(cat)
-cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // "~"')
-model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
-dir=$(basename "$cwd")
+project_dir="${CLAUDE_PROJECT_DIR:-$(pwd)}"
 
-if [[ "$model" =~ Opus ]]; then
-  m="Opus"
-elif [[ "$model" =~ Sonnet ]]; then
-  m="Sonnet"
-elif [[ "$model" =~ Haiku ]]; then
-  m="Haiku"
+# Context % calculation
+input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0')
+cache_read=$(echo "$input" | jq -r '.context_window.current_usage.cache_read_input_tokens // 0')
+cache_creation=$(echo "$input" | jq -r '.context_window.current_usage.cache_creation_input_tokens // 0')
+system_overhead=45000
+total_tokens=$((input_tokens + cache_read + cache_creation + system_overhead))
+context_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
+context_pct=$((total_tokens * 100 / context_size))
+
+# Write for hooks
+echo "$context_pct" > "/tmp/claude-context-pct-${PPID}.txt"
+
+# Color coding
+if [[ "$context_pct" -ge 80 ]]; then
+  ctx="\033[31m⚠ ${total_tokens}K ${context_pct}%\033[0m"  # Red
+elif [[ "$context_pct" -ge 60 ]]; then
+  ctx="\033[33m${total_tokens}K ${context_pct}%\033[0m"    # Yellow
 else
-  m="${model%% *}"
+  ctx="\033[32m${total_tokens}K ${context_pct}%\033[0m"    # Green
 fi
 
-git_info=""
-if git -C "$cwd" rev-parse --git-dir &>/dev/null 2>&1; then
-  branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null)
-  [[ -z "$branch" ]] && branch="detached"
-
-  if git -C "$cwd" --no-optional-locks status --porcelain 2>/dev/null | grep -q .; then
-    status="*"
-  else
-    status="✓"
-  fi
-
-  git_info=" | $branch $status"
-fi
-
-printf "\033[38;5;6m%s | %s\033[0m%s" "$dir" "$m" "$git_info"
+# Model + Git + Ledger (abbreviated - full script in ~/.claude/statusline.sh)
+echo -e "$ctx | dir | model | git | continuity"
 ```
+
+**Vollständiges Script:** Siehe `~/.claude/statusline.sh` (128 Zeilen)
 
 ---
 
 # Evolving System Map (continued)
 
-**Last Updated**: 2026-01-02
-**Version**: 3.1.0
-**Purpose**: Persistent system documentation for repository analysis and integration
+**Letzte Aktualisierung**: 2026-01-05
+**Version**: 2.4.0
+**Zweck**: Persistente System-Dokumentation für Repository-Analyse und Integration
 
 ---
 
-## System Statistics
+## System-Statistiken
 
-| Component | Count | Location |
-|-----------|-------|----------|
-| **Agents** | 30 | .claude/agents/ |
-| **Skills** | 6 | .claude/skills/ |
-| **Commands** | 43 | .claude/commands/ |
-| **Hooks** | 4 | .claude/hooks/ |
-| **Rules** | 28 | .claude/rules/ |
-| **Scenarios** | 2 | .claude/scenarios/ |
-| **Blueprints** | 7 | .claude/blueprints/ |
-| **Templates** | 37 | .claude/templates/ |
-| **Patterns** | 50 | knowledge/patterns/ |
-| **Learnings** | 28 | knowledge/learnings/ |
-| **Prompts** | 24 | knowledge/prompts/ |
-| **MCP Servers** | 3 | .mcp.json |
-| **Domain Memory** | 1 | _memory/ |
+**Aktuelle Zahlen:** `_stats.json` (Single Source of Truth)
+
+Diese Datei enthält das **Detail-Inventar** aller Komponenten mit Beschreibungen, Dependencies und Metadaten.
 
 ---
 
 ## Knowledge Graph (_graph/)
 
-**NEW in v1.3.0**: Unified Knowledge Graph for automatic context provisioning.
+**NEU in v1.3.0**: Unified Knowledge Graph für automatische Kontextbereitstellung.
 
-| File | Content | Description |
-|------|---------|-------------|
-| schema.json | Schema | Graph schema definition |
-| nodes.json | ~148 Nodes | All entities in system |
-| edges.json | ~187 Edges | Relationships between entities |
-| taxonomy.json | ~120 Tags | Unified keyword taxonomy |
-| index/by-type.json | Index | Grouped by entity type |
-| index/by-domain.json | Index | Grouped by domain/keywords |
-| index/by-project.json | Index | Grouped by project |
-| cache/context-router.json | Router | Keyword → Nodes mapping |
+| Datei | Inhalt | Beschreibung |
+|-------|--------|--------------|
+| schema.json | Schema | Graph-Schema Definition |
+| nodes.json | ~148 Nodes | Alle Entities im System |
+| edges.json | ~187 Edges | Beziehungen zwischen Entities |
+| taxonomy.json | ~120 Tags | Unified Keyword-Taxonomie |
+| index/by-type.json | Index | Nach Entity-Typ gruppiert |
+| index/by-domain.json | Index | Nach Domain/Keywords |
+| index/by-project.json | Index | Nach Projekt |
+| cache/context-router.json | **28 Routes** | Keyword → Nodes Mapping (v2.3) |
 
-**Purpose**: Automatically load relevant context when creating Agents, Skills, Commands.
+**Zweck**: Bei Erstellung von Agents, Skills, Commands automatisch relevanten Kontext laden.
 
 ---
 
 ## Blueprints (.claude/blueprints/)
 
-**NEW in v1.4.0**: System-Builder blueprints for automatic project generation.
+**v1.4.0+**: System-Builder & ML Project Blueprints für automatische Projekt-Generierung.
 
-| Blueprint | Type | Description | Status |
-|-----------|------|-------------|--------|
-| multi-agent-advisory | advisory | Multi-expert advisory system (3-5 Agents + Orchestrator) | active |
+### System Builder Blueprints (Multi-Agent Systems)
 
-**Planned Blueprints:**
-- autonomous-research (Research-focused)
-- simple-workflow (Simple automation)
+| Blueprint | Typ | Beschreibung | Status |
+|-----------|-----|--------------|--------|
+| multi-agent-advisory | advisory | Multi-Experten-Beratungssystem (3-5 Agents + Orchestrator) | active |
+| autonomous-research | research | Task Decomposition + Parallel Research | active |
+| simple-workflow | workflow | Einfache 1-3 Agent Pipelines | active |
 
-**Purpose**: Blueprints enable generation of complete project systems with:
-- Specialized Agents
-- Domain-specific Commands
-- Knowledge injection from Evolving
-- Pre-configured model tiers
+### ML & Project Blueprints (Extracted from KalyanM45/AI-Project-Gallery)
+
+| Blueprint | Typ | Quelle | Beschreibung | Status |
+|-----------|-----|--------|--------------|--------|
+| end-to-end-ml-project | regression | Airbnb, Flight Fare, Gold Price | Umfassender ML-Projekt-Template mit DVC, MLFlow, Flask, Docker | active |
+| web-scraping-project | data-collection | Article Web Scraper | API-basierter Web Scraping mit Beautiful Soup, Rate-Limiting, Persistence | active |
+| timeseries-prediction-project | forecasting | Flight Fare, Gold Price | Time-Series Forecasting mit Stationarity Testing, Lag Features, Seasonal Patterns | active |
+| business-intelligence-project | analytics | E-Commerce Data Analysis | BI Dashboard Template mit Power BI, EDA, Customer Segmentation, KPI Definitions | active |
+
+**Zweck der Blueprints**:
+- Automatische Projekt-Generierung mit `/create-system` Command
+- Spezialisierte Architekturen für verschiedene Datentypen
+- Vorkonfigurierte Best Practices und Patterns
+- Knowledge Injection aus Evolving System
+- Production-ready Strukturen
 
 ---
 
-## Component Inventory
+## Komponenten-Inventar
 
 ### Agents (.claude/agents/)
 
-| Name | Type | Domain | Purpose | Dependencies |
-|------|------|--------|---------|--------------|
-| model-selector-agent | specialist | model-selection | Metacognitive self-assessment for model selection | - |
+| Name | Typ | Domain | Zweck | Dependencies |
+|------|-----|--------|-------|--------------|
+| model-selector-agent | specialist | model-selection | Metacognitive Self-Assessment für Model-Auswahl | - |
 | context-manager-agent | specialist | context-management | Context sharing, persistence, coordination | upstream: knowledge-synthesizer, research-analyst |
 | idea-validator-agent | specialist | idea-validation | Feasibility, market, technical assessment | upstream: context-manager, research-analyst |
 | idea-expander-agent | specialist | idea-expansion | Opportunity discovery, feature generation | upstream: idea-validator, research-analyst |
 | idea-connector-agent | specialist | idea-connection | Cross-idea synergy discovery | upstream: knowledge-synthesizer, idea-validator |
 | knowledge-synthesizer-agent | specialist | knowledge-synthesis | Multi-source integration, pattern recognition | upstream: research-analyst, context-manager |
 | research-analyst-agent | research | multi-domain-research | Multi-source research with confidence scoring | upstream: context-manager |
-| codebase-analyzer-agent | specialist | codebase-analysis | External codebase analysis, workflow detection | orchestrates: n8n-expert-agent |
+| codebase-analyzer-agent | specialist | codebase-analysis | External codebase analysis, n8n detection | orchestrates: n8n-expert-agent |
 | n8n-expert-agent | specialist | n8n-workflows | n8n workflow analysis, optimization | triggered by: codebase-analyzer |
-| system-analyzer-agent | specialist | system-building | Requirements analysis, blueprint matching | - |
-| system-architect-agent | specialist | system-building | Architecture design, agent roles, model tiers | upstream: system-analyzer |
-| system-generator-agent | specialist | system-building | File generation, template instantiation | upstream: system-architect |
-| system-validator-agent | specialist | system-building | Structure validation, quality gates | upstream: system-generator |
+| pitch-document-analyzer-agent | specialist | pitch-systems | Technische Dokumentation analysieren (dokumentbasiert) | - |
+| pitch-content-categorizer-agent | specialist | pitch-systems | KB-Kategorisierung (dokumentbasiert) | upstream: pitch-document-analyzer |
+| pitch-style-extractor-agent | specialist | pitch-systems | Stil-Extraktion aus PPTX (dokumentbasiert) | upstream: pitch-document-analyzer |
+| system-analyzer-agent | specialist | system-building | Requirements Analysis, Blueprint Matching | - |
+| system-architect-agent | specialist | system-building | Architecture Design, Agent Roles, Model Tiers | upstream: system-analyzer |
+| system-generator-agent | specialist | system-building | File Generation, Template Instantiation | upstream: system-architect |
+| system-validator-agent | specialist | system-building | Structure Validation, Quality Gates | upstream: system-generator |
+| github-repo-analyzer-agent | specialist | codebase-analysis | GitHub Repo Analysis, Deep Dive Extraktion | - |
+| dashboard-features-agent | specialist | dashboard | Feature Ideas Generation, UX/UI Assessment | upstream: dashboard-codebase-agent |
+| fal-image-generator-agent | specialist | image-generation | FAL.ai Nano Banana Pro Elite Agent, ICS Framework, 20 Style-Kategorien | - |
+| macro-data-collector-agent | orchestrator | market-analysis | Parallel Data Collection (7 Sources) | upstream: research-analyst |
+| meta-analyst-agent | specialist | market-analysis | Hidden Patterns, Cui Bono, Narrative Detection | upstream: macro-data-collector, knowledge-synthesizer |
+| pattern-recognizer-agent | specialist | market-analysis | Historical Patterns, Contrarian Signals | upstream: knowledge-synthesizer |
+| forecast-synthesizer-agent | specialist | market-analysis | Scenario Modeling, Probability Forecasts | upstream: meta-analyst, pattern-recognizer, macro-economist |
+| learning-optimizer-agent | specialist | market-analysis | Prediction Tracking, Model Refinement | upstream: forecast-synthesizer |
+| market-technical-analyst-agent | specialist | market-analysis | Technical Indicators, Chart Analysis | - |
+| macro-economist-agent | specialist | market-analysis | Liquidity Cycles, CPI Lag, Fed Policy | - |
+| macro-orchestrator-agent | orchestrator | market-analysis | Agent Coordination, Report Synthesis | orchestrates: all macro-agents |
 
 **Agent Type Distribution:**
-- Specialist Agents: 12 (92.3%)
-- Research Agents: 1 (7.7%)
+- Specialist Agents: 22 (84.6%)
+- Orchestrator Agents: 2 (7.7%)
+- Research Agents: 1 (3.8%)
 - System Builder Agents: 4 (orchestrated pipeline)
 
 ---
 
 ### Skills (.claude/skills/)
 
-| Name | Type | Purpose | Invocation |
-|------|------|---------|------------|
-| template-creator | production | Template creation for Agents, Commands, Hooks, Skills | `@template-creator` or "create an agent" |
-| prompt-pro-framework | production | 5-Level Prompt Engineering System | `@prompt-pro-framework` or "create prompt for" |
-| research-orchestrator | production | Multi-domain research with confidence scoring | `@research-orchestrator` or "research {topic}" |
+| Name | Typ | Zweck | Invocation |
+|------|-----|-------|------------|
+| template-creator | production | Template Creation für Agents, Commands, Hooks, Skills | `@template-creator` oder "erstelle einen agent" |
+| prompt-pro-framework | production | 5-Level Prompt Engineering System | `@prompt-pro-framework` oder "erstelle prompt für" |
+| research-orchestrator | production | Multi-domain Research mit Confidence Scoring | `@research-orchestrator` oder "research {topic}" |
+| etsy-poster-creator | production | Viral-optimierte Etsy Listings mit SEO | `@etsy-poster-creator` oder "create etsy listing" |
 
-**Skill Pattern:** All skills use Progressive Disclosure (reference.md + examples.md)
+**Skill Pattern:** Alle Skills nutzen Progressive Disclosure (reference.md + examples.md)
 
 ---
 
 ### Commands (.claude/commands/)
 
-| Command | Purpose | Model | Agent/Skill |
-|---------|---------|-------|-------------|
+| Command | Zweck | Model | Agent/Skill |
+|---------|-------|-------|-------------|
 | `/opus` | Switch to Opus (maximum quality) | opus | - |
 | `/opus+` | Opus + Ultrathink (maximum reasoning) | opus | - |
 | `/sonnet` | Switch to Sonnet (balanced) | sonnet | - |
 | `/haiku` | Switch to Haiku (fast & cheap) | haiku | - |
-| `/idea-new` | New idea with AI analysis | sonnet | - |
-| `/idea-work` | Work on idea (sparring) | opus | idea-validator, idea-expander, idea-connector |
-| `/idea-list` | Idea overview with filters | haiku | - |
-| `/idea-connect` | Find synergies between ideas | opus | - |
-| `/sparring` | Free brainstorming (7 modes) | opus | - |
-| `/knowledge-add` | Add knowledge to KB | haiku | - |
-| `/knowledge-search` | Semantic KB search | haiku | - |
-| `/project-add` | Document project | sonnet | - |
-| `/project-analyze` | Analyze codebase | opus | codebase-analyzer, n8n-expert |
-| `/inbox-process` | Automatically process inbox | haiku | - |
-| `/onboard-process` | Process onboarding questionnaire | sonnet | - |
-| `/create-agent` | Create agent from template | haiku | template-creator |
-| `/create-command` | Create command from template | haiku | template-creator |
-| `/create-hook` | Create hook from template | haiku | template-creator |
-| `/create-skill` | Create skill from template | haiku | template-creator |
-| `/system-health` | System diagnostics | haiku | - |
-| `/scenario` | Activate scenario | haiku | - |
-| `/scenario-list` | Show scenarios | haiku | - |
-| `/scenario-create` | Create new scenario | sonnet | - |
-| `/scenario-edit` | Edit scenario | sonnet | - |
-| `/create-system` | Generate complete project system | sonnet | system-analyzer, system-architect, system-generator, system-validator |
+| `/idea-new` | Neue Idee mit KI-Analyse | sonnet | - |
+| `/idea-work` | An Idee arbeiten (Sparring) | opus | idea-validator, idea-expander, idea-connector |
+| `/idea-list` | Ideen-Übersicht mit Filtern | haiku | - |
+| `/idea-connect` | Synergien zwischen Ideen finden | opus | - |
+| `/sparring` | Freies Brainstorming (7 Modi) | opus | - |
+| `/knowledge-add` | Wissen zur KB hinzufügen | haiku | - |
+| `/knowledge-search` | Semantische KB-Suche | haiku | - |
+| `/project-add` | Projekt dokumentieren | sonnet | - |
+| `/project-analyze` | Codebase analysieren | opus | codebase-analyzer, n8n-expert |
+| `/inbox-process` | Inbox automatisch verarbeiten | haiku | - |
+| `/onboard-process` | Onboarding-Fragebogen verarbeiten | sonnet | - |
+| `/create-agent` | Agent aus Template erstellen | haiku | template-creator |
+| `/create-command` | Command aus Template erstellen | haiku | template-creator |
+| `/create-hook` | Hook aus Template erstellen | haiku | template-creator |
+| `/create-skill` | Skill aus Template erstellen | haiku | template-creator |
+| `/compose-agent` | Dynamischer Agent aus Trait-System (480 Kombinationen) | sonnet | agent-factory |
+| `/system-health` | System-Diagnostik | haiku | - |
+| `/scenario` | Szenario aktivieren | haiku | - |
+| `/scenario-list` | Szenarien anzeigen | haiku | - |
+| `/scenario-create` | Neues Szenario erstellen | sonnet | - |
+| `/scenario-edit` | Szenario bearbeiten | sonnet | - |
+| `/analyze-pitch-docs` | Pitch-Dokumente analysieren | sonnet | pitch-document-analyzer, pitch-content-categorizer, pitch-style-extractor |
+| `/create-system` | Komplettes Projekt-System generieren | sonnet | system-analyzer, system-architect, system-generator, system-validator |
+| `/auto-model` | Automatische Model-Auswahl | haiku | model-selector-agent |
+| `/pattern-scan` | Historical Pattern Matching | sonnet | pattern-recognizer-agent |
+| `/learning-review` | Accuracy Metrics & Model Refinement | sonnet | learning-optimizer-agent |
+| `/analyze-batch` | Batch Document Analysis | sonnet | - |
+| `/security-review` | Security Code Review | opus | - |
+| `/interview-plan` | Interview vor Implementation | opus | - |
+| `/run-workflow` | Workflow ausführen | sonnet | - |
+| `/macro-forecast` | 30-Tage Probability Forecast | opus | forecast-synthesizer-agent |
+| `/market-analysis` | Deep Market Analysis | opus | macro-orchestrator-agent |
 
 **Command Categories:**
 - Model Switchers: 4
 - Idea Management: 4
 - Knowledge Management: 2
-- Project Management: 2
+- Project Management: 4
 - Scenario Management: 4
-- Creation Tools: 4
+- Creation Tools: 5
 - System Building: 1
 - System Utilities: 3
 - Brainstorming: 1
+- Macro-Analyse: 5
+- Development Tools: 3
+- Workflow Execution: 1
+- Experience Memory: 4
+- External Projects: 1 (Schulung Pitch)
 
 ---
 
 ### Hooks (.claude/hooks/)
 
-| Hook | Type | Trigger | Purpose |
-|------|------|---------|---------|
-| context-monitor.sh | StatusLine | Permanent | Display session cost & duration |
-| auto-cross-reference.sh | PostToolUse | Write/Edit | Synchronize master documents |
-| session-summary.sh | Stop | Session end | Create session documentation |
-| graph-update.sh | PostToolUse | Write/Edit | Update knowledge graph (placeholder) |
+| Hook | Typ | Trigger | Zweck |
+|------|-----|---------|-------|
+| context-monitor.sh | StatusLine | Permanent | Session-Kosten & Dauer anzeigen |
+| auto-cross-reference.sh | PostToolUse | Write/Edit | Master-Dokumente synchronisieren |
+| session-summary.sh | Stop | Session-Ende | Session-Dokumentation erstellen |
+| graph-update.sh | PostToolUse | Write/Edit | Knowledge Graph aktualisieren (Placeholder) |
 
 ---
 
 ### Rules (.claude/rules/)
 
-| Rule | Type | Purpose |
-|------|------|---------|
+| Rule | Typ | Zweck |
+|------|-----|-------|
 | core-principles.md | Core | AI-First, Sparring, 80/20, Chain of Thought |
-| cross-reference-sync.md | Core (CRITICAL) | Keep 5 master documents synchronized |
-| domain-memory-bootup.md | Core (CRITICAL) | Memory read/write ritual |
-| auto-enhancement.md | Core | Automatic prompt enhancement |
-| plan-archival.md | Core | Plan archival workflow |
-| workflow-detection.md | Core | Confidence-based slash-command detection |
-| command-creation.md | Core (CRITICAL) | Create new commands correctly |
-| scenario-agents.md | Core (CRITICAL) | Agent usage in scenarios |
-| knowledge-linking.md | Core | Proactive knowledge linking |
-| experience-suggest.md | Core | Experience memory auto-suggest |
-| ultrathink.md | Core | Quality principles (5 principles) |
-| scenarios/evolving-dashboard.md | Path-Specific | Rules for dashboard/**/* (example) |
+| cross-reference-sync.md | Core (KRITISCH) | 5 Master-Dokumente synchron halten |
+| proactive-doc-sync.md | Core (NEU) | Automatische Doc-Aktualisierung nach strukturellen Änderungen |
+| plan-archival.md | Core | Plan-Archivierung Workflow |
+| workflow-detection.md | Core | Confidence-basierte Slash-Command Erkennung |
+| command-creation.md | Core (KRITISCH) | Neue Commands korrekt erstellen |
+| scenario-agents.md | Core (KRITISCH) | Agent-Nutzung in Szenarien |
+| knowledge-linking.md | Core | Proaktive Wissensvernetzung |
+| observe-before-editing.md | Core | Outputs prüfen vor Code-Edits (Debugging-First) |
+| index-at-creation.md | Core | Artifacts sofort indexieren, nicht Batch |
+| context-budget-awareness.md | Core (NEU) | v3 Emergent Behavior: Parallelisierung bei High Context |
+| explicit-identity.md | Core (NEU) | IDs durch Process-Boundaries durchreichen |
+| idempotent-redundancy.md | Core (NEU) | Redundanz nur wenn idempotent |
+| sub-agent-delegation.md | Core (NEU) | 3-Modi Delegation (FULL/CHECKPOINT/DIRECT) |
+| scenarios/evolving-dashboard.md | Path-Specific | Regeln für dashboard/**/* |
+| scenarios/auswanderungs-ki.md | Path-Specific | Regeln für Auswanderungs-KI-v2/**/* |
 
 **Rule Types:**
-- Core Rules: 11 (always active)
-- Path-Specific Rules: 1 (only for specific files)
+- Core Rules: 28 (immer aktiv)
+- Path-Specific Rules: 2 (nur bei bestimmten Dateien)
 
 ---
 
 ### Scenarios (.claude/scenarios/)
 
-| Scenario | Description | Agents | Commands | Status |
-|----------|-------------|--------|----------|--------|
-| evolving-dashboard | TileGrid-Guide (48 features) + Chat Panel with Toggle & Resize (v2.0.0) | 5 | 3 | active |
-| workflow-engine | Claude Agent SDK Implementation | 5 | 4 | active |
+| Szenario | Beschreibung | Agents | Commands | Status |
+|----------|--------------|--------|----------|--------|
+| evolving-dashboard | TileGrid-Guide (48 Features) + Chat Panel mit Toggle & Resize (v2.0.0) | 5 | 3 | active |
+| steuererklaerung-2024 | Experten-Team für Steuererklärung 2024 | 4 | 2 | active |
+| workflow-engine | ARCHIVED - Over-Engineering, SDK reicht | 5 | 4 | archived |
+| nhien-bistro | QR-Order System für NHIÊN Bistro, Da Nang | 3 | 3 | active |
+| macro-analyse | WZRD Signals Market Analysis Dashboard | 7 | 5 | active |
+| didit-medical-care | Medizinische Koordination Lombok → Jakarta | 3 | 2 | active |
+| auswanderungs-ki | Python/LangGraph Multi-Agent System | - | - | active |
+
+**Steuererklärung 2024 Agents:**
+- steuerberater-agent (Optimierung, Werbungskosten, Sonderausgaben)
+- steueranwalt-agent (Rechtssicherheit, Risiko-Ampel)
+- software-experte-agent (SteuerSparErklärung Bedienung)
+- steuer-koordinator-agent (Team-Orchestrierung)
+
+**Steuererklärung 2024 Commands:**
+- /steuer-beratung - Umfassende Team-Beratung
+- /steuer-check - Schnelle Absetzbarkeits-Prüfung
 
 **Evolving Dashboard Agents:**
 - dashboard-frontend-agent (Next.js, React, xterm.js)
 - dashboard-backend-agent (API, WebSocket, node-pty)
 - railway-expert-agent (Railway.app Deployment)
 - dashboard-testing-agent (Jest, Playwright)
-- dashboard-codebase-agent (Architecture, Code Quality)
+- dashboard-codebase-agent (Architektur, Code-Qualität)
 
 **Evolving Dashboard Commands:**
-- /dashboard-dev - Development server
-- /dashboard-build - Production build
-- /dashboard-deploy - Railway deployment
-- /dashboard-test - Run tests
+- /dashboard-dev - Development Server
+- /dashboard-build - Production Build
+- /dashboard-deploy - Railway Deployment
+- /dashboard-test - Tests ausführen
 
 **Workflow Engine Agents:**
 - sdk-architect-agent (System Design, Architecture)
@@ -258,48 +318,103 @@ printf "\033[38;5;6m%s | %s\033[0m%s" "$dir" "$m" "$git_info"
 - code-reviewer-agent (Code Review, Best Practices)
 
 **Workflow Engine Commands:**
-- /workflow-design - Plan architecture
-- /workflow-implement - Implementation
-- /workflow-test - Run tests
-- /workflow-review - Code review
+- /workflow-design - Architektur planen
+- /workflow-implement - Implementierung
+- /workflow-test - Tests ausführen
+- /workflow-review - Code Review
+
+**Macro-Analyse Agents:**
+- macro-data-collector-agent (7 API Sources parallel)
+- market-technical-analyst-agent (Technical Indicators)
+- macro-economist-agent (Liquidity, CPI, Fed)
+- meta-analyst-agent (Hidden Drivers, Cui Bono)
+- pattern-recognizer-agent (Historical Patterns)
+- forecast-synthesizer-agent (Scenario Modeling)
+- learning-optimizer-agent (Self-Improvement)
+- macro-orchestrator-agent (Agent Coordination)
+
+**Macro-Analyse Commands:**
+- /market-analysis - Deep Analysis mit allen Agents
+- /macro-forecast - 30-Tage Probability Forecast
+- /pattern-scan - Historical Pattern Matching
+- /learning-review - Accuracy Metrics
+- /analyze-batch - Batch Document Analysis
+
+**Didit Medical Care Agents:**
+- medical-coordinator-agent (Krankenhaus-Kommunikation, OP-Planung)
+- transport-coordinator-agent (Air Ambulance, Ground Transport)
+- logistics-coordinator-agent (Unterkunft, Budget-Tracking)
+
+**Didit Medical Care Commands:**
+- /didit-status - Aktueller Projektstand
+- /didit-next - Nächste Schritte
 
 ---
 
 ### Templates (.claude/templates/)
 
-| Type | Files | Purpose |
-|------|-------|---------|
-| **Agents** | specialist-agent.md, research-agent.md, orchestrator-agent.md | Agent creation |
-| **Commands** | workflow-command.md, analysis-command.md | Command creation |
-| **Hooks** | post-tool-use.sh, stop-hook.sh | Hook creation |
-| **Skills** | progressive-skill/, simple-skill/ | Skill creation |
-| **Scenarios** | autonomous-research/, multi-agent-advisory/ | Scenario creation (Task Decomposition, Multi-Agent Advisory) |
-| **Generated-System** | CLAUDE.md.template, README.md.template, scenario.json.template, memory-index.json.template | System generation |
-| **Patterns** | reusable-pattern.md | Pattern documentation |
-| **Learnings** | project-learning.md | Learning capture |
+| Typ | Dateien | Zweck |
+|-----|---------|-------|
+| **Agents (8)** | specialist, research, orchestrator, advisor, system-builder, validator, creative, automation, dynamic | Agent-Erstellung + Trait-basierte Composition |
+| **Commands** | workflow-command.md, analysis-command.md | Command-Erstellung |
+| **Hooks** | post-tool-use.sh, stop-hook.sh | Hook-Erstellung |
+| **Skills** | progressive-skill/, simple-skill/ | Skill-Erstellung |
+| **Scenarios** | autonomous-research/, multi-agent-advisory/ | Szenario-Erstellung (Task Decomposition, Multi-Agent Advisory) |
+| **Generated-System** | CLAUDE.md.template, README.md.template, scenario.json.template, memory-index.json.template | System-Generierung |
+| **Patterns** | reusable-pattern.md | Pattern-Dokumentation |
+| **Learnings** | project-learning.md | Learning-Erfassung |
+| **Data-Aggregation** | multi-source-aggregator/ (6 files) | News Feeds, Trend Tracking, Knowledge Aggregation (Source: replicate/hype) |
+
+---
+
+### Agent Trait System (knowledge/agents/) 🆕
+
+| Datei | Beschreibung |
+|-------|--------------|
+| trait-taxonomy.json | 10 Expertise × 8 Personality × 6 Approach = **480 Kombinationen** |
+| voice-mappings.json | Personality → Voice Characteristics (Tone, Markers, Avoids) |
+| disclaimers.json | Domain-spezifische Disclaimers (legal, security, medical) |
+
+**Expertise (10)**: researcher, architect, engineer, analyst, strategist, legal*, creative, security*, communications, medical*
+
+**Personality (8)**: precise, creative, cautious, direct, thorough, contrarian, empathetic, skeptical
+
+**Approach (6)**: systematic, exploratory, iterative, parallel, adversarial, consultative
+
+**Verwendung**: `/compose-agent <expertise> [personality] [approach]`
 
 ---
 
 ### Knowledge Base (knowledge/)
 
-| Folder | Files | Description |
-|--------|-------|-------------|
-| **projects/** | - | Project documentation (populated via /project-add) |
-| **plans/** | 0 | Parked implementation plans |
-| **learnings/** | 13 | Project insights |
-| **patterns/** | 24 | Reusable patterns (4 core, 8 agent, 1 infra, 3 business, 1 system-gen, 3 claude-code, 2 token-efficiency, 2 research) |
-| **references/** | 6 | Self-contained tool references (claude-skills, mcp-servers, agent-templates, claude-flow, document-skills, claude-code-system-prompts) |
-| **prompts/** | 24 | Prompt library & frameworks |
-| **personal/** | 4 | User profile, skills, instructions |
-| **external-projects/** | - | Context-persistent codebase analysis |
-| **_sources/** | 2 | Source tracking & archived externals |
+| Ordner | Dateien | Beschreibung |
+|--------|---------|--------------|
+| **projects/** | 37 | Projekt-Dokumentation (8 Projekte - siehe Key Knowledge Assets) |
+| **plans/** | 1 | Geparkte Implementierungspläne |
+| **learnings/** | 30 | Projekt-Erkenntnisse (inkl. Context Degradation, Skill Anti-Patterns, Notebook Audit Methodology) |
+| **patterns/** | 46 | Wiederverwendbare Patterns (inkl. Research Orchestration, Systematic Debugging, Technical Code Review, Parallel Agent Dispatch) |
+| **references/** | 6 | Self-Contained Tool References (claude-skills, mcp-servers, agent-templates, claude-flow, document-skills, claude-code-system-prompts) |
+| **prompts/** | 24 | Prompt Library & Frameworks |
+| **personal/** | 4 | User Profile, Skills, Instructions |
+| **external-projects/** | 1 | Context-persistent Codebase Analysis (auswanderungs-ki-v2) |
+| **_sources/** | 2 | Source Tracking & Archived externals |
 
 **Key Knowledge Assets:**
-- Projects: Populated through onboarding and /project-add
+- **8 Projekte:**
+  - AI Poster Creation Hub (Live, Etsy/Midjourney/Pinterest)
+  - KI Auswanderungs-Berater v1 (n8n, Phase 4)
+  - Auswanderungs-KI v2.1 (Python/LangGraph, Production-Ready)
+  - Macro-Analyse (FastAPI/Next.js, WZRD Signals Dashboard)
+  - Document Dashboard (Next.js, RAG/ChromaDB)
+  - Didit Medical Care (MVP)
+  - Gold Price Prediction (ML Pipeline)
+  - Schulung Pitch (Windenergie, wartet auf Samples)
+- **Auswanderungs-KI v2.1 Tax KB**: 72 Dokumente, 621.326 Wörter, Phase 1-5 KOMPLETT
 - 2 Frameworks: Prompt Pro 2.0, Idea Forge
-- 24+ Production Patterns (Multi-Agent, Reflection, PEV, Blackboard, Metacognitive, Context Window, Compact Errors, 8-Block Profile, Content Pipeline, System-Generation, Security Review, Swarm/Team Coordination, Learning Mode, Observation Compression, Progressive Disclosure, Recursive Research, LOCK Methodology)
-- 13+ Learnings (12-Factor Agents, Claude SDK Insights, System-Builder, Claude-Mem Persistent Memory, Prompt Coach Methodology, AgentFS Storage, etc.)
-- **7 Tool References** (obra/superpowers 19 Skills, MCP Servers, Agent Mega-Template, Claude-Flow Patterns, Document Skills, Claude Code System Prompts, Awesome Claude Resources)
+- 18 Auswanderungs-KI Agent Patterns
+- 48 Production Patterns (inkl. Research Orchestration, Systematic Debugging, Technical Code Review, Parallel Agent Dispatch, Resume Strategies, Safety Hooks, Four-Bucket Context, Hook Development Reference, Idempotent Redundancy, Explicit Identity, Multi-Agent Ultrathink, Ralph Wiggum Loop)
+- 30 Learnings (inkl. Notebook Audit Methodology, Skill Creation TDD, Context Degradation Deep Dive, Skill Anti-Patterns Structure, Memory Decay, Agent Observability/LangSmith)
+- **9 Tool References** (obra/superpowers 19 Skills, MCP Servers, Agent Mega-Template, Claude-Flow Patterns, Document Skills, Claude Code System Prompts, Awesome Claude Resources, CC-WF-Studio, just-bash)
 
 ---
 
@@ -307,28 +422,30 @@ printf "\033[38;5;6m%s | %s\033[0m%s" "$dir" "$m" "$git_info"
 
 | Status | Details |
 |--------|---------|
-| **Available** | Yes (.mcp.json) |
-| **Servers** | github, sequential-thinking, context7 |
+| **Vorhanden** | Ja (.mcp.json) |
+| **Server** | github, sequential-thinking, context7 |
 | **Tools** | GitHub API, Sequential Thinking, Context7 |
 
 ---
 
-## Architecture Patterns
+## Architektur-Patterns
 
-### Implemented Patterns
+### Implementierte Patterns
 
-| Pattern | Description | Used In |
-|---------|-------------|---------|
-| **Multi-Agent Orchestration** | Agents coordinate via dependencies | codebase-analyzer → n8n-expert |
-| **Research Agent Pattern** | Multi-source + confidence scoring | research-analyst-agent |
-| **Progressive Disclosure** | Skills with reference.md + examples.md | All 3 skills |
-| **Specialist Agent Pattern** | Domain-focused agents | 12 of 13 agents |
-| **Cross-Reference Sync** | Automatic document synchronization | auto-cross-reference.sh hook |
-| **Model Selection Strategy** | Optimal model per task | /opus, /sonnet, /haiku commands |
-| **Reflection Pattern** | Generator → Critic → Refiner loop | Output quality improvement |
-| **PEV Pattern** | Plan-Execute-Verify with self-correction | Complex multi-step tasks |
-| **Blackboard Pattern** | Shared memory + controller coordination | Multi-agent coordination |
-| **Metacognitive Pattern** | Self-assessment before actions | Model selection, error prevention |
+| Pattern | Beschreibung | Verwendet in |
+|---------|--------------|--------------|
+| **Multi-Agent Orchestration** | Agents koordinieren über Dependencies | codebase-analyzer → n8n-expert |
+| **Research Agent Pattern** | Multi-Source + Confidence Scoring | research-analyst-agent |
+| **Progressive Disclosure** | Skills mit reference.md + examples.md | Alle 4 Skills |
+| **Specialist Agent Pattern** | Domain-fokussierte Agents | 7 von 8 Agents |
+| **Cross-Reference Sync** | Automatische Dokument-Synchronisation | auto-cross-reference.sh Hook |
+| **Model Selection Strategy** | Optimales Modell pro Task | /opus, /sonnet, /haiku Commands |
+| **Reflection Pattern** | Generator → Critic → Refiner Loop | Output-Qualitätsverbesserung |
+| **PEV Pattern** | Plan-Execute-Verify mit Self-Correction | Komplexe Multi-Step Tasks |
+| **Blackboard Pattern** | Shared Memory + Controller Coordination | Multi-Agent Koordination |
+| **Metacognitive Pattern** | Self-Assessment vor Aktionen | Model Selection, Error Prevention |
+| **Temporal Knowledge Graph** | Edges mit valid_from/valid_until für Time-Travel Queries | _graph/schema.json |
+| **Memory Architecture Pattern** | 5-Layer Memory (Working→Entity→Temporal KG) | knowledge/patterns/memory-architecture-pattern.md |
 
 ### Agent Execution Patterns
 
@@ -343,116 +460,65 @@ Orchestrated: codebase-analyzer → (detects n8n) → n8n-expert
 
 ## Integration Points
 
-| What to Add? | Where? | Template? |
-|--------------|--------|-----------|
-| New Agent | .claude/agents/{name}-agent.md | specialist/research/orchestrator-agent.md |
-| New Command | .claude/commands/{name}.md | workflow/analysis-command.md |
-| New Hook | .claude/hooks/{name}.sh | post-tool-use/stop-hook.sh |
-| New Skill | .claude/skills/{name}/ | progressive/simple-skill/ |
-| New Pattern | knowledge/patterns/{name}.md | reusable-pattern.md |
-| New Learning | knowledge/learnings/{name}.md | project-learning.md |
-| New Prompt | knowledge/prompts/{name}.md | - |
-| New System | /create-system {path} | .claude/blueprints/ + templates/generated-system/ |
-| New Blueprint | .claude/blueprints/{name}.json | multi-agent-advisory.json |
+| Was hinzufügen? | Wo? | Template? |
+|-----------------|-----|-----------|
+| Neuer Agent | .claude/agents/{name}-agent.md | specialist/research/orchestrator-agent.md |
+| Neuer Command | .claude/commands/{name}.md | workflow/analysis-command.md |
+| Neuer Hook | .claude/hooks/{name}.sh | post-tool-use/stop-hook.sh |
+| Neuer Skill | .claude/skills/{name}/ | progressive/simple-skill/ |
+| Neues Pattern | knowledge/patterns/{name}.md | reusable-pattern.md |
+| Neues Learning | knowledge/learnings/{name}.md | project-learning.md |
+| Neuer Prompt | knowledge/prompts/{name}.md | - |
+| Neues System | /create-system {path} | .claude/blueprints/ + templates/generated-system/ |
+| Neuer Blueprint | .claude/blueprints/{name}.json | multi-agent-advisory.json |
 
 ---
 
 ## Naming Conventions
 
-| Component | Format | Example |
-|-----------|--------|---------|
+| Komponente | Format | Beispiel |
+|------------|--------|----------|
 | Agent | {domain}-agent.md | idea-validator-agent.md |
 | Command | {action}.md (lowercase) | idea-new.md |
 | Hook | {purpose}.sh | context-monitor.sh |
-| Skill | {name}/ (folder) | template-creator/ |
+| Skill | {name}/ (Ordner) | template-creator/ |
 | Pattern | {name}.md (kebab-case) | multi-agent-orchestration.md |
 
 ---
 
-## Changelog (Integrated Findings)
+## Changelog (Integrierte Findings)
 
-| Date | Source | Finding | Integration | Status |
-|------|--------|---------|-------------|--------|
-| 2025-12-01 | Initial | System scan | SYSTEM-MAP.md created | Done |
-| 2025-12-01 | langwatch/better-agents | MCP Configuration | `.mcp.json` created | Done |
-| 2025-12-01 | langwatch/better-agents | Scenario Testing | `.claude/tests/` framework created | Done |
-| 2025-12-01 | langwatch/better-agents | Prompt Registry | `knowledge/prompts/index.json` (prompts.json pattern) | Done |
-| 2025-12-01 | langwatch/better-agents | YAML Prompt Format | Evaluate: model/temperature/messages structure | Backlog |
-| 2025-12-01 | langwatch/better-agents | Evaluation Notebooks | `.claude/tests/evaluations/` (Jupyter) | Backlog |
-| 2025-12-01 | langwatch/better-agents | AGENTS.md Pattern | knowledge/learnings/better-agents-patterns.md | Done |
-| 2025-12-01 | langwatch/better-agents | Observability | Pattern for later | Backlog |
-| 2025-12-01 | taches-cc-resources | Intake Gate Pattern | knowledge/patterns/intake-gate-pattern.md | Done |
-| 2025-12-01 | taches-cc-resources | /whats-next Command | .claude/commands/whats-next.md | Done |
-| 2025-12-01 | taches-cc-resources | /debug Command | .claude/commands/debug.md | Done |
-| 2025-12-01 | taches-cc-resources | /think Command (8 Frameworks) | .claude/commands/think.md | Done |
-| 2025-12-01 | taches-cc-resources | COMMANDS.md Documentation | .claude/COMMANDS.md | Done |
-| 2025-12-01 | taches-cc-resources | Meta-Prompting System | /create-prompt + /run-prompt + prompts/ | Done |
-| 2025-12-01 | prompt-pro-framework | reference.md + examples.md | .claude/skills/prompt-pro-framework/ | Done |
-| 2025-12-09 | ucbepic/docetl | Gleaning Config | Reflection pattern extended | Done |
-| 2025-12-09 | ucbepic/docetl | Checkpoint Validation | knowledge/patterns/checkpoint-validation-pattern.md | Done |
-| 2025-12-09 | ucbepic/docetl | Auto-Optimizer Pattern | Evaluated - not adopted (different use case) | Skipped |
-| 2025-12-09 | ucbepic/docetl | YAML Pipeline DSL | Evaluated - keeping JSON scenarios | Skipped |
-| 2025-12-10 | Claude Code Docs | .claude/rules/ System | CLAUDE.md refactored, 8 modular rules | Done |
-| 2025-12-10 | Claude Code Docs | Path-Specific Rules | scenarios/evolving-dashboard.md (example) | Done |
-| 2025-12-10 | Claude Code Docs | @import Syntax | CLAUDE.md now uses @imports | Done |
-| 2025-12-10 | humanlayer/12-factor-agents | Context Window Ownership | knowledge/patterns/context-window-ownership-pattern.md | Done |
-| 2025-12-10 | humanlayer/12-factor-agents | Compact Errors Pattern | knowledge/patterns/compact-errors-pattern.md | Done |
-| 2025-12-12 | memodb-io/Acontext | Automatic Skill Distillation | knowledge/learnings/acontext-automatic-skill-distillation.md | Done |
-| 2025-12-12 | memodb-io/Acontext | Complexity Scoring | /whats-next extended with learning extraction | Done |
-| 2025-12-12 | System Audit | Stats Correction | Commands: 34→33, Scenarios: 2→3, MCP: No→Yes | Done |
-| 2025-12-13 | Anthropic Video | Domain Memory Pattern | _memory/ system, domain-memory-bootup.md rule | Done |
-| 2025-12-14 | Knowledge Graph Design | Unified Knowledge Graph | _graph/ with ~148 nodes, ~187 edges, context router | Done |
-| 2025-12-14 | Knowledge Graph | /context Command | .claude/commands/context.md | Done |
-| 2025-12-14 | Knowledge Graph | graph-update.sh Hook | .claude/hooks/graph-update.sh (placeholder) | Done |
-| 2025-12-12 | System Audit | Model Fix | idea-work.md: opusplan→opus | Done |
-| 2025-12-12 | System Audit | workflow-engine Scenario | SYSTEM-MAP.md: Agents & commands documented | Done |
-| 2025-12-14 | Experience Memory | Experience Memory System | _memory/experiences/, 4 commands, auto-suggest rule | Done |
-| 2025-12-14 | Experience Memory | experience-suggest.md Rule | .claude/rules/experience-suggest.md | Done |
-| 2025-12-14 | Experience Memory | experience-router.json | _graph/cache/experience-router.json | Done |
-| 2025-12-14 | System Builder | Blueprint Infrastructure | .claude/blueprints/ with index.json + multi-agent-advisory.json | Done |
-| 2025-12-14 | System Builder | 4 System-Builder Agents | system-analyzer, system-architect, system-generator, system-validator | Done |
-| 2025-12-14 | System Builder | /create-system Command | .claude/commands/create-system.md | Done |
-| 2025-12-14 | System Builder | Generation Templates | .claude/templates/generated-system/ (4 templates) | Done |
-| 2025-12-14 | System Builder | Context Router Update | system-creation route for knowledge injection | Done |
-| 2025-12-14 | System Builder | System-Generation Pattern | knowledge/patterns/system-generation-pattern.md | Done |
-| 2025-12-14 | System Builder | System-Builder Learnings | knowledge/learnings/system-builder-learnings.md | Done |
-| 2025-12-16 | Blueprints | autonomous-research Blueprint | .claude/blueprints/autonomous-research.json | Done |
-| 2025-12-16 | Blueprints | simple-workflow Blueprint | .claude/blueprints/simple-workflow.json | Done |
-| 2025-12-16 | Code Cleanup | BaseManager Abstract Class | evolving_core/managers/base_manager.py | Done |
-| 2025-12-16 | Code Cleanup | Manager __init__.py Exports | evolving_core/managers/__init__.py | Done |
-| 2025-12-16 | Code Cleanup | Idea Model Schema Fix | evolving_core/models/idea.py | Done |
-| 2025-12-16 | Code Cleanup | Agents Frontmatter Fix | model-selector agent | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | /repo-screen Command | .claude/commands/repo-screen.md (2-phase repo check) | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | Session Notes Template | .claude/templates/session-notes-template.md (10-section enhanced) | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | Security Review Pattern | knowledge/patterns/security-review-pattern.md (3-phase, 80%+ confidence) | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | Swarm/Team Coordination Pattern | knowledge/patterns/swarm-team-coordination-pattern.md (multi-agent) | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | Learning Mode Pattern | knowledge/patterns/learning-mode-pattern.md (TODO(human)) | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | System Prompts Reference | knowledge/references/claude-code-system-prompts.md (59 prompts) | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | /whats-next Enhanced | --detailed flag for 10-section template | Done |
-| 2025-12-16 | Piebald-AI/claude-code-system-prompts | /security-review Command | .claude/commands/security-review.md (Opus, OWASP Top 10) | Done |
-| 2025-12-16 | thedotmack/claude-mem | Persistent Memory Learning | knowledge/learnings/claude-mem-persistent-memory.md (5-hook architecture) | Done |
-| 2025-12-16 | thedotmack/claude-mem | Observation Compression Pattern | knowledge/patterns/observation-compression-pattern.md (75-95% token reduction) | Done |
-| 2025-12-16 | thedotmack/claude-mem | Progressive Disclosure Pattern | knowledge/patterns/progressive-disclosure-pattern.md (4-step workflow) | Done |
-| 2025-12-16 | Cranot/deep-research | Recursive Research Pattern | knowledge/patterns/recursive-research-pattern.md (Agent DNA, 6-dimensional) | Done |
-| 2025-12-16 | hancengiz/claude-code-prompt-coach-skill | Prompt Analysis Methodology | knowledge/learnings/prompt-coach-analysis-methodology.md (8-dimensional, golden rule) | Done |
-| 2025-12-16 | tursodatabase/agentfs | Unified Agent Storage | knowledge/learnings/agentfs-unified-storage.md (3-layer SQLite, audit trail) | Done |
-| 2025-12-16 | Nebulock-Inc/agentic-threat-hunting-framework | LOCK Methodology Pattern | knowledge/patterns/lock-methodology-pattern.md (Learn-Observe-Check-Keep) | Done |
-| 2025-12-16 | alvinunreal/awesome-claude | Awesome Claude Resources | knowledge/references/awesome-claude-resources.md (curated resource list) | Done |
-| 2025-12-22 | English Translation | Root Documentation | All root MD files translated to English | Done |
+**159 Einträge** (2025-12-01 bis 2025-12-30)
+
+→ Vollständiger Changelog: [_archive/changelog-system-map.md](../../_archive/changelog-system-map.md)
+
+**Letzte Einträge:**
+| Datum | Finding | Integration |
+|-------|---------|-------------|
+| 2026-01-05 | Agent Template System | +8 Templates (advisor, system-builder, validator, creative, automation, dynamic), +1 Command (/compose-agent), +3 JSON (trait-taxonomy, voice-mappings, disclaimers), 480 Agent-Kombinationen |
+| 2026-01-01 | System-Vollständigkeits-Audit | +7 Commands (auto-model, pattern-scan, learning-review, analyze-batch, security-review, interview-plan, run-workflow, macro-forecast, market-analysis), +10 Agents dokumentiert, +2 Scenarios (macro-analyse, didit-medical-care) |
+| 2025-12-30 | replicate/hype | 1 Pattern (multi-source-aggregation), 1 Template (multi-source-aggregator/), Context Router Route |
+| 2025-12-30 | robzolkos gist | 1 Command (interview-plan), 1 Pattern |
+| 2025-12-30 | obra/superpowers Deep Dive | 1 Skill (subagent-driven-development), 1 Ext Agent (code-reviewer), 2 Pattern Updates |
+| 2025-12-30 | Claude Docs (Official) | 1 Reference (anthropic-skill-best-practices), 1 Learning Update |
+| 2025-12-29 | awesome-claude-code-plugins | 4 Ext Agents, 1 Ext Command, 2 Templates, 1 Pattern |
+| 2025-12-29 | cc-wf-studio, just-bash | 2 Tool References |
+| 2025-12-29 | ralph-wiggum | 1 Pattern (Self-Improvement Loop) |
+| 2025-12-29 | Continuous Claude v2 | 3 Rules: context-budget-awareness, explicit-identity, idempotent-redundancy |
 
 ---
 
-## Files to Synchronize
+## Zu synchronisierende Dateien
 
-When making changes to the system, the following files must be updated:
+Bei Änderungen am System müssen folgende Dateien aktualisiert werden:
 
-1. **README.md** - System overview & stats
-2. **.claude/CONTEXT.md** - Technical context & structure
-3. **knowledge/index.md** - Knowledge base index
-4. **START.md** - User stats
-5. **.claude/SYSTEM-MAP.md** - This file (component inventory)
+1. **README.md** - System Overview & Stats
+2. **.claude/CONTEXT.md** - Technical Context & Structure
+3. **knowledge/index.md** - Knowledge Base Index
+4. **START.md** - User Stats
+5. **.claude/SYSTEM-MAP.md** - Diese Datei (Komponenten-Inventar)
 
 ---
 
-**Generated by:** github-repo-analyzer-agent
-**Next Update:** After integration of repo findings
+**Generiert von:** github-repo-analyzer-agent
+**Nächste Aktualisierung:** Nach Integration von Repo-Findings

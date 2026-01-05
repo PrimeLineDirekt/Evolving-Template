@@ -1,6 +1,6 @@
 {
-  "version": "2.3",
-  "generated": "2026-01-01T14:00:00Z",
+  "version": "2.4",
+  "generated": "2026-01-05T22:30:00Z",
   "description": "Maps keywords/intents to relevant nodes for auto-context loading",
 
   "routes": {
@@ -10,6 +10,11 @@
         "template-specialist-agent",
         "template-research-agent",
         "template-orchestrator-agent",
+        "template-advisor-agent",
+        "template-system-builder-agent",
+        "template-validator-agent",
+        "template-creative-agent",
+        "template-automation-agent",
         "template-prd-planning",
         "skill-template-creator"
       ],
@@ -20,6 +25,7 @@
         "pattern-multi-agent-ultrathink",
         "pattern-agentic-maturity-model",
         "pattern-interview-before-implement",
+        "pattern-trait-based-composition",
         "learning-better-agents-patterns",
         "learning-12-factor-agents",
         "reference-claude-code-system-prompts",
@@ -28,6 +34,50 @@
       "context_files": [
         "_memory/projects/evolving-system.json"
       ]
+    },
+
+    "dynamic-agent": {
+      "keywords": ["dynamic agent", "trait", "voice", "personality", "composition", "dynamic composition", "compose agent", "480 kombinationen", "expertise", "skeptical", "cautious"],
+      "primary": [
+        "command-compose-agent",
+        "template-dynamic-agent",
+        "data-trait-taxonomy",
+        "data-voice-mappings",
+        "data-disclaimers",
+        "agent-factory"
+      ],
+      "secondary": [
+        "template-specialist-agent",
+        "template-advisor-agent",
+        "template-creative-agent",
+        "template-validator-agent",
+        "pattern-progressive-disclosure",
+        "pattern-multi-agent-orchestration"
+      ],
+      "context_files": [
+        "knowledge/agents/trait-taxonomy.json",
+        "knowledge/agents/voice-mappings.json",
+        "knowledge/agents/disclaimers.json",
+        ".claude/commands/compose-agent.md",
+        ".claude/templates/agents/dynamic-agent.md"
+      ],
+      "notes": "For dynamic agent composition using trait taxonomy (10x8x6 = 480 combinations)"
+    },
+
+    "validation": {
+      "keywords": ["validate", "validation", "verify", "check", "quality gate", "quality check"],
+      "primary": [
+        "template-validator-agent",
+        "pattern-checkpoint-validation",
+        "pattern-pev"
+      ],
+      "secondary": [
+        "agent-system-validator",
+        "pattern-reflection",
+        "rule-evidence-before-claims"
+      ],
+      "context_files": [],
+      "notes": "For validation agents and quality gates"
     },
 
     "planning": {
@@ -103,6 +153,35 @@
       "context_files": []
     },
 
+    "deep-research": {
+      "keywords": ["deep research", "perplexity", "tiefe recherche", "gründlich recherchieren", "komplexe recherche"],
+      "primary": [
+        "command-deep-research",
+        "skill-research-orchestrator"
+      ],
+      "secondary": [
+        "pattern-research-confidence-scoring",
+        "pattern-research-orchestration"
+      ],
+      "context_files": [],
+      "notes": "Nutzt Chrome MCP für Perplexity.ai Research Mode - Token-sparend für komplexe Themen"
+    },
+
+    "lab": {
+      "keywords": ["lab", "perplexity lab", "labs", "report erstellen", "dashboard erstellen", "spreadsheet", "prototype", "code generieren"],
+      "primary": [
+        "command-lab"
+      ],
+      "secondary": [
+        "command-deep-research",
+        "pattern-browser-automation"
+      ],
+      "context_files": [
+        ".claude/lab-types/_registry.json"
+      ],
+      "notes": "Nutzt Perplexity Labs für komplexe Projekte mit Assets (Reports, Dashboards, Spreadsheets, Code)"
+    },
+
     "idea-management": {
       "keywords": ["idee", "idea", "ideation", "brainstorm", "new idea", "neue idee"],
       "primary": [
@@ -136,25 +215,25 @@
         "pattern-ai-content-pipeline"
       ],
       "context_files": [
-        "_memory/projects/{PROJECT_ID}.json"
+        "_memory/projects/thrive-vibes-art.json"
       ]
     },
 
     "auswanderung": {
       "keywords": ["auswander", "emigration", "steuer", "tax", "dba", "sozialversicherung"],
       "primary": [
-        "project-{PROJECT_ID}",
-        "learning-{PROJECT_ID}"
+        "project-auswanderungs-ki-v2",
+        "learning-auswanderungs-ki-v2"
       ],
       "secondary": [
         "prompt-aki-steueroptimierung",
         "prompt-aki-profil-analyse",
         "prompt-aki-checkliste",
-        "memory-{PROJECT_ID}",
+        "memory-auswanderungs-ki-v2",
         "learning-ki-auswanderungs-berater"
       ],
       "context_files": [
-        "_memory/projects/{PROJECT_ID}.json"
+        "_memory/projects/auswanderungs-ki-v2.json"
       ]
     },
 

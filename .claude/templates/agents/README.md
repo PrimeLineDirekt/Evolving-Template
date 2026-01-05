@@ -13,61 +13,161 @@ Agent templates define AI agents with specific expertise, tools, and execution p
 - Orchestrating complex workflows with multiple agents
 - Implementing the Multi-Agent Orchestration pattern
 
-## Available Templates
+## Available Templates (8 Total)
 
-### 1. Specialist Agent (`specialist-agent.md`)
+### Core Templates
+
+#### 1. Specialist Agent (`specialist-agent.md`)
 
 **Use for**: Domain experts with deep knowledge in specific areas.
 
 **Complexity**: Medium
 
-**Examples**:
-- Tax optimization specialist
-- Legal compliance expert
-- Security auditor
-- Financial planner
+**Examples**: Tax specialist, Legal expert, Security auditor, Financial planner
 
 **Key Features**:
 - Domain-specific expertise
-- Structured input/output
-- Tool configuration
-- Quality validation
+- Personality & Approach configuration
+- Domain disclaimers (medical, legal, security)
+- Cross-agent activation
 
-### 2. Research Agent (`research-agent.md`)
+#### 2. Research Agent (`research-agent.md`)
 
 **Use for**: Multi-source research, data collection, and validation.
 
 **Complexity**: Medium-High
 
-**Examples**:
-- Market research analyst
-- Competitive intelligence
-- Technical documentation researcher
-- Trend analysis
+**Examples**: Market research, Competitive intelligence, Technical documentation
 
 **Key Features**:
 - Multi-source validation
 - Confidence scoring
 - Citation management
-- Synthesis and summarization
+- Cross-agent activation
 
-### 3. Orchestrator Agent (`orchestrator-agent.md`)
+#### 3. Orchestrator Agent (`orchestrator-agent.md`)
 
 **Use for**: Coordinating multiple agents in complex workflows.
 
 **Complexity**: High
 
-**Examples**:
-- Workflow coordinator
-- Project manager agent
-- Multi-agent dispatcher
-- Quality assurance orchestrator
+**Examples**: Workflow coordinator, Project manager, Multi-agent dispatcher
 
 **Key Features**:
 - Agent routing logic
 - Dependency management
-- Error handling
+- Error handling & fallbacks
 - Result aggregation
+
+---
+
+### New Templates (v2.0)
+
+#### 4. Advisor Agent (`advisor-agent.md`)
+
+**Use for**: Professional consultation with Gutachten-style output.
+
+**Complexity**: High
+
+**Examples**: Steuerberater, Auswanderungs-Experte, Karriereberater, Investment Advisor
+
+**Key Features**:
+- Rückfragen Framework (asks before analyzing)
+- 5-Phase Advisory Process
+- Gutachten-Format Output (Sachverhalt, Bewertung, Optionen, Empfehlung)
+- Domain-specific disclaimers
+
+#### 5. System Builder Agent (`system-builder-agent.md`)
+
+**Use for**: Generating project structures without content.
+
+**Complexity**: High
+
+**Examples**: Project scaffolding, Multi-agent system setup, Architecture generation
+
+**Key Features**:
+- Generates ONLY structure (no content)
+- File-Tree JSON output
+- Delegation Plan for sub-agents
+- Validation handoff
+
+#### 6. Validator Agent (`validator-agent.md`)
+
+**Use for**: Verification, QA, and compliance checking.
+
+**Complexity**: Medium
+
+**Examples**: Code review, Fact-checking, Schema validation, Security audit
+
+**Key Features**:
+- Can EXECUTE code/tests (not just static analysis)
+- 6 Validation Categories (Structure, Content, Reference, Execution, Compliance, Security)
+- Pass/Warn/Fail verdicts with evidence
+- Fix suggestions
+
+#### 7. Creative Agent (`creative-agent.md`)
+
+**Use for**: Divergent thinking and ideation.
+
+**Complexity**: Medium
+
+**Examples**: Brainstorming, Naming, Concept development, Content ideas
+
+**Key Features**:
+- 3 Modes: wild, balanced, constrained
+- Frameworks: SCAMPER, Six Hats, What-If, Analogies
+- NO premature evaluation (anti-pattern)
+- Idea clusters + combinations
+
+#### 8. Automation Agent (`automation-agent.md`)
+
+**Use for**: Workflow automation and integrations.
+
+**Complexity**: High
+
+**Examples**: n8n workflows, API integrations, Zapier zaps, Custom scripts
+
+**Key Features**:
+- Platform configs (n8n, Make, Zapier, Custom)
+- Workflow Package output (JSON + docs)
+- Common node patterns
+- Error handling strategies
+
+---
+
+### Template Relationship Map
+
+```
+              Orchestrator
+             (koordiniert)
+                   │
+      ┌────────────┼────────────┐
+      ▼            ▼            ▼
+   Advisor    Specialist    Research
+   (berät)    (analysiert)  (sammelt)
+      │            │
+      ▼            ▼
+  Creative    Validator
+ (generiert)  (prüft)
+                   │
+                   ▼
+            System Builder
+            (strukturiert)
+                   │
+                   ▼
+             Automation
+            (integriert)
+```
+
+---
+
+### All Templates Include
+
+Every template now includes these standard sections:
+- **Personality & Approach**: Communication style, explanation depth, risk posture
+- **Boundaries & Disclaimers**: What the agent does NOT do
+- **Cross-Agent Activation**: When to delegate to other agents
+- **Context Awareness**: Token budget management
 
 ## Quick Start
 
@@ -183,16 +283,20 @@ Master Orchestrator →
 
 Use for very complex systems (20+ agents).
 
-## Example: Large Multi-Agent System (29-Agent)
+## Examples from Real Projects
+
+### KI Auswanderungs-Berater (29-Agent System)
 
 **Orchestration**: Profile-based agent selection
-- Profile Analysis: Determines which agents to run
-- 29 Specialists: Domain-specific experts
+- Profil-Analyse: Determines which agents to run
+- 29 Specialists: Tax, family, logistics, etc.
 - Reporter: Aggregates all outputs
 
 **Performance**: 70% faster than sequential (8-12min → 45sec)
 
 **Pattern**: Conditional routing + parallel execution
+
+See: `knowledge/prompts/patterns/auswanderungs-ki-agents/`
 
 ## Troubleshooting
 
@@ -237,7 +341,7 @@ Agents can score their own output confidence for weighted aggregation.
 ## Related Patterns
 
 - **Multi-Agent Orchestration**: See `knowledge/patterns/multi-agent-orchestration.md`
-- **Agent Prompts**: See `knowledge/prompts/patterns/` for agent examples
+- **Agent Prompts**: See `knowledge/prompts/patterns/auswanderungs-ki-agents/`
 - **Progressive Disclosure**: For complex agents, use progressive skill pattern
 
 ---

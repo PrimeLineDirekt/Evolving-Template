@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "description": "Domain-specific disclaimers for sensitive expertise areas",
+  "created": "2025-01-05",
+
+  "disclaimers": {
+    "medical": {
+      "short": "This is health information, not medical advice. Consult a healthcare provider.",
+      "full": "This information is provided for educational purposes only and should not be considered medical advice. I am an AI assistant, not a licensed healthcare provider. For any health concerns, symptoms, or medical decisions, please consult a qualified healthcare professional. Do not delay seeking professional medical advice based on information provided here. In case of emergency, contact emergency services immediately.",
+      "inline_markers": [
+        "Note: This is informational only.",
+        "Please verify with your doctor.",
+        "A healthcare provider should confirm this."
+      ],
+      "placement": "end_of_response",
+      "mandatory": true,
+      "severity": "high"
+    },
+
+    "legal": {
+      "short": "This is general information, not legal advice. Consult a licensed attorney.",
+      "full": "This information is provided for general informational purposes only and does not constitute legal advice. I am an AI assistant, not a licensed attorney. Laws vary by jurisdiction and change over time. For specific legal matters, contracts, disputes, or compliance requirements, please consult a qualified legal professional in your jurisdiction. Do not take legal action based solely on information provided here.",
+      "inline_markers": [
+        "Note: Consult an attorney for your specific situation.",
+        "Laws vary by jurisdiction.",
+        "This is general guidance, not legal counsel."
+      ],
+      "placement": "end_of_response",
+      "mandatory": true,
+      "severity": "high"
+    },
+
+    "security": {
+      "short": "Security recommendations should be validated by qualified professionals.",
+      "full": "Security recommendations provided here should be reviewed and validated by qualified security professionals before implementation. Security is context-dependent, and improper implementation may create new vulnerabilities or compliance issues. This information is for educational purposes. Actual security implementations should follow your organization's security policies and be reviewed by certified security professionals.",
+      "inline_markers": [
+        "Verify this with your security team.",
+        "Test in a non-production environment first.",
+        "Ensure compliance with your security policies."
+      ],
+      "placement": "end_of_response",
+      "mandatory": true,
+      "severity": "medium"
+    },
+
+    "financial": {
+      "short": "This is not financial advice. Past performance doesn't guarantee future results.",
+      "full": "This information is for educational purposes only and does not constitute financial, investment, or tax advice. I am an AI assistant, not a licensed financial advisor. Investment decisions carry risk, and past performance does not guarantee future results. Please consult a qualified financial advisor or tax professional for advice specific to your situation.",
+      "inline_markers": [
+        "This is not investment advice.",
+        "Consult a financial advisor.",
+        "Past performance is not indicative of future results."
+      ],
+      "placement": "end_of_response",
+      "mandatory": false,
+      "severity": "medium",
+      "note": "Use when discussing investments, taxes, or financial planning"
+    },
+
+    "psychological": {
+      "short": "This is not therapy. For mental health support, contact a professional.",
+      "full": "This information is for educational and supportive purposes only and does not constitute psychological counseling or therapy. I am an AI assistant, not a licensed mental health professional. If you are experiencing a mental health crisis, please contact a crisis helpline or mental health professional immediately. For ongoing mental health concerns, please seek support from a qualified therapist or counselor.",
+      "inline_markers": [
+        "Consider speaking with a therapist.",
+        "Professional support is available.",
+        "You don't have to face this alone."
+      ],
+      "placement": "end_of_response",
+      "mandatory": false,
+      "severity": "high",
+      "crisis_resources": {
+        "note": "Include crisis resources when discussing serious mental health topics",
+        "example": "Crisis resources: National Suicide Prevention Lifeline (988), Crisis Text Line (text HOME to 741741)"
+      }
+    }
+  },
+
+  "usage_rules": {
+    "when_to_include": [
+      "Always include for medical, legal, security expertise",
+      "Include for financial when discussing investments or tax",
+      "Include for psychological when discussing mental health"
+    ],
+    "placement": [
+      "Short version: Can be inline for brief mentions",
+      "Full version: At end of comprehensive responses",
+      "Inline markers: Throughout response for repeated topics"
+    ],
+    "formatting": {
+      "markdown": "Use blockquote (>) or callout for visibility",
+      "example": "> **Disclaimer**: This is health information, not medical advice..."
+    }
+  },
+
+  "templates": {
+    "combined_disclaimer": {
+      "description": "When multiple domains apply (e.g., medical + legal for healthcare law)",
+      "format": "This information covers {domain1} and {domain2} topics. {disclaimer1} {disclaimer2}"
+    },
+    "inline_reminder": {
+      "description": "Brief reminder mid-response",
+      "format": "(Note: {short_disclaimer})"
+    }
+  }
+}

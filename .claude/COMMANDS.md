@@ -1,7 +1,7 @@
 # Evolving Command Reference
 
-**Total Commands**: 34
-**Last Updated**: 2025-12-22
+**Total Commands**: 50
+**Last Updated**: 2026-01-05
 
 ---
 
@@ -29,23 +29,38 @@
 | `/inbox-process` | Inbox verarbeiten | haiku |
 | `/onboard-process` | Onboarding verarbeiten | sonnet |
 | `/whats-next` | Session Handoff | haiku |
+| `/loop-until-done` | Iterative Task bis Erfolg | sonnet |
 | `/system-health` | System-Diagnostik | haiku |
 | `/create-agent` | Agent erstellen | haiku |
 | `/create-command` | Command erstellen | haiku |
 | `/create-hook` | Hook erstellen | haiku |
 | `/create-skill` | Skill erstellen | haiku |
+| `/compose-agent` | Dynamischer Agent aus Trait-System (480 Kombinationen) | sonnet |
 | `/create-prompt` | Optimierten Prompt erstellen & speichern | opus |
 | `/run-prompt` | Gespeicherte Prompts ausführen | sonnet |
 | `/scenario` | Szenario aktivieren | haiku |
 | `/scenario-list` | Szenarien anzeigen | haiku |
 | `/scenario-create` | Neues Szenario erstellen | sonnet |
 | `/scenario-edit` | Szenario bearbeiten | sonnet |
+| `/steuer-beratung` | Steuer-Experten-Team Beratung | opus |
+| `/steuer-check` | Schnelle Steuer-Prüfung | haiku |
+| `/analyze-pitch-docs` | Pitch-Dokumente analysieren | sonnet |
 | `/remember` | Experience speichern | haiku |
 | `/recall` | Experiences suchen | haiku |
 | `/memory-stats` | Experience Memory Statistiken | haiku |
 | `/preferences` | User-Praeferenzen anzeigen | haiku |
 | `/context` | Knowledge Graph Kontext laden | haiku |
 | `/create-system` | Komplettes Multi-Agent System generieren | sonnet |
+| `/auto-model` | Automatische Model-Auswahl basierend auf Task | haiku |
+| `/pattern-scan` | Pattern-Erkennung gegen historische Muster | sonnet |
+| `/learning-review` | Learning System Review & Accuracy Metrics | sonnet |
+| `/analyze-batch` | Batch-Analyse von Macro-Analyse Documents | sonnet |
+| `/security-review` | Security Code Review mit False-Positive Filtering | opus |
+| `/interview-plan` | Interview vor Implementation | opus |
+| `/run-workflow` | Workflow aus definitions/ ausführen | sonnet |
+| `/macro-forecast` | 30-Tage Forecast für BTC, Gold, etc. | opus |
+| `/market-analysis` | Deep Market Analysis mit allen Macro-Agents | opus |
+| `/generate-image` | Bild generieren mit FAL.ai Nano Banana Pro | sonnet |
 
 ---
 
@@ -262,18 +277,21 @@ Projekte dokumentieren und analysieren.
 ```
 
 #### `/analyze-repo`
-**Zweck**: GitHub Repository analysieren mit System-Mapping
+**Zweck**: 2-Phasen Repository-Analyse mit Code-Level Deep Dive
 **Model**: opus
-**Agent**: github-repo-analyzer
 **Features**:
-- Dual-System Analysis (Repo vs. Evolving)
-- Finding Kategorisierung (NEU/BESSER/ANDERS/REDUNDANT)
-- Integration Roadmap
-- SYSTEM-MAP Update
+- Phase 1: Quick Relevanz-Check (remote, Score 0-10)
+- Phase 2: Deep Dive (local Clone, Code-Level Extraktion)
+- Funktionssignaturen, Dataclasses, Configs extrahieren
+- Automatisches Tagging aus taxonomy.json
+- Archivierung nach `_archive/repos/{date}-{name}/`
 
+**Plain Text Trigger**:
 ```
-/analyze-repo https://github.com/owner/repo
-/analyze-repo /path/to/local/repo
+"Schau dir mal {url} an"
+"Was können wir von {url} lernen?"
+"Deep Dive auf {url}"
+"Ist {url} relevant?"
 ```
 
 #### `/repo-screen`
@@ -297,9 +315,37 @@ Projekte dokumentieren und analysieren.
 
 ---
 
-### Workflow Automation (3)
+### Workflow Automation (4)
 
-Automatisierte Verarbeitung.
+Automatisierte Verarbeitung und iterative Tasks.
+
+#### `/loop-until-done`
+**Zweck**: Task iterativ ausführen bis Erfolgskriterium erfüllt
+**Model**: sonnet
+**Parameters**:
+- `task` - Die Aufgabe (required)
+- `--verify` - Verification Command (optional, empfohlen)
+- `--max` - Maximum Iterationen (default: 10)
+- `--completion` - Explizites Completion-Signal (optional)
+
+**Features**:
+- Inspiriert vom Ralph-Wiggum Pattern
+- Automatische Iteration bis Erfolg
+- Progress-Report nach jeder Iteration
+- Safety-Limits verhindern Endlosschleifen
+
+```
+/loop-until-done "Fix alle TypeScript errors" --verify "npx tsc --noEmit" --max 15
+/loop-until-done "Tests grün" --verify "npm test" --max 10
+/loop-until-done "ESLint warnings" --verify "npm run lint" --max 20
+```
+
+**Plain Text Trigger**:
+- "Fix alle Fehler bis der Build grün ist"
+- "Mach weiter bis alle Tests passen"
+- "Iterate bis fertig"
+
+---
 
 #### `/inbox-process`
 **Zweck**: Dateien aus _inbox/ verarbeiten
@@ -341,7 +387,7 @@ Automatisierte Verarbeitung.
 
 ---
 
-### System & Creation (5)
+### System & Creation (6)
 
 System-Verwaltung und Komponenten-Erstellung.
 
@@ -403,6 +449,36 @@ System-Verwaltung und Komponenten-Erstellung.
 /create-skill data-analyzer
 ```
 
+#### `/compose-agent`
+**Zweck**: Dynamischen Agent aus Trait-System erstellen (480 Kombinationen)
+**Model**: sonnet
+**System**: 10 Expertise × 8 Personality × 6 Approach
+**Output**: Vollständiger Agent-Prompt (sofort nutzbar)
+
+**Expertise (10)**: researcher, architect, engineer, analyst, strategist, legal*, creative, security*, communications, medical* (* = mit Disclaimer)
+
+**Personality (8)**: precise, creative, cautious, direct, thorough, contrarian, empathetic, skeptical
+
+**Approach (6)**: systematic, exploratory, iterative, parallel, adversarial, consultative
+
+**Recommended Combinations**:
+| Kombination | Alias |
+|-------------|-------|
+| `researcher skeptical systematic` | Academic Researcher |
+| `engineer precise iterative` | Senior Developer |
+| `security cautious adversarial` | Security Auditor |
+| `strategist direct consultative` | Executive Advisor |
+
+```
+/compose-agent researcher skeptical
+/compose-agent engineer precise iterative
+/compose-agent security cautious adversarial
+```
+
+**Plain Text Trigger**:
+- "Erstelle einen skeptischen Researcher"
+- "Compose agent für Security Review"
+
 ---
 
 ### Meta-Prompting (2)
@@ -421,8 +497,8 @@ Prompts erstellen, speichern und in frischem Kontext ausführen.
 - Quality Checklist
 
 ```
-/create-prompt Analysiere meine Content-Strategie
-/create-prompt Entwickle Marketing-Plan
+/create-prompt Analysiere meine Etsy Konkurrenz
+/create-prompt Entwickle Content-Strategie
 ```
 
 #### `/run-prompt`
@@ -504,10 +580,11 @@ Opus (7 commands - 27%):
   - /idea-connect, /project-analyze, /analyze-repo
   - /create-prompt
 
-Sonnet (5 commands - 19%):
+Sonnet (6 commands - 23%):
   Balanced tasks
   - /sonnet, /idea-new, /project-add,
   - /onboard-process, /debug, /run-prompt
+  - /compose-agent
 
 Haiku (14 commands - 54%):
   Fast, simple tasks
@@ -534,6 +611,10 @@ Diese Commands können auch durch natürliche Sprache ausgelöst werden:
 | "Sind diese Repos relevant" | `/repo-screen` |
 | "Erstelle ein System für..." | `/create-system` |
 | "Generiere ein Multi-Agent System" | `/create-system` |
+| "Compose agent für..." | `/compose-agent` |
+| "Erstelle einen skeptischen Researcher" | `/compose-agent` |
+| "Fix alle Fehler bis..." | `/loop-until-done` |
+| "Mach weiter bis Tests passen" | `/loop-until-done` |
 
 ---
 
@@ -595,7 +676,7 @@ Generiere komplette Multi-Agent Systeme.
 - Validierung des generierten Systems
 
 ```
-/create-system ~/projects/advisory-system
+/create-system ~/projects/steuer-system
 /create-system ~/projects/legal-advisor --blueprint multi-agent-advisory
 /create-system ~/projects/quick-test --dry-run
 ```
@@ -608,6 +689,61 @@ Generiere komplette Multi-Agent Systeme.
 5. Validation → Struktur prüfen
 
 **Output**: Vollständiges `.claude/` Setup mit Agents, Commands, CLAUDE.md
+
+---
+
+### Steuererklärung 2024 (2)
+
+Spezialisiertes Experten-Team für die Steuererklärung.
+
+#### `/steuer-beratung`
+**Zweck**: Umfassende Beratung durch Steuer-Experten-Team
+**Model**: opus
+**Agents**: steuerberater, steueranwalt, software-experte, koordinator
+**Features**:
+- Steuerberater für Optimierung
+- Steueranwalt für Rechtssicherheit (Risiko-Ampel)
+- Software-Experte für SteuerSparErklärung
+- Koordinator synthetisiert finale Antwort
+
+```
+/steuer-beratung Kann ich mein Homeoffice absetzen?
+/steuer-beratung Wo trage ich Fortbildungskosten ein?
+```
+
+#### `/steuer-check`
+**Zweck**: Schnelle Prüfung einer Ausgabe
+**Model**: haiku
+**Output**: Kompakte Ampel-Bewertung
+
+```
+/steuer-check Laptop für Homeoffice
+/steuer-check Fahrtkosten zur Fortbildung
+```
+
+---
+
+### Schulung Pitch (1)
+
+Dokumentenanalyse für Windenergie Pitch-Systeme.
+
+#### `/analyze-pitch-docs`
+**Zweck**: Pitch-System Dokumente aus Inbox analysieren
+**Model**: sonnet
+**Agents**: pitch-document-analyzer, pitch-content-categorizer, pitch-style-extractor
+**Features**:
+- Dokumentbasierte Analyse (keine Vorannahmen)
+- Automatische Kategorisierung in KB
+- Glossar-Extraktion (DE/EN)
+- Stil-Profil bei PPTX
+
+```
+/analyze-pitch-docs
+```
+
+**Plain Text Trigger**:
+- "Analysiere die Pitch-Dokumente"
+- "Verarbeite die Pitch-System Dateien"
 
 ---
 
@@ -684,6 +820,183 @@ Persistentes "Fake Memory" fuer Erfahrungen ueber Sessions hinweg.
 
 ---
 
+### Macro-Analyse (4)
+
+Commands für das Macro-Analyse Dashboard und Marktanalyse.
+
+#### `/auto-model`
+**Zweck**: Automatische Model-Auswahl basierend auf Task-Komplexität
+**Model**: haiku
+**Features**:
+- Metacognitive Task-Analyse
+- Complexity Scoring (1-10)
+- Model-Empfehlung (haiku/sonnet/opus)
+
+```
+/auto-model Erkläre mir React Hooks
+/auto-model Entwickle eine Multi-Agent Architektur
+```
+
+#### `/pattern-scan`
+**Zweck**: Scan aktuelles Markt-Setup gegen historische Pattern-Library
+**Model**: sonnet
+**Features**:
+- Election Cycle Pattern
+- CPI Lag Pattern
+- Sentiment Extremes
+- Match Score & Probability
+
+```
+/pattern-scan
+/pattern-scan BTC
+/pattern-scan detailed
+```
+
+**Plain Text Trigger**:
+- "Finde Muster"
+- "Historische Muster"
+- "Welche Muster siehst du?"
+
+#### `/learning-review`
+**Zweck**: Learning System Review & Accuracy Metrics
+**Model**: sonnet
+**Features**:
+- Prediction Accuracy (30 Tage)
+- Error Analysis
+- Model Refinements
+- Backtesting Performance
+
+```
+/learning-review
+/learning-review detailed
+/learning-review accuracy-trend
+```
+
+**Plain Text Trigger**:
+- "Zeige Lernfortschritt"
+- "Wie gut funktioniert das System?"
+- "Genauigkeit?"
+
+#### `/macro-forecast`
+**Zweck**: 30-Tage Forecast mit Probability Distribution
+**Model**: opus
+**Features**:
+- Bull/Base/Bear Case Scenarios
+- Weighted Average Forecast
+- Confidence Scoring
+- Catalyst Calendar
+
+```
+/forecast
+/forecast BTC
+/forecast GOLD
+```
+
+**Plain Text Trigger**:
+- "Forecast"
+- "30-Tage Vorhersage"
+- "Wie entwickelt sich der Markt?"
+
+#### `/market-analysis`
+**Zweck**: Deep Market Analysis mit allen Macro-Agents
+**Model**: opus
+**Features**:
+- Technical Analysis
+- Macro Analysis
+- Meta-Analysis (Hidden Drivers)
+- Pattern Matches
+
+```
+/market-analysis
+/market-analysis BTC
+```
+
+**Plain Text Trigger**:
+- "Analysiere den Markt"
+- "Aktuelle Marktanalyse"
+- "Was ist die aktuelle Situation?"
+
+---
+
+### Development Tools (3)
+
+Tools für Code-Entwicklung und Planung.
+
+#### `/analyze-batch`
+**Zweck**: Batch-Analyse von pending Macro-Analyse Documents
+**Model**: sonnet
+**Projekt**: Macro-Analyse Dashboard
+**Features**:
+- WZRD Intelligence Analysis
+- Signal Strength Scoring
+- Narrative Contradiction Detection
+- Auto-Tags
+
+```
+/analyze-batch
+/analyze-batch 5
+/analyze-batch --high-prio
+```
+
+**Plain Text Trigger**:
+- "Analysiere alle Dokumente"
+- "Batch Analyse"
+
+#### `/security-review`
+**Zweck**: Security Code Review mit False-Positive Filtering
+**Model**: opus
+**Features**:
+- 3-Phasen Ansatz (Context, Comparative, Assessment)
+- OWASP Top 10 Kategorien
+- Confidence Score (nur >=8 reporten)
+- Hard Exclusions für False Positives
+
+```
+/security-review feature/user-auth
+/security-review HEAD~5..HEAD
+/security-review src/api/
+```
+
+**Plain Text Trigger**:
+- "Security Review für {branch}"
+- "Prüfe auf Sicherheit"
+- "Security Check"
+
+#### `/interview-plan`
+**Zweck**: Interview vor Implementation durchführen
+**Model**: opus
+**Features**:
+- Probing Questions zu Technical, UX, Risks
+- Challenge Assumptions
+- Explore Edge Cases
+- Plan-File Update nach Interview
+
+```
+/interview-plan path/to/plan.md
+```
+
+---
+
+### Workflow Execution (1)
+
+#### `/run-workflow`
+**Zweck**: Workflow aus definitions/ Verzeichnis ausführen
+**Model**: sonnet
+**Features**:
+- Preview Steps vor Ausführung
+- Variables Support
+- Dry-Run Mode
+- Resume nach Fehler
+
+```
+/run-workflow weekly-review
+/run-workflow idea-forge-full -v '{"idea_input": "SaaS Tool"}'
+/run-workflow inbox-processing --dry-run
+/run-workflow idea-forge-full --resume 20241206-123456-abc123
+```
+
+---
+
 ## Native Claude Code Commands (Nützlich für Evolving)
 
 Diese sind **native Commands** von Claude Code selbst - keine Evolving-eigenen Workflows.
@@ -692,9 +1005,9 @@ Diese sind **native Commands** von Claude Code selbst - keine Evolving-eigenen W
 
 | Command | Zweck | Beispiel |
 |---------|-------|----------|
-| `/rename <name>` | Session benennen | `/rename project-work` |
-| `/resume <name>` | Benannte Session fortsetzen | `/resume project-work` |
-| `claude --resume <name>` | Von Terminal aus fortsetzen | `claude --resume my-project` |
+| `/rename <name>` | Session benennen | `/rename dashboard-work` |
+| `/resume <name>` | Benannte Session fortsetzen | `/resume dashboard-work` |
+| `claude --resume <name>` | Von Terminal aus fortsetzen | `claude --resume auswanderungs-ki` |
 
 **Use Case**: Projekt-spezifische Sessions mit persistentem Kontext.
 
@@ -702,7 +1015,7 @@ Diese sind **native Commands** von Claude Code selbst - keine Evolving-eigenen W
 
 | Command | Zweck | Status |
 |---------|-------|--------|
-| `/chrome` | Browser-Kontrolle via Extension | Beta - Setup |
+| `/chrome` | Browser-Kontrolle via Extension | Beta - [Setup](https://claude.ai/chrome) |
 | `/stats` | Nutzungsstatistiken (Model, Streak) | Verfügbar |
 | `/config` | Settings anpassen | Verfügbar |
 | `/permissions` | Permission-Regeln verwalten | Verfügbar |
@@ -723,7 +1036,7 @@ Diese sind **native Commands** von Claude Code selbst - keine Evolving-eigenen W
 ```bash
 claude --agent research-analyst     # Mit spezifischem Agent starten
 claude --session-id my-session      # Custom Session ID
-claude --resume project-work        # Session fortsetzen
+claude --resume dashboard-work      # Session fortsetzen
 ```
 
 **Tipp**: Kombiniere Named Sessions mit Domain Memory für maximale Persistenz.
@@ -740,7 +1053,7 @@ claude --resume project-work        # Session fortsetzen
 
 ---
 
-**Version**: 1.5
-**Commands**: 34 (Evolving) + Native Claude Code Commands
-**Categories**: 10
-**Last Updated**: 2025-12-22
+**Version**: 1.7
+**Commands**: 49 (Evolving) + Native Claude Code Commands
+**Categories**: 14
+**Last Updated**: 2026-01-03

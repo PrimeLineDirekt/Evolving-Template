@@ -148,6 +148,12 @@
       "anti": ["system funktioniert", "welches system", "system starten"],
       "conf": "high"
     },
+    "/compose-agent": {
+      "kw": ["compose agent", "dynamic agent", "agent zusammenstellen", "trait agent"],
+      "patterns": ["erstelle * agent mit * personality", "agent der * ist", "brauche einen * agent"],
+      "anti": ["agent status", "welcher agent läuft"],
+      "conf": "high"
+    },
     "/scenario": {
       "kw": ["aktiviere szenario", "wechsle zu", "switch to", "lade szenario"],
       "patterns": ["öffne projekt", "context wechseln"],
@@ -329,6 +335,18 @@
       "patterns": ["synchronisiere zum template", "update das template", "neue sachen ins template"],
       "anti": [],
       "conf": "high"
+    },
+    "/deep-research": {
+      "kw": ["deep research", "tiefe recherche", "perplexity", "komplexe recherche", "gründlich recherchieren"],
+      "patterns": ["recherchiere gründlich", "deep dive zu", "umfassende analyse", "forschung zu"],
+      "anti": ["schnelle suche", "kurz googlen", "quick search"],
+      "conf": "high"
+    },
+    "/lab": {
+      "kw": ["lab", "perplexity lab", "labs", "report erstellen", "dashboard erstellen", "spreadsheet erstellen", "prototype bauen"],
+      "patterns": ["erstelle ein dashboard", "baue eine app", "generiere einen report", "mach eine tabelle"],
+      "anti": ["labor", "im lab", "laborwerte"],
+      "conf": "high"
     }
   },
 
@@ -336,8 +354,8 @@
     "steuererklaerung-2024": ["steuer", "absetzen", "werbungskosten", "steuererklärung"],
     "evolving-dashboard": ["dashboard", "terminal", "command center"],
     "macro-analyse": ["markt", "forecast", "wzrd", "signals"],
-    "{PROJECT_ID}": ["bistro", "restaurant", "order", "menu"],
-    "{PROJECT_ID}": ["medical", "krankenhaus", "didit"]
+    "nhien-bistro": ["bistro", "restaurant", "order", "menu"],
+    "didit-medical-care": ["medical", "krankenhaus", "didit"]
   },
 
   "memory_triggers": {
