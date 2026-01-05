@@ -30,4 +30,5 @@ After the interview is complete, update the plan file with:
 
 ---
 
+**Source**: https://gist.github.com/robzolkos/40b70ed2dd045603149c6b3eed4649ad
 **Adapted**: 2025-12-30

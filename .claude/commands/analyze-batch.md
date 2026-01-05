@@ -15,7 +15,7 @@ Batch-Analyse von pending Macro-Analyse Documents mit Claude Code Subscription.
 ### 1. Load Pending Documents
 
 ```
-Lese: {HOME}/Buisiness/Projects/Macro-Analyse/data/inbox/index.json
+Lese: /Users/neoforce/Buisiness/Projects/Macro-Analyse/data/inbox/index.json
 
 Filter: has_deep_analysis == false OR has_deep_analysis nicht vorhanden
 
@@ -28,7 +28,7 @@ Output:
 
 ```
 1. Lese das Document:
-   {HOME}/Buisiness/Projects/Macro-Analyse/data/inbox/{file_path}
+   /Users/neoforce/Buisiness/Projects/Macro-Analyse/data/inbox/{file_path}
 
 2. Analysiere mit WZRD Intelligence Prompt:
 
@@ -104,8 +104,8 @@ Nächste Schritte:
 ## Dateipfade
 
 ```
-Index:     {HOME}/Buisiness/Projects/Macro-Analyse/data/inbox/index.json
-Documents: {HOME}/Buisiness/Projects/Macro-Analyse/data/inbox/{category}/{doc_id}.json
+Index:     /Users/neoforce/Buisiness/Projects/Macro-Analyse/data/inbox/index.json
+Documents: /Users/neoforce/Buisiness/Projects/Macro-Analyse/data/inbox/{category}/{doc_id}.json
 ```
 
 ## Beispiel-Ausführung

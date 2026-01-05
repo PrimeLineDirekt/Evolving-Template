@@ -1,7 +1,7 @@
 {
-  "version": "1.1",
-  "generated": "2026-01-01T12:00:00Z",
-  "count": 183,
+  "version": "1.2",
+  "generated": "2026-01-05T23:50:00Z",
+  "count": 222,
   "nodes": [
     {
       "id": "agent-context-manager",
@@ -304,7 +304,7 @@
         "idea-management",
         "overview"
       ],
-      "description": "Ideen-Übersicht mit Filtern"
+      "description": "Ideen-\u00dcbersicht mit Filtern"
     },
     {
       "id": "command-idea-connect",
@@ -945,10 +945,10 @@
       "description": "Learnings from v1 (n8n)"
     },
     {
-      "id": "learning-{PROJECT_ID}",
+      "id": "learning-auswanderungs-ki-v2",
       "type": "learning",
-      "name": "{PROJECT} v2 Learnings",
-      "path": "knowledge/learnings/{PROJECT_ID}-learnings.md",
+      "name": "Auswanderungs-KI v2 Learnings",
+      "path": "knowledge/learnings/auswanderungs-ki-v2-learnings.md",
       "domain": [
         "auswanderung",
         "python",
@@ -1081,13 +1081,13 @@
         "ai",
         "e-commerce"
       ],
-      "description": "{PROJECT} Etsy automation"
+      "description": "ThriveVibesArt Etsy automation"
     },
     {
-      "id": "project-{PROJECT_ID}",
+      "id": "project-auswanderungs-ki-v2",
       "type": "project",
-      "name": "{PROJECT}",
-      "path": "knowledge/projects/{PROJECT_ID}/",
+      "name": "Auswanderungs-KI v2.1",
+      "path": "knowledge/projects/auswanderungs-ki-v2/",
       "domain": [
         "auswanderung",
         "python",
@@ -1144,7 +1144,7 @@
       "id": "prompt-aki-checkliste",
       "type": "prompt",
       "name": "AKI Checkliste Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/checkliste.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/checkliste.md",
       "domain": [
         "auswanderung",
         "checklists"
@@ -1155,7 +1155,7 @@
       "id": "prompt-aki-digitale-nomaden",
       "type": "prompt",
       "name": "AKI Digitale Nomaden Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/digitale-nomaden.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/digitale-nomaden.md",
       "domain": [
         "auswanderung",
         "digital-nomad"
@@ -1166,7 +1166,7 @@
       "id": "prompt-aki-familie-kinder",
       "type": "prompt",
       "name": "AKI Familie/Kinder Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/familie-kinder.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/familie-kinder.md",
       "domain": [
         "auswanderung",
         "family"
@@ -1177,7 +1177,7 @@
       "id": "prompt-aki-finanzplanung",
       "type": "prompt",
       "name": "AKI Finanzplanung Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/finanzplanung.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/finanzplanung.md",
       "domain": [
         "auswanderung",
         "finance"
@@ -1188,7 +1188,7 @@
       "id": "prompt-aki-krankenversicherung",
       "type": "prompt",
       "name": "AKI Krankenversicherung Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/krankenversicherung.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/krankenversicherung.md",
       "domain": [
         "auswanderung",
         "health-insurance"
@@ -1199,7 +1199,7 @@
       "id": "prompt-aki-kryptowaehrungen",
       "type": "prompt",
       "name": "AKI Kryptowaehrungen Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/kryptowaehrungen.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/kryptowaehrungen.md",
       "domain": [
         "auswanderung",
         "crypto"
@@ -1210,7 +1210,7 @@
       "id": "prompt-aki-notfall-krisen",
       "type": "prompt",
       "name": "AKI Notfall/Krisen Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/notfall-krisen.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/notfall-krisen.md",
       "domain": [
         "auswanderung",
         "emergency"
@@ -1221,7 +1221,7 @@
       "id": "prompt-aki-probe-auswanderung",
       "type": "prompt",
       "name": "AKI Probe-Auswanderung Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/probe-auswanderung.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/probe-auswanderung.md",
       "domain": [
         "auswanderung",
         "trial"
@@ -1232,7 +1232,7 @@
       "id": "prompt-aki-profil-analyse",
       "type": "prompt",
       "name": "AKI Profil-Analyse Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/profil-analyse.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/profil-analyse.md",
       "domain": [
         "auswanderung",
         "profiling"
@@ -1243,7 +1243,7 @@
       "id": "prompt-aki-reporter",
       "type": "prompt",
       "name": "AKI Reporter Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/reporter.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/reporter.md",
       "domain": [
         "auswanderung",
         "reporting"
@@ -1254,7 +1254,7 @@
       "id": "prompt-aki-rueckkehr-deutschland",
       "type": "prompt",
       "name": "AKI Rueckkehr Deutschland Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/rueckkehr-deutschland.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/rueckkehr-deutschland.md",
       "domain": [
         "auswanderung",
         "return"
@@ -1265,7 +1265,7 @@
       "id": "prompt-aki-senioren",
       "type": "prompt",
       "name": "AKI Senioren Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/senioren.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/senioren.md",
       "domain": [
         "auswanderung",
         "seniors"
@@ -1276,7 +1276,7 @@
       "id": "prompt-aki-steueroptimierung",
       "type": "prompt",
       "name": "AKI Steueroptimierung Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/steueroptimierung.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/steueroptimierung.md",
       "domain": [
         "auswanderung",
         "tax-optimization"
@@ -1287,7 +1287,7 @@
       "id": "prompt-aki-tierverlagerung",
       "type": "prompt",
       "name": "AKI Tierverlagerung Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/tierverlagerung.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/tierverlagerung.md",
       "domain": [
         "auswanderung",
         "pets"
@@ -1298,7 +1298,7 @@
       "id": "prompt-aki-umzug-logistik",
       "type": "prompt",
       "name": "AKI Umzug/Logistik Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/umzug-logistik.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/umzug-logistik.md",
       "domain": [
         "auswanderung",
         "logistics"
@@ -1309,7 +1309,7 @@
       "id": "prompt-aki-unternehmens-verlagerung",
       "type": "prompt",
       "name": "AKI Unternehmens-Verlagerung Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/unternehmens-verlagerung.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/unternehmens-verlagerung.md",
       "domain": [
         "auswanderung",
         "business-relocation"
@@ -1320,7 +1320,7 @@
       "id": "prompt-aki-vertragsmanagement",
       "type": "prompt",
       "name": "AKI Vertragsmanagement Agent",
-      "path": "knowledge/prompts/patterns/{PROJECT_ID}-agents/vertragsmanagement.md",
+      "path": "knowledge/prompts/patterns/auswanderungs-ki-agents/vertragsmanagement.md",
       "domain": [
         "auswanderung",
         "contracts"
@@ -1478,15 +1478,15 @@
       "description": "Domain memory for Evolving project"
     },
     {
-      "id": "memory-{PROJECT_ID}",
+      "id": "memory-auswanderungs-ki-v2",
       "type": "memory",
-      "name": "{PROJECT} v2 Memory",
-      "path": "_memory/projects/{PROJECT_ID}.json",
+      "name": "Auswanderungs-KI v2 Memory",
+      "path": "_memory/projects/auswanderungs-ki-v2.json",
       "domain": [
         "memory",
         "auswanderung"
       ],
-      "description": "Domain memory for {PROJECT}"
+      "description": "Domain memory for Auswanderungs-KI"
     },
     {
       "id": "rule-context-budget-awareness",
@@ -1559,7 +1559,7 @@
         "code-generation",
         "templates"
       ],
-      "description": "Generiert alle Dateien für das neue System"
+      "description": "Generiert alle Dateien f\u00fcr das neue System"
     },
     {
       "id": "agent-system-validator",
@@ -1571,7 +1571,7 @@
         "validation",
         "quality-gates"
       ],
-      "description": "Validiert das generierte System auf Vollständigkeit und Korrektheit"
+      "description": "Validiert das generierte System auf Vollst\u00e4ndigkeit und Korrektheit"
     },
     {
       "id": "agent-dashboard-features",
@@ -1583,7 +1583,7 @@
         "features",
         "ux-design"
       ],
-      "description": "Generiert Feature-Ideen für das Evolving Dashboard"
+      "description": "Generiert Feature-Ideen f\u00fcr das Evolving Dashboard"
     },
     {
       "id": "agent-macro-data-collector",
@@ -1667,7 +1667,7 @@
         "macroeconomics",
         "liquidity"
       ],
-      "description": "Analysiert makroökonomische Bedingungen, Liquiditätszyklen und fundamentale Treiber"
+      "description": "Analysiert makro\u00f6konomische Bedingungen, Liquidit\u00e4tszyklen und fundamentale Treiber"
     },
     {
       "id": "agent-macro-orchestrator",
@@ -1702,7 +1702,7 @@
         "principles",
         "architecture"
       ],
-      "description": "5 Qualitätsprinzipien: Foundation First, SSOT, Composition, Naming, Roadmap"
+      "description": "5 Qualit\u00e4tsprinzipien: Foundation First, SSOT, Composition, Naming, Roadmap"
     },
     {
       "id": "rule-memory-decay",
@@ -1726,7 +1726,7 @@
         "evaluation",
         "quality"
       ],
-      "description": "Rubric-basierte Session-Qualitätsbewertung"
+      "description": "Rubric-basierte Session-Qualit\u00e4tsbewertung"
     },
     {
       "id": "rule-context-optimization",
@@ -1761,7 +1761,7 @@
         "efficiency",
         "abbreviations"
       ],
-      "description": "Abkürzungen für interne Nutzung"
+      "description": "Abk\u00fcrzungen f\u00fcr interne Nutzung"
     },
     {
       "id": "rule-no-reference-only",
@@ -1795,7 +1795,7 @@
         "debugging",
         "observation"
       ],
-      "description": "Outputs prüfen vor Code-Änderung"
+      "description": "Outputs pr\u00fcfen vor Code-\u00c4nderung"
     },
     {
       "id": "rule-index-at-creation",
@@ -1843,34 +1843,34 @@
       "description": "Automatische Archivierung von Ledgers, Handoffs, Plans"
     },
     {
-      "id": "scenario-{PROJECT_ID}",
+      "id": "scenario-nhien-bistro",
       "type": "scenario",
-      "name": "{PROJECT} Order",
-      "path": ".claude/scenarios/{PROJECT_ID}/",
+      "name": "NHIEN Bistro Order",
+      "path": ".claude/scenarios/nhien-bistro/",
       "domain": [
         "restaurant",
         "ordering",
         "qr-system"
       ],
-      "description": "QR-Order System für {PROJECT}, {LOCATION}"
+      "description": "QR-Order System f\u00fcr NHI\u00caN Bistro, Da Nang"
     },
     {
-      "id": "scenario-{PROJECT_ID}",
+      "id": "scenario-didit-medical-care",
       "type": "scenario",
-      "name": "{PROJECT}",
-      "path": ".claude/scenarios/{PROJECT_ID}/",
+      "name": "Didit Medical Care",
+      "path": ".claude/scenarios/didit-medical-care/",
       "domain": [
         "medical",
         "coordination",
         "logistics"
       ],
-      "description": "Koordination der medizinischen Versorgung Lombok → Jakarta"
+      "description": "Koordination der medizinischen Versorgung Lombok \u2192 Jakarta"
     },
     {
-      "id": "scenario-{PROJECT_ID}",
+      "id": "scenario-auswanderungs-ki",
       "type": "scenario",
-      "name": "{PROJECT} v2",
-      "path": ".claude/scenarios/{PROJECT_ID}/",
+      "name": "Auswanderungs-KI v2",
+      "path": ".claude/scenarios/auswanderungs-ki/",
       "domain": [
         "emigration",
         "tax",
@@ -1888,7 +1888,7 @@
         "knowledge-graph",
         "automation"
       ],
-      "description": "Knowledge Graph aktualisieren bei Entity-Änderungen"
+      "description": "Knowledge Graph aktualisieren bei Entity-\u00c4nderungen"
     },
     {
       "id": "learning-system-builder",
@@ -1932,7 +1932,7 @@
         "prompt-engineering",
         "methodology"
       ],
-      "description": "Analyse-Methodologie für Prompts"
+      "description": "Analyse-Methodologie f\u00fcr Prompts"
     },
     {
       "id": "learning-agentfs",
@@ -1943,7 +1943,7 @@
         "storage",
         "agents"
       ],
-      "description": "Unified Storage für Agents"
+      "description": "Unified Storage f\u00fcr Agents"
     },
     {
       "id": "learning-ultrathink-software",
@@ -1977,7 +1977,7 @@
         "chrome",
         "automation"
       ],
-      "description": "Best Practices für Chrome Automation"
+      "description": "Best Practices f\u00fcr Chrome Automation"
     },
     {
       "id": "learning-chrome-experiments",
@@ -2000,7 +2000,7 @@
         "decay",
         "pattern"
       ],
-      "description": "Pattern für Time-based Memory Decay"
+      "description": "Pattern f\u00fcr Time-based Memory Decay"
     },
     {
       "id": "learning-agent-observability",
@@ -2066,7 +2066,7 @@
         "notebooks",
         "audit"
       ],
-      "description": "Methodologie für Notebook Audits"
+      "description": "Methodologie f\u00fcr Notebook Audits"
     },
     {
       "id": "learning-skill-creation-tdd",
@@ -2077,7 +2077,7 @@
         "skills",
         "tdd"
       ],
-      "description": "TDD Methodologie für Skill-Erstellung"
+      "description": "TDD Methodologie f\u00fcr Skill-Erstellung"
     },
     {
       "id": "learning-hook-output-visibility",
@@ -2113,6 +2113,339 @@
         "content-creation"
       ],
       "description": "Generate images with FAL.ai Nano Banana Pro"
+    },
+    {
+      "id": "template-advisor-agent",
+      "type": "template",
+      "name": "Advisor Agent Template",
+      "description": "Gutachten-style consultation with 5-phase advisory process",
+      "path": ".claude/templates/agents/advisor-agent.md",
+      "domain_tags": ["agents", "templates", "advisory"],
+      "keywords": ["advisor", "consultation", "gutachten", "beratung", "expert"]
+    },
+    {
+      "id": "template-system-builder-agent",
+      "type": "template",
+      "name": "System Builder Agent Template",
+      "description": "Template for agents that generate complete systems from blueprints",
+      "path": ".claude/templates/agents/system-builder-agent.md",
+      "domain_tags": ["agents", "templates", "system-building", "generation"],
+      "keywords": ["system", "builder", "generator", "scaffold", "blueprint"]
+    },
+    {
+      "id": "template-validator-agent",
+      "type": "template",
+      "name": "Validator Agent Template",
+      "description": "Template for validation agents with quality gates and verification",
+      "path": ".claude/templates/agents/validator-agent.md",
+      "domain_tags": ["agents", "templates", "validation", "quality"],
+      "keywords": ["validator", "validation", "quality", "verify", "check"]
+    },
+    {
+      "id": "template-creative-agent",
+      "type": "template",
+      "name": "Creative Agent Template",
+      "description": "Template for creative agents with ideation and content generation",
+      "path": ".claude/templates/agents/creative-agent.md",
+      "domain_tags": ["agents", "templates", "creative", "content"],
+      "keywords": ["creative", "ideation", "content", "brainstorm", "generate"]
+    },
+    {
+      "id": "template-automation-agent",
+      "type": "template",
+      "name": "Automation Agent Template",
+      "description": "Template for automation agents with workflow and task orchestration",
+      "path": ".claude/templates/agents/automation-agent.md",
+      "domain_tags": ["agents", "templates", "automation", "workflow"],
+      "keywords": ["automation", "workflow", "task", "orchestrate", "schedule"]
+    },
+    {
+      "id": "pattern-trait-based-composition",
+      "type": "pattern",
+      "name": "Trait-Based Composition Pattern",
+      "description": "Dynamic agent composition using trait taxonomy and voice mappings",
+      "path": "knowledge/patterns/trait-based-composition-pattern.md",
+      "domain_tags": ["agents", "patterns", "composition", "dynamic"],
+      "keywords": ["trait", "composition", "dynamic", "voice", "taxonomy", "personality"]
+    },
+    {
+      "id": "agent-factory",
+      "type": "agent",
+      "name": "Agent Factory",
+      "description": "Programmatic agent creation with trait composition (480 combinations)",
+      "path": ".claude/agents/agent-factory.md",
+      "domain_tags": ["agents", "factory", "composition", "dynamic"],
+      "keywords": ["factory", "compose", "trait", "dynamic", "runtime", "agent-creation"]
+    },
+    {
+      "id": "template-dynamic-agent",
+      "type": "template",
+      "name": "Dynamic Agent Template",
+      "description": "Runtime-composed agents with trait-based personality and voice",
+      "path": ".claude/templates/agents/dynamic-agent.md",
+      "domain_tags": ["agents", "templates", "dynamic", "composition"],
+      "keywords": ["dynamic", "runtime", "compose", "trait", "personality"]
+    },
+    {
+      "id": "template-orchestrator-agent",
+      "type": "template",
+      "name": "Orchestrator Agent Template",
+      "description": "Multi-agent coordination with parallel/sequential execution",
+      "path": ".claude/templates/agents/orchestrator-agent.md",
+      "domain_tags": ["agents", "templates", "orchestration", "coordination"],
+      "keywords": ["orchestrator", "coordination", "parallel", "sequential", "multi-agent"]
+    },
+    {
+      "id": "command-compose-agent",
+      "type": "command",
+      "name": "Compose Agent Command",
+      "description": "Dynamic agent composition via /compose-agent",
+      "path": ".claude/commands/compose-agent.md",
+      "domain_tags": ["commands", "agents", "composition"],
+      "keywords": ["compose", "agent", "dynamic", "trait", "create"]
+    },
+    {
+      "id": "command-deep-research",
+      "type": "command",
+      "name": "Deep Research Command",
+      "description": "Multi-source research with Perplexity integration",
+      "path": ".claude/commands/deep-research.md",
+      "domain_tags": ["commands", "research", "perplexity"],
+      "keywords": ["research", "deep", "perplexity", "websearch", "analysis"]
+    },
+    {
+      "id": "knowledge-trait-taxonomy",
+      "type": "knowledge",
+      "name": "Trait Taxonomy",
+      "description": "10 Expertise × 8 Personality × 6 Approach = 480 combinations",
+      "path": "knowledge/agents/trait-taxonomy.json",
+      "domain_tags": ["agents", "traits", "taxonomy", "composition"],
+      "keywords": ["trait", "taxonomy", "expertise", "personality", "approach"]
+    },
+    {
+      "id": "knowledge-voice-mappings",
+      "type": "knowledge",
+      "name": "Voice Mappings",
+      "description": "Personality to voice characteristics mapping",
+      "path": "knowledge/agents/voice-mappings.json",
+      "domain_tags": ["agents", "voice", "personality"],
+      "keywords": ["voice", "personality", "tone", "style", "communication"]
+    },
+    {
+      "id": "knowledge-disclaimers",
+      "type": "knowledge",
+      "name": "Domain Disclaimers",
+      "description": "Domain-specific disclaimers (legal, security, medical, financial)",
+      "path": "knowledge/agents/disclaimers.json",
+      "domain_tags": ["agents", "disclaimers", "compliance"],
+      "keywords": ["disclaimer", "legal", "security", "medical", "financial", "compliance"]
+    },
+    {
+      "id": "agent-content-anonymizer",
+      "type": "agent",
+      "name": "Content Anonymizer Agent",
+      "description": "Transforms personalized content into generic templates",
+      "path": ".claude/agents/content-anonymizer-agent.md",
+      "domain_tags": ["template-sync", "privacy", "anonymization"],
+      "keywords": ["anonymization", "placeholder-replacement", "template-transformation", "personal-data"]
+    },
+    {
+      "id": "agent-privacy-scanner",
+      "type": "agent",
+      "name": "Privacy Scanner Agent",
+      "description": "Scans files for sensitive/personal content before and after sync",
+      "path": ".claude/agents/privacy-scanner-agent.md",
+      "domain_tags": ["template-sync", "privacy", "security", "audit"],
+      "keywords": ["privacy-scanning", "secret-detection", "pii-detection", "api-keys", "sensitive-content"]
+    },
+    {
+      "id": "agent-template-diff",
+      "type": "agent",
+      "name": "Template Diff Agent",
+      "description": "Intelligent diff analysis between source and target repositories",
+      "path": ".claude/agents/template-diff-agent.md",
+      "domain_tags": ["template-sync", "diff-analysis", "version-control"],
+      "keywords": ["diff-analysis", "change-categorization", "conflict-detection", "file-comparison"]
+    },
+    {
+      "id": "agent-template-inventory",
+      "type": "agent",
+      "name": "Template Inventory Agent",
+      "description": "Analyzes repos and creates inventory comparison",
+      "path": ".claude/agents/template-inventory-agent.md",
+      "domain_tags": ["template-sync", "inventory", "component-analysis"],
+      "keywords": ["inventory-analysis", "component-counting", "diff-detection", "gap-analysis"]
+    },
+    {
+      "id": "command-analyze-batch",
+      "type": "command",
+      "name": "Analyze Batch Command",
+      "description": "Batch-Analyse von pending Macro-Analyse Documents",
+      "path": ".claude/commands/analyze-batch.md",
+      "domain_tags": ["commands", "macro-analysis", "batch-processing"],
+      "keywords": ["analyze", "batch", "documents", "pending"]
+    },
+    {
+      "id": "command-context",
+      "type": "command",
+      "name": "Context Command",
+      "description": "Lade relevanten Kontext aus dem Knowledge Graph",
+      "path": ".claude/commands/context.md",
+      "domain_tags": ["commands", "knowledge-graph", "context-retrieval"],
+      "keywords": ["context", "load", "entities", "knowledge", "graph"]
+    },
+    {
+      "id": "command-create-system",
+      "type": "command",
+      "name": "Create System Command",
+      "description": "Generiert ein vollständiges Multi-Agent System",
+      "path": ".claude/commands/create-system.md",
+      "domain_tags": ["commands", "system-generation", "agents"],
+      "keywords": ["create", "system", "multi-agent", "blueprint", "generate"]
+    },
+    {
+      "id": "command-interview-plan",
+      "type": "command",
+      "name": "Interview Plan Command",
+      "description": "Interview me about a plan before implementation",
+      "path": ".claude/commands/interview-plan.md",
+      "domain_tags": ["commands", "planning", "validation"],
+      "keywords": ["interview", "plan", "questions", "implementation"]
+    },
+    {
+      "id": "command-knowledge-refresh",
+      "type": "command",
+      "name": "Knowledge Refresh Command",
+      "description": "Validiert und aktualisiert bestehende Learnings",
+      "path": ".claude/commands/knowledge-refresh.md",
+      "domain_tags": ["commands", "knowledge-base", "learning-management"],
+      "keywords": ["refresh", "knowledge", "validate", "learnings", "stale"]
+    },
+    {
+      "id": "command-lab",
+      "type": "command",
+      "name": "Lab Command",
+      "description": "Perplexity Labs Projekte erstellen",
+      "path": ".claude/commands/lab.md",
+      "domain_tags": ["commands", "perplexity", "research-tools"],
+      "keywords": ["lab", "perplexity", "report", "dashboard", "research"]
+    },
+    {
+      "id": "command-learning-review",
+      "type": "command",
+      "name": "Learning Review Command",
+      "description": "Review system learning and accuracy metrics",
+      "path": ".claude/commands/learning-review.md",
+      "domain_tags": ["commands", "learning", "metrics"],
+      "keywords": ["review", "learning", "accuracy", "performance"]
+    },
+    {
+      "id": "command-loop-until-done",
+      "type": "command",
+      "name": "Loop Until Done Command",
+      "description": "Task iterativ ausführen bis Completion-Kriterium erreicht",
+      "path": ".claude/commands/loop-until-done.md",
+      "domain_tags": ["commands", "iteration", "task-management"],
+      "keywords": ["loop", "iterate", "completion", "verify"]
+    },
+    {
+      "id": "command-macro-forecast",
+      "type": "command",
+      "name": "Macro Forecast Command",
+      "description": "Generate 30-day probability-weighted market forecast",
+      "path": ".claude/commands/macro-forecast.md",
+      "domain_tags": ["commands", "forecasting", "macro-analysis"],
+      "keywords": ["forecast", "prediction", "markets", "probability"]
+    },
+    {
+      "id": "command-market-analysis",
+      "type": "command",
+      "name": "Market Analysis Command",
+      "description": "Deep market analysis using technical and macro analysis",
+      "path": ".claude/commands/market-analysis.md",
+      "domain_tags": ["commands", "market-analysis", "technical-analysis"],
+      "keywords": ["market", "analysis", "technical", "macro"]
+    },
+    {
+      "id": "command-memory-stats",
+      "type": "command",
+      "name": "Memory Stats Command",
+      "description": "Zeige Statistiken über das Experience Memory System",
+      "path": ".claude/commands/memory-stats.md",
+      "domain_tags": ["commands", "memory", "analytics"],
+      "keywords": ["memory", "statistics", "experiences", "scores"]
+    },
+    {
+      "id": "command-pattern-scan",
+      "type": "command",
+      "name": "Pattern Scan Command",
+      "description": "Scan current market setup against historical patterns",
+      "path": ".claude/commands/pattern-scan.md",
+      "domain_tags": ["commands", "analysis", "patterns"],
+      "keywords": ["patterns", "market", "historical", "scan"]
+    },
+    {
+      "id": "command-preferences",
+      "type": "command",
+      "name": "Preferences Command",
+      "description": "Zeige und verwalte User-Präferenzen",
+      "path": ".claude/commands/preferences.md",
+      "domain_tags": ["commands", "configuration", "user-settings"],
+      "keywords": ["preferences", "settings", "configuration"]
+    },
+    {
+      "id": "command-recall",
+      "type": "command",
+      "name": "Recall Command",
+      "description": "Durchsuche Experience Memory nach relevanten Erfahrungen",
+      "path": ".claude/commands/recall.md",
+      "domain_tags": ["commands", "memory", "search"],
+      "keywords": ["recall", "search", "experiences", "query"]
+    },
+    {
+      "id": "command-remember",
+      "type": "command",
+      "name": "Remember Command",
+      "description": "Speichere eine Erfahrung im Experience Memory",
+      "path": ".claude/commands/remember.md",
+      "domain_tags": ["commands", "memory", "learning"],
+      "keywords": ["remember", "save", "experience", "solution"]
+    },
+    {
+      "id": "command-repo-screen",
+      "type": "command",
+      "name": "Repo Screen Command",
+      "description": "Schneller Relevanz-Check für GitHub Repos",
+      "path": ".claude/commands/repo-screen.md",
+      "domain_tags": ["commands", "analysis", "github"],
+      "keywords": ["repo", "screen", "relevance", "github"]
+    },
+    {
+      "id": "command-security-review",
+      "type": "command",
+      "name": "Security Review Command",
+      "description": "Security Code Review mit False-Positive Filtering",
+      "path": ".claude/commands/security-review.md",
+      "domain_tags": ["commands", "security", "code-review"],
+      "keywords": ["security", "vulnerability", "owasp", "review"]
+    },
+    {
+      "id": "command-template-sync",
+      "type": "command",
+      "name": "Template Sync Command",
+      "description": "Synchronizes Evolving to Evolving-Template with privacy protection",
+      "path": ".claude/commands/template-sync.md",
+      "domain_tags": ["commands", "synchronization", "privacy"],
+      "keywords": ["sync", "template", "privacy", "anonymize"]
+    },
+    {
+      "id": "command-update-check",
+      "type": "command",
+      "name": "Update Check Command",
+      "description": "Prüft auf neue Claude Code Features",
+      "path": ".claude/commands/update-check.md",
+      "domain_tags": ["commands", "updates", "maintenance"],
+      "keywords": ["update", "check", "features", "changelog"]
     }
   ]
 }

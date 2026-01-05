@@ -100,7 +100,7 @@ Erstelle ein [ARTEFAKT-TYP] fuer [THEMA]. Hintergrund: [KEY-FACTS-AUS-KB]. Featu
 
 **Beispiel:**
 ```
-Erstelle einen UMFASSENDEN MARKTANALYSE-REPORT fuer Etsy Poster-Markt 2026. Hintergrund: Wir betreiben {PROJECT}, einen Shop fuer minimalistische Poster mit Fokus auf Affirmationen und Wellness, bisherige Bestseller ist die Breathe-Serie. Features: (1) Executive Summary mit Marktgroesse und Top-3 Trends; (2) Competitor-Analyse der Top-10 Seller in unserer Nische; (3) Preisstrategie-Empfehlung basierend auf unserem Sortiment. Datenquellen: Etsy Marketplace 2026, eRank. Output: Report mit Visualisierungen.
+Erstelle einen UMFASSENDEN MARKTANALYSE-REPORT fuer Etsy Poster-Markt 2026. Hintergrund: Wir betreiben ThriveVibesArt, einen Shop fuer minimalistische Poster mit Fokus auf Affirmationen und Wellness, bisherige Bestseller ist die Breathe-Serie. Features: (1) Executive Summary mit Marktgroesse und Top-3 Trends; (2) Competitor-Analyse der Top-10 Seller in unserer Nische; (3) Preisstrategie-Empfehlung basierend auf unserem Sortiment. Datenquellen: Etsy Marketplace 2026, eRank. Output: Report mit Visualisierungen.
 ```
 
 **WICHTIG**: Kein `[KONTEXT]...[/KONTEXT]` Block - Perplexity versteht das nicht!

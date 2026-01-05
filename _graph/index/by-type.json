@@ -1,8 +1,7 @@
 {
-  "version": "1.0",
-  "generated": "2025-12-29T11:30:00Z",
+  "version": "1.2",
+  "generated": "2026-01-05T23:50:00Z",
   "description": "Nodes grouped by entity type",
-
   "agent": [
     "agent-context-manager",
     "agent-knowledge-synthesizer",
@@ -16,16 +15,34 @@
     "agent-model-selector",
     "agent-pitch-document-analyzer",
     "agent-pitch-content-categorizer",
-    "agent-pitch-style-extractor"
+    "agent-pitch-style-extractor",
+    "agent-system-analyzer",
+    "agent-system-architect",
+    "agent-system-generator",
+    "agent-system-validator",
+    "agent-dashboard-features",
+    "agent-macro-data-collector",
+    "agent-meta-analyst",
+    "agent-pattern-recognizer",
+    "agent-forecast-synthesizer",
+    "agent-learning-optimizer",
+    "agent-market-technical-analyst",
+    "agent-macro-economist",
+    "agent-macro-orchestrator",
+    "agent-fal-image-generator",
+    "agent-factory",
+    "agent-content-anonymizer",
+    "agent-privacy-scanner",
+    "agent-template-diff",
+    "agent-template-inventory"
   ],
-
   "skill": [
     "skill-template-creator",
     "skill-prompt-pro-framework",
     "skill-research-orchestrator",
-    "skill-etsy-poster-creator"
+    "skill-etsy-poster-creator",
+    "skill-subagent-driven-development"
   ],
-
   "command": [
     "command-opus",
     "command-opus-plus",
@@ -59,15 +76,36 @@
     "command-whats-next",
     "command-auto-model",
     "command-run-workflow",
-    "command-analyze-pitch-docs"
+    "command-analyze-pitch-docs",
+    "command-generate-image",
+    "command-compose-agent",
+    "command-deep-research",
+    "command-analyze-batch",
+    "command-context",
+    "command-create-system",
+    "command-interview-plan",
+    "command-knowledge-refresh",
+    "command-lab",
+    "command-learning-review",
+    "command-loop-until-done",
+    "command-macro-forecast",
+    "command-market-analysis",
+    "command-memory-stats",
+    "command-pattern-scan",
+    "command-preferences",
+    "command-recall",
+    "command-remember",
+    "command-repo-screen",
+    "command-security-review",
+    "command-template-sync",
+    "command-update-check"
   ],
-
   "hook": [
     "hook-auto-cross-reference",
     "hook-session-summary",
-    "hook-context-monitor"
+    "hook-context-monitor",
+    "hook-graph-update"
   ],
-
   "rule": [
     "rule-core-principles",
     "rule-cross-reference-sync",
@@ -79,15 +117,30 @@
     "rule-domain-memory-bootup",
     "rule-context-budget-awareness",
     "rule-explicit-identity",
-    "rule-idempotent-redundancy"
+    "rule-idempotent-redundancy",
+    "rule-experience-suggest",
+    "rule-ultrathink",
+    "rule-memory-decay",
+    "rule-session-evaluation",
+    "rule-context-optimization",
+    "rule-auto-enhancement",
+    "rule-token-efficiency",
+    "rule-no-reference-only",
+    "rule-relevance-extraction",
+    "rule-observe-before-editing",
+    "rule-index-at-creation",
+    "rule-clear-dont-compact",
+    "rule-evidence-before-claims",
+    "rule-auto-archival"
   ],
-
   "scenario": [
     "scenario-evolving-dashboard",
     "scenario-steuererklaerung-2024",
-    "scenario-workflow-engine"
+    "scenario-workflow-engine",
+    "scenario-nhien-bistro",
+    "scenario-didit-medical-care",
+    "scenario-auswanderungs-ki"
   ],
-
   "pattern": [
     "pattern-research-confidence-scoring",
     "pattern-bilingual-seo",
@@ -104,13 +157,13 @@
     "pattern-compact-errors",
     "pattern-8-block-profile",
     "pattern-gdpr-compliant-saas",
-    "pattern-ai-content-pipeline"
+    "pattern-ai-content-pipeline",
+    "pattern-trait-based-composition"
   ],
-
   "learning": [
     "learning-ai-poster-hub",
     "learning-ki-auswanderungs-berater",
-    "learning-{PROJECT_ID}",
+    "learning-auswanderungs-ki-v2",
     "learning-aitmpl-findings",
     "learning-anthropic-tool-use",
     "learning-better-agents-patterns",
@@ -119,15 +172,31 @@
     "learning-claude-sdk-insights",
     "learning-acontext-skill-distillation",
     "learning-copilotkit-evaluation",
-    "learning-domain-memory-pattern"
+    "learning-domain-memory-pattern",
+    "learning-system-builder",
+    "learning-mcp-server",
+    "learning-claude-mem",
+    "learning-prompt-coach",
+    "learning-agentfs",
+    "learning-ultrathink-software",
+    "learning-claude-code-dec-2025",
+    "learning-chrome-automation",
+    "learning-chrome-experiments",
+    "learning-memory-decay-pattern",
+    "learning-agent-observability",
+    "learning-self-improving",
+    "learning-kalyan-ml",
+    "learning-skill-anti-patterns",
+    "learning-context-degradation",
+    "learning-notebook-audit",
+    "learning-skill-creation-tdd",
+    "learning-hook-output-visibility"
   ],
-
   "project": [
     "project-ki-auswanderungs-berater",
     "project-ai-poster-hub",
-    "project-{PROJECT_ID}"
+    "project-auswanderungs-ki-v2"
   ],
-
   "prompt": [
     "prompt-framework-prompt-pro",
     "prompt-framework-idea-forge",
@@ -151,7 +220,6 @@
     "prompt-aki-unternehmens-verlagerung",
     "prompt-aki-vertragsmanagement"
   ],
-
   "template": [
     "template-specialist-agent",
     "template-research-agent",
@@ -163,32 +231,42 @@
     "template-reusable-pattern",
     "template-project-learning",
     "template-scenario-autonomous-research",
-    "template-scenario-multi-agent-advisory"
+    "template-scenario-multi-agent-advisory",
+    "template-advisor-agent",
+    "template-system-builder-agent",
+    "template-validator-agent",
+    "template-creative-agent",
+    "template-automation-agent",
+    "template-dynamic-agent",
+    "template-orchestrator-agent"
   ],
-
   "idea": [
     "idea-evolving-mvp-saas"
   ],
-
   "memory": [
     "memory-evolving-system",
-    "memory-{PROJECT_ID}"
+    "memory-auswanderungs-ki-v2"
   ],
-
+  "knowledge": [
+    "knowledge-trait-taxonomy",
+    "knowledge-voice-mappings",
+    "knowledge-disclaimers"
+  ],
   "counts": {
-    "agent": 13,
-    "skill": 4,
-    "command": 33,
-    "hook": 3,
-    "rule": 11,
-    "scenario": 3,
-    "pattern": 16,
-    "learning": 12,
+    "agent": 32,
+    "skill": 5,
+    "command": 56,
+    "hook": 4,
+    "rule": 25,
+    "scenario": 6,
+    "pattern": 17,
+    "learning": 30,
     "project": 3,
     "prompt": 21,
-    "template": 11,
+    "template": 18,
     "idea": 1,
     "memory": 2,
-    "total": 133
+    "knowledge": 3,
+    "total": 222
   }
 }

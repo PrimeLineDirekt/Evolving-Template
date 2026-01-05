@@ -1,32 +1,594 @@
 {
-  "version": "1.0",
-  "generated": "2025-12-29T11:30:00Z",
+  "version": "1.2",
+  "generated": "2026-01-05T23:50:00Z",
   "description": "Nodes grouped by domain tags",
-
-  "agent-design": [
-    "command-create-agent",
-    "template-specialist-agent",
-    "template-research-agent",
+  "context-management": [
+    "agent-context-manager",
+    "rule-context-budget-awareness"
+  ],
+  "coordination": [
+    "agent-context-manager",
+    "pattern-blackboard",
     "template-orchestrator-agent"
   ],
-
+  "persistence": [
+    "agent-context-manager",
+    "learning-domain-memory-pattern",
+    "learning-claude-mem"
+  ],
+  "knowledge": [
+    "agent-knowledge-synthesizer",
+    "command-knowledge-add",
+    "command-knowledge-search",
+    "rule-knowledge-linking",
+    "command-knowledge-refresh"
+  ],
+  "synthesis": [
+    "agent-knowledge-synthesizer",
+    "agent-macro-orchestrator"
+  ],
+  "multi-source": [
+    "agent-knowledge-synthesizer"
+  ],
+  "research": [
+    "agent-research-analyst",
+    "skill-research-orchestrator",
+    "prompt-research-orchestrator",
+    "pattern-research-confidence-scoring",
+    "template-research-agent",
+    "template-scenario-autonomous-research",
+    "command-deep-research"
+  ],
   "analysis": [
     "agent-research-analyst",
     "agent-codebase-analyzer",
     "agent-github-repo-analyzer",
     "agent-pitch-document-analyzer",
-    "command-project-analyze",
+    "agent-system-analyzer",
+    "template-analysis-command",
     "command-analyze-repo",
+    "command-project-analyze",
     "command-analyze-pitch-docs",
+    "agent-template-inventory",
+    "command-analyze-batch",
+    "command-pattern-scan",
+    "command-repo-screen",
+    "learning-kalyan-ml"
+  ],
+  "confidence-scoring": [
+    "agent-research-analyst",
+    "skill-research-orchestrator",
+    "pattern-research-confidence-scoring"
+  ],
+  "idea-management": [
+    "agent-idea-validator",
+    "agent-idea-expander",
+    "agent-idea-connector",
+    "command-idea-new",
+    "command-idea-work",
+    "command-idea-list",
+    "command-idea-connect"
+  ],
+  "validation": [
+    "agent-idea-validator",
+    "agent-system-validator",
+    "pattern-intake-gate",
+    "pattern-checkpoint-validation",
+    "template-validator-agent",
+    "command-interview-plan"
+  ],
+  "feasibility": [
+    "agent-idea-validator"
+  ],
+  "expansion": [
+    "agent-idea-expander"
+  ],
+  "opportunities": [
+    "agent-idea-expander"
+  ],
+  "synergies": [
+    "agent-idea-connector",
+    "command-idea-connect"
+  ],
+  "connections": [
+    "agent-idea-connector"
+  ],
+  "codebase": [
+    "agent-codebase-analyzer",
+    "command-project-analyze"
+  ],
+  "architecture": [
+    "agent-codebase-analyzer",
+    "agent-system-architect",
+    "rule-ultrathink",
+    "learning-agentic-architectures",
+    "pattern-gdpr-compliant-saas"
+  ],
+  "n8n": [
+    "agent-n8n-expert",
+    "learning-ki-auswanderungs-berater",
+    "project-ki-auswanderungs-berater"
+  ],
+  "workflows": [
+    "agent-n8n-expert",
+    "scenario-workflow-engine",
+    "rule-workflow-detection",
+    "command-run-workflow",
+    "template-automation-agent"
+  ],
+  "automation": [
+    "agent-n8n-expert",
+    "scenario-workflow-engine",
+    "command-inbox-process",
+    "command-onboard-process",
+    "hook-auto-cross-reference",
+    "hook-graph-update",
+    "learning-acontext-skill-distillation",
+    "pattern-ai-content-pipeline",
+    "template-automation-agent",
+    "command-auto-model"
+  ],
+  "github": [
+    "agent-github-repo-analyzer",
+    "command-analyze-repo",
+    "command-repo-screen"
+  ],
+  "repository": [
+    "agent-github-repo-analyzer"
+  ],
+  "model-selection": [
+    "agent-model-selector",
+    "command-opus",
+    "command-opus-plus",
+    "command-sonnet",
+    "command-haiku",
+    "command-auto-model"
+  ],
+  "metacognitive": [
+    "agent-model-selector",
+    "pattern-metacognitive"
+  ],
+  "optimization": [
+    "agent-model-selector",
+    "skill-prompt-pro-framework",
+    "agent-n8n-expert",
+    "rule-context-optimization",
+    "agent-learning-optimizer"
+  ],
+  "pitch": [
+    "agent-pitch-document-analyzer",
+    "agent-pitch-content-categorizer",
+    "agent-pitch-style-extractor",
+    "command-analyze-pitch-docs"
+  ],
+  "documents": [
+    "agent-pitch-document-analyzer",
+    "command-analyze-batch"
+  ],
+  "categorization": [
+    "agent-pitch-content-categorizer",
+    "agent-template-diff"
+  ],
+  "knowledge-base": [
+    "agent-pitch-content-categorizer",
+    "command-knowledge-refresh"
+  ],
+  "style": [
+    "agent-pitch-style-extractor",
+    "knowledge-voice-mappings"
+  ],
+  "extraction": [
+    "agent-pitch-style-extractor",
+    "rule-relevance-extraction"
+  ],
+  "templates": [
+    "skill-template-creator",
+    "agent-system-generator",
+    "template-specialist-agent",
+    "template-research-agent",
+    "template-orchestrator-agent",
+    "template-workflow-command",
+    "template-analysis-command",
+    "template-progressive-skill",
+    "template-simple-skill",
+    "template-reusable-pattern",
+    "template-project-learning",
+    "template-scenario-autonomous-research",
+    "template-scenario-multi-agent-advisory",
+    "template-advisor-agent",
+    "template-system-builder-agent",
+    "template-validator-agent",
+    "template-creative-agent",
+    "template-automation-agent",
+    "template-dynamic-agent",
+    "learning-aitmpl-findings",
+    "rule-relevance-extraction"
+  ],
+  "creation": [
+    "skill-template-creator",
+    "command-idea-new",
+    "command-knowledge-add",
+    "command-create-agent",
+    "command-create-command",
+    "command-create-hook",
+    "command-create-skill",
+    "command-create-prompt",
+    "rule-command-creation",
+    "command-scenario-create",
+    "rule-index-at-creation"
+  ],
+  "agents": [
+    "skill-template-creator",
+    "rule-scenario-agents",
+    "agent-system-analyzer",
+    "learning-better-agents-patterns",
+    "learning-agentic-architectures",
+    "learning-12-factor-agents",
+    "template-specialist-agent",
+    "template-research-agent",
+    "template-orchestrator-agent",
+    "template-advisor-agent",
+    "template-system-builder-agent",
+    "template-validator-agent",
+    "template-creative-agent",
+    "template-automation-agent",
+    "template-dynamic-agent",
+    "agent-factory",
+    "knowledge-trait-taxonomy",
+    "knowledge-voice-mappings",
+    "knowledge-disclaimers",
+    "command-create-system",
+    "command-compose-agent",
+    "learning-agentfs",
+    "agent-content-anonymizer",
+    "agent-privacy-scanner",
+    "agent-template-diff",
+    "agent-template-inventory"
+  ],
+  "commands": [
+    "skill-template-creator",
+    "pattern-intake-gate",
+    "rule-command-creation",
+    "template-workflow-command",
     "template-analysis-command"
   ],
-
-  "auswanderung": [
+  "prompt-engineering": [
+    "skill-prompt-pro-framework",
+    "command-create-prompt",
+    "command-run-prompt",
+    "prompt-framework-prompt-pro",
+    "rule-auto-enhancement",
+    "learning-prompt-coach"
+  ],
+  "framework": [
+    "skill-prompt-pro-framework",
+    "prompt-framework-prompt-pro",
+    "prompt-framework-idea-forge",
+    "learning-12-factor-agents",
+    "rule-context-optimization"
+  ],
+  "orchestration": [
+    "skill-research-orchestrator",
+    "pattern-task-decomposition",
+    "pattern-multi-agent-orchestration",
+    "template-orchestrator-agent",
+    "agent-macro-orchestrator",
+    "command-run-workflow",
+    "skill-subagent-driven-development"
+  ],
+  "etsy": [
+    "skill-etsy-poster-creator",
+    "prompt-etsy-poster-creator",
+    "learning-ai-poster-hub",
+    "project-ai-poster-hub"
+  ],
+  "seo": [
+    "skill-etsy-poster-creator",
+    "pattern-bilingual-seo",
+    "prompt-etsy-poster-creator"
+  ],
+  "e-commerce": [
+    "skill-etsy-poster-creator",
+    "pattern-bilingual-seo",
+    "prompt-etsy-poster-creator",
+    "project-ai-poster-hub"
+  ],
+  "listings": [
+    "skill-etsy-poster-creator"
+  ],
+  "development": [
+    "skill-subagent-driven-development"
+  ],
+  "review": [
+    "skill-subagent-driven-development",
+    "command-security-review",
+    "command-learning-review"
+  ],
+  "ultrathink": [
+    "command-opus-plus",
+    "rule-ultrathink",
+    "learning-ultrathink-software"
+  ],
+  "brainstorming": [
+    "command-sparring",
+    "template-creative-agent"
+  ],
+  "ideation": [
+    "command-sparring",
+    "prompt-framework-idea-forge",
+    "template-creative-agent"
+  ],
+  "sparring": [
+    "command-idea-work"
+  ],
+  "overview": [
+    "command-idea-list",
+    "command-scenario-list"
+  ],
+  "search": [
+    "command-knowledge-search",
+    "command-recall"
+  ],
+  "projects": [
+    "command-project-add",
+    "command-project-analyze"
+  ],
+  "documentation": [
+    "command-project-add",
+    "hook-session-summary"
+  ],
+  "inbox": [
+    "command-inbox-process"
+  ],
+  "onboarding": [
+    "command-onboard-process"
+  ],
+  "debugging": [
+    "command-debug",
+    "rule-observe-before-editing"
+  ],
+  "problem-solving": [
+    "command-debug"
+  ],
+  "mental-models": [
+    "command-think"
+  ],
+  "frameworks": [
+    "command-think"
+  ],
+  "agent-design": [
+    "command-create-agent"
+  ],
+  "command-design": [
+    "command-create-command"
+  ],
+  "hooks": [
+    "command-create-hook",
+    "hook-auto-cross-reference",
+    "hook-session-summary",
+    "hook-context-monitor",
+    "hook-graph-update",
+    "learning-hook-output-visibility"
+  ],
+  "skill-design": [
+    "command-create-skill"
+  ],
+  "execution": [
+    "command-run-prompt",
+    "command-run-workflow",
+    "template-scenario-autonomous-research"
+  ],
+  "system": [
+    "command-system-health",
+    "agent-learning-optimizer",
+    "command-create-system"
+  ],
+  "diagnostics": [
+    "command-system-health"
+  ],
+  "scenarios": [
+    "command-scenario",
+    "command-scenario-list",
+    "command-scenario-create",
+    "command-scenario-edit",
+    "rule-scenario-agents",
+    "scenario-evolving-dashboard",
+    "scenario-steuererklaerung-2024",
+    "scenario-workflow-engine",
+    "scenario-nhien-bistro",
+    "scenario-didit-medical-care",
+    "scenario-auswanderungs-ki",
+    "template-scenario-autonomous-research",
+    "template-scenario-multi-agent-advisory"
+  ],
+  "activation": [
+    "command-scenario"
+  ],
+  "editing": [
+    "command-scenario-edit"
+  ],
+  "session": [
+    "command-whats-next",
+    "hook-session-summary",
+    "rule-domain-memory-bootup",
+    "rule-session-evaluation",
+    "rule-clear-dont-compact"
+  ],
+  "handoff": [
+    "command-whats-next"
+  ],
+  "cross-reference": [
+    "hook-auto-cross-reference",
+    "rule-cross-reference-sync"
+  ],
+  "context": [
+    "hook-context-monitor",
+    "pattern-context-window-ownership",
+    "rule-context-optimization",
+    "rule-context-budget-awareness",
+    "rule-clear-dont-compact",
+    "learning-context-degradation",
+    "command-context"
+  ],
+  "monitoring": [
+    "hook-context-monitor"
+  ],
+  "principles": [
+    "rule-core-principles",
+    "rule-ultrathink"
+  ],
+  "guidelines": [
+    "rule-core-principles"
+  ],
+  "synchronization": [
+    "rule-cross-reference-sync",
+    "command-template-sync"
+  ],
+  "plans": [
+    "rule-plan-archival",
+    "command-interview-plan"
+  ],
+  "archival": [
+    "rule-plan-archival",
+    "rule-auto-archival"
+  ],
+  "detection": [
+    "rule-workflow-detection",
+    "agent-privacy-scanner"
+  ],
+  "linking": [
+    "rule-knowledge-linking"
+  ],
+  "memory": [
+    "rule-domain-memory-bootup",
+    "memory-evolving-system",
+    "memory-auswanderungs-ki-v2",
+    "rule-experience-suggest",
+    "rule-memory-decay",
+    "learning-domain-memory-pattern",
+    "learning-claude-mem",
+    "learning-memory-decay-pattern",
+    "command-memory-stats",
+    "command-recall",
+    "command-remember",
+    "pattern-blackboard"
+  ],
+  "bootup": [
+    "rule-domain-memory-bootup"
+  ],
+  "dashboard": [
+    "scenario-evolving-dashboard",
+    "agent-dashboard-features",
+    "command-lab"
+  ],
+  "frontend": [
+    "scenario-evolving-dashboard"
+  ],
+  "backend": [
+    "scenario-evolving-dashboard"
+  ],
+  "steuer": [
+    "scenario-steuererklaerung-2024"
+  ],
+  "legal": [
+    "scenario-steuererklaerung-2024",
+    "pattern-gdpr-compliant-saas"
+  ],
+  "advisory": [
+    "scenario-steuererklaerung-2024",
+    "scenario-auswanderungs-ki",
+    "template-scenario-multi-agent-advisory",
+    "template-advisor-agent"
+  ],
+  "sdk": [
+    "scenario-workflow-engine",
+    "learning-claude-sdk-insights"
+  ],
+  "bilingual": [
+    "pattern-bilingual-seo"
+  ],
+  "saas": [
+    "pattern-freemium-saas-gates",
+    "pattern-gdpr-compliant-saas",
     "project-ki-auswanderungs-berater",
-    "project-{PROJECT_ID}",
+    "idea-evolving-mvp-saas"
+  ],
+  "freemium": [
+    "pattern-freemium-saas-gates"
+  ],
+  "business": [
+    "pattern-freemium-saas-gates",
+    "idea-evolving-mvp-saas"
+  ],
+  "decomposition": [
+    "pattern-task-decomposition"
+  ],
+  "multi-agent": [
+    "pattern-multi-agent-orchestration",
+    "rule-context-budget-awareness",
+    "template-scenario-multi-agent-advisory",
+    "command-create-system"
+  ],
+  "plan-execute-verify": [
+    "pattern-pev"
+  ],
+  "self-correction": [
+    "pattern-pev"
+  ],
+  "shared-memory": [
+    "pattern-blackboard"
+  ],
+  "self-assessment": [
+    "pattern-metacognitive"
+  ],
+  "reflection": [
+    "pattern-reflection"
+  ],
+  "quality": [
+    "pattern-reflection",
+    "rule-ultrathink",
+    "rule-session-evaluation",
+    "template-validator-agent",
+    "learning-ultrathink-software"
+  ],
+  "checkpoints": [
+    "pattern-checkpoint-validation"
+  ],
+  "ownership": [
+    "pattern-context-window-ownership"
+  ],
+  "errors": [
+    "pattern-compact-errors"
+  ],
+  "formatting": [
+    "pattern-compact-errors"
+  ],
+  "profiles": [
+    "pattern-8-block-profile"
+  ],
+  "data-structure": [
+    "pattern-8-block-profile"
+  ],
+  "gdpr": [
+    "pattern-gdpr-compliant-saas"
+  ],
+  "content": [
+    "pattern-ai-content-pipeline",
+    "template-creative-agent",
+    "command-generate-image"
+  ],
+  "ai": [
+    "pattern-ai-content-pipeline",
+    "learning-ai-poster-hub",
+    "project-ai-poster-hub"
+  ],
+  "auswanderung": [
     "learning-ki-auswanderungs-berater",
-    "learning-{PROJECT_ID}",
-    "memory-{PROJECT_ID}",
+    "learning-auswanderungs-ki-v2",
+    "project-ki-auswanderungs-berater",
+    "project-auswanderungs-ki-v2",
+    "memory-auswanderungs-ki-v2",
+    "scenario-auswanderungs-ki",
     "prompt-aki-checkliste",
     "prompt-aki-digitale-nomaden",
     "prompt-aki-familie-kinder",
@@ -45,301 +607,516 @@
     "prompt-aki-unternehmens-verlagerung",
     "prompt-aki-vertragsmanagement"
   ],
-
-  "automation": [
-    "agent-n8n-expert",
-    "command-inbox-process",
-    "command-auto-model",
-    "command-run-workflow",
-    "hook-auto-cross-reference",
+  "posters": [
+    "learning-ai-poster-hub"
+  ],
+  "python": [
+    "learning-auswanderungs-ki-v2",
+    "project-auswanderungs-ki-v2"
+  ],
+  "langgraph": [
+    "learning-auswanderungs-ki-v2",
+    "project-auswanderungs-ki-v2"
+  ],
+  "findings": [
+    "learning-aitmpl-findings"
+  ],
+  "anthropic": [
+    "learning-anthropic-tool-use"
+  ],
+  "tools": [
+    "learning-anthropic-tool-use"
+  ],
+  "best-practices": [
+    "learning-anthropic-tool-use",
+    "learning-12-factor-agents",
+    "learning-chrome-automation"
+  ],
+  "patterns": [
+    "learning-better-agents-patterns",
+    "learning-agentic-architectures",
+    "template-reusable-pattern",
+    "command-pattern-scan",
+    "agent-pattern-recognizer",
+    "learning-context-degradation",
+    "learning-memory-decay-pattern",
+    "pattern-trait-based-composition",
+    "agent-meta-analyst"
+  ],
+  "claude": [
+    "learning-claude-sdk-insights",
+    "learning-claude-code-dec-2025"
+  ],
+  "skills": [
     "learning-acontext-skill-distillation",
-    "pattern-ai-content-pipeline",
-    "scenario-workflow-engine"
+    "template-progressive-skill",
+    "template-simple-skill",
+    "learning-skill-anti-patterns",
+    "learning-skill-creation-tdd"
   ],
-
-  "brainstorming": [
-    "command-sparring"
+  "copilotkit": [
+    "learning-copilotkit-evaluation"
   ],
-
-  "confidence-scoring": [
-    "agent-research-analyst",
-    "skill-research-orchestrator",
-    "pattern-research-confidence-scoring",
-    "template-research-agent",
-    "template-scenario-multi-agent-advisory"
+  "evaluation": [
+    "learning-copilotkit-evaluation",
+    "rule-session-evaluation"
   ],
-
-  "context-management": [
-    "agent-context-manager",
-    "hook-context-monitor",
-    "pattern-context-window-ownership",
+  "evolving": [
+    "memory-evolving-system",
+    "idea-evolving-mvp-saas"
+  ],
+  "parallelization": [
     "rule-context-budget-awareness"
   ],
-
-  "parallelization": [
-    "rule-context-budget-awareness",
-    "pattern-parallel-agent-dispatch"
-  ],
-
   "session-management": [
     "rule-context-budget-awareness",
-    "rule-explicit-identity",
-    "rule-clear-dont-compact"
+    "rule-explicit-identity"
   ],
-
   "process-boundaries": [
     "rule-explicit-identity"
   ],
-
   "concurrency": [
     "rule-explicit-identity"
   ],
-
   "idempotency": [
-    "rule-idempotent-redundancy",
-    "rule-index-at-creation"
+    "rule-idempotent-redundancy"
   ],
-
   "safety": [
     "rule-idempotent-redundancy"
   ],
-
-  "creation": [
-    "command-idea-new",
-    "command-knowledge-add",
-    "command-create-agent",
-    "command-create-command",
-    "command-create-hook",
-    "command-create-skill",
-    "command-create-prompt"
+  "operations": [
+    "rule-idempotent-redundancy"
   ],
-
-  "cross-reference": [
-    "hook-auto-cross-reference",
-    "rule-cross-reference-sync"
+  "system-building": [
+    "agent-system-analyzer",
+    "agent-system-architect",
+    "agent-system-generator",
+    "agent-system-validator",
+    "learning-system-builder",
+    "template-system-builder-agent",
+    "command-create-system"
   ],
-
-  "debugging": [
-    "command-debug"
+  "requirements": [
+    "agent-system-analyzer"
   ],
-
-  "e-commerce": [
-    "skill-etsy-poster-creator",
-    "project-ai-poster-hub",
-    "pattern-bilingual-seo"
+  "design": [
+    "agent-system-architect",
+    "agent-dashboard-features"
   ],
-
-  "etsy": [
-    "skill-etsy-poster-creator",
-    "project-ai-poster-hub",
-    "learning-ai-poster-hub",
-    "prompt-etsy-poster-creator"
+  "code-generation": [
+    "agent-system-generator"
   ],
-
-  "framework": [
-    "skill-prompt-pro-framework",
-    "prompt-framework-prompt-pro",
-    "prompt-framework-idea-forge",
-    "learning-12-factor-agents"
+  "quality-gates": [
+    "agent-system-validator"
   ],
-
-  "github": [
-    "agent-github-repo-analyzer",
-    "command-analyze-repo"
+  "features": [
+    "agent-dashboard-features",
+    "learning-claude-code-dec-2025",
+    "command-update-check"
   ],
-
-  "idea-management": [
-    "agent-idea-validator",
-    "agent-idea-expander",
-    "agent-idea-connector",
-    "command-idea-new",
-    "command-idea-work",
-    "command-idea-list",
-    "command-idea-connect",
-    "prompt-framework-idea-forge"
+  "ux-design": [
+    "agent-dashboard-features"
   ],
-
-  "knowledge": [
-    "agent-knowledge-synthesizer",
-    "command-knowledge-add",
-    "command-knowledge-search",
-    "rule-knowledge-linking"
+  "market-analysis": [
+    "agent-macro-data-collector",
+    "agent-meta-analyst",
+    "agent-pattern-recognizer",
+    "agent-forecast-synthesizer",
+    "agent-learning-optimizer",
+    "agent-market-technical-analyst",
+    "agent-macro-economist",
+    "agent-macro-orchestrator",
+    "command-market-analysis",
+    "command-macro-forecast"
   ],
-
-  "memory": [
-    "rule-domain-memory-bootup",
-    "memory-evolving-system",
-    "memory-{PROJECT_ID}",
-    "learning-domain-memory-pattern"
+  "data-collection": [
+    "agent-macro-data-collector"
   ],
-
-  "metacognitive": [
-    "agent-model-selector",
-    "pattern-metacognitive",
-    "command-think"
+  "api": [
+    "agent-macro-data-collector",
+    "agent-privacy-scanner"
   ],
-
-  "model-selection": [
-    "agent-model-selector",
-    "command-opus",
-    "command-opus-plus",
-    "command-sonnet",
-    "command-haiku",
-    "command-auto-model"
+  "meta-analysis": [
+    "agent-meta-analyst"
   ],
-
-  "multi-agent": [
-    "pattern-multi-agent-orchestration",
-    "pattern-blackboard",
-    "template-scenario-multi-agent-advisory",
-    "learning-better-agents-patterns",
-    "learning-agentic-architectures",
-    "rule-context-budget-awareness",
-    "rule-explicit-identity"
+  "narrative-detection": [
+    "agent-meta-analyst"
   ],
-
-  "n8n": [
-    "agent-n8n-expert",
-    "project-ki-auswanderungs-berater",
-    "learning-ki-auswanderungs-berater"
+  "contrarian-signals": [
+    "agent-pattern-recognizer"
   ],
-
-  "orchestration": [
-    "skill-research-orchestrator",
-    "prompt-research-orchestrator",
-    "template-orchestrator-agent",
-    "pattern-multi-agent-orchestration",
-    "pattern-task-decomposition"
+  "forecasting": [
+    "agent-forecast-synthesizer",
+    "command-macro-forecast"
   ],
-
-  "patterns": [
-    "pattern-research-confidence-scoring",
-    "pattern-bilingual-seo",
-    "pattern-freemium-saas-gates",
-    "pattern-intake-gate",
-    "pattern-task-decomposition",
-    "pattern-multi-agent-orchestration",
-    "pattern-pev",
-    "pattern-blackboard",
-    "pattern-metacognitive",
-    "pattern-reflection",
-    "pattern-checkpoint-validation",
-    "pattern-context-window-ownership",
-    "pattern-compact-errors",
-    "pattern-8-block-profile",
-    "pattern-gdpr-compliant-saas",
-    "pattern-ai-content-pipeline",
-    "template-reusable-pattern",
-    "learning-better-agents-patterns",
-    "learning-agentic-architectures"
+  "learning": [
+    "agent-learning-optimizer",
+    "command-remember",
+    "command-learning-review",
+    "rule-auto-enhancement"
   ],
-
-  "pitch": [
-    "agent-pitch-document-analyzer",
-    "agent-pitch-content-categorizer",
-    "agent-pitch-style-extractor",
-    "command-analyze-pitch-docs"
+  "model-refinement": [
+    "agent-learning-optimizer"
   ],
-
-  "progressive-disclosure": [
-    "skill-template-creator",
-    "skill-prompt-pro-framework",
-    "template-progressive-skill"
+  "technical-analysis": [
+    "agent-market-technical-analyst",
+    "command-market-analysis"
   ],
-
-  "prompt-engineering": [
-    "skill-prompt-pro-framework",
-    "prompt-framework-prompt-pro",
-    "command-create-prompt",
-    "command-run-prompt"
+  "indicators": [
+    "agent-market-technical-analyst"
   ],
-
-  "reflection": [
-    "pattern-reflection",
-    "pattern-pev"
+  "macroeconomics": [
+    "agent-macro-economist"
   ],
-
-  "research": [
-    "agent-research-analyst",
-    "skill-research-orchestrator",
-    "prompt-research-orchestrator",
-    "pattern-research-confidence-scoring",
-    "template-research-agent",
-    "template-scenario-autonomous-research"
+  "liquidity": [
+    "agent-macro-economist"
   ],
-
-  "saas": [
-    "pattern-freemium-saas-gates",
-    "pattern-gdpr-compliant-saas",
-    "idea-evolving-mvp-saas",
-    "project-ki-auswanderungs-berater"
+  "experience-memory": [
+    "rule-experience-suggest"
   ],
-
-  "scenarios": [
-    "scenario-evolving-dashboard",
-    "scenario-steuererklaerung-2024",
-    "scenario-workflow-engine",
-    "command-scenario",
-    "command-scenario-list",
-    "command-scenario-create",
-    "command-scenario-edit",
-    "rule-scenario-agents",
-    "template-scenario-autonomous-research",
-    "template-scenario-multi-agent-advisory"
+  "auto-suggest": [
+    "rule-experience-suggest"
   ],
-
-  "sdk": [
-    "learning-claude-sdk-insights",
-    "scenario-workflow-engine"
+  "decay": [
+    "rule-memory-decay",
+    "learning-memory-decay-pattern"
   ],
-
-  "seo": [
-    "skill-etsy-poster-creator",
-    "pattern-bilingual-seo"
+  "relevance": [
+    "rule-memory-decay",
+    "rule-relevance-extraction",
+    "command-repo-screen"
   ],
-
-  "session": [
-    "hook-session-summary",
-    "command-whats-next",
-    "rule-domain-memory-bootup"
+  "degradation": [
+    "rule-context-optimization",
+    "learning-context-degradation"
   ],
-
-  "steuer": [
-    "scenario-steuererklaerung-2024",
+  "enhancement": [
+    "rule-auto-enhancement"
+  ],
+  "token": [
+    "rule-token-efficiency"
+  ],
+  "efficiency": [
+    "rule-token-efficiency"
+  ],
+  "abbreviations": [
+    "rule-token-efficiency"
+  ],
+  "integration": [
+    "rule-no-reference-only",
+    "command-analyze-repo",
+    "command-deep-research"
+  ],
+  "observation": [
+    "rule-observe-before-editing"
+  ],
+  "indexing": [
+    "rule-index-at-creation"
+  ],
+  "ledger": [
+    "rule-clear-dont-compact"
+  ],
+  "verification": [
+    "rule-evidence-before-claims",
+    "template-validator-agent"
+  ],
+  "evidence": [
+    "rule-evidence-before-claims"
+  ],
+  "restaurant": [
+    "scenario-nhien-bistro"
+  ],
+  "ordering": [
+    "scenario-nhien-bistro"
+  ],
+  "qr-system": [
+    "scenario-nhien-bistro"
+  ],
+  "medical": [
+    "scenario-didit-medical-care",
+    "knowledge-disclaimers"
+  ],
+  "logistics": [
+    "scenario-didit-medical-care",
+    "prompt-aki-umzug-logistik"
+  ],
+  "emigration": [
+    "scenario-auswanderungs-ki"
+  ],
+  "tax": [
+    "scenario-auswanderungs-ki",
     "prompt-aki-steueroptimierung"
   ],
-
-  "synthesis": [
-    "agent-knowledge-synthesizer"
+  "knowledge-graph": [
+    "hook-graph-update",
+    "command-context"
   ],
-
-  "templates": [
-    "skill-template-creator",
-    "template-specialist-agent",
-    "template-research-agent",
-    "template-orchestrator-agent",
-    "template-workflow-command",
-    "template-analysis-command",
-    "template-progressive-skill",
-    "template-simple-skill",
-    "template-reusable-pattern",
+  "learnings": [
+    "learning-system-builder",
     "template-project-learning",
-    "template-scenario-autonomous-research",
-    "template-scenario-multi-agent-advisory",
-    "learning-aitmpl-findings"
+    "command-knowledge-refresh"
   ],
-
-  "validation": [
-    "agent-idea-validator",
-    "pattern-intake-gate",
-    "pattern-checkpoint-validation"
+  "mcp": [
+    "learning-mcp-server"
   ],
-
-  "workflows": [
-    "agent-n8n-expert",
-    "command-run-workflow",
-    "rule-workflow-detection",
-    "scenario-workflow-engine",
-    "template-workflow-command"
+  "implementation": [
+    "learning-mcp-server",
+    "command-interview-plan"
+  ],
+  "methodology": [
+    "learning-prompt-coach",
+    "learning-notebook-audit",
+    "learning-skill-creation-tdd"
+  ],
+  "storage": [
+    "learning-agentfs"
+  ],
+  "software": [
+    "learning-ultrathink-software"
+  ],
+  "craftsmanship": [
+    "learning-ultrathink-software"
+  ],
+  "chrome": [
+    "learning-chrome-automation",
+    "learning-chrome-experiments"
+  ],
+  "experiments": [
+    "learning-chrome-experiments"
+  ],
+  "pattern": [
+    "learning-memory-decay-pattern"
+  ],
+  "observability": [
+    "learning-agent-observability"
+  ],
+  "langsmith": [
+    "learning-agent-observability"
+  ],
+  "feedback-loop": [
+    "learning-self-improving"
+  ],
+  "ml": [
+    "learning-kalyan-ml"
+  ],
+  "anti-patterns": [
+    "learning-skill-anti-patterns"
+  ],
+  "notebooks": [
+    "learning-notebook-audit"
+  ],
+  "audit": [
+    "learning-notebook-audit",
+    "agent-privacy-scanner"
+  ],
+  "tdd": [
+    "learning-skill-creation-tdd"
+  ],
+  "visibility": [
+    "learning-hook-output-visibility"
+  ],
+  "image-generation": [
+    "agent-fal-image-generator",
+    "command-generate-image"
+  ],
+  "content-creation": [
+    "agent-fal-image-generator",
+    "command-generate-image"
+  ],
+  "fal-ai": [
+    "agent-fal-image-generator"
+  ],
+  "nano-banana-pro": [
+    "agent-fal-image-generator"
+  ],
+  "checklists": [
+    "prompt-aki-checkliste"
+  ],
+  "digital-nomad": [
+    "prompt-aki-digitale-nomaden"
+  ],
+  "family": [
+    "prompt-aki-familie-kinder"
+  ],
+  "finance": [
+    "prompt-aki-finanzplanung",
+    "knowledge-disclaimers"
+  ],
+  "health-insurance": [
+    "prompt-aki-krankenversicherung"
+  ],
+  "crypto": [
+    "prompt-aki-kryptowaehrungen"
+  ],
+  "emergency": [
+    "prompt-aki-notfall-krisen"
+  ],
+  "trial": [
+    "prompt-aki-probe-auswanderung"
+  ],
+  "profiling": [
+    "prompt-aki-profil-analyse"
+  ],
+  "reporting": [
+    "prompt-aki-reporter"
+  ],
+  "return": [
+    "prompt-aki-rueckkehr-deutschland"
+  ],
+  "seniors": [
+    "prompt-aki-senioren"
+  ],
+  "tax-optimization": [
+    "prompt-aki-steueroptimierung"
+  ],
+  "pets": [
+    "prompt-aki-tierverlagerung"
+  ],
+  "business-relocation": [
+    "prompt-aki-unternehmens-verlagerung"
+  ],
+  "contracts": [
+    "prompt-aki-vertragsmanagement"
+  ],
+  "progressive-disclosure": [
+    "template-progressive-skill"
+  ],
+  "factory": [
+    "agent-factory"
+  ],
+  "composition": [
+    "agent-factory",
+    "rule-ultrathink",
+    "pattern-trait-based-composition",
+    "template-dynamic-agent",
+    "command-compose-agent"
+  ],
+  "dynamic": [
+    "agent-factory",
+    "pattern-trait-based-composition",
+    "template-dynamic-agent",
+    "command-compose-agent"
+  ],
+  "perplexity": [
+    "command-deep-research",
+    "command-lab"
+  ],
+  "traits": [
+    "knowledge-trait-taxonomy",
+    "pattern-trait-based-composition"
+  ],
+  "taxonomy": [
+    "knowledge-trait-taxonomy",
+    "pattern-trait-based-composition"
+  ],
+  "voice": [
+    "knowledge-voice-mappings",
+    "pattern-trait-based-composition",
+    "template-dynamic-agent"
+  ],
+  "personality": [
+    "knowledge-voice-mappings",
+    "pattern-trait-based-composition",
+    "template-dynamic-agent"
+  ],
+  "disclaimers": [
+    "knowledge-disclaimers"
+  ],
+  "compliance": [
+    "knowledge-disclaimers"
+  ],
+  "template-sync": [
+    "agent-content-anonymizer",
+    "agent-privacy-scanner",
+    "agent-template-diff",
+    "agent-template-inventory",
+    "command-template-sync"
+  ],
+  "privacy": [
+    "agent-content-anonymizer",
+    "agent-privacy-scanner",
+    "command-template-sync"
+  ],
+  "anonymization": [
+    "agent-content-anonymizer"
+  ],
+  "security": [
+    "agent-privacy-scanner",
+    "command-security-review",
+    "knowledge-disclaimers"
+  ],
+  "diff-analysis": [
+    "agent-template-diff"
+  ],
+  "version-control": [
+    "agent-template-diff"
+  ],
+  "inventory": [
+    "agent-template-inventory"
+  ],
+  "component-analysis": [
+    "agent-template-inventory"
+  ],
+  "batch-processing": [
+    "command-analyze-batch"
+  ],
+  "context-retrieval": [
+    "command-context"
+  ],
+  "system-generation": [
+    "command-create-system"
+  ],
+  "planning": [
+    "command-interview-plan"
+  ],
+  "learning-management": [
+    "command-knowledge-refresh"
+  ],
+  "research-tools": [
+    "command-lab"
+  ],
+  "metrics": [
+    "command-learning-review"
+  ],
+  "iteration": [
+    "command-loop-until-done"
+  ],
+  "task-management": [
+    "command-loop-until-done"
+  ],
+  "macro-analysis": [
+    "command-analyze-batch",
+    "command-macro-forecast",
+    "command-market-analysis"
+  ],
+  "analytics": [
+    "command-memory-stats"
+  ],
+  "configuration": [
+    "command-preferences"
+  ],
+  "user-settings": [
+    "command-preferences"
+  ],
+  "code-review": [
+    "command-security-review"
+  ],
+  "updates": [
+    "command-update-check"
+  ],
+  "maintenance": [
+    "command-update-check"
+  ],
+  "expertise": [
+    "knowledge-trait-taxonomy"
+  ],
+  "approach": [
+    "knowledge-trait-taxonomy"
+  ],
+  "tone": [
+    "knowledge-voice-mappings"
+  ],
+  "communication": [
+    "knowledge-voice-mappings"
   ]
 }

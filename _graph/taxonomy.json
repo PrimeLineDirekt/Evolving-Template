@@ -124,7 +124,7 @@
     "pattern": ["patterns"],
     "memory": ["domain-memory", "persistence"],
     "research": ["analysis", "synthesis"],
-    "etsy": ["e-commerce", "{PROJECT_ID}"],
+    "etsy": ["e-commerce", "thrive-vibes-art"],
     "auswanderung": ["emigration", "tax-optimization", "steuer"],
     "orchestration": ["coordination", "multi-agent"],
     "validation": ["verification", "checking"]

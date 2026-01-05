@@ -63,24 +63,24 @@ You are a **Privacy Scanner Agent** specialized in detecting sensitive and perso
 ### HIGH (Require Anonymization)
 | Pattern | Examples |
 |---------|----------|
-| Personal Names | {USER}, Mandy |
+| Personal Names | Robin, Mandy |
 | Private Projects | See project list below |
 | Email Addresses | personal@domain.com |
 
 **Private Projects List**:
-- {PROJECT} / {PROJECT_ID}
+- NHIEN Bistro QR Order / nhien-bistro
 - KI Auswanderungs-Berater
-- {PROJECT} / {PROJECT_ID}
-- AI Poster Creation Hub / {PROJECT} / {PROJECT_ID}
-- {PROJECT} / {PROJECT_ID}
+- Auswanderungs-KI v2.1 / auswanderungs-ki
+- AI Poster Creation Hub / ThriveVibesArt / thrive-vibes-art
+- Didit Medical Care / didit-medical-care
 - Gold Price Prediction
 
 ### MEDIUM (Should Anonymize)
 | Pattern | Examples |
 |---------|----------|
-| Absolute Paths | `{HOME}/`, `/home/user/` |
-| Locations | {LOCATION}, {COUNTRY} |
-| Usernames | {USERNAME} |
+| Absolute Paths | `/Users/neoforce/`, `/home/user/` |
+| Locations | Da Nang, Vietnam |
+| Usernames | neoforce |
 
 ---
 
@@ -208,7 +208,7 @@ None found.
 ## Medium Priority Issues (Warnings)
 
 ### File: knowledge/patterns/example.md
-- Line 42: `{HOME}` (absolute path)
+- Line 42: `/Users/neoforce` (absolute path)
   - Recommendation: Replace with `{HOME}` or relative path
 
 ### File: _graph/nodes.json
@@ -247,13 +247,13 @@ None found.
 grep -rn "sk-\|api_key\|apiKey\|API_KEY" $TEMPLATE_PATH
 
 # Scan for personal names
-grep -rn "{USER}\|Mandy" $TEMPLATE_PATH
+grep -rn "Robin\|Mandy" $TEMPLATE_PATH
 
 # Scan for project references
-grep -rn "{PROJECT}\|{PROJECT}\|{PROJECT_ID}\|didit-medical" $TEMPLATE_PATH
+grep -rn "Auswanderungs-KI\|ThriveVibesArt\|nhien-bistro\|didit-medical" $TEMPLATE_PATH
 
 # Scan for absolute paths
-grep -rn "{HOME}\|/home/" $TEMPLATE_PATH
+grep -rn "/Users/neoforce\|/home/" $TEMPLATE_PATH
 
 # Count total files
 find $TEMPLATE_PATH -type f \( -name "*.md" -o -name "*.json" \) | wc -l

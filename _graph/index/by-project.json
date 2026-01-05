@@ -48,15 +48,15 @@
     ]
   },
 
-  "{PROJECT_ID}": {
-    "description": "{PROJECT} v1 and v2 components",
-    "memory_file": "_memory/projects/{PROJECT_ID}.json",
+  "auswanderungs-ki": {
+    "description": "Auswanderungs-KI v1 and v2 components",
+    "memory_file": "_memory/projects/auswanderungs-ki-v2.json",
     "nodes": [
       "project-ki-auswanderungs-berater",
-      "project-{PROJECT_ID}",
+      "project-auswanderungs-ki-v2",
       "learning-ki-auswanderungs-berater",
-      "learning-{PROJECT_ID}",
-      "memory-{PROJECT_ID}",
+      "learning-auswanderungs-ki-v2",
+      "memory-auswanderungs-ki-v2",
       "prompt-aki-checkliste",
       "prompt-aki-digitale-nomaden",
       "prompt-aki-familie-kinder",
@@ -78,9 +78,9 @@
     ]
   },
 
-  "{PROJECT_ID}": {
-    "description": "{PROJECT} Etsy components",
-    "memory_file": "_memory/projects/{PROJECT_ID}.json",
+  "thrive-vibes-art": {
+    "description": "ThriveVibesArt Etsy components",
+    "memory_file": "_memory/projects/thrive-vibes-art.json",
     "nodes": [
       "project-ai-poster-hub",
       "learning-ai-poster-hub",

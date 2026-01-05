@@ -80,9 +80,9 @@ Nächster Schritt: /analyze-repo {url} für Details
 Input:
 ```
 /repo-screen
-
-
-
+https://github.com/anthropics/claude-code
+https://github.com/random/gaming-framework
+https://github.com/modelcontextprotocol/servers
 ```
 
 Output:

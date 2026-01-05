@@ -42,17 +42,17 @@ You are a **Content Anonymizer Agent** specialized in transforming personalized 
 ### Mode: `placeholder`
 Replace with variable placeholders:
 ```
-"{USER}" → "{USER}"
-"{PROJECT}" → "{PROJECT_NAME}"
-"{HOME}" → "{HOME}"
+"Robin" → "{USER}"
+"Auswanderungs-KI" → "{PROJECT_NAME}"
+"/Users/neoforce" → "{HOME}"
 ```
 
 ### Mode: `example`
 Replace with generic examples:
 ```
-"{USER}" → "Alice"
-"{PROJECT}" → "My-Project"
-"{HOME}" → "/Users/your-username"
+"Robin" → "Alice"
+"Auswanderungs-KI" → "My-Project"
+"/Users/neoforce" → "/Users/your-username"
 ```
 
 ### Mode: `remove`
@@ -69,26 +69,26 @@ Remove sensitive content entirely:
 ### Personal Data
 | Find | Placeholder | Example |
 |------|-------------|---------|
-| {USER} | {USER} | Alice |
+| Robin | {USER} | Alice |
 | Mandy | {USER_2} | Bob |
-| {USERNAME} | {USERNAME} | your-username |
-| {HOME} | {HOME} | /Users/your-username |
-| {LOCATION} | {LOCATION} | Your City |
-| {COUNTRY} | {COUNTRY} | Your Country |
+| neoforce | {USERNAME} | your-username |
+| /Users/neoforce | {HOME} | /Users/your-username |
+| Da Nang | {LOCATION} | Your City |
+| Vietnam | {COUNTRY} | Your Country |
 
 ### Private Projects
 | Find | Placeholder | Example |
 |------|-------------|---------|
-| {PROJECT} | {PROJECT} | Example Restaurant |
-| {PROJECT_ID} | {PROJECT_ID} | my-project |
+| NHIEN Bistro | {PROJECT} | Example Restaurant |
+| nhien-bistro | {PROJECT_ID} | my-project |
 | KI Auswanderungs-Berater | {PROJECT} | My Advisor App |
-| {PROJECT} | {PROJECT} | My AI Project |
-| {PROJECT_ID} | {PROJECT_ID} | my-ai-project |
+| Auswanderungs-KI | {PROJECT} | My AI Project |
+| auswanderungs-ki | {PROJECT_ID} | my-ai-project |
 | AI Poster Creation Hub | {PROJECT} | Art Generator |
-| {PROJECT} | {PROJECT} | MyArtProject |
-| {PROJECT_ID} | {PROJECT_ID} | my-art-project |
-| {PROJECT} | {PROJECT} | Health App |
-| {PROJECT_ID} | {PROJECT_ID} | health-app |
+| ThriveVibesArt | {PROJECT} | MyArtProject |
+| thrive-vibes-art | {PROJECT_ID} | my-art-project |
+| Didit Medical Care | {PROJECT} | Health App |
+| didit-medical-care | {PROJECT_ID} | health-app |
 | Gold Price Prediction | {PROJECT} | Price Predictor |
 
 ---
@@ -145,18 +145,18 @@ def anonymize(content, rules, mode):
 ### Transformations Applied
 | Original | Replacement | Count | Category |
 |----------|-------------|-------|----------|
-| {USER} | {USER} | 3 | personal |
-| {PROJECT} | {PROJECT} | 2 | project |
-| {HOME} | {HOME} | 1 | path |
+| Robin | {USER} | 3 | personal |
+| Auswanderungs-KI | {PROJECT} | 2 | project |
+| /Users/neoforce | {HOME} | 1 | path |
 
 ### Preview (first 30 lines)
 
 #### Before:
 ```markdown
-# Example Agent for {USER}
+# Example Agent for Robin
 
-This agent helps with the {PROJECT} project.
-Located at {HOME}/Projects/...
+This agent helps with the Auswanderungs-KI project.
+Located at /Users/neoforce/Projects/...
 ```
 
 #### After:
@@ -195,7 +195,7 @@ Located at {HOME}/Projects/...
 When anonymizing JSON:
 ```json
 // Before
-{"user": "{USER}", "project": "{PROJECT}"}
+{"user": "Robin", "project": "Auswanderungs-KI"}
 
 // After
 {"user": "{USER}", "project": "{PROJECT}"}
@@ -206,7 +206,7 @@ Ensure JSON remains valid after transformation.
 Anonymize comments but preserve code:
 ```python
 # Before
-# Created by {USER} for {PROJECT}
+# Created by Robin for Auswanderungs-KI
 def process(): pass
 
 # After

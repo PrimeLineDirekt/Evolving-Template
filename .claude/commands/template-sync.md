@@ -109,11 +109,11 @@ Output:
 ```
 🔄 ANONYMISIERUNG:
 ├── .claude/agents/xyz-agent.md
-│   └── "{USER}" → "{USER}"
+│   └── "Robin" → "{USER}"
 ├── knowledge/patterns/example.md
-│   └── "{PROJECT}" → "{PROJECT}"
+│   └── "Auswanderungs-KI" → "{PROJECT}"
 └── .claude/CONTEXT.md
-    └── "{HOME}" → "{HOME}"
+    └── "/Users/neoforce" → "{HOME}"
 ```
 
 ### Phase 5: DIVERGED Handling
@@ -338,8 +338,8 @@ User: /template-sync
 
 Claude:
   Lade Manifest...
-  Source: {EVOLVING_PATH}
-  Target: {EVOLVING_PATH}-Template
+  Source: /Users/neoforce/Buisiness/Evolving
+  Target: /Users/neoforce/Buisiness/Evolving-Template
 
   [1/8] Template Inventory Agent...
   📦 Agents: 19→23 (+4) | Commands: 34→39 (+5)
