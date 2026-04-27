@@ -17,4 +17,4 @@ pytest-asyncio>=0.21.0
 pydantic>=2.0.0
 
 # Type checking (optional, for development)
-mypy>=1.0.0
+mypy>=1.20.2
