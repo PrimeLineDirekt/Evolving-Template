@@ -4,7 +4,7 @@
 mcp>=1.27.0
 
 # Anthropic Claude API
-anthropic>=0.21.0
+anthropic>=0.97.0
 
 # Claude Agent SDK (formerly Claude Code SDK)
 claude-code-sdk>=0.0.25
