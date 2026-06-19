@@ -10,7 +10,7 @@ anthropic>=0.109.1
 claude-code-sdk>=0.0.25
 
 # Testing
-pytest>=9.0.3
+pytest>=9.1.0
 pytest-asyncio>=1.4.0
 
 # Data Validation
