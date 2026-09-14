@@ -1,7 +1,7 @@
 # Evolving Knowledge System - Python Dependencies
 
 # MCP Server
-mcp>=2.1.1
+mcp>=2.2.0
 
 # Anthropic Claude API
 anthropic>=1.3.0
