@@ -14,7 +14,7 @@ pytest>=9.1.1
 pytest-asyncio>=1.4.0
 
 # Data Validation
-pydantic>=2.13.5
+pydantic>=2.14.0
 
 # Type checking (optional, for development)
 mypy>=2.3.1
