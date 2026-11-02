@@ -11,7 +11,7 @@ claude-code-sdk>=0.0.25
 
 # Testing
 pytest>=9.1.1
-pytest-asyncio>=1.4.0
+pytest-asyncio>=1.4.1
 
 # Data Validation
 pydantic>=2.13.5
